@@ -36,9 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
     middlename: "",
     lastname: "",
     address: "",
-    email: '',
-    contactNumber: '',
-    facebook: ''
+    email: "",
+    contactNumber: "",
+    facebook: "",
   });
 
   const [employeeEmergency, setEmployeeEmergency] = useState({
@@ -48,9 +48,32 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   const [employeeAccount, setEmployeeAccount] = useState({
-    username:'',
-    password: ''
+    username: "",
+    password: "",
+  });
+
+  const [studentRegistration, setStudentRegistration] = useState({
+    studentId: '',
+    schoolYear: '',
+    firstname: "",
+    middlename: "",
+    lastname: "",
+    address: "",
+    email: "",
+    contactNumber: "",
+    facebook: "",
   })
+
+  const [studentEmergency, setStudentEmergency] = useState({
+    name: "",
+    contactNumber: "",
+    facebook: "",
+  })
+
+  const [studentAccount, setStudentAccount] = useState({
+    username: "",
+    password: "",
+  });
 
   //functions
   const employeeOnChange = (value: any, column: string) => {
@@ -66,13 +89,33 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   const employeeAccountOnChange = (value: any, column: string) => {
-    setEmployeeAccount( prev => {
+    setEmployeeAccount((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
+
+  const studentOnChange = (value:any, column:string) => {
+    setStudentRegistration( prev => {
+      return { ...prev, [column]: value}
+    })
+  }
+
+  const studentEmergencyOnChange = (value: any, column: string) => {
+    setStudentEmergency( prev => {
+      return { ...prev, [column]: value }
+    })
+  }
+
+  const studentAccountOnChange = (value: any, column: string) => {
+    setStudentEmergency( prev => {
       return { ...prev, [column]: value }
     })
   }
 
   //endpoint section
   const employeeRegister = () => {};
+
+  const studentRegister = () => {};
 
   useEffect(() => {
     test();
@@ -90,12 +133,17 @@ export default function App({ Component, pageProps }: AppProps) {
         registration,
         setRegistration,
 
-
+        //employee functions
         employeeRegister,
-
+        employeeOnChange,
         employeeEmergencyOnChange,
- 
-        employeeAccountOnChange
+        employeeAccountOnChange,
+
+        //student functions
+        studentRegister,
+        studentOnChange,
+        studentEmergencyOnChange,
+        studentAccountOnChange,
       }}
     >
       <Component {...pageProps} />
