@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
-import MyInput from "../../lib/partials/MyInput";
-import UsersRegistrationForm from "../UsersRegistrationForm";
+import StudentRegistration from "../UsersRegistrationComponents/StudentRegistration";
 import SearchBar from "./SearchBar";
 import StudentYearLevelFilter from "./StudentYearLevelFilter";
 
 const UsersStudentsContent = () => {
 
+    const {setRegistration} = useContext(FormContext)
 
-    const [registration, setRegistration] = useState(false)
     return (
         <div className="content">
         <div className="top-status-content ml-6 mt-6 inline-flex">
@@ -17,7 +17,7 @@ const UsersStudentsContent = () => {
             }}
                 className="text-black bg-powderblue-shades10% hover:bg-powderblue-shades20%  font-medium rounded-lg text-sm px-4 py-2 "
             />
-            <UsersRegistrationForm registration={registration} setRegistration={setRegistration} />
+            <StudentRegistration />
             <div>
                 <SearchBar />
             </div>
@@ -28,8 +28,6 @@ const UsersStudentsContent = () => {
         </div>
     </div>
     );
-
-
 }
 
 export default UsersStudentsContent;

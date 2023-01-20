@@ -7,7 +7,7 @@ import SearchBar from "./SearchBar";
 
 const UsersEmployeesContent = () => {
     
-    const { registration, setRegistration} = useContext(FormContext)
+    const {setRegistration} = useContext(FormContext)
 
     return (
         <div className="content">
