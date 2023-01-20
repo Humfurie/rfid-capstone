@@ -5,7 +5,7 @@ import Population from "./AdminContPopulation";
 import TestComp from "../testComp";
 
 
-export default function AdminContent() {
+export default function AdminDashboardContent() {
 	return (
 		<div className="content">
 

@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from 'react';
 import { BsArrowLeft, BsChevronUp } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt } from "react-icons/fa"
 
 import Link from "next/link";
+import { FormContext } from "../../lib/FormContext";
 
 
 export default function AdminNavbar() {
 
-	const [open, setOpen] = useState(true)
-	const [submenuOpen, setSubmenuOpen] = useState(false)
-	const [currentMenu, setCurrentMenu] = useState("")
+	const {
+		open,
+		setOpen,
+		submenuOpen,
+		setSubmenuOpen,
+		currentMenu,
+		setCurrentMenu
+	} = useContext(FormContext)
+	
 
 	// console.log("naopen", open)
 	const Menus = [
@@ -76,7 +83,7 @@ export default function AdminNavbar() {
 
 					<span><img src="../" alt="" /></span>
 
-					<Link href="./AdminDashboard" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
+					<Link href="./Admin" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
 
 				</div>
 

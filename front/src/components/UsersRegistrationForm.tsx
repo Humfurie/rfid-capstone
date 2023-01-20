@@ -19,13 +19,7 @@ const UsersRegistrationForm = (props: any) => {
         console.log(e)
       }
 
-    const [userForm, setUserForm] = useState(option === values.Employees ? {
-        firstname: '',
-        middlename: '',
-        lastname: '',
-        address: '',
-        
-    } : option === values.Students ? {} : option === values.Parents ? {} : null)
+ 
 
     console.log(option, 'this is option')
     return (
