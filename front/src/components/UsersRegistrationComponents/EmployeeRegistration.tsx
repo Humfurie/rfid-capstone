@@ -21,7 +21,7 @@ const EmployeeRegistration = () => {
       className="w-screen"
       size="70%"
     >
-      <h4 className="text-center">Registration</h4>
+      <h4 className="text-center">Employee Registration</h4>
       <form
         onSubmit={(e) => {
           e.preventDefault();

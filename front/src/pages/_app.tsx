@@ -30,7 +30,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
 
-  //form section complex stuff
+  /*
+   *
+   * this here contains all the forms and states stuff of the users
+   */
+
+  //employee
   const [employeeRegistration, setEmployeeRegistration] = useState({
     firstname: "",
     middlename: "",
@@ -52,9 +57,10 @@ export default function App({ Component, pageProps }: AppProps) {
     password: "",
   });
 
+  //student
   const [studentRegistration, setStudentRegistration] = useState({
-    studentId: '',
-    schoolYear: '',
+    studentId: "",
+    schoolYear: "",
     firstname: "",
     middlename: "",
     lastname: "",
@@ -62,20 +68,39 @@ export default function App({ Component, pageProps }: AppProps) {
     email: "",
     contactNumber: "",
     facebook: "",
-  })
+  });
 
   const [studentEmergency, setStudentEmergency] = useState({
     name: "",
     contactNumber: "",
     facebook: "",
-  })
+  });
 
   const [studentAccount, setStudentAccount] = useState({
     username: "",
     password: "",
   });
 
-  //functions
+  //parents
+  const [parentRegistration, setParentRegistration] = useState({
+    firstname: '',
+    middlename: '',
+    lastname: '',
+    address: '',
+    email: '',
+    contactNumber: '',
+    facebook: ''
+  })
+
+  const [parentAccount, setParentAccount] = useState({
+    username: "",
+    password: "",
+  });
+
+  /*
+   *
+   * this here contains all the functions
+   */
   const employeeOnChange = (value: any, column: string) => {
     setEmployeeRegistration((prev) => {
       return { ...prev, [column]: value };
@@ -94,28 +119,45 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   };
 
-  const studentOnChange = (value:any, column:string) => {
-    setStudentRegistration( prev => {
-      return { ...prev, [column]: value}
-    })
-  }
+  const studentOnChange = (value: any, column: string) => {
+    setStudentRegistration((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
 
   const studentEmergencyOnChange = (value: any, column: string) => {
-    setStudentEmergency( prev => {
-      return { ...prev, [column]: value }
-    })
-  }
+    setStudentEmergency((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
 
   const studentAccountOnChange = (value: any, column: string) => {
-    setStudentEmergency( prev => {
-      return { ...prev, [column]: value }
-    })
-  }
+    setStudentAccount((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
 
-  //endpoint section
+  const parentOnChange = (value: any, column: string) => {
+    setParentRegistration((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
+
+  const parentAccountOnChange = (value: any, column: string) => {
+    setParentAccount((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
+
+  /*
+   *
+   * this here contains all the endpoints
+   */
   const employeeRegister = () => {};
 
   const studentRegister = () => {};
+
+  const parentRegister = () => {};
 
   useEffect(() => {
     test();
@@ -144,6 +186,11 @@ export default function App({ Component, pageProps }: AppProps) {
         studentOnChange,
         studentEmergencyOnChange,
         studentAccountOnChange,
+
+        //parents functions
+        parentRegister,
+        parentOnChange,
+        parentAccountOnChange,
       }}
     >
       <Component {...pageProps} />
