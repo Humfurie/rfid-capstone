@@ -32,7 +32,7 @@ export default class AdminsController {
     }
 
     try {
-      const token = await jwt.sign(tokenAuth, 'maotClofel', { expiresIn: '30 mins' })
+      const token = jwt.sign(tokenAuth, 'maotClofel', { expiresIn: '30 mins' })
       // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
 
       // if (request.input('remember')) {
