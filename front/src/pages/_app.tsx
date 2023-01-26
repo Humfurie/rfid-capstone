@@ -49,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [employeeEmergency, setEmployeeEmergency] = useState({
     name: "",
     contactNumber: "",
+    email: "",
     facebook: "",
   });
 
@@ -73,6 +74,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [studentEmergency, setStudentEmergency] = useState({
     name: "",
     contactNumber: "",
+    email: "",
     facebook: "",
   });
 
