@@ -15,10 +15,16 @@ export default class User extends BaseModel {
   public lastname: string
 
   @column()
-  public email: string
+  public birthday: Date
 
   @column()
+  public gender: string
+  
+  @column()
   public address: string
+  
+  @column()
+  public email: string
 
   @column()
   public contactNumber: string

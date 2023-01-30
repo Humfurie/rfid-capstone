@@ -13,7 +13,7 @@ export default class UserLogin extends BaseModel {
   public password: string
 
   @column()
-  public role: number
+  public role: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
