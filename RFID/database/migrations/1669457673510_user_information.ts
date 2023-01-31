@@ -9,6 +9,8 @@ export default class extends BaseSchema {
       table.string('firstname', 50).notNullable()
       table.string('middlename', 255).notNullable()
       table.string('lastname', 50).notNullable()
+      table.date('birthday')
+      table.string('gender')
       table.string('email', 255)
       table.string('address', 255)
       table.string('contact_number', 11)
