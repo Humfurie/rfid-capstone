@@ -15,6 +15,12 @@ export default class User extends BaseModel {
   public lastname: string
 
   @column()
+  public birthday: Date
+
+  @column()
+  public gender: string
+
+  @column()
   public email: string
 
   @column()

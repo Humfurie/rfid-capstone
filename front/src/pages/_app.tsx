@@ -40,22 +40,15 @@ export default function App({ Component, pageProps }: AppProps) {
     firstname: "",
     middlename: "",
     lastname: "",
+    birthday: '',
+    gender: '',
     address: "",
     email: "",
     contactNumber: "",
     facebook: "",
   });
 
-  const [employeeEmergency, setEmployeeEmergency] = useState({
-    name: "",
-    contactNumber: "",
-    facebook: "",
-  });
 
-  const [employeeAccount, setEmployeeAccount] = useState({
-    username: "",
-    password: "",
-  });
 
   //student
   const [studentRegistration, setStudentRegistration] = useState({
@@ -64,21 +57,12 @@ export default function App({ Component, pageProps }: AppProps) {
     firstname: "",
     middlename: "",
     lastname: "",
+    birthday: '',
+    gender: '',
     address: "",
     email: "",
     contactNumber: "",
     facebook: "",
-  });
-
-  const [studentEmergency, setStudentEmergency] = useState({
-    name: "",
-    contactNumber: "",
-    facebook: "",
-  });
-
-  const [studentAccount, setStudentAccount] = useState({
-    username: "",
-    password: "",
   });
 
   //parents
@@ -86,13 +70,22 @@ export default function App({ Component, pageProps }: AppProps) {
     firstname: '',
     middlename: '',
     lastname: '',
+    birthday: '',
+    gender: '',
     address: '',
     email: '',
     contactNumber: '',
     facebook: ''
   })
 
-  const [parentAccount, setParentAccount] = useState({
+  const [emergency, setEmergency] = useState({
+    name: "",
+    contactNumber: "",
+    email: "",
+    facebook: "",
+  });
+
+  const [account, setAccount] = useState({
     username: "",
     password: "",
   });
@@ -107,32 +100,8 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   };
 
-  const employeeEmergencyOnChange = (value: any, column: string) => {
-    setEmployeeEmergency((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const employeeAccountOnChange = (value: any, column: string) => {
-    setEmployeeAccount((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
   const studentOnChange = (value: any, column: string) => {
     setStudentRegistration((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const studentEmergencyOnChange = (value: any, column: string) => {
-    setStudentEmergency((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const studentAccountOnChange = (value: any, column: string) => {
-    setStudentAccount((prev) => {
       return { ...prev, [column]: value };
     });
   };
@@ -143,8 +112,14 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   };
 
-  const parentAccountOnChange = (value: any, column: string) => {
-    setParentAccount((prev) => {
+  const employeeEmergencyOnChange = (value: any, column: string) => {
+    setEmergency((prev) => {
+      return { ...prev, [column]: value };
+    });
+  };
+
+  const employeeAccountOnChange = (value: any, column: string) => {
+    setAccount((prev) => {
       return { ...prev, [column]: value };
     });
   };
@@ -184,13 +159,14 @@ export default function App({ Component, pageProps }: AppProps) {
         //student functions
         studentRegister,
         studentOnChange,
-        studentEmergencyOnChange,
-        studentAccountOnChange,
 
         //parents functions
         parentRegister,
         parentOnChange,
-        parentAccountOnChange,
+
+        //emergency and account onChange
+        emergency,
+        account,
       }}
     >
       <Component {...pageProps} />

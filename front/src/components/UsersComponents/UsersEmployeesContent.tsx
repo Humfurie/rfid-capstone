@@ -1,3 +1,4 @@
+import { setDefaultResultOrder } from "dns";
 import { useContext, useState } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
@@ -6,8 +7,9 @@ import SearchBar from "./SearchBar";
 
 
 const UsersEmployeesContent = () => {
-    
-    const {setRegistration} = useContext(FormContext)
+
+    const { setRegistration } = useContext(FormContext)
+    const { setTest } = useContext(FormContext)
 
     return (
         <div className="content">
@@ -21,7 +23,6 @@ const UsersEmployeesContent = () => {
                 <div>
                     <SearchBar />
                 </div>
-
             </div>
         </div>
     );
