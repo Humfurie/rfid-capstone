@@ -10,8 +10,8 @@ const StudentRegistration = () => {
     setRegistration,
     studentRegister,
     studentOnChange,
-    studentEmergencyOnChange,
-    studentAccountOnChange,
+    emergencyOnChange,
+    accountOnChange,
   } = useContext(FormContext);
 
   return (
@@ -30,15 +30,19 @@ const StudentRegistration = () => {
       >
         <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
           <div>
-            <h5 className={InputStyle.registrationNavBar} >Personal Information</h5>
+            <h5 className={InputStyle.registrationNavBar}>
+              Personal Information
+            </h5>
             <div className={InputStyle.reg}>
               <div className="flex justify-center flex-col mt-2">
                 <label htmlFor="" className={InputStyle.label}>
                   First Name:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'firstname')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "firstname");
                   }}
                 />
               </div>
@@ -47,9 +51,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Middle Name:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'middlename')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "middlename");
                   }}
                 />
               </div>
@@ -58,9 +64,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Last Name:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'lastname')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "lastname");
                   }}
                 />
               </div>
@@ -69,9 +77,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Birthday:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'birthday')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "birthday");
                   }}
                 />
               </div>
@@ -80,9 +90,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Gender:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'gender')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "gender");
                   }}
                 />
               </div>
@@ -91,23 +103,31 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Address:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'address')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "address");
                   }}
                 />
               </div>
             </div>
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar} >School Information</h5>
+            <h5 className={InputStyle.registrationNavBar}>
+              School Information
+            </h5>
             <div className={InputStyle.reg}>
               <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={InputStyle.label}>
                   Student ID:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => { studentOnChange(e.target.value, 'studentId') }}
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "studentId");
+                  }}
                 />
               </div>
 
@@ -115,9 +135,14 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   School Year:
                 </label>
-                <select name="" id="" className={InputStyle.inputType} onChange={e => {
-                  studentOnChange(e.target.value, 'schoolYear')
-                }}>
+                <select
+                  name=""
+                  id=""
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "schoolYear");
+                  }}
+                >
                   <option selected disabled>
                     ---Select School Year---
                   </option>
@@ -130,19 +155,21 @@ const StudentRegistration = () => {
                 </select>
               </div>
             </div>
-
-
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar} >Contact Information</h5>
+            <h5 className={InputStyle.registrationNavBar}>
+              Contact Information
+            </h5>
             <div className={InputStyle.reg}>
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   E-mail:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'email')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -151,9 +178,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Contact Number:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'contactNumber')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -162,25 +191,29 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Facebook:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentOnChange(e.target.value, 'facebook')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    studentOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>
             </div>
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar} >Emergency Contact</h5>
+            <h5 className={InputStyle.registrationNavBar}>Emergency Contact</h5>
 
             <div className={InputStyle.reg}>
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Name:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentEmergencyOnChange(e.target.value, 'name')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    emergencyOnChange(e.target.value, "name");
                   }}
                 />
               </div>
@@ -189,9 +222,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Contact Number:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentEmergencyOnChange(e.target.value, 'contactNumber')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    emergencyOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -200,9 +235,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Email:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentEmergencyOnChange(e.target.value, 'email')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    emergencyOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -211,9 +248,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Facebook:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentEmergencyOnChange(e.target.value, 'facebook')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    emergencyOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>
@@ -221,15 +260,17 @@ const StudentRegistration = () => {
           </div>
 
           <div>
-            <h5 className={InputStyle.registrationNavBar} >Account</h5>
+            <h5 className={InputStyle.registrationNavBar}>Account</h5>
             <div className={InputStyle.reg}>
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Username:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentAccountOnChange(e.target.value, 'username')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    accountOnChange(e.target.value, "username");
                   }}
                 />
               </div>
@@ -238,9 +279,11 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Password:
                 </label>
-                <input type="text" className={InputStyle.inputType}
-                  onChange={e => {
-                    studentAccountOnChange(e.target.value, 'password')
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    accountOnChange(e.target.value, "password");
                   }}
                 />
               </div>
@@ -254,7 +297,6 @@ const StudentRegistration = () => {
             </div>
           </div>
         </div>
-
 
         <div className={InputStyle.registerBtn}>
           <MyButton type="submit" label="Register" />

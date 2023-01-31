@@ -40,15 +40,13 @@ export default function App({ Component, pageProps }: AppProps) {
     firstname: "",
     middlename: "",
     lastname: "",
-    birthday: '',
-    gender: '',
+    birthday: "",
+    gender: "",
     address: "",
     email: "",
     contactNumber: "",
     facebook: "",
   });
-
-
 
   //student
   const [studentRegistration, setStudentRegistration] = useState({
@@ -57,8 +55,8 @@ export default function App({ Component, pageProps }: AppProps) {
     firstname: "",
     middlename: "",
     lastname: "",
-    birthday: '',
-    gender: '',
+    birthday: "",
+    gender: "",
     address: "",
     email: "",
     contactNumber: "",
@@ -67,16 +65,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
   //parents
   const [parentRegistration, setParentRegistration] = useState({
-    firstname: '',
-    middlename: '',
-    lastname: '',
-    birthday: '',
-    gender: '',
-    address: '',
-    email: '',
-    contactNumber: '',
-    facebook: ''
-  })
+    firstname: "",
+    middlename: "",
+    lastname: "",
+    birthday: "",
+    gender: "",
+    address: "",
+    email: "",
+    contactNumber: "",
+    facebook: "",
+  });
 
   const [emergency, setEmergency] = useState({
     name: "",
@@ -112,13 +110,13 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   };
 
-  const employeeEmergencyOnChange = (value: any, column: string) => {
+  const emergencyOnChange = (value: any, column: string) => {
     setEmergency((prev) => {
       return { ...prev, [column]: value };
     });
   };
 
-  const employeeAccountOnChange = (value: any, column: string) => {
+  const accountOnChange = (value: any, column: string) => {
     setAccount((prev) => {
       return { ...prev, [column]: value };
     });
@@ -128,11 +126,31 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the endpoints
    */
-  const employeeRegister = () => {};
+  const employeeRegister = () => {
+    axios.post(`http://127.0.0.1:3333/employeeRegister`,{
+      employeeRegistration: employeeRegistration,
+      emergency: emergency,
+      account: account, 
+      role: 'employee'
+    })
+  };
 
-  const studentRegister = () => {};
+  const studentRegister = () => {
+    axios.post(`http://127.0.0.1:3333/studentRegister`,{
+      studentRegistration: studentRegistration,
+      emergency: emergency,
+      account: account, 
+      role: 'student'
+  })
+  };
 
-  const parentRegister = () => {};
+  const parentRegister = () => {
+    axios.post(`http://127.0.0.1:3333/parentRegister`,{
+      parentRegistration: parentRegistration,
+      account: account, 
+      role: 'parent'
+  })
+  };
 
   useEffect(() => {
     test();
@@ -153,8 +171,6 @@ export default function App({ Component, pageProps }: AppProps) {
         //employee functions
         employeeRegister,
         employeeOnChange,
-        employeeEmergencyOnChange,
-        employeeAccountOnChange,
 
         //student functions
         studentRegister,
@@ -165,8 +181,8 @@ export default function App({ Component, pageProps }: AppProps) {
         parentOnChange,
 
         //emergency and account onChange
-        emergency,
-        account,
+        emergencyOnChange,
+        accountOnChange,
       }}
     >
       <Component {...pageProps} />
