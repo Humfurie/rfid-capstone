@@ -73,7 +73,7 @@ export default class newUserRegistrationController {
 
     }
     public async studentRegistration({ request, response }: HttpContextContract) {
-        const student = request.only(['studentRegistration', 'emergency', 'account'])
+        const student = request.only(['studentRegistration', 'emergency', 'account', 'role'])
         console.log('student', student)
 
         const trx = await Database.transaction()
@@ -108,7 +108,7 @@ export default class newUserRegistrationController {
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
-            newAccount.role = account.role
+            newAccount.role = student.role
             newAccount.userInformationId = newUser.id
             newAccount.useTransaction(trx)
             await newAccount.save()
@@ -133,7 +133,7 @@ export default class newUserRegistrationController {
 
     }
     public async parentRegistration({ request, response }: HttpContextContract) {
-        const parent = request.only(['parentRegistration', 'emergency', 'account'])
+        const parent = request.only(['parentRegistration', 'emergency', 'account', 'role'])
         console.log('parent', parent)
 
         const trx = await Database.transaction()
@@ -157,7 +157,7 @@ export default class newUserRegistrationController {
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
-            newAccount.role = account.role
+            newAccount.role = parent.role
             newAccount.userInformationId = newUser.id
             newAccount.useTransaction(trx)
             newAccount.save()
