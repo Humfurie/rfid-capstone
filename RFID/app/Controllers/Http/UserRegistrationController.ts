@@ -3,17 +3,19 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import EmergencyContact from 'App/Models/EmergencyContact'
 import User from 'App/Models/User'
 import UserLogin from 'App/Models/UserLogin'
+import Employee from 'App/Models/Employee'
+import Student from 'App/Models/Student'
 
 export default class newUserRegistrationController {
     //
     public async employeeRegistration({ request, response }: HttpContextContract) {
-        const employee = request.only(['employeeRegistration', 'emergency', 'account'])
+        const employee = request.only(['employeeRegistration', 'emergency', 'account', 'role'])
 
-        // console.log('employee', employee)
+        console.log('employee', employee)
 
         const trx = await Database.transaction()
 
-        try { 
+        try {
             const newUser = new User()
             newUser.firstname = employee.employeeRegistration.firstname
             newUser.middlename = employee.employeeRegistration.middlename
@@ -24,34 +26,51 @@ export default class newUserRegistrationController {
             newUser.contactNumber = employee.employeeRegistration.contactNumber
             newUser.facebook = employee.employeeRegistration.facebook
             newUser.useTransaction(trx)
-            newUser.save()
-    
+            await newUser.save()
+
+            console.log(newUser)
+            
+
             const emergencyContact = employee.emergency
-    
+
             const newEmergency = new EmergencyContact()
             newEmergency.name = emergencyContact.name
             newEmergency.contactNumber = emergencyContact.contactNumber
             newEmergency.email = emergencyContact.email
             newEmergency.facebook = emergencyContact.facebook
+            newEmergency.userInformationId = newUser.id
             newEmergency.useTransaction(trx)
-            newEmergency.save()
-    
+            await newEmergency.save()
+
+            console.log(emergencyContact)
+
             const account = employee.account
-    
+            const role = employee.role
+
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
-            newAccount.role = account.role
+            newAccount.role = role
+            newAccount.userInformationId = newUser.id
             newAccount.useTransaction(trx)
-            newAccount.save()
+            await newAccount.save()
 
-            trx.commit()
+            const newEmployee = new Employee()
+            newEmployee.position = 'Employee'
+            newEmployee.userLoginId = newAccount.id
+            newEmployee.useTransaction(trx)
+            await newEmployee.save()
+
+            await trx.commit()
+
+            return response.status(200)
 
         } catch (error) {
-            trx.rollback()
+            console.log(error)
+            await trx.rollback()
+            return response.status(400)
         }
 
-        return response.status(200)
     }
     public async studentRegistration({ request, response }: HttpContextContract) {
         const student = request.only(['studentRegistration', 'emergency', 'account'])
@@ -60,7 +79,7 @@ export default class newUserRegistrationController {
         const trx = await Database.transaction()
 
         try {
-            
+
             const newUser = new User()
             newUser.firstname = student.studentRegistration.firstname
             newUser.middlename = student.studentRegistration.middlename
@@ -71,42 +90,56 @@ export default class newUserRegistrationController {
             newUser.contactNumber = student.studentRegistration.contactNumber
             newUser.facebook = student.studentRegistration.facebook
             newUser.useTransaction(trx)
-            newUser.save()
-            
+            await newUser.save()
+
             const emergencyContact = student.emergency
-    
+
             const newEmergency = new EmergencyContact()
             newEmergency.name = emergencyContact.name
             newEmergency.contactNumber = emergencyContact.contactNumber
             newEmergency.email = emergencyContact.email
             newEmergency.facebook = emergencyContact.facebook
+            newEmergency.userInformationId = newUser.id
             newEmergency.useTransaction(trx)
-            newEmergency.save()
-    
+            await newEmergency.save()
+
             const account = student.account
-    
+
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
             newAccount.role = account.role
+            newAccount.userInformationId = newUser.id
             newAccount.useTransaction(trx)
-            newAccount.save()
-            
-            trx.commit()
+            await newAccount.save()
+
+            const studentAccount = student.account
+
+            const newStudent = new Student()
+            newStudent.studentId = studentAccount.studentId
+            newStudent.schoolYear = studentAccount.schoolYear
+            newStudent.userLoginId = newAccount.id
+            newStudent.save()
+
+            await trx.commit()
+
+            return response.status(200)
+
         } catch (error) {
-            trx.rollback()
+            console.log(error)
+            await trx.rollback()
+            return response.status(401)
         }
 
-        return response.status(200)
     }
-    public async parentRegistration({request, response }: HttpContextContract) {
+    public async parentRegistration({ request, response }: HttpContextContract) {
         const parent = request.only(['parentRegistration', 'emergency', 'account'])
         console.log('parent', parent)
 
         const trx = await Database.transaction()
 
         try {
-            
+
             const newUser = new User()
             newUser.firstname = parent.parentRegistration.firstname
             newUser.middlename = parent.parentRegistration.middlename
@@ -118,31 +151,24 @@ export default class newUserRegistrationController {
             newUser.facebook = parent.parentRegistration.facebook
             newUser.useTransaction(trx)
             newUser.save()
-    
-            const emergencyContact = parent.emergency
-    
-            const newEmergency = new EmergencyContact()
-            newEmergency.name = emergencyContact.name
-            newEmergency.contactNumber = emergencyContact.contactNumber
-            newEmergency.email = emergencyContact.email
-            newEmergency.facebook = emergencyContact.facebook
-            newEmergency.useTransaction(trx)
-            newEmergency.save()
-    
+
             const account = parent.account
-    
+
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
             newAccount.role = account.role
+            newAccount.userInformationId = newUser.id
             newAccount.useTransaction(trx)
             newAccount.save()
 
             trx.commit()
+
+            return response.status(200)
+
         } catch (error) {
             trx.rollback()
+            return response.status(401)
         }
-
-        return response.status(200)
     }
 }
