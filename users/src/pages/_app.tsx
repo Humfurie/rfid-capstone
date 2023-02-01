@@ -19,16 +19,16 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   )
 
-  useMemo(
-    async () => {
-      try {
-        await axios.get(`http://127.0.0.1:3333/auth`)
-        Router.push('/UserDashboard')
-      } catch (error) {
-        Router.push('/')
-      }
-    }, []
-  )
+  // useMemo(
+  //   async () => {
+  //     try {
+  //       await axios.get(`http://127.0.0.1:3333/auth`)
+  //       Router.push('/UserDashboard')
+  //     } catch (error) {
+  //       Router.push('/')
+  //     }
+  //   }, []
+  // )
 
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
@@ -89,6 +89,9 @@ export default function App({ Component, pageProps }: AppProps) {
     Router.push('/UserDashboard')
   }
 
+  // navigation bar
+  const [open, setOpen] = useState(true);
+  const [currentMenu, setCurrentMenu] = useState("");
 
   return (
     <FormContext.Provider value={{
@@ -99,7 +102,13 @@ export default function App({ Component, pageProps }: AppProps) {
       onChange,
       loginChange,
       registration,
-      userLogin
+      userLogin,
+
+      open,
+      setOpen,
+      currentMenu,
+      setCurrentMenu
+   
     }}> 
       <Component {...pageProps} />
     </FormContext.Provider>
