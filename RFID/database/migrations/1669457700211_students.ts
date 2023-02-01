@@ -10,8 +10,7 @@ export default class extends BaseSchema {
       table.string('school_year', 20)
       table.integer('user_login_id')
       .unsigned()
-      .references('id')
-      .inTable('user_login')
+      .references('user_login.id')
       .onDelete('CASCADE')
 
       /**

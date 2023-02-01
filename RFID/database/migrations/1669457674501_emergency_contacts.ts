@@ -12,8 +12,7 @@ export default class extends BaseSchema {
       table.string('email', 50).notNullable()
       table.integer('user_information_id')
       .unsigned()
-      .references('id')
-      .inTable('user_information')
+      .references('user_information.id')
       .onDelete('CASCADE')
 
       /**

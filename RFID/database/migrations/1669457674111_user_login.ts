@@ -8,11 +8,10 @@ export default class extends BaseSchema {
       table.increments('id').primary()
       table.string('username', 50).notNullable()
       table.string('password').notNullable()
-      table.integer('role').notNullable()
-      table.integer('user_id')
+      table.string('role').notNullable()
+      table.integer('user_information_id')
       .unsigned()
-      .references('id')
-      .inTable('user_information')
+      .references('user_information.id')
       .onDelete('CASCADE')
 
 
