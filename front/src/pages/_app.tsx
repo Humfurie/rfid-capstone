@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Router from "next/router";
 import { parseCookies } from "nookies";
@@ -16,14 +16,15 @@ export default function App({ Component, pageProps }: AppProps) {
     }
     return config;
   });
-  const test = useCallback(async () => {
+
+  useMemo(async () => {
     try {
       await axios.get(`http://127.0.0.1:3333/auth`);
       Router.push("/AdminDashboard");
     } catch (error) {
       Router.push("/");
     }
-  }, []);
+  }, [])
 
   const [open, setOpen] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -127,34 +128,30 @@ export default function App({ Component, pageProps }: AppProps) {
    * this here contains all the endpoints
    */
   const employeeRegister = () => {
-    axios.post(`http://127.0.0.1:3333/employeeRegister`,{
+    axios.post(`http://127.0.0.1:3333/employeeRegister`, {
       employeeRegistration: employeeRegistration,
       emergency: emergency,
-      account: account, 
+      account: account,
       role: 'employee'
     })
   };
 
   const studentRegister = () => {
-    axios.post(`http://127.0.0.1:3333/studentRegister`,{
+    axios.post(`http://127.0.0.1:3333/studentRegister`, {
       studentRegistration: studentRegistration,
       emergency: emergency,
-      account: account, 
+      account: account,
       role: 'student'
-  })
+    })
   };
 
   const parentRegister = () => {
-    axios.post(`http://127.0.0.1:3333/parentRegister`,{
+    axios.post(`http://127.0.0.1:3333/parentRegister`, {
       parentRegistration: parentRegistration,
-      account: account, 
+      account: account,
       role: 'parent'
-  })
+    })
   };
-
-  useEffect(() => {
-    test();
-  }, [test]);
 
   return (
     <FormContext.Provider
