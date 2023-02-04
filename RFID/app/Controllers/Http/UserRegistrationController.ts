@@ -38,7 +38,7 @@ export default class newUserRegistrationController {
             newEmergency.contactNumber = emergencyContact.contactNumber
             newEmergency.email = emergencyContact.email
             newEmergency.facebook = emergencyContact.facebook
-            newEmergency.userInformationId = newUser.id
+            newEmergency.userId = newUser.id
             newEmergency.useTransaction(trx)
             await newEmergency.save()
 
@@ -51,7 +51,7 @@ export default class newUserRegistrationController {
             newAccount.username = account.username
             newAccount.password = account.password
             newAccount.role = role
-            newAccount.userInformationId = newUser.id
+            newAccount.userId = newUser.id
             newAccount.useTransaction(trx)
             await newAccount.save()
 
@@ -73,7 +73,7 @@ export default class newUserRegistrationController {
 
     }
     public async studentRegistration({ request, response }: HttpContextContract) {
-        const student = request.only(['studentRegistration', 'emergency', 'account'])
+        const student = request.only(['studentRegistration', 'emergency', 'account', 'role'])
         console.log('student', student)
 
         const trx = await Database.transaction()
@@ -99,17 +99,18 @@ export default class newUserRegistrationController {
             newEmergency.contactNumber = emergencyContact.contactNumber
             newEmergency.email = emergencyContact.email
             newEmergency.facebook = emergencyContact.facebook
-            newEmergency.userInformationId = newUser.id
+            newEmergency.userId = newUser.id
             newEmergency.useTransaction(trx)
             await newEmergency.save()
 
             const account = student.account
+            const role = student.role
 
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
-            newAccount.role = account.role
-            newAccount.userInformationId = newUser.id
+            newAccount.role = role
+            newAccount.userId = newUser.id
             newAccount.useTransaction(trx)
             await newAccount.save()
 
@@ -133,7 +134,7 @@ export default class newUserRegistrationController {
 
     }
     public async parentRegistration({ request, response }: HttpContextContract) {
-        const parent = request.only(['parentRegistration', 'emergency', 'account'])
+        const parent = request.only(['parentRegistration', 'emergency', 'account', 'role'])
         console.log('parent', parent)
 
         const trx = await Database.transaction()
@@ -153,12 +154,13 @@ export default class newUserRegistrationController {
             newUser.save()
 
             const account = parent.account
+            const role = parent.role
 
             const newAccount = new UserLogin()
             newAccount.username = account.username
             newAccount.password = account.password
-            newAccount.role = account.role
-            newAccount.userInformationId = newUser.id
+            newAccount.role = role
+            newAccount.userId = newUser.id
             newAccount.useTransaction(trx)
             newAccount.save()
 

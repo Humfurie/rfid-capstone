@@ -21,7 +21,7 @@ export default class UserLogin extends BaseModel {
   public role: string
 
   @column()
-  public userInformationId: number
+  public userId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -30,7 +30,7 @@ export default class UserLogin extends BaseModel {
   public updatedAt: DateTime
 
   @belongsTo(() => User)
-  public userInformation: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>
 
   @hasOne(() => Student)
   public student: HasOne<typeof Student>
