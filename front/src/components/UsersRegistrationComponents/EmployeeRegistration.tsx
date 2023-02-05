@@ -78,7 +78,7 @@ const EmployeeRegistration = () => {
                   Birthday:
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     employeeOnChange(e.target.value, "birthday");
@@ -90,13 +90,21 @@ const EmployeeRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Gender:
                 </label>
-                <input
-                  type="text"
+                <select
+                  name=""
+                  id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     employeeOnChange(e.target.value, "gender");
                   }}
-                />
+                >
+                  <option selected disabled>
+                    ---Select Gender---
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                 
+                </select>
               </div>
 
               <div className={InputStyle.inputDiv}>
@@ -124,7 +132,7 @@ const EmployeeRegistration = () => {
                   E-mail:
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     employeeOnChange(e.target.value, "email");
@@ -136,7 +144,7 @@ const EmployeeRegistration = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     employeeOnChange(e.target.value, "contactNumber");
@@ -180,7 +188,7 @@ const EmployeeRegistration = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "contactNumber");
@@ -193,7 +201,7 @@ const EmployeeRegistration = () => {
                   Email:
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "email");
@@ -239,7 +247,7 @@ const EmployeeRegistration = () => {
                     Password:
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     className={InputStyle.inputType}
                     onChange={(e) => {
                       accountOnChange(e.target.value, "password");
@@ -251,7 +259,7 @@ const EmployeeRegistration = () => {
                   <label htmlFor="" className={InputStyle.label}>
                     Confirm Password:
                   </label>
-                  <input type="text" className={InputStyle.inputType} />
+                  <input type="password" className={InputStyle.inputType} />
                 </div>
               </div>
             </div>

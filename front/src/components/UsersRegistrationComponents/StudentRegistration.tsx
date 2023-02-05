@@ -78,7 +78,7 @@ const StudentRegistration = () => {
                   Birthday:
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     studentOnChange(e.target.value, "birthday");
@@ -90,13 +90,20 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Gender:
                 </label>
-                <input
-                  type="text"
+                <select
+                  name=""
+                  id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     studentOnChange(e.target.value, "gender");
                   }}
-                />
+                >
+                  <option selected disabled>
+                    ---Select Gender---
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
 
               <div className="flex justify-center flex-col mt-1">
@@ -123,7 +130,7 @@ const StudentRegistration = () => {
                   Student ID:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     studentOnChange(e.target.value, "studentId");
@@ -146,12 +153,12 @@ const StudentRegistration = () => {
                   <option selected disabled>
                     ---Select School Year---
                   </option>
-                  <option value="Grade 7">Grade 7</option>
-                  <option value="Grade 7">Grade 8</option>
-                  <option value="Grade 7">Grade 9</option>
-                  <option value="Grade 7">Grade 10</option>
-                  <option value="Grade 7">Grade 11</option>
-                  <option value="Grade 7">Grade 12</option>
+                  <option value="grade 7">Grade 7</option>
+                  <option value="grade 8">Grade 8</option>
+                  <option value="grade 9">Grade 9</option>
+                  <option value="grade 10">Grade 10</option>
+                  <option value="grade 11">Grade 11</option>
+                  <option value="grade 12">Grade 12</option>
                 </select>
               </div>
             </div>
@@ -166,7 +173,7 @@ const StudentRegistration = () => {
                   E-mail:
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     studentOnChange(e.target.value, "email");
@@ -179,7 +186,7 @@ const StudentRegistration = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     studentOnChange(e.target.value, "contactNumber");
@@ -223,7 +230,7 @@ const StudentRegistration = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "contactNumber");
@@ -236,7 +243,7 @@ const StudentRegistration = () => {
                   Email:
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "email");
@@ -280,7 +287,7 @@ const StudentRegistration = () => {
                   Password:
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     accountOnChange(e.target.value, "password");
@@ -292,7 +299,7 @@ const StudentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Confirm Password:
                 </label>
-                <input type="text" className={InputStyle.inputType} />
+                <input type="password" className={InputStyle.inputType} />
               </div>
             </div>
           </div>

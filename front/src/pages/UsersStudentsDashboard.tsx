@@ -8,7 +8,7 @@ export default function UsersStudentsDashboard() {
 	return (
 		<div >
 			<Head>
-				<title>Student's Dashboard</title>
+				<title>List of Students</title>
 				<meta name="description" content="Created by streamline" />
 				<link rel="icon" href=".../img/ais-rft-logo.jpg" />
 			</Head>
