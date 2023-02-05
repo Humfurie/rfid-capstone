@@ -4,7 +4,7 @@ import UserLogin from './UserLogin'
 import EmergencyContact from './EmergencyContact'
 
 export default class User extends BaseModel {
-  public static table = 'user_information'
+  public static table = 'user'
 
   @column({ isPrimary: true })
   public id: number

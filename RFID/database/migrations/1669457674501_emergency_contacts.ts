@@ -10,9 +10,9 @@ export default class extends BaseSchema {
       table.string('contact_number', 11).notNullable()
       table.string('facebook', 50).notNullable()
       table.string('email', 50).notNullable()
-      table.integer('user_information_id')
+      table.integer('user_id')
       .unsigned()
-      .references('user_information.id')
+      .references('user.id')
       .onDelete('CASCADE')
 
       /**

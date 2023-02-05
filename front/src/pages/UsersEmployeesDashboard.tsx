@@ -13,7 +13,7 @@ export default function UsersEmployeesDashboard  () {
 			</Head>
 			<div>
 				<Header />
-				<div className="inline-flex">
+				<div className="flex w-screen">
 					<AdminNavbar />
 					<UsersEmployeesContent />
 				</div>

@@ -9,9 +9,9 @@ export default class extends BaseSchema {
       table.string('username', 50).notNullable()
       table.string('password').notNullable()
       table.string('role').notNullable()
-      table.integer('user_information_id')
+      table.integer('user_id')
       .unsigned()
-      .references('user_information.id')
+      .references('user.id')
       .onDelete('CASCADE')
 
 
