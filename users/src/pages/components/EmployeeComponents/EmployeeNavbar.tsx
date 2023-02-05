@@ -16,11 +16,11 @@ const EmployeeNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="">Profile</Link>,
+            title: <Link href="../EmployeeProfile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="">Acitvity</Link>,
+            title: <Link href="../EmployeeActivity">Acitvity</Link>,
             icon: <RiTimerFill />
         },
         {

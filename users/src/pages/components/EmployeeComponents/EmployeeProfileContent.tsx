@@ -1,8 +1,7 @@
-
-const StudentProfileContent = () => {
+const EmployeeProfileContent = () => {
     return (
-        <div className="student-profile">
-            <div className="ml-5 mt-20 bg-white p-6 rounded-lg border border-powderblue-shades10% shadow-lg">
+        <div className="employee-profile">
+               <div className="ml-5 mt-20 bg-white p-6 rounded-lg border border-powderblue-shades10% shadow-lg">
                 <div className="grid grid-rows-2 gap-10">
                     <div className="grid grid-cols-2 gap-10">
                         <div>Profile Pic</div>
@@ -73,4 +72,4 @@ const StudentProfileContent = () => {
     );
 }
 
-export default StudentProfileContent;
+export default EmployeeProfileContent;

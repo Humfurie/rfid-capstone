@@ -15,11 +15,11 @@ const ParentNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="">Profile</Link>,
+            title: <Link href="../ParentProfile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="">Children</Link>,
+            title: <Link href="../ParentChildren">Children</Link>,
             icon: <FaChild/>
         },
         {
