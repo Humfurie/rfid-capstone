@@ -1,3 +1,4 @@
+import { Head } from "next/document";
 import AdminNavbar from "../components/AdminComponents/AdminNavbar";
 import Header from "../components/Header";
 import RecordsEmployeesContent from "../components/UsersComponents/RecordsEmployeesContent";
@@ -5,6 +6,11 @@ import RecordsEmployeesContent from "../components/UsersComponents/RecordsEmploy
 const RecordsEmployeesDashboard = () => {
     return (
         <div>
+             <Head>
+                <title>Records-Employees</title>
+                <meta name="description" content="Created by streamline" />
+                <link rel="icon" href=".../img/ais-rft-logo.jpg" />
+            </Head>
             <div>
                 <Header/>
             </div>

@@ -74,7 +74,7 @@ const ParentRegistration = () => {
                   Birthday:
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     parentOnChange(e.target.value, "birthday");
@@ -85,13 +85,20 @@ const ParentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Gender:
                 </label>
-                <input
-                  type="text"
+                <select
+                  name=""
+                  id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     parentOnChange(e.target.value, "gender");
                   }}
-                />
+                >
+                  <option selected disabled>
+                    ---Select Gender---
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
@@ -118,7 +125,7 @@ const ParentRegistration = () => {
                   E-mail:
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     parentOnChange(e.target.value, "email");
@@ -130,7 +137,7 @@ const ParentRegistration = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     parentOnChange(e.target.value, "contactNumber");
@@ -171,7 +178,7 @@ const ParentRegistration = () => {
                   Password:
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     accountOnChange(e.target.value, "password");
@@ -182,7 +189,7 @@ const ParentRegistration = () => {
                 <label htmlFor="" className={InputStyle.label}>
                   Confirm Password:
                 </label>
-                <input type="text" className={InputStyle.inputType} />
+                <input type="password" className={InputStyle.inputType} />
               </div>
             </div>
           </div>
