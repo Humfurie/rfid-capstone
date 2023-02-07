@@ -2,8 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, beforeSave, BelongsTo, belongsTo, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import User from './User'
-import Student from './Student'
-import Employee from './Employee'
+
 
 export default class UserLogin extends BaseModel {
   public static table = 'user_login'
@@ -31,12 +30,6 @@ export default class UserLogin extends BaseModel {
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
-
-  @hasOne(() => Student)
-  public student: HasOne<typeof Student>
-
-  @hasOne(() => Employee)
-  public employee: HasOne<typeof Employee>
 
   @beforeSave()
   public static async hashPassword (user: UserLogin) {
