@@ -26,6 +26,11 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [])
 
+  const addUser = ( ) => {
+    axios.post(``);
+    Router.push("")
+  }
+
   const [open, setOpen] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
@@ -35,9 +40,9 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the forms and states stuff of the users
    */
+  //users
 
-  //employee
-  const [employeeRegistration, setEmployeeRegistration] = useState({
+  const [userRegistration, setUserRegistration] = useState({
     firstname: "",
     middlename: "",
     lastname: "",
@@ -47,69 +52,55 @@ export default function App({ Component, pageProps }: AppProps) {
     email: "",
     contactNumber: "",
     facebook: "",
-  });
+    year: "",
+    idNumber: "",
+    isAlumni: "",
+  })
 
-  //student
-  const [studentRegistration, setStudentRegistration] = useState({
-    studentId: "",
-    schoolYear: "",
-    firstname: "",
-    middlename: "",
-    lastname: "",
-    birthday: "",
-    gender: "",
-    address: "",
-    email: "",
-    contactNumber: "",
-    facebook: "",
-  });
+  //position-employee
+  const [position, setPosition] = useState({
+    name: "",
+  })
 
-  //parents
-  const [parentRegistration, setParentRegistration] = useState({
-    firstname: "",
-    middlename: "",
-    lastname: "",
-    birthday: "",
-    gender: "",
-    address: "",
-    email: "",
-    contactNumber: "",
-    facebook: "",
-  });
-
+  //role
+  const [role, setRole] = useState({
+    name: "",
+  })
+  //emergency contact
   const [emergency, setEmergency] = useState({
     name: "",
     contactNumber: "",
     email: "",
     facebook: "",
   });
-
+  //account
   const [account, setAccount] = useState({
     username: "",
     password: "",
   });
 
+  console.log("hihi",userRegistration, position, role)
   /*
    *
    * this here contains all the functions
    */
-  const employeeOnChange = (value: any, column: string) => {
-    setEmployeeRegistration((prev) => {
+  const userOnChange = (value: any, column: string) => {
+    setUserRegistration((prev) => {
       return { ...prev, [column]: value };
-    });
-  };
+    })
+  }
 
-  const studentOnChange = (value: any, column: string) => {
-    setStudentRegistration((prev) => {
+  const positionOnChange = (value: any, column: string) => {
+    setPosition((prev) => {
       return { ...prev, [column]: value };
-    });
-  };
+    })
+  }
 
-  const parentOnChange = (value: any, column: string) => {
-    setParentRegistration((prev) => {
+  const roleOnChange = (value: any, column: string) => {
+    setRole((prev) => {
       return { ...prev, [column]: value };
-    });
-  };
+    })
+  }
 
   const emergencyOnChange = (value: any, column: string) => {
     setEmergency((prev) => {
@@ -127,31 +118,6 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the endpoints
    */
-  const employeeRegister = () => {
-    axios.post(`http://127.0.0.1:3333/employeeRegister`, {
-      employeeRegistration: employeeRegistration,
-      emergency: emergency,
-      account: account,
-      role: 'employee'
-    })
-  };
-
-  const studentRegister = () => {
-    axios.post(`http://127.0.0.1:3333/studentRegister`, {
-      studentRegistration: studentRegistration,
-      emergency: emergency,
-      account: account,
-      role: 'student'
-    })
-  };
-
-  const parentRegister = () => {
-    axios.post(`http://127.0.0.1:3333/parentRegister`, {
-      parentRegistration: parentRegistration,
-      account: account,
-      role: 'parent'
-    })
-  };
 
   return (
     <FormContext.Provider
@@ -165,18 +131,12 @@ export default function App({ Component, pageProps }: AppProps) {
         registration,
         setRegistration,
 
-        //employee functions
-        employeeRegister,
-        employeeOnChange,
+        userOnChange,
+        positionOnChange,
+        roleOnChange,
 
-        //student functions
-        studentRegister,
-        studentOnChange,
-
-        //parents functions
-        parentRegister,
-        parentOnChange,
-
+        addUser,
+        
         //emergency and account onChange
         emergencyOnChange,
         accountOnChange,

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
-import ParentDataTable from "../DataTable/ParentDatatable";
+import ParentDataTable from "../DataTable/ParentDataTable";
 import ParentRegistration from "../UsersRegistrationComponents/ParentRegistration";
 import SearchBar from "./SearchBar";
 
@@ -15,7 +15,7 @@ const UsersParentsContent = () => {
         <div>
           <MyButton
             type="button"
-            label="Add Employee"
+            label="Add Parent"
             onClick={(e: any) => {
               setRegistration(true);
             }}

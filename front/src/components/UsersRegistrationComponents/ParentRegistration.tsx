@@ -9,8 +9,9 @@ const ParentRegistration = () => {
     registration,
     setRegistration,
     parentRegister,
-    parentOnChange,
+    userOnChange,
     accountOnChange,
+    addUser
   } = useContext(FormContext);
 
   return (
@@ -24,7 +25,7 @@ const ParentRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          parentRegister();
+          addUser();
         }}
       >
         <div className="grid lg:grid-cols-3 gap-1  text-center mt-10 mb-2">
@@ -41,7 +42,7 @@ const ParentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "firstname");
+                    userOnChange(e.target.value, "firstname");
                   }}
                 />
               </div>
@@ -53,7 +54,7 @@ const ParentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "middlename");
+                    userOnChange(e.target.value, "middlename");
                   }}
                 />
               </div>
@@ -65,7 +66,7 @@ const ParentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "lastname");
+                    userOnChange(e.target.value, "lastname");
                   }}
                 />
               </div>
@@ -77,7 +78,7 @@ const ParentRegistration = () => {
                   type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "birthday");
+                    userOnChange(e.target.value, "birthday");
                   }}
                 />
               </div>
@@ -90,7 +91,7 @@ const ParentRegistration = () => {
                   id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "gender");
+                    userOnChange(e.target.value, "gender");
                   }}
                 >
                   <option selected disabled>
@@ -108,7 +109,7 @@ const ParentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "address");
+                    userOnChange(e.target.value, "address");
                   }}
                 />
               </div>
@@ -128,7 +129,7 @@ const ParentRegistration = () => {
                   type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "email");
+                    userOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -140,7 +141,7 @@ const ParentRegistration = () => {
                   type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "contactNumber");
+                    userOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -152,7 +153,7 @@ const ParentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    parentOnChange(e.target.value, "facebook");
+                    userOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>

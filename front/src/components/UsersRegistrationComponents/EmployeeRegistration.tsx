@@ -9,9 +9,11 @@ const EmployeeRegistration = () => {
     registration,
     setRegistration,
     employeeRegister,
-    employeeOnChange,
+    userOnChange,
+    positionOnChange,
     emergencyOnChange,
     accountOnChange,
+    addUser
   } = useContext(FormContext);
 
   return (
@@ -25,7 +27,7 @@ const EmployeeRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          employeeRegister();
+          addUser();
         }}
       >
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
@@ -42,7 +44,7 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "firstname");
+                    userOnChange(e.target.value, "firstname");
                   }}
                 />
               </div>
@@ -55,7 +57,7 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "middlename");
+                    userOnChange(e.target.value, "middlename");
                   }}
                 />
               </div>
@@ -68,7 +70,7 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "lastname");
+                    userOnChange(e.target.value, "lastname");
                   }}
                 />
               </div>
@@ -81,7 +83,7 @@ const EmployeeRegistration = () => {
                   type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "birthday");
+                    userOnChange(e.target.value, "birthday");
                   }}
                 />
               </div>
@@ -95,7 +97,7 @@ const EmployeeRegistration = () => {
                   id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "gender");
+                    userOnChange(e.target.value, "gender");
                   }}
                 >
                   <option selected disabled>
@@ -103,7 +105,7 @@ const EmployeeRegistration = () => {
                   </option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                 
+
                 </select>
               </div>
 
@@ -115,9 +117,36 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "address");
+                    userOnChange(e.target.value, "address");
                   }}
                 />
+              </div>
+            </div>
+          </div>
+          <div>
+            <h5 className={InputStyle.registrationNavBar}>
+              School Information
+            </h5>
+            <div className={InputStyle.reg}>
+              <div className="flex justify-center flex-col mt-2">
+                <label htmlFor="" className={InputStyle.label}>
+                  Position:
+                </label>
+                <select
+                  name=""
+                  id=""
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    positionOnChange(e.target.value, "position");
+                  }}
+                >
+                  <option selected disabled>
+                    ---Select Position---
+                  </option>
+                  <option value="teacher">Teacher</option>
+                  <option value="personnel">Personnel</option>
+
+                </select>
               </div>
             </div>
           </div>
@@ -135,7 +164,7 @@ const EmployeeRegistration = () => {
                   type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "email");
+                    userOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -147,7 +176,7 @@ const EmployeeRegistration = () => {
                   type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "contactNumber");
+                    userOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -159,15 +188,16 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    employeeOnChange(e.target.value, "facebook");
+                    userOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>
             </div>
           </div>
-
           <div>
-            <h5 className={InputStyle.registrationNavBar}>Emergency Contact</h5>
+            <h5 className={InputStyle.registrationNavBar}>
+              Emergency Contact
+            </h5>
 
             <div className={InputStyle.reg}>
               <div className={InputStyle.inputDiv}>
