@@ -17,7 +17,7 @@ export default class extends BaseSchema {
       table.string('facebook', 50).nullable()
       table.string('year').nullable()
       table.integer('id_number').nullable()
-      table.boolean('isAlumni').nullable()
+      table.boolean('is_alumni').nullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
