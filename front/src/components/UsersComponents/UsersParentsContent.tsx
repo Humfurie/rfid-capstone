@@ -15,7 +15,7 @@ const UsersParentsContent = () => {
         <div>
           <MyButton
             type="button"
-            label="Add Employee"
+            label="Add Parent"
             onClick={(e: any) => {
               setRegistration(true);
             }}

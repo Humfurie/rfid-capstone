@@ -8,10 +8,10 @@ const StudentRegistration = () => {
   const {
     registration,
     setRegistration,
-    studentRegister,
-    studentOnChange,
+    userOnChange,
     emergencyOnChange,
     accountOnChange,
+    addUser,
   } = useContext(FormContext);
 
   return (
@@ -25,7 +25,7 @@ const StudentRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          studentRegister();
+          addUser();
         }}
       >
         <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
@@ -42,7 +42,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "firstname");
+                    userOnChange(e.target.value, "firstname");
                   }}
                 />
               </div>
@@ -55,7 +55,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "middlename");
+                    userOnChange(e.target.value, "middlename");
                   }}
                 />
               </div>
@@ -68,7 +68,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "lastname");
+                    userOnChange(e.target.value, "lastname");
                   }}
                 />
               </div>
@@ -81,7 +81,7 @@ const StudentRegistration = () => {
                   type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "birthday");
+                    userOnChange(e.target.value, "birthday");
                   }}
                 />
               </div>
@@ -95,7 +95,7 @@ const StudentRegistration = () => {
                   id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "gender");
+                    userOnChange(e.target.value, "gender");
                   }}
                 >
                   <option selected disabled>
@@ -114,7 +114,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "address");
+                    userOnChange(e.target.value, "address");
                   }}
                 />
               </div>
@@ -133,7 +133,7 @@ const StudentRegistration = () => {
                   type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "studentId");
+                    userOnChange(e.target.value, "studentId");
                   }}
                 />
               </div>
@@ -147,7 +147,7 @@ const StudentRegistration = () => {
                   id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "schoolYear");
+                    userOnChange(e.target.value, "schoolYear");
                   }}
                 >
                   <option selected disabled>
@@ -160,6 +160,18 @@ const StudentRegistration = () => {
                   <option value="grade 11">Grade 11</option>
                   <option value="grade 12">Grade 12</option>
                 </select>
+              </div>
+              <div className="flex justify-center flex-col mt-2">
+                <input
+                  type="checkbox"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    userOnChange(e.target.value, "schoolYear");
+                  }}
+                />
+                <label htmlFor="" className={InputStyle.label}>
+                  Alumni
+                </label>
               </div>
             </div>
           </div>
@@ -176,7 +188,7 @@ const StudentRegistration = () => {
                   type="email"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "email");
+                    userOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -189,7 +201,7 @@ const StudentRegistration = () => {
                   type="number"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "contactNumber");
+                    userOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -202,7 +214,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    studentOnChange(e.target.value, "facebook");
+                    userOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>
