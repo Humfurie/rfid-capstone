@@ -3,8 +3,6 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import EmergencyContact from 'App/Models/EmergencyContact'
 import User from 'App/Models/User'
 import UserLogin from 'App/Models/UserLogin'
-import Employee from 'App/Models/Employee'
-import Student from 'App/Models/Student'
 
 export default class newUserRegistrationController {
     //
@@ -55,11 +53,11 @@ export default class newUserRegistrationController {
             newAccount.useTransaction(trx)
             await newAccount.save()
 
-            const newEmployee = new Employee()
-            newEmployee.position = 'Employee'
-            newEmployee.userLoginId = newAccount.id
-            newEmployee.useTransaction(trx)
-            await newEmployee.save()
+            // const newEmployee = new Employee()
+            // newEmployee.position = 'Employee'
+            // newEmployee.userLoginId = newAccount.id
+            // newEmployee.useTransaction(trx)
+            // await newEmployee.save()
 
             await trx.commit()
 
@@ -114,13 +112,13 @@ export default class newUserRegistrationController {
             newAccount.useTransaction(trx)
             await newAccount.save()
 
-            const studentAccount = student.account
+            // const studentAccount = student.account
 
-            const newStudent = new Student()
-            newStudent.studentId = studentAccount.studentId
-            newStudent.schoolYear = studentAccount.schoolYear
-            newStudent.userLoginId = newAccount.id
-            newStudent.save()
+            // const newStudent = new Student()
+            // newStudent.studentId = studentAccount.studentId
+            // newStudent.schoolYear = studentAccount.schoolYear
+            // newStudent.userLoginId = newAccount.id
+            // newStudent.save()
 
             await trx.commit()
 

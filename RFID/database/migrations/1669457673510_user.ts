@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'user'
+  protected tableName = 'users'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
@@ -9,12 +9,15 @@ export default class extends BaseSchema {
       table.string('firstname', 50).notNullable()
       table.string('middlename', 255).notNullable()
       table.string('lastname', 50).notNullable()
-      table.date('birthday')
-      table.string('gender')
-      table.string('email', 255)
-      table.string('address', 255)
-      table.string('contact_number', 11)
-      table.string('facebook', 255)
+      table.date('birthday').nullable()
+      table.string('gender').notNullable()
+      table.string('email', 255).nullable()
+      table.string('address', 255).nullable()
+      table.string('contact_number', 11).nullable()
+      table.string('facebook', 50).nullable()
+      table.string('year').nullable()
+      table.integer('id_number').nullable()
+      table.boolean('is_alumni').nullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

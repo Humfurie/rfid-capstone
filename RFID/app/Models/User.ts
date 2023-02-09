@@ -1,10 +1,12 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import UserLogin from './UserLogin'
 import EmergencyContact from './EmergencyContact'
+import Role from './Role'
+import Parent from './Parent'
 
 export default class User extends BaseModel {
-  public static table = 'user'
+  public static table = 'users'
 
   @column({ isPrimary: true })
   public id: number
@@ -36,6 +38,15 @@ export default class User extends BaseModel {
   @column()
   public facebook: string
 
+  @column()
+  public year: string
+
+  @column()
+  public idNumber: number
+
+  @column()
+  public isAlumni: boolean
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -47,4 +58,14 @@ export default class User extends BaseModel {
 
   @hasOne(() => EmergencyContact)
   public emergencyContact: HasOne<typeof EmergencyContact>
+
+  @manyToMany(() => Role, {
+    pivotTable: 'user_roles'
+  })
+  public role: ManyToMany<typeof Role>
+
+  @manyToMany(() => Parent, {
+    pivotTable: 'parent_child'
+  })
+  public parent: ManyToMany <typeof Parent>
 }

@@ -24,7 +24,7 @@ export default function AdminNavbar() {
 	const Menus = [
 
 		{
-			title: <Link href="../AdminProfile">Profile</Link>,
+			title: <Link href="./AdminProfile">Profile</Link>,
 			icon: <FaUserAlt />,
 		},
 		{
@@ -83,7 +83,7 @@ export default function AdminNavbar() {
 
 					<span><img src="../" alt="" /></span>
 
-					<Link href="./Admin" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
+					<Link href="./AdminDashboard" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
 
 				</div>
 
