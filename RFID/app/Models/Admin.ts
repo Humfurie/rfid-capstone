@@ -24,6 +24,9 @@ export default class Admin extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column.dateTime()
+  public deletedAt: DateTime
+
   @beforeSave()
   public static async hashPassword (admin: Admin) {
     if (admin.$dirty.password) {

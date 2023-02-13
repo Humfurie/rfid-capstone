@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import User from './User'
 
 export default class EmergencyContact extends BaseModel {
   @column({ isPrimary: true })
@@ -17,9 +18,18 @@ export default class EmergencyContact extends BaseModel {
   @column()
   public email: string
 
+  @column()
+  public userId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column.dateTime()
+  public deletedAt: DateTime
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 }

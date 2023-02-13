@@ -1,23 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from 'react';
 import { BsArrowLeft, BsChevronUp } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt } from "react-icons/fa"
 
 import Link from "next/link";
+import { FormContext } from "../../lib/FormContext";
 
 
 export default function AdminNavbar() {
 
-	const [open, setOpen] = useState(true)
-	const [submenuOpen, setSubmenuOpen] = useState(false)
-	const [currentMenu, setCurrentMenu] = useState("")
+	const {
+		open,
+		setOpen,
+		submenuOpen,
+		setSubmenuOpen,
+		currentMenu,
+		setCurrentMenu
+	} = useContext(FormContext)
+	
 
 	// console.log("naopen", open)
 	const Menus = [
 
 		{
-			title: <Link href="../AdminProfile">Profile</Link>,
+			title: <Link href="./AdminProfile">Profile</Link>,
 			icon: <FaUserAlt />,
 		},
 		{
@@ -26,15 +33,15 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="../UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
+					src: <Link href="../UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="../UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
+					src: <Link href="../UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
 					>Students</Link>
 				},
 				{
-					src: <Link href="../UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
+					src: <Link href="../UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10%"
 					>Parents</Link>
 				}
 			],

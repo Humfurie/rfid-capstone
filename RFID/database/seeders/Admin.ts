@@ -1,14 +1,15 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import RfidModel from 'App/Models/RfidModel'
+import Admin from 'App/Models/Admin'
 
 export default class extends BaseSeeder {
   public async run () {
     // Write your database queries inside the run method
-
-    await RfidModel.createMany([
+    await Admin.createMany([
       {
-        name: 'Clofel Maot'
-      }
+        email: 'humfurie@gmail.com',
+        username: 'humfurie',
+        password: 'Humfurie'
+      },
     ])
   }
 }

@@ -7,13 +7,13 @@ export default function UsersEmployeesDashboard  () {
     return (
         <div >
 			<Head>
-				<title>Admin's Dashboard</title>
+				<title>List of Employees</title>
 				<meta name="description" content="Created by streamline" />
 				<link rel="icon" href=".../img/ais-rft-logo.jpg" />
 			</Head>
 			<div>
 				<Header />
-				<div className="inline-flex">
+				<div className="flex w-screen">
 					<AdminNavbar />
 					<UsersEmployeesContent />
 				</div>
