@@ -1,5 +1,5 @@
-import Header from "./components/GeneralComponents/Header";
-import ParentNavbar from "./components/ParentComponents/ParentNavbar";
+import Header from "../../components/GeneralComponents/Header";
+import ParentNavbar from "../../components/ParentComponents/ParentNavbar";
 
 const ParentDashboard = () => {
     return (

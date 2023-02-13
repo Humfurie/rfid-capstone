@@ -1,5 +1,5 @@
-import EmployeeNavbar from "./components/EmployeeComponents/EmployeeNavbar";
-import Header from "./components/GeneralComponents/Header";
+import EmployeeNavbar from "../../components/EmployeeComponents/EmployeeNavbar";
+import Header from "../../components/GeneralComponents/Header";
 
 const EmployeeDashboard = () => {
     return (

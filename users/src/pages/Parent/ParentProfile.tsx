@@ -1,6 +1,7 @@
-import Header from "./components/GeneralComponents/Header";
-import ParentNavbar from "./components/ParentComponents/ParentNavbar";
-import ParentProfileContent from "./components/ParentComponents/ParentProfileContent";
+import Header from "../../components/GeneralComponents/Header";
+import ParentNavbar from "../../components/ParentComponents/ParentNavbar";
+import ParentProfileContent from "../../components/ParentComponents/ParentProfileContent";
+
 
 const ParentProfile = () => {
     return (

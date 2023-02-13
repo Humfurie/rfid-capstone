@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt } from "react-icons/fa"
 import { RiTimerFill } from "react-icons/ri"
-import { FormContext } from "../../../lib/FormContext";
+import { FormContext } from "../../lib/FormContext";
 import { useContext } from "react";
 import { BsArrowLeft } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
@@ -16,11 +16,11 @@ const EmployeeNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="../EmployeeProfile">Profile</Link>,
+            title: <Link href="../Employee/EmployeeProfile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="../EmployeeActivity">Acitvity</Link>,
+            title: <Link href="../Employee/EmployeeActivity">Acitvity</Link>,
             icon: <RiTimerFill />
         },
         {

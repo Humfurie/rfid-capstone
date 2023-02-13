@@ -1,6 +1,6 @@
-import EmployeeNavbar from "./components/EmployeeComponents/EmployeeNavbar";
-import EmployeeProfileContent from "./components/EmployeeComponents/EmployeeProfileContent";
-import Header from "./components/GeneralComponents/Header";
+import EmployeeNavbar from "../../components/EmployeeComponents/EmployeeNavbar";
+import EmployeeProfileContent from "../../components/EmployeeComponents/EmployeeProfileContent";
+import Header from "../../components/GeneralComponents/Header";
 
 const EmployeeProfile = () => {
     return (
