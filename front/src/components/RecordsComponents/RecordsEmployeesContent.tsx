@@ -1,6 +1,6 @@
 import Export from "../Export";
 import RecordsDateFilter from "./RecordsDateFilter";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 export default function RecordsEmployeesContent() {
     return (

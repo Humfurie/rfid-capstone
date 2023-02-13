@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
 import EmployeeRegistration from "../UsersRegistrationComponents/EmployeeRegistration";
-import SearchBar from "./SearchBar";
 import EmployeeDataTable from "../DataTable/EmployeeDataTable";
+import SearchBar from "../SearchBar";
 
 const UsersEmployeesContent = () => {
   const { setRegistration } = useContext(FormContext);

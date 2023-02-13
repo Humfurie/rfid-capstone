@@ -41,6 +41,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
 
+
+
   /**
    * these states contain backend data
    */
@@ -65,11 +67,16 @@ export default function App({ Component, pageProps }: AppProps) {
     idNumber: "",
     isAlumni: "",
   })
-
+  // year levels
+  const [year, setYear] = useState({
+    name:"",
+  })
+console.log(year)
   //position-employee
   const [position, setPosition] = useState({
     name: "",
   })
+  console.log(position)
 
   //role
   const [role, setRole] = useState('')
@@ -101,6 +108,11 @@ export default function App({ Component, pageProps }: AppProps) {
       return { ...prev, [column]: value };
     })
   }
+  const yearOnChange = (value: any, column: string) => {
+    setYear((prev) => {
+      return { ...prev, [column]: value}
+    })
+  }
 
 
   const emergencyOnChange = (value: any, column: string) => {
@@ -119,6 +131,20 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the endpoints
    */
+
+  // add position
+  const positionSubmit = async () => {
+    await axios.post(``, {
+
+    })
+  }
+  // add year
+  const yearSubmit = async () => {
+    await axios.post(``,{
+
+    })
+  }
+
   const userSubmit = async () => {
     await axios.post(`http://127.0.0.1:3333/api/users-registration`, {
       userRegistration: userRegistration,
@@ -127,6 +153,7 @@ export default function App({ Component, pageProps }: AppProps) {
       emergency: emergency,
       account: account,
     })
+
     setUserRegistration({
       firstName: "",
       middleName: "",
@@ -157,9 +184,9 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  console.log('api data', 
-  apiPosition,
-  apiYearLevel)
+  console.log('api data',
+    apiPosition,
+    apiYearLevel)
 
   return (
     <FormContext.Provider
@@ -175,6 +202,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         userOnChange,
         positionOnChange,
+        yearOnChange,
         setRole,
 
         //emergency and account onChange
@@ -183,7 +211,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
         //onsubmit event action
         userSubmit,
+        positionSubmit,
+        yearSubmit,
 
+        //input position
+        position,
+        setPosition,
+        //year
+        year,
+        setYear,
         //retrieved data
         apiPosition,
         apiYearLevel

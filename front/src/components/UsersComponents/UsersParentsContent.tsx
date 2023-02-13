@@ -3,7 +3,7 @@ import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
 import ParentDataTable from "../DataTable/ParentDataTable";
 import ParentRegistration from "../UsersRegistrationComponents/ParentRegistration";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 const UsersParentsContent = () => {
 

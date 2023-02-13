@@ -1,6 +1,6 @@
 import { BsSearch } from "react-icons/bs";
-import MyButton from "../../lib/partials/MyButton";
-import MyInput from "../../lib/partials/MyInput";
+import MyButton from "../lib/partials/MyButton";
+import MyInput from "../lib/partials/MyInput";
 
 
 const SearchBar = () => {

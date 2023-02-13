@@ -1,7 +1,8 @@
-import Header from "../components/Header";
 import Head from "next/head";
-import AdminNavbar from "../components/AdminComponents/AdminNavbar";
-import RecordsParentsContent from "../components/UsersComponents/RecordsParentsContent";
+import Header from "../../components/Header";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import RecordsParentsContent from "../../components/RecordsComponents/RecordsParentsContent";
+
 
 const RecordsParentsDashboard = () => {
     return (
