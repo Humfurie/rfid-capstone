@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       .unsigned()
       .references('users.id')
       .onDelete('CASCADE')
+      table.integer('flag').defaultTo(1)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

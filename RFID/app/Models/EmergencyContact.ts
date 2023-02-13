@@ -27,6 +27,9 @@ export default class EmergencyContact extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column.dateTime()
+  public deletedAt: DateTime
+
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 }

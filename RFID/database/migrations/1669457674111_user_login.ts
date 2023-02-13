@@ -12,6 +12,7 @@ export default class extends BaseSchema {
       .unsigned()
       .references('users.id')
       .onDelete('CASCADE')
+      table.integer('flag').defaultTo(1)
 
 
       /**

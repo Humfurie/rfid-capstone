@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.string('email', 255).notNullable().unique()
       table.string('username', 255).notNullable().unique()
       table.string('password', 180).notNullable()
+      table.integer('flag').defaultTo(1)
       table.string('remember_me_token').nullable()
 
       /**
@@ -16,6 +17,7 @@ export default class extends BaseSchema {
        */
       table.timestamp('created_at', { useTz: true }).notNullable().defaultTo(this.now())
       table.timestamp('updated_at', { useTz: true }).notNullable().defaultTo(this.now())
+      table.timestamp('deleted_at', { useTz: true }).nullable()
     })
   }
 

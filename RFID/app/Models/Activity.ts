@@ -2,12 +2,12 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 
-export default class Position extends BaseModel {
+export default class Activity extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public name: string
+  public activity: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -15,11 +15,8 @@ export default class Position extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @column.dateTime()
-  public deletedAt: DateTime
-
   @manyToMany(() => User, {
-    pivotTable: 'user_positions'
+    pivotTable: 'user_activities'
   })
-  public user: ManyToMany <typeof User>
+  public user: ManyToMany<typeof User>
 }

@@ -8,10 +8,10 @@ const ParentRegistration = () => {
   const {
     registration,
     setRegistration,
-    parentRegister,
     userOnChange,
     accountOnChange,
-    addUser
+    userSubmit,
+    roleOnChange
   } = useContext(FormContext);
 
   return (
@@ -25,9 +25,11 @@ const ParentRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addUser();
+          setRegistration(false)
+          userSubmit();
         }}
       >
+
         <div className="grid lg:grid-cols-3 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={InputStyle.registrationNavBar}>
