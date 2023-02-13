@@ -20,23 +20,40 @@ export default function App({ Component, pageProps }: AppProps) {
   useMemo(async () => {
     try {
       await axios.get(`http://127.0.0.1:3333/auth`);
+      await axios.get(`http://127.0.0.1:3333/api/role`).then(res => {
+        setApiRole(res.data)
+      })
+      await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
+        setApiPosition(res.data)
+      })
+      await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
+        setApiYearLevel(res.data)
+      })
       Router.push("/AdminDashboard");
     } catch (error) {
       Router.push("/");
     }
   }, [])
 
+  /**
+   * states
+   */
   const [open, setOpen] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
 
+  /**
+   * these states contain backend data
+   */
+  const [apiRole, setApiRole] = useState({})
+  const [apiPosition, setApiPosition] = useState({})
+  const [apiYearLevel, setApiYearLevel] = useState({})
+
   /*
    *
    * this here contains all the forms and states stuff of the users
    */
-  //users
-
   const [userRegistration, setUserRegistration] = useState({
     firstName: "",
     middleName: "",
@@ -72,7 +89,6 @@ export default function App({ Component, pageProps }: AppProps) {
     password: "",
   });
 
-  console.log("hihi", userRegistration, position, role)
   /*
    *
    * this here contains all the functions
@@ -144,6 +160,11 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
+  console.log('api data', 
+  apiRole,
+  apiPosition,
+  apiYearLevel)
+
   return (
     <FormContext.Provider
       value={{
@@ -165,7 +186,12 @@ export default function App({ Component, pageProps }: AppProps) {
         accountOnChange,
 
         //onsubmit event action
-        userSubmit
+        userSubmit,
+
+        //retrieved data
+        apiRole,
+        apiPosition,
+        apiYearLevel
       }}
     >
       <Component {...pageProps} />

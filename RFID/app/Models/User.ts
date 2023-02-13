@@ -6,6 +6,8 @@ import Role from './Role'
 import Parent from './Parent'
 import ProfilePic from './ProfilePic'
 import Position from './Position'
+import YearLevel from './YearLevel'
+import Activity from './Activity'
 
 export default class User extends BaseModel {
   public static table = 'users'
@@ -40,8 +42,6 @@ export default class User extends BaseModel {
   @column()
   public facebook: string
 
-  @column()
-  public year: number
 
   @column()
   public idNumber: number
@@ -67,6 +67,11 @@ export default class User extends BaseModel {
   @hasOne(() => ProfilePic)
   public profilePic: HasOne<typeof ProfilePic>
 
+  @manyToMany(() => YearLevel, {
+    pivotTable: 'user_years'
+  })
+  public yearLevel: ManyToMany<typeof YearLevel>
+
   @manyToMany(() => Role, {
     pivotTable: 'user_roles'
   })
@@ -78,8 +83,13 @@ export default class User extends BaseModel {
   public position: ManyToMany<typeof Position>
 
   @manyToMany(() => Parent, {
-    pivotTable: 'parent_child'
+    pivotTable: 'user_parents'
   })
   public parent: ManyToMany <typeof Parent>
+
+  @manyToMany(() => Activity, {
+    pivotTable: 'user_activities'
+  })
+  public activity: ManyToMany<typeof Activity>
 
 }

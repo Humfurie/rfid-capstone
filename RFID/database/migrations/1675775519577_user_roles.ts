@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.integer('user_id').unsigned().references('users.id').onUpdate('CASCADE').onDelete('CASCADE')
       table.integer('role_id').unsigned().references('roles.id').onUpdate('CASCADE').onDelete('CASCADE')
       table.unique(['user_id', 'role_id'])
+      table.integer('flag').defaultTo(1)
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

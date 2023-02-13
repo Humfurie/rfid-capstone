@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id').onUpdate('CASCADE').onDelete('CASCADE')
       table.integer('position_id').unsigned().references('positions.id').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('flag').defaultTo(1)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

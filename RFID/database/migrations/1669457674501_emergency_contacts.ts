@@ -14,13 +14,13 @@ export default class extends BaseSchema {
       .unsigned()
       .references('users.id')
       .onDelete('CASCADE')
+      table.integer('flag').defaultTo(1)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table.timestamp('created_at', { useTz: true }).defaultTo(this.now())
       table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
-      table.timestamp('deleted_at', { useTz: true }).nullable()
     })
   }
 

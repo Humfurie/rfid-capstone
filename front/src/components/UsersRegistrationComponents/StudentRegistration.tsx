@@ -26,6 +26,7 @@ const StudentRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          setRegistration(false)
           userSubmit();
         }}
       >

@@ -43,7 +43,7 @@ export default class Parent extends BaseModel {
   public deletedAt: DateTime
 
   @manyToMany(() => User, {
-    pivotTable: 'parent_child'
+    pivotTable: 'user_parents'
   })
   public user: ManyToMany <typeof User>
 }

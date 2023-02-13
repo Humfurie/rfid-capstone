@@ -15,7 +15,6 @@ export default class extends BaseSchema {
       table.string('address', 255).nullable()
       table.string('contact_number', 11).nullable()
       table.string('facebook', 50).nullable()
-      table.integer('year').nullable()
       table.integer('id_number').nullable()
       table.boolean('is_alumni').defaultTo(false)
       table.integer('flag').defaultTo(1)

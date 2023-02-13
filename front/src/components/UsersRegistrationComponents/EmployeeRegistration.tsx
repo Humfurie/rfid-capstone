@@ -13,7 +13,8 @@ const EmployeeRegistration = () => {
     positionOnChange,
     emergencyOnChange,
     accountOnChange,
-    setRole
+    setRole,
+    apiPosition
   } = useContext(FormContext);
 
   return (
@@ -27,6 +28,7 @@ const EmployeeRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          setRegistration(false)
           userSubmit();
         }}
       >
@@ -135,8 +137,7 @@ const EmployeeRegistration = () => {
                   Position:
                 </label>
                 <select
-                  name=""
-                  id=""
+                  name="positions"
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     positionOnChange(e.target.value, "position");
@@ -145,8 +146,11 @@ const EmployeeRegistration = () => {
                   <option selected disabled>
                     ---Select Position---
                   </option>
-                  <option value="teacher">Teacher</option>
-                  <option value="personnel">Personnel</option>
+                  {apiPosition.map((element:any) => (
+                    <>
+                      <option value={element.id}>{element.name}</option>
+                    </>
+                  ))}
 
                 </select>
               </div>
