@@ -1,5 +1,6 @@
-import Header from "./components/GeneralComponents/Header";
-import StudentNavbar from "./components/StudentComponents/StudentNavbar";
+import Header from "../../components/GeneralComponents/Header";
+import StudentNavbar from "../../components/StudentComponents/StudentNavbar";
+
 
 
 const StudentDashboard = () => {

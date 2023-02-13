@@ -1,6 +1,7 @@
-import EmployeeActivityContent from "./components/EmployeeComponents/EmployeeActivityContent";
-import EmployeeNavbar from "./components/EmployeeComponents/EmployeeNavbar";
-import Header from "./components/GeneralComponents/Header";
+import EmployeeActivityContent from "../../components/EmployeeComponents/EmployeeActivityContent";
+import EmployeeNavbar from "../../components/EmployeeComponents/EmployeeNavbar";
+import Header from "../../components/GeneralComponents/Header";
+
 
 const EmployeeActivity = () => {
     return (

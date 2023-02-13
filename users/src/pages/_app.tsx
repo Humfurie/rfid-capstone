@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   //   async () => {
   //     try {
   //       await axios.get(`http://127.0.0.1:3333/auth`)
-  //       Router.push('/UserDashboard')
+  //       Router.push('/login')
   //     } catch (error) {
   //       Router.push('/')
   //     }

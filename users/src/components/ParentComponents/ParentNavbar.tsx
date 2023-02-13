@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt, FaChild } from "react-icons/fa"
-import { FormContext } from "../../../lib/FormContext";
+import { FormContext } from "../../lib/FormContext";
 import { useContext } from "react";
 import { BsArrowLeft } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
@@ -15,11 +15,11 @@ const ParentNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="../ParentProfile">Profile</Link>,
+            title: <Link href="../Parent/ParentProfile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="../ParentChildren">Children</Link>,
+            title: <Link href="../Parent/ParentChildren">Children</Link>,
             icon: <FaChild/>
         },
         {

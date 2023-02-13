@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt } from "react-icons/fa"
 import { AiFillSchedule } from "react-icons/ai"
 import { RiTimerFill } from "react-icons/ri"
-import { FormContext } from "../../../lib/FormContext";
+import { FormContext } from "../../lib/FormContext";
 import { useContext } from "react";
 import { BsArrowLeft } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
@@ -17,11 +17,11 @@ const StudentNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="../StudentProfile">Profile</Link>,
+            title: <Link href="../Student/StudentProfile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="../StudentSchedule">Schedule</Link>,
+            title: <Link href="../Student/StudentSchedule">Schedule</Link>,
             icon: <AiFillSchedule />
         },
         {

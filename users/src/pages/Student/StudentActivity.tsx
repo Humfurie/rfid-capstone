@@ -1,6 +1,7 @@
-import Header from "./components/GeneralComponents/Header";
-import StudentActivityContent from "./components/StudentComponents/StudentActivityContent";
-import StudentNavbar from "./components/StudentComponents/StudentNavbar";
+import Header from "../../components/GeneralComponents/Header";
+import StudentActivityContent from "../../components/StudentComponents/StudentActivityContent";
+import StudentNavbar from "../../components/StudentComponents/StudentNavbar";
+
 
 const StudentActivity = () => {
     return (

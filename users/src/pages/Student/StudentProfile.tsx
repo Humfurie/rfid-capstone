@@ -1,6 +1,6 @@
-import Header from "./components/GeneralComponents/Header";
-import StudentNavbar from "./components/StudentComponents/StudentNavbar";
-import StudentProfileContent from "./components/StudentComponents/StudentProfileContent";
+import Header from "../../components/GeneralComponents/Header";
+import StudentNavbar from "../../components/StudentComponents/StudentNavbar";
+import StudentProfileContent from "../../components/StudentComponents/StudentProfileContent";
 
 const StudentProfile = () => {
     return (
