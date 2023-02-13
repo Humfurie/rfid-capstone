@@ -20,20 +20,18 @@ export default function App({ Component, pageProps }: AppProps) {
   useMemo(async () => {
     try {
       await axios.get(`http://127.0.0.1:3333/auth`);
-      await axios.get(`http://127.0.0.1:3333/api/role`).then(res => {
-        setApiRole(res.data)
-      })
+      Router.push("/AdminDashboard");
       await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
         setApiPosition(res.data)
       })
       await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
         setApiYearLevel(res.data)
       })
-      Router.push("/AdminDashboard");
     } catch (error) {
       Router.push("/");
     }
   }, [])
+
 
   /**
    * states
@@ -46,9 +44,8 @@ export default function App({ Component, pageProps }: AppProps) {
   /**
    * these states contain backend data
    */
-  const [apiRole, setApiRole] = useState({})
-  const [apiPosition, setApiPosition] = useState({})
-  const [apiYearLevel, setApiYearLevel] = useState({})
+  const [apiPosition, setApiPosition] = useState([])
+  const [apiYearLevel, setApiYearLevel] = useState([])
 
   /*
    *
@@ -161,7 +158,6 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   console.log('api data', 
-  apiRole,
   apiPosition,
   apiYearLevel)
 
@@ -189,7 +185,6 @@ export default function App({ Component, pageProps }: AppProps) {
         userSubmit,
 
         //retrieved data
-        apiRole,
         apiPosition,
         apiYearLevel
       }}
