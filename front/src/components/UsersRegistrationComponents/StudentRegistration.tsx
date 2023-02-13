@@ -11,7 +11,8 @@ const StudentRegistration = () => {
     userOnChange,
     emergencyOnChange,
     accountOnChange,
-    addUser,
+    userSubmit,
+    setRole
   } = useContext(FormContext);
 
   return (
@@ -25,9 +26,11 @@ const StudentRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addUser();
+          userSubmit();
         }}
       >
+        {setRole('student')}
+
         <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={InputStyle.registrationNavBar}>

@@ -4,6 +4,8 @@ import UserLogin from './UserLogin'
 import EmergencyContact from './EmergencyContact'
 import Role from './Role'
 import Parent from './Parent'
+import ProfilePic from './ProfilePic'
+import Position from './Position'
 
 export default class User extends BaseModel {
   public static table = 'users'
@@ -12,16 +14,16 @@ export default class User extends BaseModel {
   public id: number
 
   @column()
-  public firstname: string
+  public firstName: string
 
   @column()
-  public middlename: string
+  public middleName: string
 
   @column()
-  public lastname: string
+  public lastName: string
 
   @column()
-  public birthday: Date
+  public birthdate: Date
 
   @column()
   public gender: string
@@ -39,7 +41,7 @@ export default class User extends BaseModel {
   public facebook: string
 
   @column()
-  public year: string
+  public year: number
 
   @column()
   public idNumber: number
@@ -53,19 +55,31 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column.dateTime()
+  public deletedAt: DateTime
+
   @hasOne(() => UserLogin)
   public userLogin: HasOne<typeof UserLogin>
 
   @hasOne(() => EmergencyContact)
   public emergencyContact: HasOne<typeof EmergencyContact>
 
+  @hasOne(() => ProfilePic)
+  public profilePic: HasOne<typeof ProfilePic>
+
   @manyToMany(() => Role, {
     pivotTable: 'user_roles'
   })
   public role: ManyToMany<typeof Role>
 
+  @manyToMany(() => Position, {
+    pivotTable: 'user_positions'
+  })
+  public position: ManyToMany<typeof Position>
+
   @manyToMany(() => Parent, {
     pivotTable: 'parent_child'
   })
   public parent: ManyToMany <typeof Parent>
+
 }

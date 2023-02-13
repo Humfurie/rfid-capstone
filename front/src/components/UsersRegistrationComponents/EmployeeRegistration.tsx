@@ -8,12 +8,12 @@ const EmployeeRegistration = () => {
   const {
     registration,
     setRegistration,
-    employeeRegister,
+    userSubmit,
     userOnChange,
     positionOnChange,
     emergencyOnChange,
     accountOnChange,
-    addUser
+    setRole
   } = useContext(FormContext);
 
   return (
@@ -27,9 +27,11 @@ const EmployeeRegistration = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addUser();
+          userSubmit();
         }}
       >
+        {setRole('employee')}
+
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={InputStyle.registrationNavBar}>
@@ -44,7 +46,7 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "firstname");
+                    userOnChange(e.target.value, "firstName");
                   }}
                 />
               </div>
@@ -57,7 +59,7 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "middlename");
+                    userOnChange(e.target.value, "middleName");
                   }}
                 />
               </div>
@@ -70,7 +72,7 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "lastname");
+                    userOnChange(e.target.value, "lastName");
                   }}
                 />
               </div>
@@ -83,7 +85,7 @@ const EmployeeRegistration = () => {
                   type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "birthday");
+                    userOnChange(e.target.value, "birthdate");
                   }}
                 />
               </div>

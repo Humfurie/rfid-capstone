@@ -1,13 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 
-export default class Position extends BaseModel {
+export default class ProfilePic extends BaseModel {
   @column({ isPrimary: true })
   public id: number
-
-  @column()
-  public name: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -18,8 +15,6 @@ export default class Position extends BaseModel {
   @column.dateTime()
   public deletedAt: DateTime
 
-  @manyToMany(() => User, {
-    pivotTable: 'user_positions'
-  })
-  public user: ManyToMany <typeof User>
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 }

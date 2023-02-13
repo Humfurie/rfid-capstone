@@ -26,11 +26,6 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [])
 
-  const addUser = ( ) => {
-    axios.post(``);
-    Router.push("")
-  }
-
   const [open, setOpen] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
@@ -43,10 +38,10 @@ export default function App({ Component, pageProps }: AppProps) {
   //users
 
   const [userRegistration, setUserRegistration] = useState({
-    firstname: "",
-    middlename: "",
-    lastname: "",
-    birthday: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    birthdate: "",
     gender: "",
     address: "",
     email: "",
@@ -63,9 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
   })
 
   //role
-  const [role, setRole] = useState({
-    name: "",
-  })
+  const [role, setRole] = useState('')
   //emergency contact
   const [emergency, setEmergency] = useState({
     name: "",
@@ -79,7 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
     password: "",
   });
 
-  console.log("hihi",userRegistration, position, role)
+  console.log("hihi", userRegistration, position, role)
   /*
    *
    * this here contains all the functions
@@ -96,11 +89,6 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  const roleOnChange = (value: any, column: string) => {
-    setRole((prev) => {
-      return { ...prev, [column]: value };
-    })
-  }
 
   const emergencyOnChange = (value: any, column: string) => {
     setEmergency((prev) => {
@@ -118,6 +106,43 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the endpoints
    */
+  const userSubmit = async () => {
+    await axios.post(`http://127.0.0.1:3333/api/users-registration`, {
+      userRegistration: userRegistration,
+      position: position,
+      role: role,
+      emergency: emergency,
+      account: account,
+    })
+    setUserRegistration({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      birthdate: "",
+      gender: "",
+      address: "",
+      email: "",
+      contactNumber: "",
+      facebook: "",
+      year: "",
+      idNumber: "",
+      isAlumni: "",
+    })
+    setPosition({
+      name: "",
+    })
+    setRole('')
+    setEmergency({
+      name: "",
+      contactNumber: "",
+      email: "",
+      facebook: "",
+    })
+    setAccount({
+      username: "",
+      password: "",
+    })
+  }
 
   return (
     <FormContext.Provider
@@ -133,13 +158,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
         userOnChange,
         positionOnChange,
-        roleOnChange,
+        setRole,
 
-        addUser,
-        
         //emergency and account onChange
         emergencyOnChange,
         accountOnChange,
+
+        //onsubmit event action
+        userSubmit
       }}
     >
       <Component {...pageProps} />

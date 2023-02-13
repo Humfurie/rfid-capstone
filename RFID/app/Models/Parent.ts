@@ -7,16 +7,16 @@ export default class Parent extends BaseModel {
   public id: number
 
   @column()
-  public firstname: string
+  public firstName: string
 
   @column()
-  public middlename: string
+  public middleName: string
 
   @column()
-  public lastname: string
+  public lastName: string
 
   @column()
-  public birthday: Date
+  public birthdate: Date
 
   @column()
   public gender: string
@@ -38,6 +38,9 @@ export default class Parent extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column.dateTime()
+  public deletedAt: DateTime
 
   @manyToMany(() => User, {
     pivotTable: 'parent_child'
