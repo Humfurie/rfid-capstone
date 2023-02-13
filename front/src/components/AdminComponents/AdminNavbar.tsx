@@ -68,6 +68,14 @@ export default function AdminNavbar() {
 			],
 		},
 		{
+			title: <Link href="./AdminProfile">Positions</Link>,
+			icon: ""
+		},
+		{
+			title: <Link href="./AdminProfile">Year Levels</Link>,
+			icon: ""
+		},
+		{
 			title: "Log out",
 			icon: <FaSignOutAlt />
 		}
