@@ -19,6 +19,9 @@ export default class EmergencyContact extends BaseModel {
   public email: string
 
   @column()
+  public flag: number
+
+  @column()
   public userId: number
 
   @column.dateTime({ autoCreate: true })

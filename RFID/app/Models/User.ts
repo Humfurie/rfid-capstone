@@ -42,12 +42,14 @@ export default class User extends BaseModel {
   @column()
   public facebook: string
 
-
   @column()
   public idNumber: number
 
   @column()
   public isAlumni: boolean
+
+  @column()
+  public flag: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

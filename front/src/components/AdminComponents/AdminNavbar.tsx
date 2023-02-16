@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
-import { useState } from 'react';
-import { BsArrowLeft, BsChevronUp } from "react-icons/bs"
+import { BsArrowLeft } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt } from "react-icons/fa"
 
 import Link from "next/link";
 import { FormContext } from "../../lib/FormContext";
+import { destroyCookie } from "nookies";
+import { useRouter } from "next/router";
 
 
 export default function AdminNavbar() {
+
+	const router = useRouter()
 
 	const {
 		open,
@@ -24,7 +27,7 @@ export default function AdminNavbar() {
 	const Menus = [
 
 		{
-			title: <Link href="./AdminProfile">Profile</Link>,
+			title: <Link href="/AdminProfile">Profile</Link>,
 			icon: <FaUserAlt />,
 		},
 		{
@@ -33,15 +36,15 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="../Users/UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
+					src: <Link href="/Users/UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="../Users/UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
+					src: <Link href="/Users/UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
 					>Students</Link>
 				},
 				{
-					src: <Link href="../Users/UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10%"
+					src: <Link href="/Users/UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10%"
 					>Parents</Link>
 				}
 			],
@@ -54,29 +57,32 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="../Records/RecordsEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% active:bg-powderblue-shades10%"
+					src: <Link href="/Records/RecordsEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="../Records/RecordsStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
+					src: <Link href="/Records/RecordsStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
 					>Students</Link>
 				},
 				{
-					src: <Link href="../Records/RecordsParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
+					src: <Link href="/Records/RecordsParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
 					>Parents</Link>
 				}
 			],
 		},
 		{
-			title: <Link href="../Positions/PositionsDashboard">Positions</Link>,
+			title: <Link href="/Positions/PositionsDashboard">Positions</Link>,
 			icon: ""
 		},
 		{
-			title: <Link href="../YearLevels/YearLevelDashboard">Year Levels</Link>,
+			title: <Link href="/YearLevels/YearLevelDashboard">Year Levels</Link>,
 			icon: ""
 		},
 		{
-			title: "Log out",
+			title: <button onClick={e => {
+				destroyCookie(null, 'Admin')
+				router.push('/')
+			}}>Log Out</button>,
 			icon: <FaSignOutAlt />
 		}
 
@@ -89,9 +95,9 @@ export default function AdminNavbar() {
 					<BsArrowLeft className={`w-6 h-6 bg-white  text=3xl rounded-3xl absolute
 					-right-3 top-9  cursor-pointer duration-100 border border-powderblue-shades10% ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
 
-					<span><img src="../" alt="" /></span>
+					{/* <span><img src="../" alt="" /></span> */}
 
-					<Link href="./AdminDashboard" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
+					<Link href="/AdminDashboard" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
 
 				</div>
 
@@ -123,7 +129,7 @@ export default function AdminNavbar() {
 								</li>
 								{
 									menu.submenu && submenuOpen && currentMenu === menu.title && open && (
-										<ul className="duration-500">
+										<ul key={index} className="duration-500">
 											{menu.submenuItems.map((menu: any, index: any) => {
 												return (
 													<li

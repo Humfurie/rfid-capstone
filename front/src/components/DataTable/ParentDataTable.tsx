@@ -7,9 +7,17 @@ export default function ParentDataTable() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "firstname", headerName: "Name", width: 130 },
+    { field: "first_name", headerName: "Name", width: 130 },
     { field: "contact_number", headerName: "Contact Number", width: 130 },
-    { field: "actions", headerName: "Actions", width: 130 },
+    { field: "actions", headerName: "Actions", width: 130, renderCell: () => {
+      return (
+        <>
+          <button>View</button>
+          <button>Edit</button>
+          <button>Delete</button>
+        </>
+      )
+    } },
   ];
 
   React.useMemo(() => {
@@ -34,7 +42,6 @@ export default function ParentDataTable() {
         rows={rows}
         columns={columns}
         rowsPerPageOptions={pageOptions}
-        checkboxSelection
       />
     </div>
   );

@@ -33,6 +33,9 @@ export default class Parent extends BaseModel {
   @column()
   public facebook: string
 
+  @column()
+  public flag: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

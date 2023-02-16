@@ -6,4 +6,13 @@ export default class RolesController {
         const role = await Role.all()
         return response.status(200).send(role)
     }
+
+    public async store({request, response}: HttpContextContract) {
+        const input = request.all()
+
+        console.log(input)
+        await Role.create({name: input.name})
+
+        return response.status(200).json({"message":"saved"})
+    }
 }

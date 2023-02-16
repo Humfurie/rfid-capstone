@@ -26,7 +26,7 @@ const UsersEmployeesContent = () => {
         </div>
       </div>
       <div className="flex ml-6 mt-6 max-w-full min-w-min ">
-          {/* <EmployeeDataTable /> */}
+          <EmployeeDataTable />
         </div>
       <EmployeeRegistration />
     </div>

@@ -4,7 +4,7 @@ import MyButton from "../../lib/partials/MyButton";
 
 const YearLevelDashboardContent = () => {
     const {
-        yearOnChange,
+        setYear,
         yearSubmit
  } = useContext(FormContext)
 
@@ -20,7 +20,7 @@ const YearLevelDashboardContent = () => {
                     <input
                         type="text"
                         onChange={(e) => {
-                            yearOnChange(e.target.value, "year")
+                            setYear(e.target.value)
                         }}
                     />
                     <MyButton

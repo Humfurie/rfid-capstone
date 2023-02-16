@@ -27,7 +27,7 @@ const UsersParentsContent = () => {
         </div>
       </div>
       <div className="flex ml-6 mt-6 max-w-full min-w-min ">
-      {/* <ParentDataTable /> */}
+      <ParentDataTable />
       </div>
       <ParentRegistration />
     </div>

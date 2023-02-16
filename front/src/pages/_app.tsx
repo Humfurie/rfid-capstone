@@ -2,34 +2,47 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { FormContext } from "../lib/FormContext";
 
 export default function App({ Component, pageProps }: AppProps) {
+  /**
+   * next router
+   */
+  const router = useRouter()
+
+  /**
+   * nookies cookie parser
+   */
   const parsedToken = parseCookies();
-  console.log(parsedToken);
+
+  /**
+   * axios interceptor, custom made
+   */
   axios.interceptors.request.use(async (config) => {
-    const token = parsedToken.JWToken;
+    const token = parsedToken.Admin;
     if (token) {
       config.headers!.authorization = "Bearer " + token;
     }
     return config;
   });
 
-  useMemo(async () => {
-    try {
-      await axios.get(`http://127.0.0.1:3333/auth`);
-      Router.push("/AdminDashboard");
-      await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
-        setApiPosition(res.data)
-      })
-      await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
-        setApiYearLevel(res.data)
-      })
-    } catch (error) {
-      Router.push("/");
-    }
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get(`http://127.0.0.1:3333/auth`);
+        router.push("/AdminDashboard");
+        await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
+          setApiPosition(res.data)
+        })
+        await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
+          setApiYearLevel(res.data)
+        })
+      } catch (error) {
+        router.push("/");
+      }
+    })()
   }, [])
 
 
@@ -67,17 +80,11 @@ export default function App({ Component, pageProps }: AppProps) {
     idNumber: "",
     isAlumni: "",
   })
+  console.log(userRegistration)
   // year levels
-  const [year, setYear] = useState({
-    name:"",
-  })
-console.log(year)
+  const [year, setYear] = useState("")
   //position-employee
-  const [position, setPosition] = useState({
-    name: "",
-  })
-  console.log(position)
-
+  const [position, setPosition] = useState("")
   //role
   const [role, setRole] = useState('')
   //emergency contact
@@ -103,18 +110,6 @@ console.log(year)
     })
   }
 
-  const positionOnChange = (value: any, column: string) => {
-    setPosition((prev) => {
-      return { ...prev, [column]: value };
-    })
-  }
-  const yearOnChange = (value: any, column: string) => {
-    setYear((prev) => {
-      return { ...prev, [column]: value}
-    })
-  }
-
-
   const emergencyOnChange = (value: any, column: string) => {
     setEmergency((prev) => {
       return { ...prev, [column]: value };
@@ -131,22 +126,21 @@ console.log(year)
    *
    * this here contains all the endpoints
    */
-
   // add position
   const positionSubmit = async () => {
-    await axios.post(``, {
-
+    await axios.post(`http://127.0.0.1:3333/api/position`, {
+      position: position,
     })
   }
   // add year
   const yearSubmit = async () => {
-    await axios.post(``,{
-
+    await axios.post(`http://127.0.0.1:3333/api/year_level`, {
+      year: year,
     })
   }
 
   const userSubmit = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/users-registration`, {
+    await axios.post(`http://127.0.0.1:3333/api/users_registration`, {
       userRegistration: userRegistration,
       position: position,
       role: role,
@@ -168,9 +162,7 @@ console.log(year)
       idNumber: "",
       isAlumni: "",
     })
-    setPosition({
-      name: "",
-    })
+    setPosition("")
     setRole('')
     setEmergency({
       name: "",
@@ -183,10 +175,6 @@ console.log(year)
       password: "",
     })
   }
-
-  console.log('api data',
-    apiPosition,
-    apiYearLevel)
 
   return (
     <FormContext.Provider
@@ -201,8 +189,6 @@ console.log(year)
         setRegistration,
 
         userOnChange,
-        positionOnChange,
-        yearOnChange,
         setRole,
 
         //emergency and account onChange

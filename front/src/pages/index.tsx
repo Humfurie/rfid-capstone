@@ -2,10 +2,12 @@ import { Button, Group, Modal } from '@mantine/core';
 import { useState } from 'react';
 import axios from 'axios'
 import { setCookie } from 'nookies';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 
 export default function Home() {
+  const router = useRouter()
+
   const [opened, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
 
@@ -45,11 +47,11 @@ export default function Home() {
       password: form.password
     }).then(res => {
       const token = res.data.token
-      setCookie({}, 'JWToken', token, {
-        maxAge: 30 * 24 * 60 * 60,
+      setCookie(null, 'JWToken', token, {
+        maxAge: 24 * 60 * 60,
       })
     })
-    Router.push('/AdminDashboard')
+    router.push('/AdminDashboard')
   }
 
   const adminLogin = async () => {
@@ -57,12 +59,12 @@ export default function Home() {
       username: loginForm.username,
       password: loginForm.password
     }).then(res => {
-      const token = res.data.token
-      setCookie({}, 'JWToken', token, {
-        maxAge: 30 * 24 * 60 * 60
-      })
-    })
-    Router.push('/AdminDashboard')
+        const token = res.data.token
+        setCookie(null, 'Admin', token, {
+          maxAge: 24 * 60 * 60,
+        })
+      })  
+      router.push('/AdminDashboard')
   }
 
 
@@ -99,7 +101,7 @@ export default function Home() {
               <input
                 type="password"
                 required
-                onChange={(e:any) => {
+                onChange={(e: any) => {
                   loginChange(e.target.value, "password")
                 }}
               />

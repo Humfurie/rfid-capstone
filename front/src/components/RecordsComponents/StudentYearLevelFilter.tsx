@@ -9,9 +9,13 @@ const StudentYearLevelFilter = () => {
                 <label htmlFor="search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative w-full inset-y-0 right-40">
 
-                    <select name="" id="" className=" p-2  w-96 text-sm text-gray-900 bg-gray-50 rounded-lg border border-powderblue-shades10% 
-                        focus:outline-none focus:ring focus:ring-powderblue-shades10% ">
-                        <option selected disabled>---Select School Year---</option>
+                    <select className=" p-2  w-96 text-sm text-gray-900 bg-gray-50 rounded-lg border border-powderblue-shades10% 
+                        focus:outline-none focus:ring focus:ring-powderblue-shades10% "
+                        onChange={e => {
+                            
+                        }}
+                        >
+                        <option value="">---Select School Year---</option>
                         <option value="Grade 7">Grade 7</option>
                         <option value="Grade 7">Grade 8</option>
                         <option value="Grade 7">Grade 9</option>

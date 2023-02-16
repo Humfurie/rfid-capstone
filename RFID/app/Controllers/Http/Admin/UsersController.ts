@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Parent from 'App/Models/Parent';
 import User from 'App/Models/User'
 
 
@@ -6,12 +7,16 @@ export default class UsersController {
     public async userLogin({ }: HttpContextContract) {
     }
 
+    /**
+     * 
+     * @returns all employee
+     */
     public async employeeIndex({ response }: HttpContextContract) { 
 
         const user = await User.query()
-        .whereHas('userLogin', (builder) => {
-            builder.where('role', 'employee');
-        })
+        .whereHas('role', (builder) => {
+            builder.where('name', 'employee');
+        }).where('flag', 1)
 
         console.log(user)
         if (!user) {
@@ -21,12 +26,16 @@ export default class UsersController {
         return response.status(200).json({ user })
     }
 
+    /**
+     *  
+     * @returns all student
+     */
     public async studentIndex({ response }: HttpContextContract) { 
 
         const user = await User.query()
-        .whereHas('userLogin', (builder) => {
-            builder.where('role', 'student');
-        })
+        .whereHas('role', (builder) => {
+            builder.where('name', 'student');
+        }).where('flag', 1)
 
         console.log(user)
         if (!user) {
@@ -36,12 +45,13 @@ export default class UsersController {
         return response.status(200).json({ user })
     }
 
+    /**
+     * 
+     * @returns all parents
+     */
     public async parentIndex({ response }: HttpContextContract) { 
 
-        const user = await User.query()
-        .whereHas('userLogin', (builder) => {
-            builder.where('role', 'parent');
-        })
+        const user = await Parent.query().where('flag', 1)
 
         console.log(user)
         if (!user) {
