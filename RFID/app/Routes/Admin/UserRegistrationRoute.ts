@@ -5,4 +5,4 @@ Route.group(()=>{
     // Route.post('/studentRegister', 'UserRegistrationController.studentRegistration')
     // Route.post('/parentRegister', 'UserRegistrationController.parentRegistration')
     Route.post('/api/users_registration', 'UserRegistrationController.usersRegistration')
-}).namespace('App/Controllers/Http')
+}).namespace('App/Controllers/Http/Admin')

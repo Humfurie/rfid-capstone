@@ -2,11 +2,14 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { parseCookies, setCookie } from 'nookies'
 import axios from 'axios'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { useMemo, useState } from 'react'
 import { FormContext } from '../lib/FormContext'
 
 export default function App({ Component, pageProps }: AppProps) {
+
+  const router = useRouter()
+
   const parsedToken = parseCookies()
   console.log(parsedToken)
   axios.interceptors.request.use(
@@ -19,16 +22,16 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   )
 
-  // useMemo(
-  //   async () => {
-  //     try {
-  //       await axios.get(`http://127.0.0.1:3333/auth`)
-  //       Router.push('/login')
-  //     } catch (error) {
-  //       Router.push('/')
-  //     }
-  //   }, []
-  // )
+  useMemo(
+    async () => {
+      try {
+        await axios.get(`http://127.0.0.1:3333/auth`)
+        router.push('/')
+      } catch (error) {
+        router.push('/login')
+      }
+    }, []
+  )
 
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
@@ -43,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
     username: '',
     password: ''
   })
-
+console.log(loginForm)
 
   const onChange = (value: any, column: any) => {
     setForm((prev: any) => {
@@ -53,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  const loginChange = (value: any, column: any) => {
+  const loginOnChange = (value: any, column: any) => {
     setLoginForm((prev: any) => {
       return {
         ...prev, [column]: value
@@ -62,31 +65,34 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
 
-  const registration = async () => {
-    await axios.post(`http://127.0.0.1:3333/register`, {
-      username: form.username,
-      email: form.email,
-      password: form.password
-    }).then((res: { data: { token: any; }; }) => {
-      const token = res.data.token
-      setCookie({}, 'JWToken', token, {
-        maxAge: 30 * 24 * 60 * 60,
-      })
-    })
-    Router.push('/UserDashboard')
-  }
+  // const registration = async () => {
+  //   await axios.post(`http://127.0.0.1:3333/register`, {
+  //     username: form.username,
+  //     email: form.email,
+  //     password: form.password
+  //   }).then((res: { data: { token: any; }; }) => {
+  //     const token = res.data.token
+  //     setCookie({}, 'JWToken', token, {
+  //       maxAge: 30 * 24 * 60 * 60,
+  //     })
+  //   })
+  //   router.push('/UserDashboard')
+  // }
 
+  /**
+   * user login
+   */
   const userLogin = async () => {
-    await axios.post(`http://127.0.0.1:3333/login`, {
+    await axios.post(`http://127.0.0.1:3333/api/users/login`, {
       username: loginForm.username,
       password: loginForm.password
     }).then((res: { data: { token: any; }; }) => {
       const token = res.data.token
       setCookie({}, 'JWToken', token, {
-        maxAge: 30 * 24 * 60 * 60
+        maxAge: 24 * 60 * 60
       })
     })
-    Router.push('/UserDashboard')
+    router.push('/')
   }
 
   // navigation bar
@@ -100,8 +106,8 @@ export default function App({ Component, pageProps }: AppProps) {
       register,
       setRegister,
       onChange,
-      loginChange,
-      registration,
+      loginOnChange,
+      // registration,
       userLogin,
 
       open,

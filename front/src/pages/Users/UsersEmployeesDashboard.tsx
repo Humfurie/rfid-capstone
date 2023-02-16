@@ -1,7 +1,7 @@
 import Head from "next/head";
-import AdminNavbar from "../components/AdminComponents/AdminNavbar";
-import Header from "../components/Header";
-import UsersEmployeesContent from "../components/UsersComponents/UsersEmployeesContent";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import Header from "../../components/Header";
+import UsersEmployeesContent from "../../components/UsersComponents/UsersEmployeesContent";
 
 export default function UsersEmployeesDashboard  () {
     return (

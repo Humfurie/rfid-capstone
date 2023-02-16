@@ -9,6 +9,9 @@ export default class Role extends BaseModel {
   @column()
   public name: string
 
+  @column()
+  public flag: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

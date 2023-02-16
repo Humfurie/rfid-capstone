@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Header from "../components/Header";
-import AdminNavbar from "../components/AdminComponents/AdminNavbar";
-import UsersStudentsContent from "../components/UsersComponents/UsersStudentsContent";
+import Header from "../../components/Header";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import UsersStudentsContent from "../../components/UsersComponents/UsersStudentsContent";
 
 
 export default function UsersStudentsDashboard() {

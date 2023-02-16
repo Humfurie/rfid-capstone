@@ -82,7 +82,7 @@ export default class newUserRegistrationController {
                 /**
                  * saving emergency_contact data
                  */
-                emergency.save()
+                await emergency.save()
 
                 /**
                  * account model
@@ -96,6 +96,11 @@ export default class newUserRegistrationController {
                  * UserLogin transaction
                  */
                 account.useTransaction(trx)
+
+                /**
+                 * account save
+                 */
+                await account.save()
 
 
                 /**
@@ -171,7 +176,7 @@ export default class newUserRegistrationController {
                   /**
                    * saving emergency_contact data
                    */
-                  emergency.save()
+                  await emergency.save()
   
                   /**
                    * account model
@@ -180,12 +185,13 @@ export default class newUserRegistrationController {
                   account.username = input.account.username
                   account.password = input.account.password
                   account.userId = user.id
-  
+                
                   /**
                    * UserLogin transaction
                    */
                   account.useTransaction(trx)
 
+                  await account.save()
                 /**
                  * transaction commmit for safe saving all data without failure
                  */

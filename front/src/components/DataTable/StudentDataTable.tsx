@@ -7,9 +7,17 @@ export default function StudentDataTable() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "firstname", headerName: "Name", width: 130 },
+    { field: "first_name", headerName: "Name", width: 130 },
     { field: "contact_number", headerName: "Contact Number", width: 130 },
-    { field: "actions", headerName: "Actions", width: 130 },
+    { field: "actions", headerName: "Actions", width: 130, renderCell: () => {
+      return (
+        <>
+          <button className="bg-yellow">View</button>
+          <button className="bg-blue">Edit</button>
+          <button className="bg-red">Delete</button>
+        </>
+      )
+    } },
   ];
 
   React.useMemo(() => {
@@ -34,7 +42,6 @@ export default function StudentDataTable() {
         rows={rows}
         columns={columns}
         rowsPerPageOptions={pageOptions}
-        checkboxSelection
       />
     </div>
   );

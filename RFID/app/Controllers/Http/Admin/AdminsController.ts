@@ -43,7 +43,7 @@ export default class AdminsController {
         data: { ...admin }
       })
     } catch (error) {
-      return response.redirect("/")
+      return response.status(400)
     }
   }
 
@@ -55,17 +55,20 @@ export default class AdminsController {
     const username = request.input('username')
     const password = request.input('password')
     const admin = await Admin.query().where('username', username).first()
-    
+
     const jwtAuth = {
       username: username
     }
-    
-    if (!admin) return response.status(401).json({ message: 'Unauthorized Access' })
-    console.log( 'haihai')
-    if (!await Hash.verify(admin.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
+
+    if (!admin) {
+      return response.status(401).json({ message: 'Unauthorized Access' })
+    }
+    if (!await Hash.verify(admin.password, password)) {
+      return response.status(401).json({ message: 'Unauthorized Access' })
+    }
 
     try {
-      const token = await jwt.sign(jwtAuth, 'maotClofel', { expiresIn: '30 mins' })
+      const token = jwt.sign(jwtAuth, 'maotClofel')
       // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
 
       // if (request.input('remember')) {
@@ -74,10 +77,18 @@ export default class AdminsController {
       console.log(token, 'token')
       return response.status(200).send({
         token: token,
-        data: { ...admin }
+        data: { admin }
       })
+      // {
+      //   statusCode: 200,
+      //   headers: {
+      //     'Set-Cookie': `Admin=${token}; HttpOnly; Max-Age=24*60*60; Path=/`
+      //   },
+      //   data: { admin }, 
+      // }
+
     } catch (error) {
-      return response.redirect("/")
+      return response.status(401).send(error)
 
     }
 

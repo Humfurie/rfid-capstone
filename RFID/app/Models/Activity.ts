@@ -7,7 +7,13 @@ export default class Activity extends BaseModel {
   public id: number
 
   @column()
-  public activity: number
+  public day: string
+
+  @column()
+  public status: string
+
+  @column()
+  public flag: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -15,8 +21,16 @@ export default class Activity extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column.dateTime()
+  public deletedAt: DateTime
+  
   @manyToMany(() => User, {
     pivotTable: 'user_activities'
   })
   public user: ManyToMany<typeof User>
+
+  // table.increments('id')
+  // table.string('day').notNullable()
+  // table.string('status').notNullable()
+  // table.integer('flag').defaultTo(1)
 }

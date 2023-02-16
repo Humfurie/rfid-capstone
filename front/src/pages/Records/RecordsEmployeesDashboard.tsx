@@ -1,7 +1,7 @@
-import { Head } from "next/document";
-import AdminNavbar from "../components/AdminComponents/AdminNavbar";
-import Header from "../components/Header";
-import RecordsEmployeesContent from "../components/UsersComponents/RecordsEmployeesContent";
+import Head from "next/head";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import Header from "../../components/Header";
+import RecordsEmployeesContent from "../../components/RecordsComponents/RecordsEmployeesContent";
 
 const RecordsEmployeesDashboard = () => {
     return (

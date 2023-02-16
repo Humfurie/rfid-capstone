@@ -10,7 +10,7 @@ const EmployeeRegistration = () => {
     setRegistration,
     userSubmit,
     userOnChange,
-    positionOnChange,
+    setPosition,
     emergencyOnChange,
     accountOnChange,
     setRole,
@@ -104,7 +104,7 @@ const EmployeeRegistration = () => {
                     userOnChange(e.target.value, "gender");
                   }}
                 >
-                  <option selected disabled>
+                  <option value=''>
                     ---Select Gender---
                   </option>
                   <option value="male">Male</option>
@@ -140,10 +140,10 @@ const EmployeeRegistration = () => {
                   name="positions"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    positionOnChange(e.target.value, "position");
+                    setPosition(e.target.value);
                   }}
                 >
-                  <option selected disabled>
+                  <option value=''>
                     ---Select Position---
                   </option>
                   {apiPosition.map((element:any) => (

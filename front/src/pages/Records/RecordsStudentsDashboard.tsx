@@ -1,7 +1,7 @@
 import Head from "next/head";
-import AdminNavbar from "../components/AdminComponents/AdminNavbar";
-import Header from "../components/Header";
-import RecordsStudentsContent from "../components/UsersComponents/RecordsStudentsContent";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import Header from "../../components/Header";
+import RecordsStudentsContent from "../../components/RecordsComponents/RecordsStudentsContent";
 
 const RecordsStudentsDashboard = () => {
     return (

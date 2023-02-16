@@ -3,8 +3,8 @@ import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
 import StudentDataTable from "../DataTable/StudentDataTable";
 import StudentRegistration from "../UsersRegistrationComponents/StudentRegistration";
-import SearchBar from "./SearchBar";
-import StudentYearLevelFilter from "./StudentYearLevelFilter";
+import SearchBar from "../SearchBar";
+import StudentYearLevelFilter from "../RecordsComponents/StudentYearLevelFilter";
 
 const UsersStudentsContent = () => {
 
@@ -31,7 +31,7 @@ const UsersStudentsContent = () => {
                 </div>
             </div>
             <div className="flex ml-6 mt-6 max-w-full min-w-min ">
-                {/* <StudentDataTable /> */}
+                <StudentDataTable />
             </div>
             <StudentRegistration />
         </div>

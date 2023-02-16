@@ -7,4 +7,12 @@ export default class YearLevelsController {
 
         return response.status(200).send(yearLevel)
     }
+
+    public async store({request, response}: HttpContextContract){
+        const input = request.all()
+
+        await YearLevel.create({year: input.year})
+
+        return response.status(200).json({"message" : "Year level saved successfully."})
+    }
 }

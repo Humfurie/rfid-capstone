@@ -2,38 +2,49 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { FormContext } from "../lib/FormContext";
 
 export default function App({ Component, pageProps }: AppProps) {
+  /**
+   * next router
+   */
+  const router = useRouter()
+
+  /**
+   * nookies cookie parser
+   */
   const parsedToken = parseCookies();
-  console.log(parsedToken);
+
+  /**
+   * axios interceptor, custom made
+   */
   axios.interceptors.request.use(async (config) => {
-    const token = parsedToken.JWToken;
+    const token = parsedToken.Admin;
     if (token) {
       config.headers!.authorization = "Bearer " + token;
     }
     return config;
   });
 
-  useMemo(async () => {
-    try {
-      await axios.get(`http://127.0.0.1:3333/auth`);
-      await axios.get(`http://127.0.0.1:3333/api/role`).then(res => {
-        setApiRole(res.data)
-      })
-      await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
-        setApiPosition(res.data)
-      })
-      await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
-        setApiYearLevel(res.data)
-      })
-      Router.push("/AdminDashboard");
-    } catch (error) {
-      Router.push("/");
-    }
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get(`http://127.0.0.1:3333/auth`);
+        router.push("/AdminDashboard");
+        await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
+          setApiPosition(res.data)
+        })
+        await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
+          setApiYearLevel(res.data)
+        })
+      } catch (error) {
+        router.push("/");
+      }
+    })()
   }, [])
+
 
   /**
    * states
@@ -43,12 +54,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
 
+
+
   /**
    * these states contain backend data
    */
-  const [apiRole, setApiRole] = useState({})
-  const [apiPosition, setApiPosition] = useState({})
-  const [apiYearLevel, setApiYearLevel] = useState({})
+  const [apiPosition, setApiPosition] = useState([])
+  const [apiYearLevel, setApiYearLevel] = useState([])
 
   /*
    *
@@ -68,12 +80,11 @@ export default function App({ Component, pageProps }: AppProps) {
     idNumber: "",
     isAlumni: "",
   })
-
+  console.log(userRegistration)
+  // year levels
+  const [year, setYear] = useState("")
   //position-employee
-  const [position, setPosition] = useState({
-    name: "",
-  })
-
+  const [position, setPosition] = useState("")
   //role
   const [role, setRole] = useState('')
   //emergency contact
@@ -99,13 +110,6 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  const positionOnChange = (value: any, column: string) => {
-    setPosition((prev) => {
-      return { ...prev, [column]: value };
-    })
-  }
-
-
   const emergencyOnChange = (value: any, column: string) => {
     setEmergency((prev) => {
       return { ...prev, [column]: value };
@@ -122,14 +126,28 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the endpoints
    */
+  // add position
+  const positionSubmit = async () => {
+    await axios.post(`http://127.0.0.1:3333/api/position`, {
+      position: position,
+    })
+  }
+  // add year
+  const yearSubmit = async () => {
+    await axios.post(`http://127.0.0.1:3333/api/year_level`, {
+      year: year,
+    })
+  }
+
   const userSubmit = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/users-registration`, {
+    await axios.post(`http://127.0.0.1:3333/api/users_registration`, {
       userRegistration: userRegistration,
       position: position,
       role: role,
       emergency: emergency,
       account: account,
     })
+
     setUserRegistration({
       firstName: "",
       middleName: "",
@@ -144,9 +162,7 @@ export default function App({ Component, pageProps }: AppProps) {
       idNumber: "",
       isAlumni: "",
     })
-    setPosition({
-      name: "",
-    })
+    setPosition("")
     setRole('')
     setEmergency({
       name: "",
@@ -159,11 +175,6 @@ export default function App({ Component, pageProps }: AppProps) {
       password: "",
     })
   }
-
-  console.log('api data', 
-  apiRole,
-  apiPosition,
-  apiYearLevel)
 
   return (
     <FormContext.Provider
@@ -178,7 +189,6 @@ export default function App({ Component, pageProps }: AppProps) {
         setRegistration,
 
         userOnChange,
-        positionOnChange,
         setRole,
 
         //emergency and account onChange
@@ -187,9 +197,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
         //onsubmit event action
         userSubmit,
+        positionSubmit,
+        yearSubmit,
 
+        //input position
+        position,
+        setPosition,
+        //year
+        year,
+        setYear,
         //retrieved data
-        apiRole,
         apiPosition,
         apiYearLevel
       }}
