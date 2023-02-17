@@ -43,7 +43,7 @@ export default class User extends BaseModel {
   public facebook: string
 
   @column()
-  public idNumber: number
+  public idNumber: string
 
   @column()
   public isAlumni: boolean
