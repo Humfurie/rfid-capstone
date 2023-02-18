@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
+import YearLevelDataTable from "../DataTable/YearLevelDataTable";
 
 const YearLevelDashboardContent = () => {
     const {
@@ -33,6 +34,7 @@ const YearLevelDashboardContent = () => {
             </div>
             <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
                 list of year levels
+                <YearLevelDataTable />
             </div>
         </div>
     );

@@ -9,17 +9,17 @@ export default class extends BaseSeeder {
     /**
      * fake user
      */
-     await UserFactory
-    .with('user_roles', 1, (role) => {
-      role.pivotAttributes([
-        {role_id: '1'},
-      ])
-    })
-    .with('position', 1, (position) => {
-      position.pivotAttributes([
-        {position_id: '1'},
-      ])
-    })
+    await UserFactory
+    // .with('role', 1, (role) => {
+    //   role.pivotAttributes([
+    //     {role_id: '1'},
+    //   ])
+    // })
+    // .with('position', 1, (position) => {
+    //   position.pivotAttributes([
+    //     {position_id: '1'},
+    //   ])
+    // })
     .with('emergencyContact', 1)
     .with('userLogin', 1)   
     .createMany(20)

@@ -2,8 +2,7 @@ import User from 'App/Models/User'
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import EmergencyContactFactory from './EmergencyContactFactory'
 import UserLoginFactory from './UserLoginFactory'
-import RolePivotFactory from './RolePivotFactory'
-import PositionPivotFactory from './PositionPivotFactory'
+
 
 
 export default Factory.define(User, ({ faker }) => {
@@ -26,7 +25,7 @@ export default Factory.define(User, ({ faker }) => {
 })
 .relation('emergencyContact', () => EmergencyContactFactory)
 .relation('userLogin', () => UserLoginFactory)
-.relation('role', () => RolePivotFactory)
-.relation('position', () => PositionPivotFactory)
+// .relation('role', () => RolePivotFactory)
+// .relation('position', () => PositionPivotFactory)
 .build()
 

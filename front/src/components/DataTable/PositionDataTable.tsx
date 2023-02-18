@@ -2,13 +2,12 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
-export default function EmployeeDataTable() {
+export default function PositionDataTable() {
   const [rows, setRows] = React.useState([])
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "first_name", headerName: "Name", width: 130 },
-    { field: "contact_number", headerName: "Contact Number", width: 130 },
+    { field: "name", headerName: "Name", width: 130 },
     {
       field: "actions", headerName: "Actions", width: 130, renderCell: () => {
         return (
@@ -29,9 +28,9 @@ export default function EmployeeDataTable() {
   ];
 
   React.useMemo(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/employeeIndex`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`)
       .then((res) => {
-        const data = res.data.user
+        const data = res.data
         console.log(data)
         setRows(data)
       })
