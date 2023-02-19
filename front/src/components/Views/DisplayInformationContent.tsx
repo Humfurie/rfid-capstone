@@ -1,7 +1,12 @@
 const DisplayInformation = () => {
     return (
         <div>
-            Enter
+            <div className="border-2 p-6 m-6">
+                Name: 
+                Age:
+                Birthday:
+
+            </div>
         </div>
     );
 }

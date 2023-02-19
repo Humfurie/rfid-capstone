@@ -1,8 +1,10 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function ParentDataTable() {
+  const router = useRouter()
   const [rows, setRows] = React.useState([])
 
   const columns = [
@@ -12,7 +14,11 @@ export default function ParentDataTable() {
     { field: "actions", headerName: "Actions", width: 130, renderCell: () => {
       return (
         <>
-          <button>View</button>
+          <button
+          onClick={(e) => {
+            router.push('/Views/DisplayInformation')
+          }}
+          >View</button>
           <button>Edit</button>
           <button>Delete</button>
         </>

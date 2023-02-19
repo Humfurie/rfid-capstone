@@ -1,8 +1,10 @@
 import * as React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function YearLevelDataTable() {
+  const router = useRouter()
   const [rows, setRows] = React.useState([])
 
   const columns = [
@@ -11,7 +13,12 @@ export default function YearLevelDataTable() {
     { field: "actions", headerName: "Actions", width: 130, renderCell: () => {
       return (
         <>
-          <button className="bg-yellow">View</button>
+          <button 
+          className="bg-yellow"
+          onClick={(e) => {
+            router.push('/Views/DisplayInformation')
+          }}
+          >View</button>
           <button className="bg-blue">Edit</button>
           <button className="bg-red">Delete</button>
         </>
