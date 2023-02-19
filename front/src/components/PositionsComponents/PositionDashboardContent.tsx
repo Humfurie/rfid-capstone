@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
+import PositionDataTable from "../DataTable/PositionDataTable"
 
 const PositionDashboardContent = () => {
     const {
-        positionOnChange,
+        setPosition,
         positionSubmit
 
     } = useContext(FormContext)
@@ -20,13 +21,13 @@ const PositionDashboardContent = () => {
                     <input
                         type="text"
                         onChange={(e) => {
-                            positionOnChange(e.target.value, "position")
+                            setPosition(e.target.value)
                         }}
                     />
                     
 
                     <MyButton
-                        type="button"
+                        type="submit"
                         label="Add Position"
                         className="text-black bg-powderblue-shades10% hover:bg-powderblue-shades20% font-medium rounded-r-lg text-sm px-4 py-2 "
                     />
@@ -35,6 +36,7 @@ const PositionDashboardContent = () => {
             </div>
             <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
                 list of positions
+                <PositionDataTable />
             </div>
         </div>
     );
