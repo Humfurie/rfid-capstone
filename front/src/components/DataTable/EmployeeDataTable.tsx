@@ -1,8 +1,10 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function EmployeeDataTable() {
+  const router = useRouter()
   const [rows, setRows] = React.useState([])
 
   const columns = [
@@ -13,15 +15,22 @@ export default function EmployeeDataTable() {
       field: "actions", headerName: "Actions", width: 130, renderCell: () => {
         return (
           <>
-          <div>
-            <button className="bg-yellow-700 text-white">View</button>
-          </div>
-          <div>
-            <button className="bg-blue-700  text-white">Edit</button>
-          </div>
-          <div>
-            <button className="bg-red-700  text-white">Delete</button>
-          </div>
+            <div>
+              <button
+                className="bg-yellow-700 text-white"
+                onClick={(e) => {
+                  router.push('/Views/DisplayInformation')
+                }}
+              >
+                View
+              </button>
+            </div>
+            <div>
+              <button className="bg-blue-700  text-white">Edit</button>
+            </div>
+            <div>
+              <button className="bg-red-700  text-white">Delete</button>
+            </div>
           </>
         )
       }
