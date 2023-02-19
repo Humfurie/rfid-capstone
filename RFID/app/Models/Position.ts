@@ -7,7 +7,7 @@ export default class Position extends BaseModel {
   public id: number
 
   @column()
-  public name: string
+  public position: string
 
   @column()
   public flag: number

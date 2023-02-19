@@ -1,6 +1,7 @@
 
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import UserFactory from 'Database/factories/UserFactory'
+import Role from './Role'
 
 export default class extends BaseSeeder {
   public async run() {
@@ -11,9 +12,7 @@ export default class extends BaseSeeder {
      */
     await UserFactory
     // .with('role', 1, (role) => {
-    //   role.pivotAttributes([
-    //     {role_id: '1'},
-    //   ])
+    //   role.pivotAttributes({role:' employee'})
     // })
     // .with('position', 1, (position) => {
     //   position.pivotAttributes([

@@ -28,24 +28,6 @@ export default function App({ Component, pageProps }: AppProps) {
     return config;
   });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        await axios.get(`http://127.0.0.1:3333/auth`);
-        router.push("/AdminDashboard");
-        await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
-          setApiPosition(res.data)
-        })
-        await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
-          setApiYearLevel(res.data)
-        })
-      } catch (error) {
-        router.push("/");
-      }
-    })()
-  }, [])
-
-
   /**
    * states
    */
@@ -131,12 +113,15 @@ export default function App({ Component, pageProps }: AppProps) {
     await axios.post(`http://127.0.0.1:3333/api/position`, {
       position: position,
     })
+    setPosition('')
+    router.push('/Positions/PositionsDashboard')
   }
   // add year
   const yearSubmit = async () => {
     await axios.post(`http://127.0.0.1:3333/api/year_level`, {
       year: year,
     })
+    setYear('')
   }
 
   const userSubmit = async () => {
@@ -147,7 +132,6 @@ export default function App({ Component, pageProps }: AppProps) {
       emergency: emergency,
       account: account,
     })
-
     setUserRegistration({
       firstName: "",
       middleName: "",
@@ -175,6 +159,23 @@ export default function App({ Component, pageProps }: AppProps) {
       password: "",
     })
   }
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get(`http://127.0.0.1:3333/auth`);
+        router.push("/AdminDashboard");
+        await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
+          setApiPosition(res.data)
+        })
+        await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
+          setApiYearLevel(res.data)
+        })
+      } catch (error) {
+        router.push("/");
+      }
+    })()
+  }, [])
 
   return (
     <FormContext.Provider

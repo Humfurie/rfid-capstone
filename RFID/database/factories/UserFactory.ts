@@ -25,7 +25,7 @@ export default Factory.define(User, ({ faker }) => {
 })
 .relation('emergencyContact', () => EmergencyContactFactory)
 .relation('userLogin', () => UserLoginFactory)
-// .relation('role', () => RolePivotFactory)
+// .relation('role', () => User.$getColumn('role'))
 // .relation('position', () => PositionPivotFactory)
 .build()
 

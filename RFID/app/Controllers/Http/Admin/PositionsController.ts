@@ -10,7 +10,7 @@ export default class PositionsController {
     public async store({request,response}: HttpContextContract){
         const input = request.all()
 
-        await Position.create({name: input.name})
+        await Position.create({position: input.position})
 
         return response.status(200).json({"message" : "Position saved successfully."})
     }

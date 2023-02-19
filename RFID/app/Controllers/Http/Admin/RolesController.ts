@@ -11,7 +11,7 @@ export default class RolesController {
         const input = request.all()
 
         console.log(input)
-        await Role.create({name: input.name})
+        await Role.create({role: input.role})
 
         return response.status(200).json({"message":"saved"})
     }

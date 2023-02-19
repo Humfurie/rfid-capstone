@@ -27,7 +27,7 @@ const PositionDashboardContent = () => {
                     
 
                     <MyButton
-                        type="button"
+                        type="submit"
                         label="Add Position"
                         className="text-black bg-powderblue-shades10% hover:bg-powderblue-shades20% font-medium rounded-r-lg text-sm px-4 py-2 "
                     />
