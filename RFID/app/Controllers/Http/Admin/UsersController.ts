@@ -15,7 +15,7 @@ export default class UsersController {
 
         const user = await User.query()
         .whereHas('role', (builder) => {
-            builder.where('name', 'employee');
+            builder.where('role', 'Employee');
         }).where('flag', 1)
 
         console.log(user)
@@ -34,7 +34,7 @@ export default class UsersController {
 
         const user = await User.query()
         .whereHas('role', (builder) => {
-            builder.where('name', 'student');
+            builder.where('role', 'Student');
         }).where('flag', 1)
 
         console.log(user)
