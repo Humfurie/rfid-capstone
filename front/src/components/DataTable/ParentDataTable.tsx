@@ -21,7 +21,7 @@ export default function ParentDataTable() {
   ];
 
   React.useMemo(() => {
-    axios.get(`http://127.0.0.1:3333/api/users/parentIndex`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/parentIndex`)
     .then((res) => 
       {
       const data = res.data.user

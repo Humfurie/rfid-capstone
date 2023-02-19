@@ -110,7 +110,7 @@ export default function App({ Component, pageProps }: AppProps) {
    */
   // add position
   const positionSubmit = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/position`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/position`, {
       position: position,
     })
     setPosition('')
@@ -118,14 +118,14 @@ export default function App({ Component, pageProps }: AppProps) {
   }
   // add year
   const yearSubmit = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/year_level`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`, {
       year: year,
     })
     setYear('')
   }
 
   const userSubmit = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/users_registration`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users_registration`, {
       userRegistration: userRegistration,
       position: position,
       role: role,
@@ -163,12 +163,12 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     (async () => {
       try {
-        await axios.get(`http://127.0.0.1:3333/auth`);
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
         router.push("/AdminDashboard");
-        await axios.get(`http://127.0.0.1:3333/api/position`).then(res => {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
           setApiPosition(res.data)
         })
-        await axios.get(`http://127.0.0.1:3333/api/year_level`).then(res => {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
           setApiYearLevel(res.data)
         })
       } catch (error) {
