@@ -17,13 +17,36 @@ export default class UsersController {
         .whereHas('role', (builder) => {
             builder.where('role', 'Employee');
         }).where('flag', 1)
-
+        .preload('role')
+        .where('flag', 1)
+        .preload('emergencyContact')
+        .preload('role')
+        .preload('position')
         console.log(user)
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
 
         return response.status(200).json({ user })
+    }
+
+    /**
+     * employee show 
+     */
+    public async employeeShow({ response, params }: HttpContextContract) {
+
+        const user = await User.query()
+        .whereHas('role', (user) => {
+            user.where('role', 'Employee' || 'employee')
+        })
+        .where('id', params.id)
+        .where('flag', 1)
+        .preload('emergencyContact')
+        .preload('role')
+        .preload('position')
+        .firstOrFail()
+
+        return response.status(200).send([user])
     }
 
     /**
@@ -58,6 +81,6 @@ export default class UsersController {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
 
-        return response.status(200).json({ user })
+        return response.status(200).json([user])
     }
 }

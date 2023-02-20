@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
     idNumber: "",
     isAlumni: "",
   })
-  console.log(userRegistration)
+  // console.log(userRegistration)
   // year levels
   const [year, setYear] = useState("")
   //position-employee
@@ -164,7 +164,7 @@ export default function App({ Component, pageProps }: AppProps) {
     (async () => {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
-        router.push("/AdminDashboard");
+        // router.push("/AdminDashboard");
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
           setApiPosition(res.data)
         })

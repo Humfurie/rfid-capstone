@@ -21,7 +21,7 @@ export default function AdminNavbar() {
 		currentMenu,
 		setCurrentMenu
 	} = useContext(FormContext)
-	
+
 
 	// console.log("naopen", open)
 	const Menus = [
@@ -36,15 +36,15 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="/Users/UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
+					src: <Link href="/UsersList/UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="/Users/UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
+					src: <Link href="/UsersList/UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
 					>Students</Link>
 				},
 				{
-					src: <Link href="/Users/UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10%"
+					src: <Link href="/UsersList/UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10%"
 					>Parents</Link>
 				}
 			],
@@ -104,19 +104,18 @@ export default function AdminNavbar() {
 				<div className="sidebar-menu ">
 
 					<ul className="pt-2">
-						{Menus.map((menu: any, index: any) => (
+						{Menus.map((menu: any, index: number) => (
 							<>
 								<li
 									key={index}
 									className={`text-sm text-gray-500 flex items-center gap-x-4 cursor-pointer p-2 hover:bg-powderblue-shades10% rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
 								>
-									<span className="text-xl bock float-left">
+									<span key={index} className="text-xl bock float-left">
 										{menu.icon ? menu.icon : <MdDashboard />}
 									</span>
 
 									<span
 										className={`text-base font-sm flex-1 duration-200 ${!open && "hidden"}`}
-										id={index}
 										onClick={() => {
 											setCurrentMenu(menu.title)
 											setSubmenuOpen(!submenuOpen)
@@ -129,7 +128,7 @@ export default function AdminNavbar() {
 								</li>
 								{
 									menu.submenu && submenuOpen && currentMenu === menu.title && open && (
-										<ul key={index} className="duration-500">
+										<ul className="duration-500">
 											{menu.submenuItems.map((menu: any, index: any) => {
 												return (
 													<li
