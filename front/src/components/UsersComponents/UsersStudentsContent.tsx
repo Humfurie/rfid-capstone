@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
-import StudentDataTable from "../DataTable/StudentDataTable";
 import StudentRegistration from "../UsersRegistrationComponents/StudentRegistration";
 import SearchBar from "../SearchBar";
 import StudentYearLevelFilter from "../RecordsComponents/StudentYearLevelFilter";
+import UsersDataTable from "../DataTable/UsersDataTable";
 
-const UsersStudentsContent = () => {
+const UsersStudentsContent = (props: any) => {
+    const { users } = props
 
     const { setRegistration } = useContext(FormContext)
 
@@ -31,7 +32,7 @@ const UsersStudentsContent = () => {
                 </div>
             </div>
             <div className="flex ml-6 mt-6 max-w-full min-w-min ">
-                {/* <StudentDataTable /> */}
+                <UsersDataTable users={users}/>
             </div>
             <StudentRegistration />
         </div>

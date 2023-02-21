@@ -9,4 +9,8 @@ Route.group(() => {
      * employeeShow
      */
     Route.get('/users/employee/:id', 'UsersController.employeeShow')
+    /**
+     * studentShow
+     */
+    Route.get('users/student/:id', 'UsersController.studentShow' )
 }).namespace('App/Controllers/Http/Admin')

@@ -46,13 +46,13 @@ export default function UsersDataTable(props: any) {
                     </a> */}
                       View
                     </Link>
-                    <Link href={`/users/${user.id}/edit`}>
+                    <Link href={`/users/${role}/${user.id}/edit`}>
                       {/* <a className="px-3 py-2 bg-yellow-600 text-white rounded-xl">
                       
                     </a> */}
                       Update
                     </Link>
-                    <Link href={`/users/${user.id}/delete`}>
+                    <Link href={`/users/${role}/${user.id}/delete`}>
                       {/* <a className="px-3 py-2 bg-red-600 text-white rounded-xl">
                       
                     </a> */}

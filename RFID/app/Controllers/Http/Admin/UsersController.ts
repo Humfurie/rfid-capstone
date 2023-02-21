@@ -17,7 +17,6 @@ export default class UsersController {
         .whereHas('role', (builder) => {
             builder.where('role', 'Employee');
         }).where('flag', 1)
-        .preload('role')
         .where('flag', 1)
         .preload('emergencyContact')
         .preload('role')
@@ -59,6 +58,11 @@ export default class UsersController {
         .whereHas('role', (builder) => {
             builder.where('role', 'Student');
         }).where('flag', 1)
+        .where('flag', 1)
+        .preload('emergencyContact')
+        .preload('yearLevel')
+        .preload('role')
+        .preload('position')
 
         console.log(user)
         if (!user) {
@@ -66,6 +70,27 @@ export default class UsersController {
         }
 
         return response.status(200).json({ user })
+    }
+
+    /***
+     * student show
+     */
+
+    public async studentShow({ response, params }: HttpContextContract) {
+
+        const user = await User.query()
+        .whereHas('role', (builder) => {
+            builder.where('role', 'Student' || 'student')
+        })
+        .where('id', params.id)
+        .where('flag', 1)
+        .preload('emergencyContact')
+        .preload('yearLevel')
+        .preload('role')
+        .firstOrFail()
+
+        return response.status(200).send([ user ])
+
     }
 
     /**
