@@ -148,7 +148,7 @@ const EmployeeRegistration = () => {
                   </option>
                   {apiPosition.map((element:any) => (
                     <>
-                      <option value={element.id}>{element.name}</option>
+                      <option value={element.id}>{element.position}</option>
                     </>
                   ))}
 

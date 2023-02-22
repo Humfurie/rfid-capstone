@@ -1,4 +1,4 @@
-const DisplayInformation = () => {
+const edit = () => {
     return (
         <div>
             Enter
@@ -6,4 +6,4 @@ const DisplayInformation = () => {
     );
 }
 
-export default DisplayInformation;
+export default edit;

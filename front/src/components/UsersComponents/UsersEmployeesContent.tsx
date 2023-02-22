@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
 import EmployeeRegistration from "../UsersRegistrationComponents/EmployeeRegistration";
-import EmployeeDataTable from "../DataTable/EmployeeDataTable";
+import UsersDataTable from "../DataTable/UsersDataTable";
 import SearchBar from "../SearchBar";
 
-const UsersEmployeesContent = () => {
+const UsersEmployeesContent = (props: any) => {
+  const { users } = props
   const { setRegistration } = useContext(FormContext);
 
   return (
@@ -26,7 +27,7 @@ const UsersEmployeesContent = () => {
         </div>
       </div>
       <div className="flex ml-6 mt-6 max-w-full min-w-min ">
-          <EmployeeDataTable />
+          <UsersDataTable users={users} />
         </div>
       <EmployeeRegistration />
     </div>

@@ -1,8 +1,10 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function PositionDataTable() {
+  const router = useRouter()
   const [rows, setRows] = React.useState([])
 
   const columns = [
@@ -13,7 +15,12 @@ export default function PositionDataTable() {
         return (
           <>
           <div>
-            <button className="bg-yellow-700 text-white">View</button>
+            <button 
+            className="bg-yellow-700 text-white"
+            onClick={(e) => {
+              router.push('/Views/DisplayInformation')
+            }}
+            >View</button>
           </div>
           <div>
             <button className="bg-blue-700  text-white">Edit</button>
