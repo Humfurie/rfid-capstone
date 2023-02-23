@@ -1,9 +1,9 @@
 import Head from "next/head";
-import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import Header from "../../components/Header";
-import RecordsStudentsContent from "../../components/RecordsComponents/RecordsStudentsContent";
+import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
+import Header from "../../../components/Header";
+import RecordsStudentsContent from "../../../components/UsersComponents/RecordsComponents/RecordsStudentsContent";
 
-const RecordsStudentsDashboard = () => {
+const students = () => {
     return (
         <div>
             <Head>
@@ -22,4 +22,4 @@ const RecordsStudentsDashboard = () => {
     );
 }
 
-export default RecordsStudentsDashboard;
+export default students;

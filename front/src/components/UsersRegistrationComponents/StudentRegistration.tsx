@@ -16,12 +16,7 @@ const StudentRegistration = () => {
   } = useContext(FormContext);
 
   return (
-    <Modal
-      opened={registration}
-      onClose={() => setRegistration(false)}
-      className="w-screen"
-      size="70%"
-    >
+    <div>
       <h4 className="text-center">Student Registration</h4>
       <form
         onSubmit={(e) => {
@@ -325,7 +320,9 @@ const StudentRegistration = () => {
           <MyButton type="submit" label="Register" />
         </div>
       </form>
-    </Modal>
+
+
+    </div>
   );
 };
 

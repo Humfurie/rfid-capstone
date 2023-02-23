@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { FormContext } from "../../lib/FormContext";
-import MyButton from "../../lib/partials/MyButton";
-import PositionDataTable from "../DataTable/PositionDataTable"
+import { FormContext } from "../../../lib/FormContext";
+import MyButton from "../../../lib/partials/MyButton";
+import PositionDataTable from "../../DataTable/PositionDataTable"
 
 const PositionDashboardContent = () => {
     const {

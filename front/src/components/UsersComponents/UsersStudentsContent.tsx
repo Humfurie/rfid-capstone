@@ -3,7 +3,7 @@ import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
 import StudentRegistration from "../UsersRegistrationComponents/StudentRegistration";
 import SearchBar from "../SearchBar";
-import StudentYearLevelFilter from "../RecordsComponents/StudentYearLevelFilter";
+import StudentYearLevelFilter from "./RecordsComponents/StudentYearLevelFilter";
 import UsersDataTable from "../DataTable/UsersDataTable";
 
 const UsersStudentsContent = (props: any) => {
