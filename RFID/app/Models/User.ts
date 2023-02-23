@@ -46,6 +46,9 @@ export default class User extends BaseModel {
   public idNumber: string
 
   @column()
+  public rfidNumber: string
+
+  @column()
   public isAlumni: boolean
 
   @column()

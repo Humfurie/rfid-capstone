@@ -2,11 +2,13 @@ import User from 'App/Models/User'
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import EmergencyContactFactory from './EmergencyContactFactory'
 import UserLoginFactory from './UserLoginFactory'
+import Role from 'App/Models/Role'
 
 
 
 export default Factory.define(User, ({ faker }) => {
   const gender = ['male', 'female']
+  const role = [1,2]
   return {
     //
     firstName: faker.name.firstName(),
@@ -20,12 +22,13 @@ export default Factory.define(User, ({ faker }) => {
     facebook: faker.internet.userName(),
     idNumber: faker.random.numeric(),
     isAlumni: false,
-    flag: 1
+    flag: 1,
+    role: role[Math.floor(Math.random() * role.length)],
   }
 })
 .relation('emergencyContact', () => EmergencyContactFactory)
 .relation('userLogin', () => UserLoginFactory)
-// .relation('role', () => User.$getColumn('role'))
+// .relation('role', () => null )
 // .relation('position', () => PositionPivotFactory)
 .build()
 
