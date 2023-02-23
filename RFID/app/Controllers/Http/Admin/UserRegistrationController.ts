@@ -47,6 +47,7 @@ export default class newUserRegistrationController {
                 user.contactNumber = input.userRegistration.contactNumber
                 user.facebook = input.userRegistration.facebook
                 user.idNumber = input.userRegistration.idNumber
+                user.rfidNumber = input.userRegistration.rfidNumber
 
                 /**
                  * use transaction on current user model
@@ -107,7 +108,7 @@ export default class newUserRegistrationController {
                  * transaction commmit for safe saving all data without failure
                  */
                 await trx.commit()
-                return response.status(200)
+                return response.status(200).json({...user})
             } catch (error) {
 
                 /**
@@ -141,6 +142,7 @@ export default class newUserRegistrationController {
                 user.contactNumber = input.userRegistration.contactNumber
                 user.facebook = input.userRegistration.facebook
                 user.idNumber = input.userRegistration.idNumber
+                user.rfidNumber = input.userRegistration.rfidNumber
 
                  /**
                  * use transaction on current user model

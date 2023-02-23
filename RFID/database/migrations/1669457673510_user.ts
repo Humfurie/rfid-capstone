@@ -16,6 +16,7 @@ export default class extends BaseSchema {
       table.string('contact_number', 11).nullable()
       table.string('facebook', 50).nullable()
       table.string('id_number').nullable()
+      table.string('rfid_number').notNullable()
       table.boolean('is_alumni').defaultTo(false)
       table.integer('flag').defaultTo(1)
 
