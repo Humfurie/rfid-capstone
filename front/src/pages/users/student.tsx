@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Header from "../../../components/Header";
-import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
+import Link from "next/link";
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import UsersDataTable from "../../../components/DataTable/UsersDataTable";
-import StudentYearLevelFilter from "../../../components/UsersComponents/RecordsComponents/StudentYearLevelFilter";
-import SearchBar from "../../../components/SearchBar";
-import Link from "next/link";
+import Header from "../../components/Header";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import UsersDataTable from "../../components/DataTable/UsersDataTable";
+import StudentYearLevelFilter from "../../components/UsersComponents/RecordsComponents/StudentYearLevelFilter";
+import SearchBar from "../../components/SearchBar";
 
 
 export default function student(props: any) {

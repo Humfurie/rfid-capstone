@@ -2,15 +2,15 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
-import UsersDataTable from "../../../components/DataTable/UsersDataTable";
-import Header from "../../../components/Header";
-import SearchBar from "../../../components/SearchBar";
-import StudentYearLevelFilter from "../../../components/UsersComponents/RecordsComponents/StudentYearLevelFilter";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import UsersDataTable from "../../components/DataTable/UsersDataTable";
+import Header from "../../components/Header";
+import SearchBar from "../../components/SearchBar";
+
 
 export default function employee(props: any) {
 	const { users } = props
-	// console.log(users)
+	console.log(users)
 	return (
 		<div>
 			<Head>

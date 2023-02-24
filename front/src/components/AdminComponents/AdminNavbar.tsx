@@ -36,18 +36,18 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="/users/UsersList/employee" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
+					src: <Link href="/users/employee" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="/users/UsersList/student" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
+					src: <Link href="/users/student" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
 					>Students</Link>
 				}
 			],
 			button: true
 		},
 		{
-			title: <Link href="/users/UsersList/parent">Parents</Link>,
+			title: <Link href="/users/parent">Parents</Link>,
 			icon: ""
 		},
 		{

@@ -2,12 +2,10 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head"
 import Link from "next/link";
-import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
-import UsersDataTable from "../../../components/DataTable/UsersDataTable";
-import Header from "../../../components/Header";
-import SearchBar from "../../../components/SearchBar";
-import StudentYearLevelFilter from "../../../components/UsersComponents/RecordsComponents/StudentYearLevelFilter";
-import UsersParentsContent from "../../../components/UsersComponents/UsersParentsContent";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import UsersDataTable from "../../components/DataTable/UsersDataTable";
+import Header from "../../components/Header";
+import SearchBar from "../../components/SearchBar";
 
 
 export default function parent(props: any) {

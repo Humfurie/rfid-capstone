@@ -5,7 +5,7 @@ import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import UsersDataTable from "../../../../components/DataTable/UsersDataTable";
 import Header from "../../../../components/Header";
 import SearchBar from "../../../../components/SearchBar";
-import DisplayInformationContent from "../../../../components/ViewsComponents/DisplayInformationContent";
+import DisplayInformationContent from "../../../../components/ViewsComponents/UserView";
 
 const index = (props: any) => {
     const { users } = props
