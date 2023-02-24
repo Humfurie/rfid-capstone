@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Header from "../../../../components/Header";
-import DisplayInformationContent from "../../../../components/ViewsComponents/DisplayInformationContent";
+import DisplayInformationContent from "../../../../components/ViewsComponents/UserView";
 
 const index = (props: any) => {
     const { users } = props

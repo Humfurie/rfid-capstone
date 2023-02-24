@@ -1,4 +1,4 @@
-import { Modal } from "@mantine/core";
+
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import { InputStyle } from "../../lib/InputStyle";
@@ -18,12 +18,9 @@ const EmployeeRegistration = () => {
   } = useContext(FormContext);
 
   return (
-    <Modal
-      opened={registration}
-      onClose={() => setRegistration(false)}
-      className="w-screen"
-      size="70%"
-    >
+    <div>
+
+
       <h3 className="text-center">Employee Registration</h3>
       <form
         onSubmit={(e) => {
@@ -146,9 +143,9 @@ const EmployeeRegistration = () => {
                   <option value=''>
                     ---Select Position---
                   </option>
-                  {apiPosition.map((element:any) => (
+                  {apiPosition.map((element: { id: number, position: string }, id: number) => (
                     <>
-                      <option value={element.id}>{element.position}</option>
+                      <option key={id} value={element.id}>{element.position}</option>
                     </>
                   ))}
 
@@ -306,7 +303,7 @@ const EmployeeRegistration = () => {
           <MyButton type="submit" label="Register" />
         </div>
       </form>
-    </Modal>
+    </div>
   );
 };
 

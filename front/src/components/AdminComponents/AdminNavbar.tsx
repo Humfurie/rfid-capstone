@@ -27,7 +27,7 @@ export default function AdminNavbar() {
 	const Menus = [
 
 		{
-			title: <Link href="/AdminProfile">Profile</Link>,
+			title: <Link href="/admin/profile">Profile</Link>,
 			icon: <FaUserAlt />,
 		},
 		{
@@ -36,46 +36,30 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="/UsersList/UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
+					src: <Link href="/users/employee" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="/UsersList/UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
+					src: <Link href="/users/student" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
 					>Students</Link>
-				},
-				{
-					src: <Link href="/UsersList/UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10%"
-					>Parents</Link>
 				}
 			],
 			button: true
-
 		},
 		{
-			title: "Records",
-			icon: <FaThList />,
-			submenu: true,
-			submenuItems: [
-				{
-					src: <Link href="/Records/RecordsEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% active:bg-powderblue-shades10%"
-					>Employees</Link>
-				},
-				{
-					src: <Link href="/Records/RecordsStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Students</Link>
-				},
-				{
-					src: <Link href="/Records/RecordsParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Parents</Link>
-				}
-			],
-		},
-		{
-			title: <Link href="/Positions/PositionsDashboard">Positions</Link>,
+			title: <Link href="/users/parent">Parents</Link>,
 			icon: ""
 		},
 		{
-			title: <Link href="/YearLevels/YearLevelDashboard">Year Levels</Link>,
+			title: "Records",
+			icon: <FaThList />
+		},
+		{
+			title: <Link href="/users/Positions/PositionsDashboard">Positions</Link>,
+			icon: ""
+		},
+		{
+			title: <Link href="/users/YearLevels/YearLevelDashboard">Year Levels</Link>,
 			icon: ""
 		},
 		{
@@ -97,7 +81,7 @@ export default function AdminNavbar() {
 
 					{/* <span><img src="../" alt="" /></span> */}
 
-					<Link href="/AdminDashboard" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
+					<Link href="/admin/dashboard" className={`inline-flex text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
 
 				</div>
 
@@ -105,12 +89,11 @@ export default function AdminNavbar() {
 
 					<ul className="pt-2">
 						{Menus.map((menu: any, index: number) => (
-							<>
+							<div key={index}>
 								<li
-									key={index}
 									className={`text-sm text-gray-500 flex items-center gap-x-4 cursor-pointer p-2 hover:bg-powderblue-shades10% rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
 								>
-									<span key={index} className="text-xl bock float-left">
+									<span className="text-xl bock float-left">
 										{menu.icon ? menu.icon : <MdDashboard />}
 									</span>
 
@@ -141,7 +124,7 @@ export default function AdminNavbar() {
 										</ul>
 									)
 								}
-							</>
+							</div>
 						))}
 					</ul>
 				</div>

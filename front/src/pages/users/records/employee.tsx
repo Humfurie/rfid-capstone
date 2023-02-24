@@ -1,9 +1,9 @@
 import Head from "next/head";
-import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import Header from "../../components/Header";
-import RecordsEmployeesContent from "../../components/RecordsComponents/RecordsEmployeesContent";
+import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
+import Header from "../../../components/Header";
+import RecordsEmployeesContent from "../../../components/UsersComponents/RecordsComponents/RecordsEmployeesContent";
 
-const RecordsEmployeesDashboard = () => {
+const employee = () => {
     return (
         <div>
              <Head>
@@ -23,4 +23,4 @@ const RecordsEmployeesDashboard = () => {
     );
 }
 
-export default RecordsEmployeesDashboard;
+export default employee;

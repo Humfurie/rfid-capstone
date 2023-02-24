@@ -1,8 +1,11 @@
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import Link from "next/link";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
+import UsersDataTable from "../../../../components/DataTable/UsersDataTable";
 import Header from "../../../../components/Header";
-import DisplayInformationContent from "../../../../components/ViewsComponents/DisplayInformationContent";
+import SearchBar from "../../../../components/SearchBar";
+import DisplayInformationContent from "../../../../components/ViewsComponents/UserView";
 
 const index = (props: any) => {
     const { users } = props
@@ -15,11 +18,9 @@ const index = (props: any) => {
                     <div>
                         <AdminNavbar />
                     </div>
-                    <div className="flex w-full h-screen">
-                        <DisplayInformationContent users={users}/>
-                    </div>
-
+                    <DisplayInformationContent users={users}/>
                 </div>
+
             </div>
         </div>
     );
@@ -27,7 +28,7 @@ const index = (props: any) => {
 
 export default index;
 
-export const getServerSideProps:GetServerSideProps = async (context:GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
     const { params } = context
 
     const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/employee/${params?.id}`)

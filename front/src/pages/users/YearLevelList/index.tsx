@@ -1,24 +1,25 @@
 import Head from "next/head";
-import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import PositionDashboardContent from "../../components/PositionsComponents/PositionDashboardContent";
+import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
+import YearLevelDashboardContent from "../../../components/YearLevelsComponents/YearLevelDashboardContent";
 
-
-const PositionsDashboard = () => {
+const index = () => {
     return (
         <div>
+             
             <div>
                 <Head>
-                    <title>Positions</title>
+                    <title>Year Level</title>
                     <meta name="description" content="Created by streamline" />
                     <link rel="icon" href=".../img/ais-rft-logo.jpg" />
                 </Head>
             </div>
             <div className="inline-flex">
                 <AdminNavbar/>
-                <PositionDashboardContent/>
+                <YearLevelDashboardContent/>
             </div>
+
         </div>
     );
 }
 
-export default PositionsDashboard;
+export default index;

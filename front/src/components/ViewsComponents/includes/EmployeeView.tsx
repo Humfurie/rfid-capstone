@@ -1,8 +1,5 @@
-const DisplayInformationContent = (props: any) => {
-
-    const { users } = props
-   const user = users[0]
-   console.log(user)
+const EmployeeView = (props: any) => {
+    const { user } = props
     return (
         <div className=" w-full h-full  p-6">
             <div className="border-2 border-powderblue-shades10% bg-white rounded w-full h-full ">
@@ -25,7 +22,7 @@ const DisplayInformationContent = (props: any) => {
                     School Information
                 </div>
                 <div>
-                    Position: {user.position[0].position}
+                    Position: {user?.position[0]?.position}
                 </div>
                 <div className="text-lg text-center font-bold">
                     Contact Information
@@ -60,4 +57,4 @@ const DisplayInformationContent = (props: any) => {
     );
 }
 
-export default DisplayInformationContent;
+export default EmployeeView;
