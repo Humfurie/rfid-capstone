@@ -1,5 +1,14 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
+
+    /**
+     * get all position
+     */
     Route.get('/api/position', 'PositionsController.index')
-}).namespace('App/Controllers/Http')
+    
+    /**
+     * saving position
+     */
+    Route.post('/api/position', 'PositionsController.store')
+}).namespace('App/Controllers/Http/Admin')

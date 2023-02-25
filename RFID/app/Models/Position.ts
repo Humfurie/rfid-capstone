@@ -7,7 +7,10 @@ export default class Position extends BaseModel {
   public id: number
 
   @column()
-  public name: string
+  public position: string
+
+  @column()
+  public flag: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

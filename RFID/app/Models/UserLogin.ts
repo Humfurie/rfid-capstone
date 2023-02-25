@@ -17,7 +17,7 @@ export default class UserLogin extends BaseModel {
   public password: string
 
   @column()
-  public role: string
+  public flag: number
 
   @column()
   public userId: number

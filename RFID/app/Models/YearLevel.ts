@@ -9,11 +9,17 @@ export default class YearLevel extends BaseModel {
   @column()
   public year: string
 
+  @column()
+  public flag: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column.dateTime()
+  public deletedAt: DateTime
 
   @manyToMany(() => User, {
     pivotTable: 'user_years'

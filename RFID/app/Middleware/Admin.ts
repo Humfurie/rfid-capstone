@@ -6,11 +6,10 @@ export default class Admin {
     // code for middleware goes here. ABOVE THE NEXT CALL
     try {
       const token = request.headers().authorization?.split(" ")[1]
-      console.log(token, 'haihai')
       
       if (!token) return response.status(401).json({message: 'Unauthorized Access'})
       
-      const decode = jwt.verify(token, 'maotClofel', {})
+      const decode = jwt.verify(token, 'maotClofel')
 
       request.admin = decode
     } catch (error) {

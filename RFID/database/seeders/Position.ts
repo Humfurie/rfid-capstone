@@ -6,10 +6,10 @@ export default class extends BaseSeeder {
     // Write your database queries inside the run method
     await Position.createMany([
       {
-        name: 'teacher'
+        position: 'Teacher'
       },
       {
-        name: 'staff'
+        position: 'Staff'
       },
     ])
   }

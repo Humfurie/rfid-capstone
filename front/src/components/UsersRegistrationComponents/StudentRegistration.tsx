@@ -16,12 +16,7 @@ const StudentRegistration = () => {
   } = useContext(FormContext);
 
   return (
-    <Modal
-      opened={registration}
-      onClose={() => setRegistration(false)}
-      className="w-screen"
-      size="70%"
-    >
+    <div>
       <h4 className="text-center">Student Registration</h4>
       <form
         onSubmit={(e) => {
@@ -46,7 +41,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "firstname");
+                    userOnChange(e.target.value, "firstName");
                   }}
                 />
               </div>
@@ -59,7 +54,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "middlename");
+                    userOnChange(e.target.value, "middleName");
                   }}
                 />
               </div>
@@ -72,7 +67,7 @@ const StudentRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "lastname");
+                    userOnChange(e.target.value, "lastName");
                   }}
                 />
               </div>
@@ -85,7 +80,7 @@ const StudentRegistration = () => {
                   type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "birthday");
+                    userOnChange(e.target.value, "birthdate");
                   }}
                 />
               </div>
@@ -325,7 +320,9 @@ const StudentRegistration = () => {
           <MyButton type="submit" label="Register" />
         </div>
       </form>
-    </Modal>
+
+
+    </div>
   );
 };
 

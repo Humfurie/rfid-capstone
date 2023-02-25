@@ -1,4 +1,4 @@
-import { Modal } from "@mantine/core";
+
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import { InputStyle } from "../../lib/InputStyle";
@@ -10,7 +10,7 @@ const EmployeeRegistration = () => {
     setRegistration,
     userSubmit,
     userOnChange,
-    positionOnChange,
+    setPosition,
     emergencyOnChange,
     accountOnChange,
     setRole,
@@ -18,12 +18,9 @@ const EmployeeRegistration = () => {
   } = useContext(FormContext);
 
   return (
-    <Modal
-      opened={registration}
-      onClose={() => setRegistration(false)}
-      className="w-screen"
-      size="70%"
-    >
+    <div>
+
+
       <h3 className="text-center">Employee Registration</h3>
       <form
         onSubmit={(e) => {
@@ -104,7 +101,7 @@ const EmployeeRegistration = () => {
                     userOnChange(e.target.value, "gender");
                   }}
                 >
-                  <option selected disabled>
+                  <option value=''>
                     ---Select Gender---
                   </option>
                   <option value="male">Male</option>
@@ -140,15 +137,15 @@ const EmployeeRegistration = () => {
                   name="positions"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    positionOnChange(e.target.value, "position");
+                    setPosition(e.target.value);
                   }}
                 >
-                  <option selected disabled>
+                  <option value=''>
                     ---Select Position---
                   </option>
-                  {apiPosition.map((element:any) => (
+                  {apiPosition.map((element: { id: number, position: string }, id: number) => (
                     <>
-                      <option value={element.id}>{element.name}</option>
+                      <option key={id} value={element.id}>{element.position}</option>
                     </>
                   ))}
 
@@ -306,7 +303,7 @@ const EmployeeRegistration = () => {
           <MyButton type="submit" label="Register" />
         </div>
       </form>
-    </Modal>
+    </div>
   );
 };
 

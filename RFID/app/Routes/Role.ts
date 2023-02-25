@@ -2,4 +2,9 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
     Route.get('/api/role', 'RolesController.index')
-}).namespace('App/Controllers/Http')
+
+    /**
+     * post requests
+     */
+    Route.post('/api/role', 'RolesController.store')
+}).namespace('App/Controllers/Http/Admin')

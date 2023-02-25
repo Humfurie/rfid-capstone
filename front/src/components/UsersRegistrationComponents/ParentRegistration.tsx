@@ -89,14 +89,12 @@ const ParentRegistration = () => {
                   Gender:
                 </label>
                 <select
-                  name=""
-                  id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "gender");
                   }}
                 >
-                  <option selected disabled>
+                  <option value=''>
                     ---Select Gender---
                   </option>
                   <option value="male">Male</option>
