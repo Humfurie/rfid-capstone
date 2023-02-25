@@ -172,7 +172,7 @@ export default function App({ Component, pageProps }: AppProps) {
           setApiYearLevel(res.data)
         })
       } catch (error) {
-        router.push("/");
+        // router.push("/");
       }
     })()
   }, [])

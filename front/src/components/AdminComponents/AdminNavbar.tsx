@@ -65,7 +65,7 @@ export default function AdminNavbar() {
 		{
 			title: <button onClick={e => {
 				destroyCookie(null, 'Admin')
-				router.push('/')
+				router.push('/login')
 			}}>Log Out</button>,
 			icon: <FaSignOutAlt />
 		}
