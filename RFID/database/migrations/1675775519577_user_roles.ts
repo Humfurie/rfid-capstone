@@ -7,6 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id').onUpdate('CASCADE').onDelete('CASCADE')
+      // table.integer('parent_id').unsigned().references('parents.id').onUpdate('CASCADE').onDelete('CASCADE')
       table.integer('role_id').unsigned().references('roles.id').onUpdate('CASCADE').onDelete('CASCADE')
       table.unique(['user_id', 'role_id'])
       table.integer('flag').defaultTo(1)

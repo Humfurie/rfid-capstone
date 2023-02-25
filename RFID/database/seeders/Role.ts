@@ -11,9 +11,9 @@ export default class extends BaseSeeder {
       {
         role: 'Employee'
       },
-      {
-        role: 'Parent'
-      }
+      // {
+      //   role: 'Parent'
+      // }
     ])
   }
 }
