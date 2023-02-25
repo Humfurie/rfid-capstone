@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
+import Role from './Role'
 
 export default class Parent extends BaseModel {
   @column({ isPrimary: true })
@@ -49,4 +50,9 @@ export default class Parent extends BaseModel {
     pivotTable: 'user_parents'
   })
   public user: ManyToMany <typeof User>
+
+  @manyToMany(() => Role, {
+    pivotTable: 'user_roles'
+  })
+  public role: ManyToMany <typeof Role>
 }
