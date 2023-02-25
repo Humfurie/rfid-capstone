@@ -1,6 +1,6 @@
 import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
 import Header from "../../../components/Header";
-import StudentRegistration from "../../../components/UsersRegistrationComponents/StudentRegistration";
+import StudentRegistration from "../../../components/UsersComponents/Registration/StudentRegistration";
 
 const student = () => {
     return (

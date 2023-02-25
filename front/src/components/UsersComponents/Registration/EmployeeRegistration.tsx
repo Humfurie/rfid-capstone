@@ -1,8 +1,8 @@
 
 import { useContext } from "react";
-import { FormContext } from "../../lib/FormContext";
-import { InputStyle } from "../../lib/InputStyle";
-import MyButton from "../../lib/partials/MyButton";
+import { FormContext } from "../../../lib/FormContext";
+import { InputStyle } from "../../../lib/InputStyle";
+import MyButton from "../../../lib/partials/MyButton";
 
 const EmployeeRegistration = () => {
   const {

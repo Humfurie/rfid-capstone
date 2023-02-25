@@ -1,6 +1,6 @@
 import Head from "next/head";
 import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
-import YearLevelDashboardContent from "../../../components/YearLevelsComponents/YearLevelDashboardContent";
+import YearLevelDashboardContent from "../../../components/UsersComponents/YearLevels/YearLevelDashboardContent";
 
 const index = () => {
     return (

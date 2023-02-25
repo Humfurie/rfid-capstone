@@ -160,22 +160,22 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  useEffect(() => {
-    (async () => {
-      try {
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
-        // router.push("/AdminDashboard");
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
-          setApiPosition(res.data)
-        })
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
-          setApiYearLevel(res.data)
-        })
-      } catch (error) {
-        router.push("/");
-      }
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+  //       // router.push("/AdminDashboard");
+  //       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
+  //         setApiPosition(res.data)
+  //       })
+  //       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
+  //         setApiYearLevel(res.data)
+  //       })
+  //     } catch (error) {
+  //       router.push("/");
+  //     }
+  //   })()
+  // }, [])
 
   return (
     <FormContext.Provider

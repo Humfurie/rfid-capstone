@@ -106,6 +106,6 @@ export default class UsersController {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
 
-        return response.status(200).json([user])
+        return response.status(200).json(user)
     }
 }

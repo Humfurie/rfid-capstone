@@ -1,7 +1,7 @@
 import Head from "next/head";
 import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
 import Header from "../../../components/Header";
-import RecordsStudentsContent from "../../../components/UsersComponents/RecordsComponents/RecordsStudentsContent";
+import RecordsStudentsContent from "../../../components/UsersComponents/Records/RecordsStudentsContent";
 
 const students = () => {
     return (

@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import UsersDataTable from "../../components/DataTable/UsersDataTable";
+import UsersDataTable from "../../components/UsersComponents/DataTable/UsersDataTable";
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 
