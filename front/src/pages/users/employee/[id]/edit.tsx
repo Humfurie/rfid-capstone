@@ -300,7 +300,7 @@ const edit = () => {
         </div>
 
         <div className={InputStyle.registerBtn}>
-          <MyButton type="submit" label="Register" />
+          <MyButton type="submit" label="Save Changes" />
         </div>
       </form>
     </div>

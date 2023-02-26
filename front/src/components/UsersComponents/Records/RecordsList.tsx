@@ -1,7 +1,7 @@
 import SearchBar from "../../SearchBar";
 import StudentYearLevelFilter from "./StudentYearLevelFilter";
 
-const RecordsStudentsContent = () => {
+const RecordsList = () => {
     return (
         <div>
             <div className="records-parents-content">
@@ -10,7 +10,9 @@ const RecordsStudentsContent = () => {
                     <SearchBar />
                 </div>
                 <div className=" inset-y-0 left-full">
-                <StudentYearLevelFilter/>
+                {/* 
+                make a table for records which has a condition for employee and student
+                */}
             </div>
 
             </div>
@@ -20,4 +22,4 @@ const RecordsStudentsContent = () => {
     );
 }
 
-export default RecordsStudentsContent;
+export default RecordsList;

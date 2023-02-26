@@ -280,9 +280,7 @@ const edit = () => {
           <div>
             <h5 className={InputStyle.registrationNavBar}>Account</h5>
             <div className={InputStyle.reg}>
-              <div className={InputStyle.inputDiv}>onChange={(e) => {
-                                  userOnChange(e.target.value, "firstName");
-                                }}
+              <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Username:
                 </label>
@@ -290,7 +288,7 @@ const edit = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    accountOnChange(e.target.value, "username");
+                    accountOnChange(e.target.value, "username")
                   }}
                 />
               </div>
@@ -319,7 +317,7 @@ const edit = () => {
         </div>
 
         <div className={InputStyle.registerBtn}>
-          <MyButton type="submit" label="Register" />
+          <MyButton type="submit" label="Save Changes" />
         </div>
       </form>
 
