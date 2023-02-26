@@ -1,4 +1,3 @@
-import { Modal } from "@mantine/core";
 import { useContext } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { InputStyle } from "../../../lib/InputStyle";
