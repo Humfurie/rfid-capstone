@@ -39,31 +39,36 @@ export default function login() {
         })
         router.push('/')
     }
-
     return (
         <div>
             <style global jsx>{`
       html,
-      body,
+      body, 
       body > div:first-child,
       div#__next,F
       div#__next > div {
         height: 100%;
+        background-color: #388087;
       }
     `}</style>
-            <div className='bg-white-smoke border-powderblue-shades10% p-12 grid place-content-start md:place-content-center'>
-                <Image
-                    src={'/img/logo.jpg'}
-                    alt={'logo'}
-                    width={50}
-                    height={50}
-                    className='grid place-content-start md:place-content-center'
-                />
+            <div className='bg-white-smoke border-powderblue-shades10% pt-16'>
+                <div>
+                    <Image
+                        src={'/img/logo.png'}
+                        alt={'logo'}
+                        width={50}
+                        height={50}
+                        className='mx-auto'
+                    />
+                </div>
+                <div className='mx-auto mt-4'>
+                    <h4 className='bg-teal-blue p-4 text-center text-white text-lg rounded-t-xl ml-96 mr-96' >Log in</h4>
+                </div>
 
             </div>
+
             <div className=' shadow-lg ml-96 mr-96 rounded-lg' >
-                <h4 className='bg-teal-blue p-6 text-center text-white text-lg rounded-t-lg'>Log in</h4>
-                <div className='grid place-content-start md:place-content-center'>
+                <div className='grid place-content-start md:place-content-center bg-white-smoke mt-(-2) rounded-b-lg '>
                     <form onSubmit={e => {
                         e.preventDefault()
                         adminLogin()
