@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { BsSearch } from "react-icons/bs";
 import MyButton from "../../../lib/partials/MyButton";
 import MyInput from "../../../lib/partials/MyInput";
@@ -34,5 +35,13 @@ const StudentYearLevelFilter = () => {
         </div>
     );
 }
-
 export default StudentYearLevelFilter;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    return {
+        props: {
+            
+        }
+    }
+}

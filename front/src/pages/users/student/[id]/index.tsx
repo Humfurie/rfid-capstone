@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Header from "../../../../components/Header";
-import DisplayInformationContent from "../../../../components/ViewsComponents/UserView";
+import UserView from "../../../../components/UsersComponents/Show/UserView";
 
 const index = (props: any) => {
     const { users } = props
@@ -16,7 +16,7 @@ const index = (props: any) => {
                         <AdminNavbar />
                     </div>
                     <div className="flex w-full h-screen">
-                        <DisplayInformationContent users={users}/>
+                        <UserView users={users}/>
                     </div>
 
                 </div>
