@@ -3,7 +3,6 @@ import Percentage from "../../components/AdminComponents/AdminContPercentage";
 import Population from "../../components/AdminComponents/AdminContPopulation";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import Header from "../../components/Header";
-import TestComp from "../../components/testComp";
 
 export default function dashboard() {
 
