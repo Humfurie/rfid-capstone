@@ -60,6 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
     facebook: "",
     year: "",
     idNumber: "",
+    rfidNumber: "",
     isAlumni: "",
   })
   // console.log(userRegistration)
@@ -144,6 +145,7 @@ export default function App({ Component, pageProps }: AppProps) {
       facebook: "",
       year: "",
       idNumber: "",
+      rfidNumber: "",
       isAlumni: "",
     })
     setPosition("")

@@ -1,5 +1,4 @@
-const edit = () => {
-    
+const index = () => {
     return (
         <div>
             Enter
@@ -7,4 +6,4 @@ const edit = () => {
     );
 }
 
-export default edit;
+export default index;
