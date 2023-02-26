@@ -126,7 +126,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   const userSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users_registration`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
       userRegistration: userRegistration,
       position: position,
       role: role,
@@ -162,22 +162,24 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
-  //       // router.push("/AdminDashboard");
-  //       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
-  //         setApiPosition(res.data)
-  //       })
-  //       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
-  //         setApiYearLevel(res.data)
-  //       })
-  //     } catch (error) {
-  //       router.push("/");
-  //     }
-  //   })()
-  // }, [])
+  console.log(role)
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+        // router.push("/AdminDashboard");
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => {
+          setApiPosition(res.data)
+        })
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
+          setApiYearLevel(res.data)
+        })
+      } catch (error) {
+        // router.push("/");
+      }
+    })()
+  }, [])
 
   return (
     <FormContext.Provider
@@ -190,6 +192,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setCurrentMenu,
         registration,
         setRegistration,
+        userRegistration,
 
         userOnChange,
         setRole,

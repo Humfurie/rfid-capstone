@@ -24,12 +24,13 @@ const edit = () => {
       <h3 className="text-center">Update Employee</h3>
       <form
         onSubmit={(e) => {
+            
           e.preventDefault();
           setRegistration(false)
           userSubmit();
         }}
       >
-        {setRole('employee')}
+        {}
 
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>

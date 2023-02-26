@@ -1,11 +1,14 @@
 
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { InputStyle } from "../../../lib/InputStyle";
 import MyButton from "../../../lib/partials/MyButton";
 
 const EmployeeRegistration = () => {
+  const router = useRouter()
   const {
+    userRegistration,
     registration,
     setRegistration,
     userSubmit,
@@ -24,13 +27,14 @@ const EmployeeRegistration = () => {
       <h3 className="text-center">Employee Registration</h3>
       <form
         onSubmit={(e) => {
+          setRole("employee")
           e.preventDefault();
           setRegistration(false)
           userSubmit();
+          router.push("/users/employee")
         }}
       >
-        {setRole('employee')}
-
+        {}
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={InputStyle.registrationNavBar}>
@@ -43,6 +47,7 @@ const EmployeeRegistration = () => {
                 </label>
                 <input
                   type="text"
+                  value={userRegistration.firstName}
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");

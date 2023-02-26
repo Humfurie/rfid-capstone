@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { InputStyle } from "../../../lib/InputStyle";
 import MyButton from "../../../lib/partials/MyButton";
 
 const StudentRegistration = () => {
+  const router = useRouter()
   const {
     registration,
     setRegistration,
@@ -19,12 +21,13 @@ const StudentRegistration = () => {
       <h4 className="text-center">Student Registration</h4>
       <form
         onSubmit={(e) => {
+          setRole("student")
           e.preventDefault();
           setRegistration(false)
           userSubmit();
+          router.push("/users/student")
         }}
       >
-        {setRole('student')}
 
         <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
           <div>
