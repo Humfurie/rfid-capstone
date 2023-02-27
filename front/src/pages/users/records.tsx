@@ -1,9 +1,12 @@
+import axios from "axios";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import Header from "../../components/Header";
 import RecordsList from "../../components/UsersComponents/Records/RecordsList";
 
-const records = () => {
+const records = (props: any) => {
+    const { records } = props
     return (
         <div>
             <Head>
@@ -16,10 +19,20 @@ const records = () => {
             </div>
             <div className="inline-flex">
                 <AdminNavbar />
-                <RecordsList />
+                <RecordsList records={records} />
             </div>
         </div>
     );
 }
-
 export default records;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    const data = axios.get(``)
+
+    return {
+        props: {
+            records: data
+        }
+    }
+}
