@@ -55,11 +55,11 @@ export default function AdminNavbar() {
 			icon: <FaThList />
 		},
 		{
-			title: <Link href="/users/Positions/PositionsDashboard">Positions</Link>,
+			title: <Link href="/users/position">Positions</Link>,
 			icon: ""
 		},
 		{
-			title: <Link href="/users/YearLevels/YearLevelDashboard">Year Levels</Link>,
+			title: <Link href="/users/year_level">Year Levels</Link>,
 			icon: ""
 		},
 		{

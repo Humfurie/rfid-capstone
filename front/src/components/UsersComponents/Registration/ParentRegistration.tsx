@@ -1,8 +1,7 @@
-import { Modal } from "@mantine/core";
 import { useContext } from "react";
-import { FormContext } from "../../lib/FormContext";
-import { InputStyle } from "../../lib/InputStyle";
-import MyButton from "../../lib/partials/MyButton";
+import { FormContext } from "../../../lib/FormContext";
+import { InputStyle } from "../../../lib/InputStyle";
+import MyButton from "../../../lib/partials/MyButton";
 
 const ParentRegistration = () => {
   const {
@@ -15,12 +14,7 @@ const ParentRegistration = () => {
   } = useContext(FormContext);
 
   return (
-    <Modal
-      opened={registration}
-      onClose={() => setRegistration(false)}
-      className="w-screen"
-      size="70%"
-    >
+    <div>
       <h4 className="text-center">Parent Registration</h4>
       <form
         onSubmit={(e) => {
@@ -199,7 +193,7 @@ const ParentRegistration = () => {
           <MyButton type="submit" label="Register" />
         </div>
       </form>
-    </Modal>
+    </div>
   );
 };
 

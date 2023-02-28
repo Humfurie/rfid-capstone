@@ -1,16 +1,32 @@
+import axios from "axios";
+import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useContext } from "react";
+import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import YearLevelDataTable from "../../components/UsersComponents/DataTable/YearLevelDataTable";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
-import YearLevelDataTable from "../DataTable/YearLevelDataTable";
 
-const YearLevelDashboardContent = () => {
+const year_level = (props: any) => {
+    const { yearLevel } = props
     const {
         setYear,
         yearSubmit
  } = useContext(FormContext)
-
+console.log(yearLevel)
     return (
-        <div className="flex flex-col w-screen">
+        <div>
+             
+            <div>
+                <Head>
+                    <title>Year Level</title>
+                    <meta name="description" content="Created by streamline" />
+                    <link rel="icon" href=".../img/ais-rft-logo.jpg" />
+                </Head>
+            </div>
+            <div className="inline-flex">
+                <AdminNavbar/>
+                <div className="flex flex-col w-screen">
             <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
                 <form
                     onSubmit={(e) => {
@@ -34,10 +50,23 @@ const YearLevelDashboardContent = () => {
             </div>
             <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
                 list of year levels
-                <YearLevelDataTable />
+                <YearLevelDataTable yearLevel={yearLevel} />
             </div>
+        </div>
+            </div>
+
         </div>
     );
 }
+export default year_level;
 
-export default YearLevelDashboardContent;
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
+
+    return {
+        props: {
+            yearLevel: data.data
+        }
+    }
+}

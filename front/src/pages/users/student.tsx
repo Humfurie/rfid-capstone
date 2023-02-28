@@ -4,8 +4,8 @@ import { GetServerSideProps } from "next";
 import axios from "axios";
 import Header from "../../components/Header";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import UsersDataTable from "../../components/DataTable/UsersDataTable";
-import StudentYearLevelFilter from "../../components/UsersComponents/RecordsComponents/StudentYearLevelFilter";
+import UsersDataTable from "../../components/UsersComponents/DataTable/UsersDataTable";
+import StudentYearLevelFilter from "../../components/UsersComponents/Records/StudentYearLevelFilter";
 import SearchBar from "../../components/SearchBar";
 
 

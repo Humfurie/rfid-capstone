@@ -1,6 +1,6 @@
 import Head from "next/head";
-import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
-import PositionDashboardContent from "../../../components/UsersComponents/PositionsComponents/PositionDashboardContent";
+import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
+
 
 
 const index = () => {
@@ -15,7 +15,6 @@ const index = () => {
             </div>
             <div className="inline-flex">
                 <AdminNavbar/>
-                <PositionDashboardContent/>
             </div>
         </div>
     );

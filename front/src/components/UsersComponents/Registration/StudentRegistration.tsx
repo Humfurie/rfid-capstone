@@ -1,10 +1,11 @@
+import { useRouter } from "next/router";
 import { useContext } from "react";
-import { FormContext } from "../../../../lib/FormContext";
-import { InputStyle } from "../../../../lib/InputStyle";
-import MyButton from "../../../../lib/partials/MyButton";
+import { FormContext } from "../../../lib/FormContext";
+import { InputStyle } from "../../../lib/InputStyle";
+import MyButton from "../../../lib/partials/MyButton";
 
-
-const edit = () => {
+const StudentRegistration = () => {
+  const router = useRouter()
   const {
     registration,
     setRegistration,
@@ -17,15 +18,16 @@ const edit = () => {
 
   return (
     <div>
-      <h4 className="text-center">Update Student</h4>
+      <h4 className="text-center">Student Registration</h4>
       <form
         onSubmit={(e) => {
+          setRole("student")
           e.preventDefault();
           setRegistration(false)
           userSubmit();
+          router.push("/users/student")
         }}
       >
-        {setRole('student')}
 
         <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
           <div>
@@ -288,7 +290,7 @@ const edit = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    accountOnChange(e.target.value, "username")
+                    accountOnChange(e.target.value, "username");
                   }}
                 />
               </div>
@@ -317,7 +319,7 @@ const edit = () => {
         </div>
 
         <div className={InputStyle.registerBtn}>
-          <MyButton type="submit" label="Save Changes" />
+          <MyButton type="submit" label="Register" />
         </div>
       </form>
 
@@ -326,4 +328,4 @@ const edit = () => {
   );
 };
 
-export default edit;
+export default StudentRegistration;

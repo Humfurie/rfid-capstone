@@ -4,6 +4,7 @@ import EmergencyContact from 'App/Models/EmergencyContact'
 import Parent from 'App/Models/Parent'
 import User from 'App/Models/User'
 import UserLogin from 'App/Models/UserLogin'
+import UserValidator from 'App/Validators/UserValidator'
 
 export default class newUserRegistrationController {
     //
@@ -33,6 +34,10 @@ export default class newUserRegistrationController {
             const user = new User()
             try {
 
+                const validated = input.userRegistration.validate(UserValidator)
+
+
+
                 /**
                  * 
                  * these are user model properties
@@ -48,6 +53,18 @@ export default class newUserRegistrationController {
                 user.facebook = input.userRegistration.facebook
                 user.idNumber = input.userRegistration.idNumber
                 user.rfidNumber = input.userRegistration.rfidNumber
+
+                // user.firstName = validated.firstName
+                // user.middleName = validated.middleName
+                // user.lastName = validated.lastName
+                // user.birthdate = validated.birthdate
+                // user.gender = validated.gender
+                // user.email = validated.email
+                // user.address = validated.address
+                // user.contactNumber = validated.contactNumber
+                // user.facebook = validated.facebook
+                // user.idNumber = validated.idNumber
+                // user.rfidNumber = validated.rfidNumber
 
                 /**
                  * use transaction on current user model

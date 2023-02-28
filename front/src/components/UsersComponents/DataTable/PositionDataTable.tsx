@@ -1,11 +1,11 @@
 import * as React from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import axios from "axios";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function UsersDataTable(props: any) {
-  const { users } = props
-  const [isLoading, setLoading] = React.useState(true)
-
-  console.log(users)
+export default function PositionDataTable(props: any) {
+  const { position } = props
 
   return (
     <div className="flex w-full">
@@ -19,36 +19,32 @@ export default function UsersDataTable(props: any) {
           </tr>
         </thead>
         <tbody>
-          {users.map((user: any, id: number) => {
-            const roles = user.role[0].role
-            const role = roles.toString().toLowerCase()
+          {position.map((position: any, id: number) => {
+
             return (
               <tr key={id}>
               <td className="border border-slate-300 p-3">
-                  {user.id}
+                  {position.id}
               </td>
               <td className="border border-slate-300 p-3">
-                  {user.first_name} {user.last_name}
-              </td>
-              <td className="border border-slate-300 p-3">
-                  {user.contact_number}
+                  {position.position}
               </td>
               <td className="border border-slate-300 p-3">
                   <div className="space-x-1">
-                      <Link href={`/users/${role}/${user.id}`}>
+                      <Link href={`/users/positions/${position.id}`}>
                           {/* {console.log(user.id)} */}
                           {/* <a className="px-3 py-2 bg-green-600 text-white rounded-xl">
                     
                   </a> */}
                           View
                       </Link>
-                      <Link href={`/users/${role}/${user.id}/edit`}>
+                      <Link href={`/users/positions/${position.id}/edit`}>
                           {/* <a className="px-3 py-2 bg-yellow-600 text-white rounded-xl">
                     
                   </a> */}
                           Update
                       </Link>
-                      <Link href={`/users/${role}/${user.id}/delete`}>
+                      <Link href={`/users/positions/${position.id}/delete`}>
                           {/* <a className="px-3 py-2 bg-red-600 text-white rounded-xl">
                     
                   </a> */}
@@ -65,5 +61,4 @@ export default function UsersDataTable(props: any) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-// }
+

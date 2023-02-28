@@ -2,10 +2,8 @@ import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
-import UsersDataTable from "../../../../components/DataTable/UsersDataTable";
 import Header from "../../../../components/Header";
-import SearchBar from "../../../../components/SearchBar";
-import DisplayInformationContent from "../../../../components/ViewsComponents/UserView";
+import UserView from "../../../../components/UsersComponents/Show/UserView";
 
 const index = (props: any) => {
     const { users } = props
@@ -18,7 +16,7 @@ const index = (props: any) => {
                     <div>
                         <AdminNavbar />
                     </div>
-                    <DisplayInformationContent users={users}/>
+                    <UserView users={users}/>
                 </div>
 
             </div>

@@ -3,13 +3,14 @@ import { GetServerSideProps } from "next";
 import Head from "next/head"
 import Link from "next/link";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import UsersDataTable from "../../components/DataTable/UsersDataTable";
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
+import ParentDatatable from "../../components/UsersComponents/DataTable/ParentDataTable";
 
 
 export default function parent(props: any) {
 	const { users } = props
+	console.log(users)
     return (
 		<div>
 		<Head>
@@ -37,7 +38,7 @@ export default function parent(props: any) {
 						</div>
 					</div>
 					<div className="flex ml-6 mt-6 max-w-full min-w-min ">
-						<UsersDataTable users={users} />
+						<ParentDatatable users={users} />
 					</div>
 				</div>
 			</div>
@@ -52,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 	return {
 		props: {
-			users: data.data.user
+			users: data.data
 		}
 	}
 }

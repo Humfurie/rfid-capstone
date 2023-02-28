@@ -60,6 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
     facebook: "",
     year: "",
     idNumber: "",
+    rfidNumber: "",
     isAlumni: "",
   })
   // console.log(userRegistration)
@@ -125,7 +126,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   const userSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users_registration`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
       userRegistration: userRegistration,
       position: position,
       role: role,
@@ -144,6 +145,7 @@ export default function App({ Component, pageProps }: AppProps) {
       facebook: "",
       year: "",
       idNumber: "",
+      rfidNumber: "",
       isAlumni: "",
     })
     setPosition("")
@@ -160,12 +162,14 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
+  console.log(role)
+
   useEffect(() => {
     (async () => {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
         // router.push("/AdminDashboard");
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => {
           setApiPosition(res.data)
         })
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
@@ -188,6 +192,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setCurrentMenu,
         registration,
         setRegistration,
+        userRegistration,
 
         userOnChange,
         setRole,

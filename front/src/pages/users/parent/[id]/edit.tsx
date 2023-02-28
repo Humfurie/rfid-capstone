@@ -1,27 +1,21 @@
-
 import { useContext } from "react";
-import { FormContext } from "../../lib/FormContext";
-import { InputStyle } from "../../lib/InputStyle";
-import MyButton from "../../lib/partials/MyButton";
+import { FormContext } from "../../../../lib/FormContext";
+import { InputStyle } from "../../../../lib/InputStyle";
+import MyButton from "../../../../lib/partials/MyButton";
 
-const EmployeeRegistration = () => {
+const edit = () => {
   const {
     registration,
     setRegistration,
-    userSubmit,
     userOnChange,
-    setPosition,
-    emergencyOnChange,
     accountOnChange,
-    setRole,
-    apiPosition
+    userSubmit,
+    roleOnChange
   } = useContext(FormContext);
 
   return (
     <div>
-
-
-      <h3 className="text-center">Employee Registration</h3>
+      <h4 className="text-center">Update Parent</h4>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -29,9 +23,8 @@ const EmployeeRegistration = () => {
           userSubmit();
         }}
       >
-        {setRole('employee')}
 
-        <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
+        <div className="grid lg:grid-cols-3 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={InputStyle.registrationNavBar}>
               Personal Information
@@ -45,11 +38,10 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "firstName");
+                    userOnChange(e.target.value, "firstname");
                   }}
                 />
               </div>
-
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Middle Name:
@@ -58,11 +50,10 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "middleName");
+                    userOnChange(e.target.value, "middlename");
                   }}
                 />
               </div>
-
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Last Name:
@@ -71,11 +62,10 @@ const EmployeeRegistration = () => {
                   type="text"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "lastName");
+                    userOnChange(e.target.value, "lastname");
                   }}
                 />
               </div>
-
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Birthday:
@@ -84,18 +74,15 @@ const EmployeeRegistration = () => {
                   type="date"
                   className={InputStyle.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "birthdate");
+                    userOnChange(e.target.value, "birthday");
                   }}
                 />
               </div>
-
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Gender:
                 </label>
                 <select
-                  name=""
-                  id=""
                   className={InputStyle.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "gender");
@@ -106,10 +93,8 @@ const EmployeeRegistration = () => {
                   </option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-
                 </select>
               </div>
-
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
                   Address:
@@ -124,40 +109,11 @@ const EmployeeRegistration = () => {
               </div>
             </div>
           </div>
-          <div>
-            <h5 className={InputStyle.registrationNavBar}>
-              School Information
-            </h5>
-            <div className={InputStyle.reg}>
-              <div className="flex justify-center flex-col mt-2">
-                <label htmlFor="" className={InputStyle.label}>
-                  Position:
-                </label>
-                <select
-                  name="positions"
-                  className={InputStyle.inputType}
-                  onChange={(e) => {
-                    setPosition(e.target.value);
-                  }}
-                >
-                  <option value=''>
-                    ---Select Position---
-                  </option>
-                  {apiPosition.map((element: { id: number, position: string }, id: number) => (
-                    <>
-                      <option key={id} value={element.id}>{element.position}</option>
-                    </>
-                  ))}
 
-                </select>
-              </div>
-            </div>
-          </div>
           <div>
             <h5 className={InputStyle.registrationNavBar}>
               Contact Information
             </h5>
-
             <div className={InputStyle.reg}>
               <div className={InputStyle.inputDiv}>
                 <label htmlFor="" className={InputStyle.label}>
@@ -198,113 +154,47 @@ const EmployeeRegistration = () => {
             </div>
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar}>
-              Emergency Contact
-            </h5>
-
-            <div className={InputStyle.reg}>
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
-                  Name:
-                </label>
-                <input
-                  type="text"
-                  className={InputStyle.inputType}
-                  onChange={(e) => {
-                    emergencyOnChange(e.target.value, "name");
-                  }}
-                />
-              </div>
-
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
-                  Contact Number:
-                </label>
-                <input
-                  type="number"
-                  className={InputStyle.inputType}
-                  onChange={(e) => {
-                    emergencyOnChange(e.target.value, "contactNumber");
-                  }}
-                />
-              </div>
-
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  className={InputStyle.inputType}
-                  onChange={(e) => {
-                    emergencyOnChange(e.target.value, "email");
-                  }}
-                />
-              </div>
-
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
-                  Facebook:
-                </label>
-                <input
-                  type="text"
-                  className={InputStyle.inputType}
-                  onChange={(e) => {
-                    emergencyOnChange(e.target.value, "facebook");
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div>
             <h5 className={InputStyle.registrationNavBar}>Account</h5>
-
             <div className={InputStyle.reg}>
-              <div>
-                <div className={InputStyle.inputDiv}>
-                  <label htmlFor="" className={InputStyle.label}>
-                    Username:
-                  </label>
-                  <input
-                    type="text"
-                    className={InputStyle.inputType}
-                    onChange={(e) => {
-                      accountOnChange(e.target.value, "username");
-                    }}
-                  />
-                </div>
-
-                <div className={InputStyle.inputDiv}>
-                  <label htmlFor="" className={InputStyle.label}>
-                    Password:
-                  </label>
-                  <input
-                    type="password"
-                    className={InputStyle.inputType}
-                    onChange={(e) => {
-                      accountOnChange(e.target.value, "password");
-                    }}
-                  />
-                </div>
-
-                <div className={InputStyle.inputDiv}>
-                  <label htmlFor="" className={InputStyle.label}>
-                    Confirm Password:
-                  </label>
-                  <input type="password" className={InputStyle.inputType} />
-                </div>
+              <div className={InputStyle.inputDiv}>
+                <label htmlFor="" className={InputStyle.label}>
+                  Username:
+                </label>
+                <input
+                  type="text"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    accountOnChange(e.target.value, "username");
+                  }}
+                />
+              </div>
+              <div className={InputStyle.inputDiv}>
+                <label htmlFor="" className={InputStyle.label}>
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  className={InputStyle.inputType}
+                  onChange={(e) => {
+                    accountOnChange(e.target.value, "password");
+                  }}
+                />
+              </div>
+              <div className={InputStyle.inputDiv}>
+                <label htmlFor="" className={InputStyle.label}>
+                  Confirm Password:
+                </label>
+                <input type="password" className={InputStyle.inputType} />
               </div>
             </div>
           </div>
         </div>
-
         <div className={InputStyle.registerBtn}>
-          <MyButton type="submit" label="Register" />
+          <MyButton type="submit" label="Save Changes" />
         </div>
       </form>
     </div>
   );
 };
 
-export default EmployeeRegistration;
+export default edit;
