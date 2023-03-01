@@ -40,7 +40,7 @@ export default function student(props: any) {
 								<StudentYearLevelFilter />
 							</div>
 						</div>
-						<div className="flex ml-6 mt-6 max-w-full min-w-min ">
+						<div className="flex w-full ">
 							<UsersDataTable users={users} />
 						</div>
 					</div>

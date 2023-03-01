@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { FormContext } from "../../../lib/FormContext";
-import { InputStyle } from "../../../lib/InputStyle";
+import { Style } from "../../../lib/Style";
 import MyButton from "../../../lib/partials/MyButton";
 
 const EmployeeRegistration = () => {
@@ -37,71 +37,71 @@ const EmployeeRegistration = () => {
         {}
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
-            <h5 className={InputStyle.registrationNavBar}>
+            <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
-            <div className={InputStyle.reg}>
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+            <div className={Style.reg}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   First Name:
                 </label>
                 <input
                   type="text"
                   value={userRegistration.firstName}
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Middle Name:
                 </label>
                 <input
                   type="text"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "middleName");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Last Name:
                 </label>
                 <input
                   type="text"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "lastName");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Birthday:
                 </label>
                 <input
                   type="date"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "birthdate");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Gender:
                 </label>
                 <select
                   name=""
                   id=""
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "gender");
                   }}
@@ -115,13 +115,13 @@ const EmployeeRegistration = () => {
                 </select>
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Address:
                 </label>
                 <input
                   type="text"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "address");
                   }}
@@ -130,17 +130,17 @@ const EmployeeRegistration = () => {
             </div>
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar}>
+            <h5 className={Style.registrationNavBar}>
               School Information
             </h5>
-            <div className={InputStyle.reg}>
+            <div className={Style.reg}>
               <div className="flex justify-center flex-col mt-2">
-                <label htmlFor="" className={InputStyle.label}>
+                <label htmlFor="" className={Style.label}>
                   Position:
                 </label>
                 <select
                   name="positions"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     setPosition(e.target.value);
                   }}
@@ -159,42 +159,42 @@ const EmployeeRegistration = () => {
             </div>
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar}>
+            <h5 className={Style.registrationNavBar}>
               Contact Information
             </h5>
 
-            <div className={InputStyle.reg}>
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+            <div className={Style.reg}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   E-mail:
                 </label>
                 <input
                   type="email"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "email");
                   }}
                 />
               </div>
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Contact Number:
                 </label>
                 <input
                   type="number"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Facebook:
                 </label>
                 <input
                   type="text"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "facebook");
                   }}
@@ -203,57 +203,57 @@ const EmployeeRegistration = () => {
             </div>
           </div>
           <div>
-            <h5 className={InputStyle.registrationNavBar}>
+            <h5 className={Style.registrationNavBar}>
               Emergency Contact
             </h5>
 
-            <div className={InputStyle.reg}>
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+            <div className={Style.reg}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Name:
                 </label>
                 <input
                   type="text"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "name");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Contact Number:
                 </label>
                 <input
                   type="number"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Email:
                 </label>
                 <input
                   type="email"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "email");
                   }}
                 />
               </div>
 
-              <div className={InputStyle.inputDiv}>
-                <label htmlFor="" className={InputStyle.label}>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
                   Facebook:
                 </label>
                 <input
                   type="text"
-                  className={InputStyle.inputType}
+                  className={Style.inputType}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "facebook");
                   }}
@@ -263,48 +263,48 @@ const EmployeeRegistration = () => {
           </div>
 
           <div>
-            <h5 className={InputStyle.registrationNavBar}>Account</h5>
+            <h5 className={Style.registrationNavBar}>Account</h5>
 
-            <div className={InputStyle.reg}>
+            <div className={Style.reg}>
               <div>
-                <div className={InputStyle.inputDiv}>
-                  <label htmlFor="" className={InputStyle.label}>
+                <div className={Style.inputDiv}>
+                  <label htmlFor="" className={Style.label}>
                     Username:
                   </label>
                   <input
                     type="text"
-                    className={InputStyle.inputType}
+                    className={Style.inputType}
                     onChange={(e) => {
                       accountOnChange(e.target.value, "username");
                     }}
                   />
                 </div>
 
-                <div className={InputStyle.inputDiv}>
-                  <label htmlFor="" className={InputStyle.label}>
+                <div className={Style.inputDiv}>
+                  <label htmlFor="" className={Style.label}>
                     Password:
                   </label>
                   <input
                     type="password"
-                    className={InputStyle.inputType}
+                    className={Style.inputType}
                     onChange={(e) => {
                       accountOnChange(e.target.value, "password");
                     }}
                   />
                 </div>
 
-                <div className={InputStyle.inputDiv}>
-                  <label htmlFor="" className={InputStyle.label}>
+                <div className={Style.inputDiv}>
+                  <label htmlFor="" className={Style.label}>
                     Confirm Password:
                   </label>
-                  <input type="password" className={InputStyle.inputType} />
+                  <input type="password" className={Style.inputType} />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className={InputStyle.registerBtn}>
+        <div className={Style.registerBtn}>
           <MyButton type="submit" label="Register" />
         </div>
       </form>

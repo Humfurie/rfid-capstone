@@ -17,11 +17,14 @@ module.exports = {
         "light-grey": "#F2f2f2",
         "theme-blue": "#0A1578",
         
+        //color-scheme
         "teal-blue": "#388087",
         "moonstone-blue": "#6fb3b8",
         "powder-blue": "#badfe7",
         "magic-mint": "#c2edce",
-        "white-smoke": "#f6f6f2"
+        "white-smoke": "#f6f6f2",
+
+        "teal-blue2": "#4B9AA2"
       }
     },
     borderWidth: {

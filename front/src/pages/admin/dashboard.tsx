@@ -8,17 +8,18 @@ export default function dashboard() {
 
 
 	return (
-		<div>
+		<div >
 			<div>
 				<Header />
-				<div className="inline-flex">
+				<div className="inline-flex bg-white-smoke">
 					<AdminNavbar />
 					<div className="top-status-content ml-5 mt-6">
 						<Population />
 					</div>
-					<div className="ml-1 flex flex-wrap gap- ">
-						< LiveActivity />
+					<div className="ml-1 flex flex-wrap  ">
+						
 						<Percentage />
+						< LiveActivity />
 					</div>
 				</div>
 

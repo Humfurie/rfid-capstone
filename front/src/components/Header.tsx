@@ -1,4 +1,5 @@
 import React from "react";
+import { Style } from "../lib/Style";
 import CurrentDate from "./Date";
 
 // Rearrange date value to get the order you want... also replace / with a cooler separator like ⋅
@@ -9,7 +10,7 @@ export default function Header() {
   return (
     <div className="header">
 				<div >
-					<div className="p-4 inline-flex bg-white w-screen border-b-[1px] border-powderblue-shades10%">
+					<div className={`${Style.toRight} p-4 inline-flex w-full border-b-[1px] border-teal-blue2 shadow-lg`}>
 						<img alt="profile" className="mr-4" />
 						<h2>
 							HWDYD, <span>Admin</span>

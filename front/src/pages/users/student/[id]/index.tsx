@@ -9,7 +9,7 @@ const index = (props: any) => {
 
     return (
         <div>
-            <div >
+            <div>
                 <Header />
                 <div className="flex max-h-full w-screen">
                     <div>
