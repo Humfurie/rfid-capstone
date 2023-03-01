@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 
 const ParentDatatable = (props: any) => {
   const { users } = props
@@ -18,30 +19,27 @@ const ParentDatatable = (props: any) => {
 
             return (
               <tr key={id}>
-              <td className="border border-slate-300 p-3">
+                <td className="border border-slate-300 p-3">
                   {user.id}
-              </td>
-              <td className="border border-slate-300 p-3">
+                </td>
+                <td className="border border-slate-300 p-3">
                   {user.first_name} {user.last_name}
-              </td>
-              <td className="border border-slate-300 p-3">
+                </td>
+                <td className="border border-slate-300 p-3">
                   {user.contact_number}
-              </td>
-              <td className="border border-slate-300 p-3">
-                  <div className="space-x-1">
-                      <Link href={`/users/parent/${user.id}`}>
-                          View
-                      </Link>
-                      <Link href={`/users/parent/${user.id}/edit`}>
-
-                          Update
-                      </Link>
-                      <Link href={`/users/parent/${user.id}/delete`}>
-                          Delete
-                      </Link>
-                  </div>
-              </td>
-          </tr>
+                </td>
+                <td className="border border-slate-300 p-4 flex gap-3">
+                    <Link href={`/users/parent/${user.id}`}>
+                      <BsEye className="hover:text-blue-600" />
+                    </Link>
+                    <Link href={`/users/parent/${user.id}/edit`}>
+                      <BsPencil className="hover:text-green-600" />
+                    </Link>
+                    <Link href={`/users/parent/${user.id}/delete`}>
+                      <BsTrash className="hover:text-red-600" />
+                    </Link>
+                </td>
+              </tr>
             )
           })}
         </tbody>
