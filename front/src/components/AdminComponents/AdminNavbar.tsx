@@ -36,11 +36,11 @@ export default function AdminNavbar() {
 			submenu: true,
 			submenuItems: [
 				{
-					src: <Link href="/users/employee" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% active:bg-powderblue-shades10%"
+					src: <Link href="/users/employee" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-magic-mint focus:bg-magic-mint active:bg-powderblue-shades10%"
 					>Employees</Link>
 				},
 				{
-					src: <Link href="/users/student" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% focus:bg-powderblue-shades10% "
+					src: <Link href="/users/student" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-magic-mint focus:bg-powderblue-shades10% "
 					>Students</Link>
 				}
 			],
@@ -73,12 +73,12 @@ export default function AdminNavbar() {
 	]
 	return (
 		<div className="flex h-full">
-			<div className={`h-full p-5 pt-8 ${open ? "w-48" : "w-20"}  relative duration-500 text-black ${Style.toBottom}`} >
+			<div className={`h-full p-5 pt-8 ${open ? "w-48" : "w-20"}  relative duration-500 text-black bg-gray-700`} >
 
 				<div>
 					<IoIosArrowBack
 						className={`w-6 h-6 bg-white  text=3xl rounded-3xl absolute
-					-right-3 top-12  cursor-pointer duration-100 border border-powder-blue text-gray-500  ${!open && "rotate-180"}`}
+					-right-3 top-12  cursor-pointer duration-100 border border-gray-700 text-gray-500  ${!open && "rotate-180"}`}
 						onClick={() => setOpen(!open)} />
 
 
@@ -94,7 +94,7 @@ export default function AdminNavbar() {
 						{Menus.map((menu: any, index: number) => (
 							<div key={index}>
 								<li
-									className={`text-sm text-gray-500 flex items-center gap-x-4 cursor-pointer p-2 hover:bg-powderblue-shades10% rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
+									className={`text-sm text-white-smoke flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
 								>
 									<span className="text-xl bock float-left">
 										{menu.icon ? menu.icon : <MdDashboard />}
