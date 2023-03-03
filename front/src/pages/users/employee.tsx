@@ -14,34 +14,34 @@ export default function employee(props: any) {
 	const { users } = props
 	console.log(users)
 	return (
-		<div className="h-full">
+		<div className="flex h-screen">
 			<Head>
 				<title>List of Employees</title>
 				<meta name="description" content="Created by streamline" />
 				<link rel="icon" href=".../img/ais-rft-logo.jpg" />
 			</Head>
-			<div className="">
+			<div className="flex flex-col max-h-full">
 				<Header />
-				<div className="flex bg-white">
+				<div className="flex h-full bg-white">
 					<div className="h-full">
 						<AdminNavbar />
 					</div>
 					<div className="flex flex-col w-full">
-						<div className="top-status-content">
-							<div>
-								<EmployeeTab />
 
-							</div>
-							<div className={`w-full p-2`}>
-								<UsersDataTable users={users} />
-							</div>
+						<div>
+							<EmployeeTab />
+
 						</div>
-
+						<div className={`w-full p-2`}>
+							<UsersDataTable users={users} />
+						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
+
 		</div>
+
 	);
 }
 
