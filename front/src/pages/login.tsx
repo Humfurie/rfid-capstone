@@ -59,64 +59,60 @@ export default function login() {
                         Log in here !
                     </h4>
                 </div>
-                <div className=''>
-                    <div className='shadow-lg ml-96 mr-96 rounded-lg ' >
-                        <div className='grid place-content-start md:place-content-center bg-white-smoke mt-(-2) rounded-b-lg '>
-                            <form onSubmit={e => {
-                                e.preventDefault()
-                                adminLogin()
-                            }}
-                            >
-                                <div className='mt-6'>
-                                    <label
-                                        htmlFor=""
-                                        className='block'>
-                                        <span className='block text-sm font-medium text-slate-700'>
-                                            Username
-                                        </span>
-                                        <input
-                                            type="text"
-                                            required
-                                            onChange={(e: any) => {
-                                                loginChange(e.target.value, "username")
-                                            }}
-                                            className={Style.inputLogin}
-                                        />
-                                    </label>
-                                </div>
-
-                                <div className='mt-6'>
-                                    <label
-                                        htmlFor=""
-                                        className='block'>
-                                        <span className='block text-sm font-medium text-slate-700'>
-                                            Password
-                                        </span>
-                                        <input
-                                            type="password"
-                                            required
-                                            onChange={(e: any) => {
-                                                loginChange(e.target.value, "password")
-                                            }}
-                                            className={Style.inputLogin}
-                                        />
-                                    </label>
-                                </div>
-
-                                <div className=' mb-6'>
-                                    <button
-                                        type="submit"
-                                        className={Style.loginBtn}
-                                    >Log in
-                                    </button>
-                                </div>
-                            </form>
+                <div className='mx-auto  mt-(-2) rounded-b-lg ml-96 mr-96 bg-white-smoke p-4'>
+                    <form onSubmit={e => {
+                        e.preventDefault()
+                        adminLogin()
+                    }}
+                    >
+                        <div className='mt-6 '>
+                            <label
+                                htmlFor=""
+                                className='block'>
+                                <span className='block text-sm font-medium text-slate-700'>
+                                    Username
+                                </span>
+                                <input
+                                    type="text"
+                                    required
+                                    onChange={(e: any) => {
+                                        loginChange(e.target.value, "username")
+                                    }}
+                                    className={Style.inputLogin}
+                                />
+                            </label>
                         </div>
-                    </div>
+
+                        <div className='mt-6'>
+                            <label
+                                htmlFor=""
+                                className='block'>
+                                <span className='block text-sm font-medium text-slate-700'>
+                                    Password
+                                </span>
+                                <input
+                                    type="password"
+                                    required
+                                    onChange={(e: any) => {
+                                        loginChange(e.target.value, "password")
+                                    }}
+                                    className={Style.inputLogin}
+                                />
+                            </label>
+                        </div>
+
+                        <div className=' mb-6'>
+                            <button
+                                type="submit"
+                                className={Style.loginBtn}
+                            >Log in
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div className='absolute bottom-0 right-0'>
-               <Footers/>
+                <Footers />
             </div>
         </div>
     )

@@ -1,4 +1,8 @@
 export const Style = {
+    /**
+     * for search bar input field
+     */
+    searchInput:"border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue rounded",
 
     /**
      * for background color gradients
@@ -11,8 +15,8 @@ export const Style = {
     /**
      * for login
      */
-    loginBtn:'float-left p-1 rounded-md mt-6 mb-6 w-full text-center text-white-smoke bg-teal-blue hover:bg-teal-blue2',
-    inputLogin: ' px-3 py-3 rounded border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue w-96 ...',
+    loginBtn:'p-1 rounded-md mt-6 w text-center text-white-smoke bg-teal-blue hover:bg-teal-blue2 w-full min-w-min',
+    inputLogin: 'p-3 rounded border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue max-w-full w-full min-w-min',
 
     /**
      * for input fields and labels

@@ -8,17 +8,14 @@ const index = (props: any) => {
     const { users } = props
 
     return (
-        <div>
-            <div>
+        <div className="flex h-screen w-screen bg-white">
+            <div className="flex flex-col h-full w-full">
                 <Header />
-                <div className="flex max-h-full w-screen">
-                    <div>
+                <div className="flex h-full w-full">
+                    <div className="">
                         <AdminNavbar />
                     </div>
-                    <div className="flex w-full h-screen">
-                        <UserView users={users}/>
-                    </div>
-
+                    <UserView users={users} />
                 </div>
             </div>
         </div>
@@ -27,7 +24,7 @@ const index = (props: any) => {
 
 export default index;
 
-export const getServerSideProps:GetServerSideProps = async (context:GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
     const { params } = context
 
     const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/student/${params?.id}`)

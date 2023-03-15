@@ -8,21 +8,24 @@ import Percentage from '../components/AdminComponents/AdminContPercentage';
 export default function Home() {
 
   return (
-    <div>
-    <div>
+    <div className='flex flex-col h-screen'>
+
       <Header />
-      <div className="inline-flex">
+
+      <div className="flex h-full">
+
         <AdminNavbar />
-        <div className="top-status-content ml-5 mt-6">
+
+        <div className="">
+
           <Population />
-        </div>
-        <div className="ml-1 flex flex-wrap gap- ">
-          < LiveActivity />
+
+          <LiveActivity />
+
           <Percentage />
+
         </div>
       </div>
-
     </div>
-  </div>
   )
 }

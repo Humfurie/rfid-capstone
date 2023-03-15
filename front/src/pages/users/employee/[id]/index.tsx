@@ -9,10 +9,10 @@ const index = (props: any) => {
     const { users } = props
 
     return (
-        <div>
-            <div >
+        <div className="flex h-screen w-screen bg-white">
+            <div className="flex flex-col h-full w-full" >
                 <Header />
-                <div className="flex max-h-full w-screen">
+                <div className="flex h-full w-full">
                     <div>
                         <AdminNavbar />
                     </div>

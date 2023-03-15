@@ -25,7 +25,7 @@ export default function UsersDataTable(props: any) {
             const roles = user.role[0].role
             const role = roles.toString().toLowerCase()
             return (
-              <tr key={id} className="border-collapse">
+              <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
                 <td className="border border-teal-blue border-collapse p-3">
                   {user.id}
                 </td>
