@@ -47,7 +47,7 @@ const position = (props: any) => {
 
                     </div>
                     <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
-                        list of positions
+                       
                         <PositionDataTable position={position} />
                     </div>
                 </div>

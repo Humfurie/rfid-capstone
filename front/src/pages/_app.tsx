@@ -111,18 +111,19 @@ export default function App({ Component, pageProps }: AppProps) {
    */
   // add position
   const positionSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/position`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
       position: position,
     })
     setPosition('')
-    router.push('/Positions/PositionsDashboard')
+    router.push('/users/position')
   }
   // add year
   const yearSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`, {
       year: year,
     })
     setYear('')
+    router.push('/users/year_level')
   }
 
   const userSubmit = async () => {

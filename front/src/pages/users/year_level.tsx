@@ -3,6 +3,8 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useContext } from "react";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
+import Header from "../../components/Header";
+import YearLevelTab from "../../components/Tabs/YearLevelTab";
 import YearLevelDataTable from "../../components/UsersComponents/DataTable/YearLevelDataTable";
 import { FormContext } from "../../lib/FormContext";
 import MyButton from "../../lib/partials/MyButton";
@@ -12,11 +14,10 @@ const year_level = (props: any) => {
     const {
         setYear,
         yearSubmit
- } = useContext(FormContext)
-console.log(yearLevel)
+    } = useContext(FormContext)
+    console.log(yearLevel)
     return (
-        <div>
-             
+        <div className="flex h-screen w-screen bg-white">
             <div>
                 <Head>
                     <title>Year Level</title>
@@ -24,35 +25,21 @@ console.log(yearLevel)
                     <link rel="icon" href=".../img/ais-rft-logo.jpg" />
                 </Head>
             </div>
-            <div className="inline-flex">
-                <AdminNavbar/>
-                <div className="flex flex-col w-screen">
-            <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault()
-                        yearSubmit()
-                    }}
-                >
-                    <input
-                        type="text"
-                        onChange={(e) => {
-                            setYear(e.target.value)
-                        }}
-                    />
-                    <MyButton
-                        type="submit"
-                        label="Add Year Level" 
-                        className="text-black bg-powderblue-shades10% hover:bg-powderblue-shades20% font-medium rounded-r-lg text-sm px-4 py-2 "
-                        />
-
-                </form>
-            </div>
-            <div className="flex flex-row top-status-content ml-6 mt-6 w-full">
-                list of year levels
-                <YearLevelDataTable yearLevel={yearLevel} />
-            </div>
-        </div>
+            <div className="flex flex-col h-full w-full">
+                <Header />
+                <div className="flex h-full w-full">
+                    <div className="h-full">
+                        <AdminNavbar />
+                    </div>
+                    <div className="flex flex-col w-full">
+                        <div>
+                            <YearLevelTab />
+                        </div>
+                        <div className={`w-full p-2`}>
+                            <YearLevelDataTable yearLevel={yearLevel} />
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
