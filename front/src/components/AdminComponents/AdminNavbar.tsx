@@ -6,7 +6,6 @@ import Link from "next/link";
 import { FormContext } from "../../lib/FormContext";
 import { destroyCookie } from "nookies";
 import { useRouter } from "next/router";
-import { Style } from "../../lib/Style";
 
 
 export default function AdminNavbar() {
@@ -33,7 +32,6 @@ export default function AdminNavbar() {
 		{
 			title: "Users",
 			icon: <FaUsers />,
-			submenu: true,
 			submenuItems: [
 				{
 					src: <Link href="/users/employee" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-magic-mint focus:bg-magic-mint active:bg-powderblue-shades10%"
@@ -109,11 +107,11 @@ export default function AdminNavbar() {
 									>
 										{menu.title}
 
-										{menu.submenu}
 									</span>
 								</li>
 								{
-									menu.submenu && submenuOpen && currentMenu === menu.title && open && (
+									//  submenuOpen && currentMenu === menu.title && open && (
+										submenuOpen === open && currentMenu === menu.title && (
 										<ul className="duration-500">
 											{menu.submenuItems.map((menu: any, index: any) => {
 												return (

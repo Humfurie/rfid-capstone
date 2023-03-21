@@ -37,7 +37,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [registration, setRegistration] = useState(false);
 
 
-
   /**
    * these states contain backend data
    */
