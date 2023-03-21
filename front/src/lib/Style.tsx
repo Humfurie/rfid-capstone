@@ -34,7 +34,9 @@ export const Style = {
     
     selectHover: 'hover:text-black hover:bg-light-blue',
     
-    
-
+    /**
+     * Table design
+     */
+    tableBorder:'border border-teal-blue border-collapse p-3'
     
 }

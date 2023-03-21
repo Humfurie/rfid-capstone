@@ -25,7 +25,6 @@ export default function employee(props: any) {
 						<AdminNavbar />
 					</div>
 					<div className="flex flex-col w-full">
-
 						<div>
 							<EmployeeTab />
 

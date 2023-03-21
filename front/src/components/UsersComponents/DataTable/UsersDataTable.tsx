@@ -14,10 +14,10 @@ export default function UsersDataTable(props: any) {
       <table className="table-fixed bg-white-smoke w-full rounded-lg">
         <thead className={`${Style.toLeft}`}>
           <tr className="border-collapse ">
-            <th className="border border-teal-blue border-collapse p-3">ID</th>
-            <th className="border border-teal-blue border-collapse p-3">Name</th>
-            <th className="border border-teal-blue border-collapse p-3">Contact Number</th>
-            <th className="border border-teal-blue border-collapse p-3">Action</th>
+            <th className={`${Style.tableBorder}`}>ID</th>
+            <th className={`${Style.tableBorder}`}>Name</th>
+            <th className={`${Style.tableBorder}`}>Contact Number</th>
+            <th className={`${Style.tableBorder}`}>Action</th>
           </tr>
         </thead>
         <tbody >
@@ -26,25 +26,23 @@ export default function UsersDataTable(props: any) {
             const role = roles.toString().toLowerCase()
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
-                <td className="border border-teal-blue border-collapse p-3">
+                <td className={`${Style.tableBorder}`}>
                   {user.id}
                 </td>
-                <td className="border border-teal-blue border-collapse p-3">
+                <td className={`${Style.tableBorder}`}>
                   {user.first_name} {user.last_name}
                 </td>
-                <td className="border border-teal-blue border-collapse p-3">
+                <td className={`${Style.tableBorder}`}>
                   {user.contact_number}
                 </td>
-                <td className="border border-teal-blue border-collapse p-3  ">
+                <td className={`${Style.tableBorder}`}>
                   <div className="flex gap-3 items-center">
                     <Link href={`/users/${role}/${user.id}`} >
                       <BsEye className="hover:text-blue-600" />
                     </Link>
-
                     <Link href={`/users/${role}/${user.id}/edit`} >
                       <BsPencil className="hover:text-green-600" />
                     </Link>
-
                     <Link href={`/users/${role}/${user.id}/delete`} >
                       <BsTrash className="hover:text-red-600" />
                     </Link>
