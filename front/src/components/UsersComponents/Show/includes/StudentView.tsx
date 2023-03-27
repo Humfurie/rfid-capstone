@@ -117,7 +117,7 @@ const StudentView = (props: any) => {
     ]
     return (
         <div className=" w-full h-full">
-            <div className="grid grid-cols-2 border bg-white shadow-lg w-fit h-fit mx-auto mt-3 rounded-2xl">
+            <div className="grid grid-cols-2 bg-white shadow-lg w-fit h-fit mx-auto mt-3 rounded-2xl">
 
                 <div className="mx-auto pt-3">
                     <div>
@@ -139,11 +139,11 @@ const StudentView = (props: any) => {
                                             setInfoOpen(!infoOpen)
                                         }}
                                     >
-                                        <p className="text-lg font-bold bg-light-grey rounded hover:bg-gray-200 hover:cursor-pointer">
+                                        <div className="text-lg font-bold bg-light-grey rounded hover:bg-gray-200 hover:cursor-pointer">
                                             <span className="flex pl-3">
                                                 {menu.title}
                                             </span>
-                                        </p>
+                                        </div>
                                     </span>
                                 </li>
                                 {infoOpen === true && currentInfo === menu.title && (

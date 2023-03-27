@@ -89,9 +89,10 @@ export default class AdminsController {
 
     } catch (error) {
       return response.status(401).send(error)
-
     }
+  }
 
+  public async show({ }: HttpContextContract){
 
   }
 
