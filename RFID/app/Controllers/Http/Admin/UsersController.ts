@@ -11,16 +11,16 @@ export default class UsersController {
      * 
      * @returns all employee
      */
-    public async employeeIndex({ response }: HttpContextContract) { 
+    public async employeeIndex({ response }: HttpContextContract) {
 
         const user = await User.query()
-        .whereHas('role', (builder) => {
-            builder.where('role', 'Employee');
-        }).where('flag', 1)
-        .where('flag', 1)
-        .preload('emergencyContact')
-        .preload('role')
-        .preload('position')
+            .whereHas('role', (builder) => {
+                builder.where('role', 'Employee');
+            }).where('flag', 1)
+            .where('flag', 1)
+            .preload('emergencyContact')
+            .preload('role')
+            .preload('position')
         console.log(user)
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -35,15 +35,15 @@ export default class UsersController {
     public async employeeShow({ response, params }: HttpContextContract) {
 
         const user = await User.query()
-        .whereHas('role', (user) => {
-            user.where('role', 'Employee' || 'employee')
-        })
-        .where('id', params.id)
-        .where('flag', 1)
-        .preload('emergencyContact')
-        .preload('role')
-        .preload('position')
-        .firstOrFail()
+            .whereHas('role', (user) => {
+                user.where('role', 'Employee' || 'employee')
+            })
+            .where('id', params.id)
+            .where('flag', 1)
+            .preload('emergencyContact')
+            .preload('role')
+            .preload('position')
+            .firstOrFail()
 
         return response.status(200).send([user])
     }
@@ -52,17 +52,17 @@ export default class UsersController {
      *  
      * @returns all student
      */
-    public async studentIndex({ response }: HttpContextContract) { 
+    public async studentIndex({ response }: HttpContextContract) {
 
         const user = await User.query()
-        .whereHas('role', (builder) => {
-            builder.where('role', 'Student');
-        }).where('flag', 1)
-        .where('flag', 1)
-        .preload('emergencyContact')
-        .preload('yearLevel')
-        .preload('role')
-        .preload('position')
+            .whereHas('role', (builder) => {
+                builder.where('role', 'Student');
+            }).where('flag', 1)
+            .where('flag', 1)
+            .preload('emergencyContact')
+            .preload('yearLevel')
+            .preload('role')
+            .preload('position')
 
         console.log(user)
         if (!user) {
@@ -79,17 +79,17 @@ export default class UsersController {
     public async studentShow({ response, params }: HttpContextContract) {
 
         const user = await User.query()
-        .whereHas('role', (builder) => {
-            builder.where('role', 'Student' || 'student')
-        })
-        .where('id', params.id)
-        .where('flag', 1)
-        .preload('emergencyContact')
-        .preload('yearLevel')
-        .preload('role')
-        .firstOrFail()
+            .whereHas('role', (builder) => {
+                builder.where('role', 'Student' || 'student')
+            })
+            .where('id', params.id)
+            .where('flag', 1)
+            .preload('emergencyContact')
+            .preload('yearLevel')
+            .preload('role')
+            .firstOrFail()
 
-        return response.status(200).send([ user ])
+        return response.status(200).send([user])
 
     }
 
@@ -97,7 +97,7 @@ export default class UsersController {
      * 
      * @returns all parents
      */
-    public async parentIndex({ response }: HttpContextContract) { 
+    public async parentIndex({ response }: HttpContextContract) {
 
         const user = await Parent.query().where('flag', 1)
 
@@ -107,5 +107,17 @@ export default class UsersController {
         }
 
         return response.status(200).json(user)
+    }
+
+    public async deleteUser({ request, response }: HttpContextContract) {
+        const req = request.only(['id', 'role'])
+        const deletedUser = await User.query().whereHas('role', (builder) => {
+            builder.where('role', req.role)
+        })
+            .where('id', req.id)
+            .where('flag', 1)
+            .update({ flag: 0 })
+
+        return response.status(200).json(deletedUser)
     }
 }

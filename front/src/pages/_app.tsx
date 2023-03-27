@@ -81,6 +81,8 @@ export default function App({ Component, pageProps }: AppProps) {
     username: "",
     password: "",
   });
+  //specific id for delete
+  const [id, setId] = useState('')
 
   /*
    *
@@ -124,7 +126,6 @@ export default function App({ Component, pageProps }: AppProps) {
     setYear('')
     router.push('/users/year_level')
   }
-
   const userSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
       userRegistration: userRegistration,
@@ -160,6 +161,18 @@ export default function App({ Component, pageProps }: AppProps) {
       username: "",
       password: "",
     })
+  }
+
+  /**
+   * Delete User
+   */
+  const userDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/delete`, {
+      role: role,
+      id: id
+    })
+    setRole('')
+    setId('')
   }
 
   console.log(role)
@@ -214,7 +227,13 @@ export default function App({ Component, pageProps }: AppProps) {
         setYear,
         //retrieved data
         apiPosition,
-        apiYearLevel
+        apiYearLevel,
+
+        //user delete
+        userDelete,
+
+        id,
+        setId,
       }}
     >
       <Component {...pageProps} />
