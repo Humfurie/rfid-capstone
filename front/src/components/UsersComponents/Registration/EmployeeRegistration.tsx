@@ -1,11 +1,14 @@
+
+import { useRouter } from "next/router";
 import { useContext } from "react";
-import { FormContext } from "../../../../lib/FormContext";
-import { Style } from "../../../../lib/Style";
-import MyButton from "../../../../lib/partials/MyButton";
+import { FormContext } from "../../../lib/FormContext";
+import { Style } from "../../../lib/Style";
+import MyButton from "../../../lib/partials/MyButton";
 
-
-const edit = () => {
+const EmployeeRegistration = () => {
+  const router = useRouter()
   const {
+    userRegistration,
     registration,
     setRegistration,
     userSubmit,
@@ -21,17 +24,17 @@ const edit = () => {
     <div>
 
 
-      <h3 className="text-center">Update Employee</h3>
+      <h3 className="text-center">Employee Registration</h3>
       <form
         onSubmit={(e) => {
-            
+          setRole("employee")
           e.preventDefault();
           setRegistration(false)
           userSubmit();
+          router.push("/users/employee")
         }}
       >
         {}
-
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
@@ -44,6 +47,7 @@ const edit = () => {
                 </label>
                 <input
                   type="text"
+                  value={userRegistration.firstName}
                   className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");
@@ -301,11 +305,11 @@ const edit = () => {
         </div>
 
         <div className={Style.registerBtn}>
-          <MyButton type="submit" label="Save Changes" />
+          <MyButton type="submit" label="Register" />
         </div>
       </form>
     </div>
   );
 };
 
-export default edit;
+export default EmployeeRegistration;

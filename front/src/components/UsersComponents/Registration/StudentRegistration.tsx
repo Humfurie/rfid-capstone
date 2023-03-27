@@ -1,44 +1,41 @@
+import { useRouter } from "next/router";
 import { useContext } from "react";
-import { FormContext } from "../../../../lib/FormContext";
-import { Style } from "../../../../lib/Style";
-import MyButton from "../../../../lib/partials/MyButton";
+import { FormContext } from "../../../lib/FormContext";
+import { Style } from "../../../lib/Style";
+import MyButton from "../../../lib/partials/MyButton";
 
-
-const edit = () => {
+const StudentRegistration = () => {
+  const router = useRouter()
   const {
     registration,
     setRegistration,
-    userSubmit,
     userOnChange,
-    setPosition,
     emergencyOnChange,
     accountOnChange,
-    setRole,
-    apiPosition
+    userSubmit,
+    setRole
   } = useContext(FormContext);
 
   return (
     <div>
-
-
-      <h3 className="text-center">Update Employee</h3>
+      <h4 className="text-center">Student Registration</h4>
       <form
         onSubmit={(e) => {
-            
+          setRole("student")
           e.preventDefault();
           setRegistration(false)
           userSubmit();
+          router.push("/users/student")
         }}
       >
-        {}
 
-        <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
+        <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
             <div className={Style.reg}>
-              <div className={Style.inputDiv}>
+              <div className="flex justify-center flex-col mt-2">
                 <label htmlFor="" className={Style.label}>
                   First Name:
                 </label>
@@ -51,7 +48,7 @@ const edit = () => {
                 />
               </div>
 
-              <div className={Style.inputDiv}>
+              <div className="flex justify-center flex-col mt-2">
                 <label htmlFor="" className={Style.label}>
                   Middle Name:
                 </label>
@@ -64,7 +61,7 @@ const edit = () => {
                 />
               </div>
 
-              <div className={Style.inputDiv}>
+              <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={Style.label}>
                   Last Name:
                 </label>
@@ -77,7 +74,7 @@ const edit = () => {
                 />
               </div>
 
-              <div className={Style.inputDiv}>
+              <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={Style.label}>
                   Birthday:
                 </label>
@@ -90,7 +87,7 @@ const edit = () => {
                 />
               </div>
 
-              <div className={Style.inputDiv}>
+              <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={Style.label}>
                   Gender:
                 </label>
@@ -102,16 +99,15 @@ const edit = () => {
                     userOnChange(e.target.value, "gender");
                   }}
                 >
-                  <option value=''>
+                  <option selected disabled>
                     ---Select Gender---
                   </option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-
                 </select>
               </div>
 
-              <div className={Style.inputDiv}>
+              <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={Style.label}>
                   Address:
                 </label>
@@ -130,27 +126,53 @@ const edit = () => {
               School Information
             </h5>
             <div className={Style.reg}>
-              <div className="flex justify-center flex-col mt-2">
+              <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={Style.label}>
-                  Position:
+                  Student ID:
                 </label>
-                <select
-                  name="positions"
+                <input
+                  type="number"
                   className={Style.inputType}
                   onChange={(e) => {
-                    setPosition(e.target.value);
+                    userOnChange(e.target.value, "studentId");
+                  }}
+                />
+              </div>
+
+              <div className="flex justify-center flex-col mt-2">
+                <label htmlFor="" className={Style.label}>
+                  School Year:
+                </label>
+                <select
+                  name=""
+                  id=""
+                  className={Style.inputType}
+                  onChange={(e) => {
+                    userOnChange(e.target.value, "schoolYear");
                   }}
                 >
-                  <option value=''>
-                    ---Select Position---
+                  <option selected disabled>
+                    ---Select School Year---
                   </option>
-                  {apiPosition.map((element: { id: number, position: string }, id: number) => (
-                    <>
-                      <option key={id} value={element.id}>{element.position}</option>
-                    </>
-                  ))}
-
+                  <option value="grade 7">Grade 7</option>
+                  <option value="grade 8">Grade 8</option>
+                  <option value="grade 9">Grade 9</option>
+                  <option value="grade 10">Grade 10</option>
+                  <option value="grade 11">Grade 11</option>
+                  <option value="grade 12">Grade 12</option>
                 </select>
+              </div>
+              <div className="flex justify-center flex-col mt-2">
+                <input
+                  type="checkbox"
+                  className={Style.inputType}
+                  onChange={(e) => {
+                    userOnChange(e.target.value, "schoolYear");
+                  }}
+                />
+                <label htmlFor="" className={Style.label}>
+                  Alumni
+                </label>
               </div>
             </div>
           </div>
@@ -158,7 +180,6 @@ const edit = () => {
             <h5 className={Style.registrationNavBar}>
               Contact Information
             </h5>
-
             <div className={Style.reg}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
@@ -172,6 +193,7 @@ const edit = () => {
                   }}
                 />
               </div>
+
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Contact Number:
@@ -184,6 +206,7 @@ const edit = () => {
                   }}
                 />
               </div>
+
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Facebook:
@@ -199,9 +222,7 @@ const edit = () => {
             </div>
           </div>
           <div>
-            <h5 className={Style.registrationNavBar}>
-              Emergency Contact
-            </h5>
+            <h5 className={Style.registrationNavBar}>Emergency Contact</h5>
 
             <div className={Style.reg}>
               <div className={Style.inputDiv}>
@@ -260,52 +281,51 @@ const edit = () => {
 
           <div>
             <h5 className={Style.registrationNavBar}>Account</h5>
-
             <div className={Style.reg}>
-              <div>
-                <div className={Style.inputDiv}>
-                  <label htmlFor="" className={Style.label}>
-                    Username:
-                  </label>
-                  <input
-                    type="text"
-                    className={Style.inputType}
-                    onChange={(e) => {
-                      accountOnChange(e.target.value, "username");
-                    }}
-                  />
-                </div>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                  Username:
+                </label>
+                <input
+                  type="text"
+                  className={Style.inputType}
+                  onChange={(e) => {
+                    accountOnChange(e.target.value, "username");
+                  }}
+                />
+              </div>
 
-                <div className={Style.inputDiv}>
-                  <label htmlFor="" className={Style.label}>
-                    Password:
-                  </label>
-                  <input
-                    type="password"
-                    className={Style.inputType}
-                    onChange={(e) => {
-                      accountOnChange(e.target.value, "password");
-                    }}
-                  />
-                </div>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  className={Style.inputType}
+                  onChange={(e) => {
+                    accountOnChange(e.target.value, "password");
+                  }}
+                />
+              </div>
 
-                <div className={Style.inputDiv}>
-                  <label htmlFor="" className={Style.label}>
-                    Confirm Password:
-                  </label>
-                  <input type="password" className={Style.inputType} />
-                </div>
+              <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                  Confirm Password:
+                </label>
+                <input type="password" className={Style.inputType} />
               </div>
             </div>
           </div>
         </div>
 
         <div className={Style.registerBtn}>
-          <MyButton type="submit" label="Save Changes" />
+          <MyButton type="submit" label="Register" />
         </div>
       </form>
+
+
     </div>
   );
 };
 
-export default edit;
+export default StudentRegistration;

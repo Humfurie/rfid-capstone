@@ -37,7 +37,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [registration, setRegistration] = useState(false);
 
 
-
   /**
    * these states contain backend data
    */
@@ -60,6 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
     facebook: "",
     year: "",
     idNumber: "",
+    rfidNumber: "",
     isAlumni: "",
   })
   // console.log(userRegistration)
@@ -110,22 +110,23 @@ export default function App({ Component, pageProps }: AppProps) {
    */
   // add position
   const positionSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/position`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
       position: position,
     })
     setPosition('')
-    router.push('/Positions/PositionsDashboard')
+    router.push('/users/position')
   }
   // add year
   const yearSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`, {
       year: year,
     })
     setYear('')
+    router.push('/users/year_level')
   }
 
   const userSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users_registration`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
       userRegistration: userRegistration,
       position: position,
       role: role,
@@ -144,6 +145,7 @@ export default function App({ Component, pageProps }: AppProps) {
       facebook: "",
       year: "",
       idNumber: "",
+      rfidNumber: "",
       isAlumni: "",
     })
     setPosition("")
@@ -160,19 +162,21 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
+  console.log(role)
+
   useEffect(() => {
     (async () => {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
         // router.push("/AdminDashboard");
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/position`).then(res => {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => {
           setApiPosition(res.data)
         })
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
           setApiYearLevel(res.data)
         })
       } catch (error) {
-        router.push("/");
+        // router.push("/");
       }
     })()
   }, [])
@@ -188,6 +192,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setCurrentMenu,
         registration,
         setRegistration,
+        userRegistration,
 
         userOnChange,
         setRole,
