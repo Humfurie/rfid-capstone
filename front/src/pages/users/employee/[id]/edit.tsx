@@ -2,20 +2,24 @@ import { useContext } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import axios from "axios";
 
 
-const edit = () => {
+const edit = (props: any) => {
   const {
-    registration,
+    userRegistration,
     setRegistration,
     userSubmit,
     userOnChange,
     setPosition,
     emergencyOnChange,
     accountOnChange,
-    setRole,
     apiPosition
   } = useContext(FormContext);
+
+  const { users } = props
+  const user = users[0]
 
   return (
     <div>
@@ -44,6 +48,7 @@ const edit = () => {
                 </label>
                 <input
                   type="text"
+                  value={user.first_name}
                   className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");
@@ -57,6 +62,7 @@ const edit = () => {
                 </label>
                 <input
                   type="text"
+                  value={user.middle_name}
                   className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "middleName");
@@ -70,6 +76,7 @@ const edit = () => {
                 </label>
                 <input
                   type="text"
+                  value={user.last_name}
                   className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "lastName");
@@ -83,6 +90,7 @@ const edit = () => {
                 </label>
                 <input
                   type="date"
+                  value={user.birthdate}
                   className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "birthdate");
@@ -309,3 +317,15 @@ const edit = () => {
 };
 
 export default edit;
+
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { params } = context
+
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/employee/${params?.id}`)
+
+  return {
+      props: {
+          users: data.data
+      }
+  }
+}

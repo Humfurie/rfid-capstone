@@ -45,6 +45,8 @@ export default function student(props: any) {
 export const getServerSideProps: GetServerSideProps = async () => {
 	const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/studentIndex`)
 
+	
+
 	return {
 		props: {
 			users: data.data.user

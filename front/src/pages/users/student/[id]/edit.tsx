@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import axios from "axios";
 
 
 const edit = () => {
@@ -327,3 +329,15 @@ const edit = () => {
 };
 
 export default edit;
+
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { params } = context
+
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/student/${params?.id}`)
+
+  return {
+      props: {
+          users: data.data
+      }
+  }
+}
