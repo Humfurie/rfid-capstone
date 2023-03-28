@@ -6,7 +6,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
 
 
-const edit = () => {
+const edit = (props: any) => {
   const {
     registration,
     setRegistration,
@@ -16,6 +16,9 @@ const edit = () => {
     userSubmit,
     setRole
   } = useContext(FormContext);
+
+  const { users } = props
+  const user = users[0]
 
   return (
     <div>
@@ -29,7 +32,7 @@ const edit = () => {
       >
         {setRole('student')}
 
-        <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
+        <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
               Personal Information
@@ -42,6 +45,7 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.first_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");
                   }}
@@ -55,6 +59,7 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.middle_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "middleName");
                   }}
@@ -68,6 +73,7 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.last_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "lastName");
                   }}
@@ -79,8 +85,9 @@ const edit = () => {
                   Birthday:
                 </label>
                 <input
-                  type="date"
+                  type="text" // reminder
                   className={Style.inputType}
+                  value={user.birthdate}
                   onChange={(e) => {
                     userOnChange(e.target.value, "birthdate");
                   }}
@@ -95,6 +102,7 @@ const edit = () => {
                   name=""
                   id=""
                   className={Style.inputType}
+                  value={user.gender}
                   onChange={(e) => {
                     userOnChange(e.target.value, "gender");
                   }}
@@ -114,6 +122,7 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.address}
                   onChange={(e) => {
                     userOnChange(e.target.value, "address");
                   }}
@@ -188,6 +197,7 @@ const edit = () => {
                 <input
                   type="email"
                   className={Style.inputType}
+                  value={user.email}
                   onChange={(e) => {
                     userOnChange(e.target.value, "email");
                   }}
@@ -199,8 +209,9 @@ const edit = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="number"
+                  type="text" // reminder
                   className={Style.inputType}
+                  value={user.contact_number}
                   onChange={(e) => {
                     userOnChange(e.target.value, "contactNumber");
                   }}
@@ -214,6 +225,7 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.facebook}
                   onChange={(e) => {
                     userOnChange(e.target.value, "facebook");
                   }}
@@ -232,6 +244,7 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.emergencyContact.name}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "name");
                   }}
@@ -243,8 +256,9 @@ const edit = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="number"
+                  type="text" // reminder
                   className={Style.inputType}
+                  value={user.emergencyContact.contact_number}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "contactNumber");
                   }}
@@ -258,6 +272,7 @@ const edit = () => {
                 <input
                   type="email"
                   className={Style.inputType}
+                  value={user.emergencyContact.email}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "email");
                   }}
@@ -271,48 +286,11 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.emergencyContact.facebook}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "facebook");
                   }}
                 />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h5 className={Style.registrationNavBar}>Account</h5>
-            <div className={Style.reg}>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Username:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "username")
-                  }}
-                />
-              </div>
-
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "password");
-                  }}
-                />
-              </div>
-
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Confirm Password:
-                </label>
-                <input type="password" className={Style.inputType} />
               </div>
             </div>
           </div>

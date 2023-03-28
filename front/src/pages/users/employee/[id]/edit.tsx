@@ -28,13 +28,13 @@ const edit = (props: any) => {
       <h3 className="text-center">Update Employee</h3>
       <form
         onSubmit={(e) => {
-            
+
           e.preventDefault();
           setRegistration(false)
           userSubmit();
         }}
       >
-        {}
+        { }
 
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
@@ -48,8 +48,8 @@ const edit = (props: any) => {
                 </label>
                 <input
                   type="text"
-                  value={user.first_name}
                   className={Style.inputType}
+                  value={user.first_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");
                   }}
@@ -62,8 +62,8 @@ const edit = (props: any) => {
                 </label>
                 <input
                   type="text"
-                  value={user.middle_name}
                   className={Style.inputType}
+                  value={user.middle_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "middleName");
                   }}
@@ -76,8 +76,8 @@ const edit = (props: any) => {
                 </label>
                 <input
                   type="text"
-                  value={user.last_name}
                   className={Style.inputType}
+                  value={user.last_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "lastName");
                   }}
@@ -89,9 +89,9 @@ const edit = (props: any) => {
                   Birthday:
                 </label>
                 <input
-                  type="date"
-                  value={user.birthdate}
+                  type="text" // should be date, but cannot get date cause value has other characters
                   className={Style.inputType}
+                  value={user.birthdate}
                   onChange={(e) => {
                     userOnChange(e.target.value, "birthdate");
                   }}
@@ -99,13 +99,14 @@ const edit = (props: any) => {
               </div>
 
               <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
+                <label htmlFor="gender" className={Style.label}>
                   Gender:
                 </label>
                 <select
                   name=""
                   id=""
                   className={Style.inputType}
+                  value={user.gender}
                   onChange={(e) => {
                     userOnChange(e.target.value, "gender");
                   }}
@@ -126,6 +127,7 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.address}
                   onChange={(e) => {
                     userOnChange(e.target.value, "address");
                   }}
@@ -145,6 +147,7 @@ const edit = (props: any) => {
                 <select
                   name="positions"
                   className={Style.inputType}
+                  value={user?.position[0]?.position}
                   onChange={(e) => {
                     setPosition(e.target.value);
                   }}
@@ -175,6 +178,7 @@ const edit = (props: any) => {
                 <input
                   type="email"
                   className={Style.inputType}
+                  value={user.email}
                   onChange={(e) => {
                     userOnChange(e.target.value, "email");
                   }}
@@ -185,8 +189,9 @@ const edit = (props: any) => {
                   Contact Number:
                 </label>
                 <input
-                  type="number"
+                  type="text" // should be number, but cannot get contact number cause value has characters
                   className={Style.inputType}
+                  value={user.contact_number}
                   onChange={(e) => {
                     userOnChange(e.target.value, "contactNumber");
                   }}
@@ -199,6 +204,7 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.facebook}
                   onChange={(e) => {
                     userOnChange(e.target.value, "facebook");
                   }}
@@ -219,6 +225,7 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.emergencyContact.name}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "name");
                   }}
@@ -230,8 +237,9 @@ const edit = (props: any) => {
                   Contact Number:
                 </label>
                 <input
-                  type="number"
+                  type="text" // should be number, but cannot get contact number cause value has characters
                   className={Style.inputType}
+                  value={user.emergencyContact.contact_number}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "contactNumber");
                   }}
@@ -245,6 +253,7 @@ const edit = (props: any) => {
                 <input
                   type="email"
                   className={Style.inputType}
+                  value={user.emergencyContact.email}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "email");
                   }}
@@ -258,51 +267,11 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={user.emergencyContact.facebook}
                   onChange={(e) => {
                     emergencyOnChange(e.target.value, "facebook");
                   }}
                 />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h5 className={Style.registrationNavBar}>Account</h5>
-
-            <div className={Style.reg}>
-              <div>
-                <div className={Style.inputDiv}>
-                  <label htmlFor="" className={Style.label}>
-                    Username:
-                  </label>
-                  <input
-                    type="text"
-                    className={Style.inputType}
-                    onChange={(e) => {
-                      accountOnChange(e.target.value, "username");
-                    }}
-                  />
-                </div>
-
-                <div className={Style.inputDiv}>
-                  <label htmlFor="" className={Style.label}>
-                    Password:
-                  </label>
-                  <input
-                    type="password"
-                    className={Style.inputType}
-                    onChange={(e) => {
-                      accountOnChange(e.target.value, "password");
-                    }}
-                  />
-                </div>
-
-                <div className={Style.inputDiv}>
-                  <label htmlFor="" className={Style.label}>
-                    Confirm Password:
-                  </label>
-                  <input type="password" className={Style.inputType} />
-                </div>
               </div>
             </div>
           </div>
@@ -324,8 +293,8 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
   const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/employee/${params?.id}`)
 
   return {
-      props: {
-          users: data.data
-      }
+    props: {
+      users: data.data
+    }
   }
 }

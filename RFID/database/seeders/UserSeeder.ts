@@ -14,6 +14,7 @@ export default class extends BaseSeeder {
 
     const gender = ['male', 'female']
     const position = [1, 2]
+    const year = [1, 2, 3, 4, 5, 6]
 
     // Write your database queries inside the run method
 
@@ -51,8 +52,9 @@ export default class extends BaseSeeder {
       await emergency.save()
 
       const account = new UserLogin()
-      account.username = faker.internet.userName()
+      account.username = user.lastName
       account.password = "Humfurie"
+      // account.password = user.idNumber
       account.userId = user.id
 
       account.useTransaction(trx)
@@ -83,7 +85,7 @@ export default class extends BaseSeeder {
 
       await user.save()
       await user.related('role').attach([1])
-      await user.related('position').attach([position[Math.floor(Math.random() * position.length)]])
+      await user.related('yearLevel').attach([year[Math.floor(Math.random() * year.length)]])
 
 
       const emergency = new EmergencyContact()
@@ -97,8 +99,9 @@ export default class extends BaseSeeder {
       await emergency.save()
 
       const account = new UserLogin()
-      account.username = faker.internet.userName()
+      account.username = user.lastName
       account.password = "Humfurie"
+      // account.password = user.idNumber
       account.userId = user.id
 
       account.useTransaction(trx)
@@ -126,17 +129,18 @@ export default class extends BaseSeeder {
       user.useTransaction(trx)
 
       await user.save()
-  
+
       // await user.related('role').attach([3])
 
-      // const account = new UserLogin()
-      // account.username = user.firstName
-      // account.password = "Humfurie"
-      // account.userId = user.id
+      const account = new UserLogin()
+      account.username = user.lastName
+      account.password = "Humfurie"
+      // account.password = user.idNumber
+      account.userId = user.id
 
-      // account.useTransaction(trx)
+      account.useTransaction(trx)
 
-      // await account.save()
+      await account.save()
 
 
       await trx.commit()
