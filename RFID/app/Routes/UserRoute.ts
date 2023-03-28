@@ -12,5 +12,6 @@ Route.group(() => {
     /**
      * studentShow
      */
-    Route.get('users/student/:id', 'UsersController.studentShow' )
+    Route.get('/users/student/:id', 'UsersController.studentShow' )
+    Route.put('/users/delete', "UsersController.deleteUser")
 }).namespace('App/Controllers/Http/Admin')
