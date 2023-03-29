@@ -4,8 +4,6 @@ import User from 'App/Models/User'
 
 
 export default class UsersController {
-    public async userLogin({ }: HttpContextContract) {
-    }
 
     /**
      * 
@@ -91,6 +89,22 @@ export default class UsersController {
 
         return response.status(200).send([user])
 
+    }
+
+    /**
+     * edit user
+     */
+    public async edit({request, response, params}: HttpContextContract) {
+        const req = request.only(['role'])
+        if(req.role == 'student') {
+            const user = User.query().where('id', params.id)
+            return response.status(200).json(user)
+        } else if(req.role == 'employee') {
+            const user = User.query().where('id', params.id)
+            return response.status(200).json(user)
+        } else {
+            return response.status(400).json({"message": "User not found"})
+        }
     }
 
     /**
