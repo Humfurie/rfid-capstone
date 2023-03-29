@@ -1,5 +1,4 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Parent from 'App/Models/Parent';
 import User from 'App/Models/User'
 
 
@@ -91,22 +90,6 @@ export default class UsersController {
 
         return response.status(200).send([user])
 
-    }
-
-    /**
-     * 
-     * @returns all parents
-     */
-    public async parentIndex({ response }: HttpContextContract) {
-
-        const user = await Parent.query().where('flag', 1)
-
-        console.log(user)
-        if (!user) {
-            return response.status(401).json({ 'Message': 'Data not found!' })
-        }
-
-        return response.status(200).json(user)
     }
 
     public async deleteUser({ request, response }: HttpContextContract) {
