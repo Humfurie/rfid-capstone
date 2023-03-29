@@ -42,20 +42,19 @@ const StudentView = (props: any) => {
             infoItems: [
                 {
                     items: (
-                        <div className="p-4">
-                            <div className="p-1">
-                                <span className="font-semibold">Birthday: </span>
-                                {user.birthdate}
+
+                        <>
+                            <div className="p-4">
+                                <div className="p-1">
+                                    <span className="font-semibold">ID Number: </span>
+                                </div>
+
+                                <div className="p-1">
+                                    <span className="font-semibold"> School Year:</span>
+                                    {user.yearLevel[0].year || null}
+                                </div>
                             </div>
-                            <div className="p-1">
-                                <span className="font-semibold">Gender: </span>
-                                {user.gender}
-                            </div>
-                            <div className="p-1">
-                                <span className="font-semibold">Address: </span>
-                                {user.address}
-                            </div>
-                        </div>
+                        </>
                     )
                 }
             ],
