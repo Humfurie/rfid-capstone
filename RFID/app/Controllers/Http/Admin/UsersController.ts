@@ -1,5 +1,4 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Parent from 'App/Models/Parent';
 import User from 'App/Models/User'
 
 
