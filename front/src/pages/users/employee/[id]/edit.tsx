@@ -8,35 +8,28 @@ import axios from "axios";
 
 const edit = (props: any) => {
   const {
-    userRegistration,
     setRegistration,
-    userSubmit,
     userOnChange,
     setPosition,
     emergencyOnChange,
-    accountOnChange,
-    apiPosition,
-    setRole
+    setRole,
+    userUpdate,
+    setUserInfo
   } = useContext(FormContext);
 
-  const { users } = props
-  const user = users[0]
+  const { user, position } = props
 
   return (
     <div>
-
-
       <h3 className="text-center">Update Employee</h3>
       <form
         onSubmit={(e) => {
           setRole("employee")
           e.preventDefault();
           setRegistration(false)
-          userSubmit();
+          userUpdate()
         }}
       >
-        { }
-
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
@@ -50,13 +43,12 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.first_name}
                   onChange={(e) => {
                     userOnChange(e.target.value, "firstName");
                   }}
+                  value={user.first_name}
                 />
               </div>
-
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Middle Name:
@@ -156,12 +148,13 @@ const edit = (props: any) => {
                   <option value=''>
                     ---Select Position---
                   </option>
-                  {apiPosition.map((element: { id: number, position: string }, id: number) => (
-                    <>
-                      <option key={id} value={element.id}>{element.position}</option>
-                    </>
-                  ))}
-
+                  {position.map((element: { id: number, position: string }, id: number) => {
+                    return (
+                      <>
+                        <option key={id} value={element.id}>{element.position}</option>
+                      </>
+                    )
+                  })}
                 </select>
               </div>
             </div>
@@ -295,7 +288,8 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   return {
     props: {
-      users: data.data
+      user: data.data[0],
+      position: data.data[1]
     }
   }
 }

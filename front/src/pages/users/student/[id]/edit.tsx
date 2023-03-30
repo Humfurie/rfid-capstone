@@ -8,30 +8,28 @@ import axios from "axios";
 
 const edit = (props: any) => {
   const {
-    registration,
     setRegistration,
     userOnChange,
     emergencyOnChange,
-    accountOnChange,
     userSubmit,
-    setRole
+    setRole,
+    userUpdate,
   } = useContext(FormContext);
 
-  const { users } = props
-  const user = users[0]
-
+  const { user, yearLevel } = props
+  const userYearLevel = user.yearLevel[0]
+  console.log('yearLevel', yearLevel)
   return (
     <div>
       <h4 className="text-center">Update Student</h4>
       <form
         onSubmit={(e) => {
+          setRole("student")
           e.preventDefault();
           setRegistration(false)
-          userSubmit();
+          userUpdate()
         }}
       >
-        {setRole('student')}
-
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
@@ -155,6 +153,7 @@ const edit = (props: any) => {
                 <select
                   name=""
                   id=""
+                  value={userYearLevel.id}
                   className={Style.inputType}
                   onChange={(e) => {
                     userOnChange(e.target.value, "schoolYear");
@@ -163,12 +162,19 @@ const edit = (props: any) => {
                   <option selected disabled>
                     ---Select School Year---
                   </option>
-                  <option value="grade 7">Grade 7</option>
+                  {yearLevel.map((yearLevel: { id: number, year: string }, id: number) => {
+                    return (
+                      <>
+                        <option key={id} value={yearLevel.id}>{yearLevel.year}</option>
+                      </>
+                    )
+                  })}
+                  {/* <option value="grade 7">Grade 7</option>
                   <option value="grade 8">Grade 8</option>
                   <option value="grade 9">Grade 9</option>
                   <option value="grade 10">Grade 10</option>
                   <option value="grade 11">Grade 11</option>
-                  <option value="grade 12">Grade 12</option>
+                  <option value="grade 12">Grade 12</option> */}
                 </select>
               </div>
               <div className="flex justify-center flex-col mt-2">
@@ -314,8 +320,9 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
   const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/student/${params?.id}`)
 
   return {
-      props: {
-          users: data.data
-      }
+    props: {
+      user: data.data[0],
+      yearLevel: data.data[1]
+    }
   }
 }

@@ -40,8 +40,6 @@ export default function App({ Component, pageProps }: AppProps) {
   /**
    * these states contain backend data
    */
-  const [apiPosition, setApiPosition] = useState([])
-  const [apiYearLevel, setApiYearLevel] = useState([])
 
   /*
    *
@@ -132,7 +130,6 @@ export default function App({ Component, pageProps }: AppProps) {
       position: position,
       role: role,
       emergency: emergency,
-      account: account,
     })
     setUserInfo({
       firstName: "",
@@ -167,12 +164,11 @@ export default function App({ Component, pageProps }: AppProps) {
    * Update User
    */
   const userUpdate = async () => {
-    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/update`, {
-      userRegistration: userInfo,
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit`, {
+      user: userInfo,
       position: position,
       role: role,
       emergency: emergency,
-      account: account,
     })
     setUserInfo({
       firstName: "",
@@ -228,12 +224,6 @@ export default function App({ Component, pageProps }: AppProps) {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
         // router.push("/AdminDashboard");
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => {
-          setApiPosition(res.data)
-        })
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
-          setApiYearLevel(res.data)
-        })
       } catch (error) {
         // router.push("/");
       }
@@ -252,6 +242,7 @@ export default function App({ Component, pageProps }: AppProps) {
         registration,
         setRegistration,
         userInfo,
+        setUserInfo,
 
         userOnChange,
         setRole,
@@ -272,12 +263,11 @@ export default function App({ Component, pageProps }: AppProps) {
         year,
         setYear,
         //retrieved data
-        apiPosition,
-        apiYearLevel,
 
         //user delete
         userDelete,
         parentDelete,
+        userUpdate,
 
         id,
         setId,
