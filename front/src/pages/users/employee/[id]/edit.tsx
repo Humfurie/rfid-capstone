@@ -23,7 +23,7 @@ const edit = (props: any) => {
     idNumber: user.id_number,
     rfidNumber: user.rfid_number,
     isAlumni: user.is_alumni,
-    position: user?.position[0]?.position,
+    position: user?.position[0]?.id,
     emergencyName: user.emergencyContact.name,
     emergencyContactNumber: user.emergencyContact.contact_number,
     emergencyEmail: user.emergencyContact.email,
