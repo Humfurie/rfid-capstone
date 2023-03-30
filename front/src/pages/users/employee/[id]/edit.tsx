@@ -77,7 +77,7 @@ const edit = (props: any) => {
             <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   First Name:
@@ -174,7 +174,7 @@ const edit = (props: any) => {
             <h5 className={Style.registrationNavBar}>
               School Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className="flex justify-center flex-col mt-2">
                 <label htmlFor="" className={Style.label}>
                   Position:
@@ -206,7 +206,7 @@ const edit = (props: any) => {
               Contact Information
             </h5>
 
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   E-mail:
@@ -253,7 +253,7 @@ const edit = (props: any) => {
               Emergency Contact
             </h5>
 
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Name:
