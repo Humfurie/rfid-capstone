@@ -10,10 +10,7 @@ export const EmployeeSchoolInfo = () => {
     return (
 
         <div>
-            <h5 className={Style.registrationNavBar}>
-                School Information
-            </h5>
-            <div className={Style.reg}>
+            <div >
                 <div className="flex justify-center flex-col mt-2">
                     <label htmlFor="" className={Style.label}>
                         Position:

@@ -9,11 +9,7 @@ export const EmergencyContactInfo = () => {
 
     return (
         <div>
-            <h5 className={Style.registrationNavBar}>
-                Emergency Contact
-            </h5>
-
-            <div className={Style.reg}>
+            <div>
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
                         Name:

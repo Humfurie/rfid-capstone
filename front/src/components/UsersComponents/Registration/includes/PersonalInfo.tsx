@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { FormContext } from "../../../../../lib/FormContext";
-import { Style } from "../../../../../lib/Style";
+import { FormContext } from "../../../../lib/FormContext";
+import { Style } from "../../../../lib/Style";
 
-export const StudentPersonalInfo = () => {
+export const PersonalInfo = () => {
     const {
         registration,
         setRegistration,
@@ -14,10 +14,7 @@ export const StudentPersonalInfo = () => {
     } = useContext(FormContext);
     return (
         <div>
-            <h5 className={Style.registrationNavBar}>
-                Personal Information
-            </h5>
-            <div className={Style.reg}>
+            <div >
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
                         First Name:

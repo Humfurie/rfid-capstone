@@ -14,10 +14,7 @@ export const StudentSchoolInfo = () => {
     } = useContext(FormContext);
     return (
         <div>
-            <h5 className={Style.registrationNavBar}>
-                School Information
-            </h5>
-            <div className={Style.reg}>
+            <div>
                 <div className="flex justify-center flex-col mt-1">
                     <label htmlFor="" className={Style.label}>
                         Student ID:

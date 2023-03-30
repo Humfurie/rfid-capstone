@@ -9,11 +9,7 @@ export const ContactInfo = () => {
 
     return (
         <div>
-            <h5 className={Style.registrationNavBar}>
-                Contact Information
-            </h5>
-
-            <div className={Style.reg}>
+            <div>
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
                         E-mail:

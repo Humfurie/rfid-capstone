@@ -49,7 +49,7 @@ export default function AdminNavbar() {
 		button: true
 	},
 	{
-		title: <Link href="/users/parent">Parents</Link>,
+		title: <Link href="/users/parent">Parent/Guardian</Link>,
 		icon: ""
 	},
 	{

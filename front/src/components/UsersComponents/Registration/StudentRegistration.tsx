@@ -3,10 +3,10 @@ import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { Style } from "../../../lib/Style";
 import MyButton from "../../../lib/partials/MyButton";
-import { StudentPersonalInfo } from "./includes/student/StudentPersonalInfo";
 import { StudentSchoolInfo } from "./includes/student/StudentSchoolInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 import { EmergencyContactInfo } from "./includes/EmergencyContactInfo";
+import { PersonalInfo } from "./includes/PersonalInfo";
 
 const StudentRegistration = () => {
   const router = useRouter()
@@ -21,7 +21,7 @@ const StudentRegistration = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full bg-white rounded-2xl shadow-lg p-2">
+      <div className="w-full bg-white rounded-2xl mx-auto shadow-xl p-2">
         <h4 className="text-center">Student Registration</h4>
         <form
           onSubmit={(e) => {
@@ -33,30 +33,46 @@ const StudentRegistration = () => {
           }}
         >
           <div className="grid grid-cols-4 gap-1">
-            <button type="button" onClick={e => {
-              setSelection('personal')
-            }} className={Style.registrationNavBar}>
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('personal')
+              }}
+            >
               Personal Information
             </button>
-            <button type="button" onClick={e => {
-              setSelection('school')
-            }} className={Style.registrationNavBar}>
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('school')
+              }}
+              >
               School Information
             </button>
-            <button type="button" onClick={e => {
-              setSelection('contact')
-            }} className={Style.registrationNavBar}>
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('contact')
+              }}
+              >
               Contact Information
             </button>
-            <button type="button" onClick={e => {
-              setSelection('emergency')
-            }} className={Style.registrationNavBar}>
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('emergency')
+              }}
+              >
               Emergency Contact
             </button>
           </div>
 
           <div>
-            {selection === 'personal' ? <StudentPersonalInfo /> : selection === 'school' ? <StudentSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "We found nothing"}
+            {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <StudentSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "We found nothing"}
             {/* <StudentPersonalInfo />
             <StudentSchoolInfo />
             <ContactInfo />

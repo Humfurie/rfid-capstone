@@ -15,7 +15,7 @@ export default function student(props: any) {
 	return (
 		<div className="flex h-screen">
 			<Head>
-				<title>List of Employees</title>
+				<title>List of Students</title>
 				<meta name="description" content="Created by streamline" />
 				<link rel="icon" href=".../img/ais-rft-logo.jpg" />
 			</Head>
