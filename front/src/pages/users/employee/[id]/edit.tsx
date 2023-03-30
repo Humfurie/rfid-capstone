@@ -15,7 +15,8 @@ const edit = (props: any) => {
     setPosition,
     emergencyOnChange,
     accountOnChange,
-    apiPosition
+    apiPosition,
+    setRole
   } = useContext(FormContext);
 
   const { users } = props
@@ -28,7 +29,7 @@ const edit = (props: any) => {
       <h3 className="text-center">Update Employee</h3>
       <form
         onSubmit={(e) => {
-
+          setRole("employee")
           e.preventDefault();
           setRegistration(false)
           userSubmit();

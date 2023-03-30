@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the forms and states stuff of the users
    */
-  const [userRegistration, setUserRegistration] = useState({
+  const [userInfo, setUserInfo] = useState({
     firstName: "",
     middleName: "",
     lastName: "",
@@ -89,7 +89,7 @@ export default function App({ Component, pageProps }: AppProps) {
    * this here contains all the functions
    */
   const userOnChange = (value: any, column: string) => {
-    setUserRegistration((prev) => {
+    setUserInfo((prev) => {
       return { ...prev, [column]: value };
     })
   }
@@ -128,13 +128,13 @@ export default function App({ Component, pageProps }: AppProps) {
   }
   const userSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
-      userRegistration: userRegistration,
+      userRegistration: userInfo,
       position: position,
       role: role,
       emergency: emergency,
       account: account,
     })
-    setUserRegistration({
+    setUserInfo({
       firstName: "",
       middleName: "",
       lastName: "",
@@ -163,6 +163,45 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
+  /**
+   * Update User
+   */
+  const userUpdate = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/update`, {
+      userRegistration: userInfo,
+      position: position,
+      role: role,
+      emergency: emergency,
+      account: account,
+    })
+    setUserInfo({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      birthdate: "",
+      gender: "",
+      address: "",
+      email: "",
+      contactNumber: "",
+      facebook: "",
+      year: "",
+      idNumber: "",
+      rfidNumber: "",
+      isAlumni: "",
+    })
+    setPosition("")
+    setRole('')
+    setEmergency({
+      name: "",
+      contactNumber: "",
+      email: "",
+      facebook: "",
+    })
+    setAccount({
+      username: "",
+      password: "",
+    })
+  }
   /**
    * Delete User
    */
@@ -212,7 +251,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setCurrentMenu,
         registration,
         setRegistration,
-        userRegistration,
+        userInfo,
 
         userOnChange,
         setRole,
