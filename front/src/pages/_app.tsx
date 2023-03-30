@@ -175,6 +175,13 @@ export default function App({ Component, pageProps }: AppProps) {
     setId('')
   }
 
+  const parentDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/parent/delete`, {
+      id: id
+    })
+    setId('')
+  }
+
   console.log(role)
 
   useEffect(() => {
@@ -231,6 +238,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         //user delete
         userDelete,
+        parentDelete,
 
         id,
         setId,

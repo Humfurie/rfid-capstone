@@ -45,9 +45,6 @@ export default function UsersDataTable(props: any) {
                     <Link href={`/users/${role}/${user.id}/edit`} >
                       <BsPencil className="hover:text-green-600" />
                     </Link>
-                    {/* <Link href={`/users/${role}/${user.id}/destroy`} >
-                      
-                    </Link> */}
                     <button onClick={e => {
                       setOpen(true)
                     }}>
