@@ -6,7 +6,7 @@ import { FormContext } from "../../lib/FormContext";
 import { useContext } from "react";
 import { BsArrowLeft } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
-const StudentNavbar = () => {
+const               StudentNavbar = () => {
 
     const {
         open,
@@ -17,15 +17,15 @@ const StudentNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="../Student/StudentProfile">Profile</Link>,
+            title: <Link href="../student/profile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="../Student/StudentSchedule">Schedule</Link>,
+            title: <Link href="../student/schedule">Schedule</Link>,
             icon: <AiFillSchedule />
         },
         {
-            title: <Link href="../StudentActivity">Acitvity</Link>,
+            title: <Link href="../student/activity">Acitvity</Link>,
             icon: <RiTimerFill />
         },
         {
