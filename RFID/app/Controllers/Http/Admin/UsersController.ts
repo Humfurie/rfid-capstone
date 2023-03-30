@@ -100,7 +100,7 @@ export default class UsersController {
      * edit user
      */
     public async edit({ request, response, params }: HttpContextContract) {
-        const req = request.only(['role', 'user', 'position', 'emergency'])
+        const req = request.only(['data'])
         console.log(req)
         // if (req.role == 'student') {
         //     const user = User.query().where('id', params.id)
