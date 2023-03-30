@@ -6,9 +6,8 @@ import { useState } from "react";
 import Destroy from "../../../pages/users/destroy";
 
 export default function UsersDataTable(props: any) {
-  const { users } = props
+  const { user } = props
   const [isLoading, setLoading] = useState(true)
-  console.log(users)
 
   return (
     <div className="w-full">
@@ -22,7 +21,7 @@ export default function UsersDataTable(props: any) {
           </tr>
         </thead>
         <tbody >
-          {users.map((user: any, id: number) => {
+          {user.map((user: any, id: number) => {
             const roles = user.role[0].role
             const role = roles.toString().toLowerCase()
             const [open, setOpen] = useState(false)

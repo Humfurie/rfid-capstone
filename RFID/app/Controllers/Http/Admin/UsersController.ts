@@ -1,5 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Position from 'App/Models/Position';
 import User from 'App/Models/User'
+import YearLevel from 'App/Models/YearLevel';
 
 
 export default class UsersController {
@@ -23,7 +25,7 @@ export default class UsersController {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
 
-        return response.status(200).json({ user })
+        return response.status(200).json(user)
     }
 
     /**
@@ -41,8 +43,10 @@ export default class UsersController {
             .preload('role')
             .preload('position')
             .firstOrFail()
+        
+        const position = await Position.query().where('flag', 1)
 
-        return response.status(200).send([user])
+        return response.status(200).send([user, position])
     }
 
     /**
@@ -66,7 +70,7 @@ export default class UsersController {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
 
-        return response.status(200).json({ user })
+        return response.status(200).json(user)
     }
 
     /***
@@ -86,24 +90,27 @@ export default class UsersController {
             .preload('role')
             .firstOrFail()
 
-        return response.status(200).send([user])
+        const year = await YearLevel.query().where('flag', 1)
+
+        return response.status(200).send([user, year])
 
     }
 
     /**
      * edit user
      */
-    public async edit({request, response, params}: HttpContextContract) {
-        const req = request.only(['role'])
-        if(req.role == 'student') {
-            const user = User.query().where('id', params.id)
-            return response.status(200).json(user)
-        } else if(req.role == 'employee') {
-            const user = User.query().where('id', params.id)
-            return response.status(200).json(user)
-        } else {
-            return response.status(400).json({"message": "User not found"})
-        }
+    public async edit({ request, response, params }: HttpContextContract) {
+        const req = request.only(['role', 'user', 'position', 'emergency'])
+        console.log(req)
+        // if (req.role == 'student') {
+        //     const user = User.query().where('id', params.id)
+        //     return response.status(200).json(user)
+        // } else if (req.role == 'employee') {
+        //     const user = User.query().where('id', params.id)
+        //     return response.status(200).json(user)
+        // } else {
+        //     return response.status(400).json({ "message": "User not found" })
+        // }
     }
 
 
