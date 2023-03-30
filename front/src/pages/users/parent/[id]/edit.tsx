@@ -29,7 +29,7 @@ const edit = () => {
             <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   First Name:
@@ -114,7 +114,7 @@ const edit = () => {
             <h5 className={Style.registrationNavBar}>
               Contact Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   E-mail:
@@ -155,7 +155,7 @@ const edit = () => {
           </div>
           <div>
             <h5 className={Style.registrationNavBar}>Account</h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Username:
