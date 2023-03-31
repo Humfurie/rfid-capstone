@@ -26,7 +26,7 @@ export default class extends BaseSeeder {
       user.firstName = faker.name.firstName()
       user.middleName = faker.name.middleName()
       user.lastName = faker.name.lastName()
-      user.birthdate = faker.date.birthdate()
+      user.birthdate = faker.datatype.datetime()
       user.gender = gender[Math.floor(Math.random() * gender.length)]
       user.email = faker.internet.email()
       user.address = faker.address.city()
