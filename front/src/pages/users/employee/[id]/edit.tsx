@@ -38,8 +38,25 @@ const edit = (props: any) => {
   }
 
   const userUpdate = async () => {
-    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit`, {
-      data: form
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
+      firstName: form.firstName,
+      middleName: form.middleName,
+      lastName: form.lastName,
+      birthdate: form.birthdate,
+      gender: form.gender,
+      address: form.address,
+      email: form.email,
+      contactNumber: form.contactNumber,
+      facebook: form.facebook,
+      idNumber: form.idNumber,
+      rfidNumber: form.rfidNumber,
+      isAlumni: form.isAlumni,
+      position: form.position,
+      emergencyName: form.emergencyName,
+      emergencyContactNumber: form.emergencyContactNumber,
+      emergencyEmail: form.emergencyEmail,
+      emergencyFacebook: form.emergencyFacebook,
+      role: "employee"
     })
     setForm({
       firstName: "",
