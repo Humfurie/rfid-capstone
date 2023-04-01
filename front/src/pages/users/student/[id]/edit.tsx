@@ -362,6 +362,7 @@ const edit = (props: any) => {
             </div>
           </div>
         </div>
+        <button type="submit">Update</button>
       </form>
     </div>
   );
