@@ -1,10 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { Style } from "../../../lib/Style";
 import MyButton from "../../../lib/partials/MyButton";
 import { useRouter } from "next/router";
+import { PersonalInfo } from "./includes/PersonalInfo";
+import { ContactInfo } from "./includes/ContactInfo";
 
 const ParentRegistration = () => {
+  const [selection, setSelection] = useState('personal')
   const router = useRouter()
   const {
     registration,
@@ -29,52 +32,36 @@ const ParentRegistration = () => {
         >
 
 
-
-
-          <div>
-            <h5 className={Style.registrationNavBar}>
+          <div className="grid grid-cols-2 gap-1">
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('personal')
+              }}
+            >
+              Personal Information
+            </button>
+            
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('contact')
+              }}
+            >
               Contact Information
-            </h5>
-            <div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  E-mail:
-                </label>
-                <input
-                  type="email"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "email");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Contact Number:
-                </label>
-                <input
-                  type="number"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "contactNumber");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Facebook:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "facebook");
-                  }}
-                />
-              </div>
-            </div>
+            </button>
+           
           </div>
-        
+          <div>
+            {selection === 'personal' ? <PersonalInfo /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
+            {/* <StudentPersonalInfo />
+            <StudentSchoolInfo />
+            <ContactInfo />
+            <EmergencyContactInfo /> */}
+          </div>
+
 
           <div className={Style.registerBtn}>
             <MyButton type="submit" label="Register" />

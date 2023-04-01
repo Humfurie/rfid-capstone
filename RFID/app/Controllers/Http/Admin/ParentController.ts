@@ -32,4 +32,15 @@ export default class ParetController {
 
         return response.status(200).json(deleteParent)
     }
+
+    public async edit({ request, response }: HttpContextContract) {
+        const req = request.only(['id'])
+        console.log(req)
+        // const editParent = await Parent.query()
+        //     .where('id', req.id)
+        //     .where('flag', 1)
+        //     .update({ flag: 0 })
+
+        // return response.status(200).json(editParent)
+    }
 }
