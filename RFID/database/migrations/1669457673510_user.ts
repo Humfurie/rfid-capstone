@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('first_name', 50).notNullable()
       table.string('middle_name', 255).notNullable()
       table.string('last_name', 50).notNullable()
-      table.date('birthdate').nullable()
+      table.string('birthdate').nullable()
       table.string('gender').notNullable()
       table.string('email', 255).nullable()
       table.string('address', 255).nullable()

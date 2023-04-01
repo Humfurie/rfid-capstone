@@ -58,7 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
     year: "",
     idNumber: "",
     rfidNumber: "",
-    isAlumni: "",
+    isAlumni: false,
   })
   // console.log(userRegistration)
   // year levels
@@ -144,7 +144,7 @@ export default function App({ Component, pageProps }: AppProps) {
       year: "",
       idNumber: "",
       rfidNumber: "",
-      isAlumni: "",
+      isAlumni: false,
     })
     setPosition("")
     setRole('')
@@ -160,44 +160,7 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
-  /**
-   * Update User
-   */
-  const userUpdate = async () => {
-    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit`, {
-      user: userInfo,
-      position: position,
-      role: role,
-      emergency: emergency,
-    })
-    setUserInfo({
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      birthdate: "",
-      gender: "",
-      address: "",
-      email: "",
-      contactNumber: "",
-      facebook: "",
-      year: "",
-      idNumber: "",
-      rfidNumber: "",
-      isAlumni: "",
-    })
-    setPosition("")
-    setRole('')
-    setEmergency({
-      name: "",
-      contactNumber: "",
-      email: "",
-      facebook: "",
-    })
-    setAccount({
-      username: "",
-      password: "",
-    })
-  }
+
   /**
    * Delete User
    */
@@ -243,6 +206,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setRegistration,
         userInfo,
         setUserInfo,
+        emergency,
+        setEmergency,
 
         userOnChange,
         setRole,
@@ -267,7 +232,6 @@ export default function App({ Component, pageProps }: AppProps) {
         //user delete
         userDelete,
         parentDelete,
-        userUpdate,
 
         id,
         setId,
