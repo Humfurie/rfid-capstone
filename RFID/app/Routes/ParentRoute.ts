@@ -1,5 +1,4 @@
 import Route from '@ioc:Adonis/Core/Route'
-import ParentController from 'App/Controllers/Http/Admin/ParentController'
 
 Route.group(() => {
     Route.get('/parent/index', 'ParentController.index')
