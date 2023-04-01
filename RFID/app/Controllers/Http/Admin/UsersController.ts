@@ -101,8 +101,8 @@ export default class UsersController {
      * edit user
      */
     public async edit({ request, response, params }: HttpContextContract) {
-        const req = request.only(['role'])
 
+        const req = request.only(['role'])
         const validated = await request.validate(UserValidator)
 
         // return response.status(200).json(validated)
@@ -114,7 +114,12 @@ export default class UsersController {
                 .where('flag', 1)
                 .firstOrFail()
 
-                user.merge(validated)
+                user.merge({
+                    firstName: validated.firstName,
+                    middleName: validated.middleName,
+                    lastName: validated.lastName,
+                    birthdate: validated.birthdate,
+                })
             return response.status(200).json(user)
         } else if (req.role === 'employee') {
             const user = User.query().where('id', params.id)
