@@ -1,6 +1,5 @@
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import Link from "next/link";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Header from "../../../../components/Header";
 import UserView from "../../../../components/UsersComponents/Show/UserView";
