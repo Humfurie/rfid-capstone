@@ -24,12 +24,12 @@ const edit = () => {
         }}
       >
 
-        <div className="grid lg:grid-cols-3 gap-1  text-center mt-10 mb-2">
+        <div className="grid lg:grid-cols-2 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   First Name:
@@ -114,7 +114,7 @@ const edit = () => {
             <h5 className={Style.registrationNavBar}>
               Contact Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   E-mail:
@@ -150,41 +150,6 @@ const edit = () => {
                     userOnChange(e.target.value, "facebook");
                   }}
                 />
-              </div>
-            </div>
-          </div>
-          <div>
-            <h5 className={Style.registrationNavBar}>Account</h5>
-            <div className={Style.reg}>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Username:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "username");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "password");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Confirm Password:
-                </label>
-                <input type="password" className={Style.inputType} />
               </div>
             </div>
           </div>

@@ -11,11 +11,11 @@ import StudentTab from "../../components/Tabs/StudentTab";
 
 
 export default function student(props: any) {
-	const { users } = props
+	const { user } = props
 	return (
 		<div className="flex h-screen">
 			<Head>
-				<title>List of Employees</title>
+				<title>List of Students</title>
 				<meta name="description" content="Created by streamline" />
 				<link rel="icon" href=".../img/ais-rft-logo.jpg" />
 			</Head>
@@ -31,7 +31,7 @@ export default function student(props: any) {
 
 						</div>
 						<div className={`w-full p-2`}>
-							<UsersDataTable users={users} />
+							<UsersDataTable user={user} />
 						</div>
 					</div>
 
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 	return {
 		props: {
-			users: data.data.user
+			user: data.data
 		}
 	}
 }

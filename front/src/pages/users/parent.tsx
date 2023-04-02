@@ -24,15 +24,14 @@ export default function parent(props: any) {
 						<AdminNavbar />
 					</div>
 					<div className="flex flex-col w-full">
-						<div className="flex flex-col w-full">
-							<div>
-								<ParentTab/>
-							</div>
-							<div className={`w-full p-2`}>
-								<ParentDatatable users={users} />
-							</div>
+						<div>
+							<ParentTab />
+						</div>
+						<div className={`w-full p-2`}>
+							<ParentDatatable users={users} />
 						</div>
 					</div>
+
 				</div>
 
 			</div>

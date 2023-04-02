@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { FormContext } from "../../../../lib/FormContext";
+import { useState } from "react";
 import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
@@ -7,41 +6,95 @@ import axios from "axios";
 
 
 const edit = (props: any) => {
-  const {
-    userRegistration,
-    setRegistration,
-    userSubmit,
-    userOnChange,
-    setPosition,
-    emergencyOnChange,
-    accountOnChange,
-    apiPosition
-  } = useContext(FormContext);
 
-  const { users } = props
-  const user = users[0]
+  const { user, userPosition } = props
 
+
+  const [form, setForm] = useState({
+    firstName: user.first_name,
+    middleName: user.middle_name,
+    lastName: user.last_name,
+    birthdate: user.birthdate,
+    gender: user.gender,
+    address: user.address,
+    email: user.email,
+    contactNumber: user.contact_number,
+    facebook: user.facebook,
+    idNumber: user.id_number,
+    rfidNumber: user.rfid_number,
+    isAlumni: user.is_alumni,
+    position: user?.position[0]?.id,
+    emergencyName: user.emergencyContact.name,
+    emergencyContactNumber: user.emergencyContact.contact_number,
+    emergencyEmail: user.emergencyContact.email,
+    emergencyFacebook: user.emergencyContact.facebook,
+    role: "employee"
+  })
+
+  const formOnChange = (value: any, column: string) => {
+    setForm(prev => {
+      return { ...prev, [column]: value }
+    })
+  }
+
+  const userUpdate = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
+      firstName: form.firstName,
+      middleName: form.middleName,
+      lastName: form.lastName,
+      birthdate: form.birthdate,
+      gender: form.gender,
+      address: form.address,
+      email: form.email,
+      contactNumber: form.contactNumber,
+      facebook: form.facebook,
+      idNumber: form.idNumber,
+      rfidNumber: form.rfidNumber,
+      isAlumni: form.isAlumni,
+      position: form.position,
+      emergencyName: form.emergencyName,
+      emergencyContactNumber: form.emergencyContactNumber,
+      emergencyEmail: form.emergencyEmail,
+      emergencyFacebook: form.emergencyFacebook,
+      role: "employee"
+    })
+    setForm({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      birthdate: "",
+      gender: "",
+      address: "",
+      email: "",
+      contactNumber: "",
+      facebook: "",
+      idNumber: "",
+      rfidNumber: "",
+      isAlumni: "",
+      position: "",
+      emergencyName: "",
+      emergencyContactNumber: "",
+      emergencyEmail: "",
+      emergencyFacebook: "",
+      role: ""
+    })
+  }
   return (
     <div>
-
-
       <h3 className="text-center">Update Employee</h3>
       <form
         onSubmit={(e) => {
 
-          e.preventDefault();
-          setRegistration(false)
-          userSubmit();
+          e.preventDefault()
+          userUpdate()
         }}
       >
-        { }
-
         <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   First Name:
@@ -49,13 +102,12 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.first_name}
+                  value={form.firstName}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "firstName");
+                    formOnChange(e.target.value, "firstName");
                   }}
                 />
               </div>
-
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Middle Name:
@@ -63,9 +115,9 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.middle_name}
+                  value={form.middleName}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "middleName");
+                    formOnChange(e.target.value, "middleName");
                   }}
                 />
               </div>
@@ -77,9 +129,9 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.last_name}
+                  value={form.lastName}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "lastName");
+                    formOnChange(e.target.value, "lastName");
                   }}
                 />
               </div>
@@ -91,9 +143,9 @@ const edit = (props: any) => {
                 <input
                   type="text" // should be date, but cannot get date cause value has other characters
                   className={Style.inputType}
-                  value={user.birthdate}
+                  value={form.birthdate}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "birthdate");
+                    formOnChange(e.target.value, "birthdate");
                   }}
                 />
               </div>
@@ -106,9 +158,9 @@ const edit = (props: any) => {
                   name=""
                   id=""
                   className={Style.inputType}
-                  value={user.gender}
+                  value={form.gender}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "gender");
+                    formOnChange(e.target.value, "gender");
                   }}
                 >
                   <option value=''>
@@ -127,9 +179,9 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.address}
+                  value={form.address}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "address");
+                    formOnChange(e.target.value, "address");
                   }}
                 />
               </div>
@@ -139,7 +191,7 @@ const edit = (props: any) => {
             <h5 className={Style.registrationNavBar}>
               School Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className="flex justify-center flex-col mt-2">
                 <label htmlFor="" className={Style.label}>
                   Position:
@@ -147,20 +199,21 @@ const edit = (props: any) => {
                 <select
                   name="positions"
                   className={Style.inputType}
-                  value={user?.position[0]?.position}
+                  value={form.position}
                   onChange={(e) => {
-                    setPosition(e.target.value);
+                    formOnChange(e.target.value, 'position');
                   }}
                 >
                   <option value=''>
                     ---Select Position---
                   </option>
-                  {apiPosition.map((element: { id: number, position: string }, id: number) => (
-                    <>
-                      <option key={id} value={element.id}>{element.position}</option>
-                    </>
-                  ))}
-
+                  {userPosition.map((element: { id: number, position: string }, id: number) => {
+                    return (
+                      <>
+                        <option key={id} value={element.id}>{element.position}</option>
+                      </>
+                    )
+                  })}
                 </select>
               </div>
             </div>
@@ -170,7 +223,7 @@ const edit = (props: any) => {
               Contact Information
             </h5>
 
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   E-mail:
@@ -178,9 +231,9 @@ const edit = (props: any) => {
                 <input
                   type="email"
                   className={Style.inputType}
-                  value={user.email}
+                  value={form.email}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "email");
+                    formOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -191,9 +244,9 @@ const edit = (props: any) => {
                 <input
                   type="text" // should be number, but cannot get contact number cause value has characters
                   className={Style.inputType}
-                  value={user.contact_number}
+                  value={form.contactNumber}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "contactNumber");
+                    formOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -204,9 +257,9 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.facebook}
+                  value={form.facebook}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "facebook");
+                    formOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>
@@ -217,7 +270,7 @@ const edit = (props: any) => {
               Emergency Contact
             </h5>
 
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Name:
@@ -225,9 +278,9 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.emergencyContact.name}
+                  value={form.emergencyName}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "name");
+                    formOnChange(e.target.value, "emergencyName");
                   }}
                 />
               </div>
@@ -239,9 +292,9 @@ const edit = (props: any) => {
                 <input
                   type="text" // should be number, but cannot get contact number cause value has characters
                   className={Style.inputType}
-                  value={user.emergencyContact.contact_number}
+                  value={form.emergencyContactNumber}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "contactNumber");
+                    formOnChange(e.target.value, "emergencyContactNumber");
                   }}
                 />
               </div>
@@ -253,9 +306,9 @@ const edit = (props: any) => {
                 <input
                   type="email"
                   className={Style.inputType}
-                  value={user.emergencyContact.email}
+                  value={form.emergencyEmail}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "email");
+                    formOnChange(e.target.value, "emergencyEmail");
                   }}
                 />
               </div>
@@ -267,9 +320,9 @@ const edit = (props: any) => {
                 <input
                   type="text"
                   className={Style.inputType}
-                  value={user.emergencyContact.facebook}
+                  value={form.emergencyFacebook}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "facebook");
+                    formOnChange(e.target.value, "emergencyFacebook");
                   }}
                 />
               </div>
@@ -294,7 +347,8 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   return {
     props: {
-      users: data.data
+      user: data.data[0],
+      userPosition: data.data[1]
     }
   }
 }

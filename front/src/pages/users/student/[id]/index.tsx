@@ -5,7 +5,7 @@ import Header from "../../../../components/Header";
 import UserView from "../../../../components/UsersComponents/Show/UserView";
 
 const index = (props: any) => {
-    const { users } = props
+    const { user } = props
 
     return (
         <div className="flex h-screen w-screen bg-white">
@@ -15,7 +15,7 @@ const index = (props: any) => {
                     <div className="">
                         <AdminNavbar />
                     </div>
-                    <UserView users={users} />
+                    <UserView user={user} />
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
     return {
         props: {
-            users: data.data
+            user: data.data
         }
     }
 }

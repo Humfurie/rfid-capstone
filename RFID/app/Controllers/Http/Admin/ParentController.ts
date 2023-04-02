@@ -1,4 +1,3 @@
-import { Request } from '@adonisjs/core/build/standalone';
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Parent from 'App/Models/Parent';
 
@@ -31,5 +30,16 @@ export default class ParetController {
             .update({ flag: 0 })
 
         return response.status(200).json(deleteParent)
+    }
+
+    public async edit({ request, response }: HttpContextContract) {
+        const req = request.only(['id'])
+        console.log(req)
+        // const editParent = await Parent.query()
+        //     .where('id', req.id)
+        //     .where('flag', 1)
+        //     .update({ flag: 0 })
+
+        // return response.status(200).json(editParent)
     }
 }

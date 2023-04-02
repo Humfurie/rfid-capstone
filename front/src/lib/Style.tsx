@@ -30,7 +30,7 @@ export const Style = {
      */
     registerBtn:' p-1 bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
     registrationNavBar:'border-[2px] border-powder-blue bg-powder-blue cursor-pointer text-center rounded-t-lg p-1 mt-2 font-bold hover:bg-magic-mint hover:cursor-',
-    reg:'border-[2px] border-powderblue-shades10% p-1',
+   
     
     selectHover: 'hover:text-black hover:bg-light-blue',
     

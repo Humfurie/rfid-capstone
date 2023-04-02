@@ -9,8 +9,7 @@ import { Style } from "../../lib/Style";
 
 
 export default function employee(props: any) {
-	const { users } = props
-	console.log(users)
+	const { user } = props
 	return (
 		<div className="flex h-screen">
 			<Head>
@@ -20,7 +19,7 @@ export default function employee(props: any) {
 			</Head>
 			<div className="flex flex-col max-h-full">
 				<Header />
-				<div className="flex h-full bg-white">
+				<div className="flex h-full bg-gray-200">
 					<div className="h-full">
 						<AdminNavbar />
 					</div>
@@ -30,7 +29,7 @@ export default function employee(props: any) {
 
 						</div>
 						<div className={`w-full p-2`}>
-							<UsersDataTable users={users} />
+							<UsersDataTable user={user} />
 						</div>
 					</div>
 
@@ -47,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 	return {
 		props: {
-			users: data.data.user
+			user: data.data
 		}
 	}
 }

@@ -1,9 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { Style } from "../../../lib/Style";
 import MyButton from "../../../lib/partials/MyButton";
+import { useRouter } from "next/router";
+import { PersonalInfo } from "./includes/PersonalInfo";
+import { ContactInfo } from "./includes/ContactInfo";
 
 const ParentRegistration = () => {
+  const [selection, setSelection] = useState('personal')
+  const router = useRouter()
   const {
     registration,
     setRegistration,
@@ -14,185 +19,55 @@ const ParentRegistration = () => {
   } = useContext(FormContext);
 
   return (
-    <div>
-      <h4 className="text-center">Parent Registration</h4>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setRegistration(false)
-          userSubmit();
-        }}
-      >
+    <div className="w-full">
+      <div className="w-full bg-white rounded-2xl mx-auto shadow-xl p-2">
+        <div className="text-center">Parent Registration</div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setRegistration(false)
+            userSubmit();
+            router.push("/users/parent")
+          }}
+        >
 
-        <div className="grid lg:grid-cols-3 gap-1  text-center mt-10 mb-2">
-          <div>
-            <h5 className={Style.registrationNavBar}>
+
+          <div className="grid grid-cols-2 gap-1">
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('personal')
+              }}
+            >
               Personal Information
-            </h5>
-            <div className={Style.reg}>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  First Name:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "firstname");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Middle Name:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "middlename");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Last Name:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "lastname");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Birthday:
-                </label>
-                <input
-                  type="date"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "birthday");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Gender:
-                </label>
-                <select
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "gender");
-                  }}
-                >
-                  <option value=''>
-                    ---Select Gender---
-                  </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Address:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "address");
-                  }}
-                />
-              </div>
-            </div>
+            </button>
+            
+            <button
+              type="button"
+              className={Style.registrationNavBar}
+              onClick={e => {
+                setSelection('contact')
+              }}
+            >
+              Contact Information
+            </button>
+           
+          </div>
+          <div>
+            {selection === 'personal' ? <PersonalInfo /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
+            {/* <StudentPersonalInfo />
+            <StudentSchoolInfo />
+            <ContactInfo />
+            <EmergencyContactInfo /> */}
           </div>
 
-          <div>
-            <h5 className={Style.registrationNavBar}>
-              Contact Information
-            </h5>
-            <div className={Style.reg}>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  E-mail:
-                </label>
-                <input
-                  type="email"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "email");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Contact Number:
-                </label>
-                <input
-                  type="number"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "contactNumber");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Facebook:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    userOnChange(e.target.value, "facebook");
-                  }}
-                />
-              </div>
-            </div>
+
+          <div className={Style.registerBtn}>
+            <MyButton type="submit" label="Register" />
           </div>
-          <div>
-            <h5 className={Style.registrationNavBar}>Account</h5>
-            <div className={Style.reg}>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Username:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "username");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "password");
-                  }}
-                />
-              </div>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Confirm Password:
-                </label>
-                <input type="password" className={Style.inputType} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={Style.registerBtn}>
-          <MyButton type="submit" label="Register" />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
