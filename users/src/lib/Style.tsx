@@ -1,4 +1,4 @@
-export const InputStyle = {
+export const Style = {
     wakokasabot: 'bg-black',
     inputType: ' rounded border border-powderblue-shades10% focus:outline-none focus:ring focus:ring-powderblue-shades10% ...',
     selectHover: 'hover:text-black hover:bg-light-blue',

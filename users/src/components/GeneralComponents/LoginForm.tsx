@@ -1,8 +1,8 @@
-import { Group } from "@mantine/core";
 import { FormContext } from "../../lib/FormContext";
-import { InputStyle } from "../../lib/InputStyle";
 import MyButton from "../../partials/MyButton";
 import { useContext } from 'react'
+import { Style } from "../../lib/Style";
+
 
 const LoginForm = () => {
     const { loginOnChange,
@@ -20,33 +20,33 @@ const LoginForm = () => {
                         <div>
                             logo
                         </div>
-                        <div className={InputStyle.formDiv}>
+                        <div className={Style.formDiv}>
                             <div>
                                 <h1>Log In</h1>
                             </div>
-                            <div className={InputStyle.inputDiv}>
+                            <div className={Style.inputDiv}>
                                 <label
                                     htmlFor="username"
-                                    className={InputStyle.label}                                   
+                                    className={Style.label}                                   
                                 >Username:
                                 </label>
                                 <input
                                     type="text"
-                                    className={InputStyle.loginInput}
+                                    className={Style.loginInput}
                                     onChange={(e: any) => {
                                         loginOnChange(e.target.value, "username")
                                     }}
                                 />
                             </div>
-                            <div className={InputStyle.inputDiv}>
+                            <div className={Style.inputDiv}>
                                 <label
                                     htmlFor="password"
-                                    className={InputStyle.label}
+                                    className={Style.label}
                                 >Password:
                                 </label>
                                 <input
                                     type="password"
-                                    className={InputStyle.loginInput}
+                                    className={Style.loginInput}
                                     onChange={(e: any) => {
                                         loginOnChange(e.target.value, "password")
                                     }}
@@ -55,7 +55,7 @@ const LoginForm = () => {
                             <div>
                                 <MyButton
                                     label="Login"
-                                    className={InputStyle.loginBtn}
+                                    className={Style.loginBtn}
                                 />
                             </div>
                         </div>
