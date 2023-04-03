@@ -10,6 +10,7 @@ const position = (props: any) => {
 
     const { position } = props
     console.log(position)
+    
     return (
         <div className="flex h-screen">
         <Head>
