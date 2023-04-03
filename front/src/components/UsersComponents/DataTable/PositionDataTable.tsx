@@ -2,6 +2,8 @@ import * as React from "react";
 import Link from "next/link";
 import { Style } from "../../../lib/Style";
 import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
+import { useState } from "react";
+import DestroyPosition from "../../../pages/users/positions/[id]/destroy";
 
 export default function PositionDataTable(props: any) {
   const { position } = props
@@ -19,6 +21,8 @@ export default function PositionDataTable(props: any) {
         <tbody>
           {position.map((position: any, id: number) => {
 
+            const [open, setOpen] = useState(false)
+
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
                 <td className={`${Style.tableBorder}`}>
@@ -35,9 +39,12 @@ export default function PositionDataTable(props: any) {
                     <Link href={`/users/positions/${position.id}/edit`}>
                       <BsPencil className="hover:text-green-600" />
                     </Link>
-                    <Link href={`/users/positions/${position.id}/delete`}>
+                    <button onClick={e => {
+                      setOpen(true)
+                    }}>
                       <BsTrash className="hover:text-red-600" />
-                    </Link>
+                      <DestroyPosition setOpen={setOpen} open={open} position={position} />
+                    </button>
                   </div>
                 </td>
               </tr>
