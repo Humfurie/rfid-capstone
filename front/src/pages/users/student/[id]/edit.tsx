@@ -37,6 +37,7 @@ const edit = (props: any) => {
       return { ...prev, [column]: value }
     })
   }
+  console.log("this is setForm",setForm)
 
   const userUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
@@ -362,7 +363,9 @@ const edit = (props: any) => {
             </div>
           </div>
         </div>
-        <button type="submit">Update</button>
+        <div className={Style.registerBtn}>
+          <MyButton type="submit" label="Save Changes" />
+        </div>
       </form>
     </div>
   );

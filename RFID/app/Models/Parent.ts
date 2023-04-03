@@ -2,8 +2,15 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 import Role from './Role'
+// import { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
 
 export default class Parent extends BaseModel {
+  // static merge(arg0: { firstName: any; middleName: any; lastName: any; birthdate: any; gender: any; email: any; address: any; contactNumber: any; facebook: any; }) {
+  //     throw new Error('Method not implemented.')
+  // }
+  // static useTransaction(trx: TransactionClientContract) {
+  //     throw new Error('Method not implemented.')
+  // }
   @column({ isPrimary: true })
   public id: number
 
@@ -17,16 +24,17 @@ export default class Parent extends BaseModel {
   public lastName: string
 
   @column()
-  public birthdate: Date
+  public birthdate: string
 
   @column()
   public gender: string
 
-  @column()
-  public email: string
 
   @column()
   public address: string
+
+  @column()
+  public email: string
 
   @column()
   public contactNumber: string
