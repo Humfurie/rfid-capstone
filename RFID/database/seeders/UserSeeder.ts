@@ -9,7 +9,6 @@ import Parent from 'App/Models/Parent'
 
 export default class extends BaseSeeder {
 
-
   public async run() {
 
     const gender = ['male', 'female']
@@ -26,7 +25,7 @@ export default class extends BaseSeeder {
       user.firstName = faker.name.firstName()
       user.middleName = faker.name.middleName()
       user.lastName = faker.name.lastName()
-      user.birthdate = faker.datatype.datetime()
+      user.birthdate = faker.date.birthdate().toDateString()
       user.gender = gender[Math.floor(Math.random() * gender.length)]
       user.email = faker.internet.email()
       user.address = faker.address.city()
@@ -73,7 +72,7 @@ export default class extends BaseSeeder {
       user.firstName = faker.name.firstName()
       user.middleName = faker.name.middleName()
       user.lastName = faker.name.lastName()
-      user.birthdate = faker.date.birthdate()
+      user.birthdate = faker.date.birthdate().toDateString()
       user.gender = gender[Math.floor(Math.random() * gender.length)]
       user.email = faker.internet.email()
       user.address = faker.address.city()

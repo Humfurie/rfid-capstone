@@ -1,19 +1,16 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Role from 'App/Models/Role'
+import Position from 'App/Models/Position'
 
 export default class extends BaseSeeder {
-  public async run () {
+  public async run() {
     // Write your database queries inside the run method
-    await Role.createMany([
+    await Position.createMany([
       {
-        role: 'Student'
+        position: 'Teacher'
       },
       {
-        role: 'Employee'
+        position: 'Staff'
       },
-      // {
-      //   role: 'Parent'
-      // }
     ])
   }
 }

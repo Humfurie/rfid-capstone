@@ -10,7 +10,7 @@ export default class User {
       
       if (!token) return response.status(401).json({message: 'Unauthorized Access'})
       
-      const decode = jwt.verify(token, 'userMaotClofel')
+      const decode = jwt.verify(token, 'userStudent')
 
       request.user = decode
     } catch (error) {
