@@ -11,4 +11,9 @@ Route.group(() => {
      * saving position
      */
     Route.post('/users/position', 'PositionsController.store')
+
+    /**
+     * delete position
+     */
+    Route.put('/position/delete', 'PositionsController.delete')
 }).namespace('App/Controllers/Http/Admin')

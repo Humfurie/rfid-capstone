@@ -23,6 +23,7 @@ const PositionTab = () => {
                             onChange={(e) => {
                                 setPosition(e.target.value)
                             }}
+                            required
                         />
 
 
