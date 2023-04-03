@@ -2,7 +2,7 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import YearLevel from 'App/Models/YearLevel'
 
 export default class extends BaseSeeder {
-  public async run () {
+  public async run() {
     // Write your database queries inside the run method
     await YearLevel.createMany([
       {

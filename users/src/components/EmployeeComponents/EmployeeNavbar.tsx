@@ -16,15 +16,15 @@ const EmployeeNavbar = () => {
 
     const Menus = [
         {
-            title: <Link href="../Employee/EmployeeProfile">Profile</Link>,
+            title: <Link href="/employee/profile">Profile</Link>,
             icon: <FaUserAlt />
         },
         {
-            title: <Link href="../Employee/EmployeeActivity">Acitvity</Link>,
+            title: <Link href="/employee/activity">Acitvity</Link>,
             icon: <RiTimerFill />
         },
         {
-            title: <Link href="">Logout</Link>,
+            title: <Link href="/login">Logout</Link>,
             icon: <FaSignOutAlt />
         }
     ]
@@ -50,20 +50,20 @@ const EmployeeNavbar = () => {
                                     className={`text-sm text-gray-500 flex items-center gap-x-4 cursor-pointer p-2 hover:bg-powderblue-shades10% rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
                                 >
                                     <span className="text-xl bock float-left">
-										{menu.icon ? menu.icon : <MdDashboard />}
-									</span>
+                                        {menu.icon ? menu.icon : <MdDashboard />}
+                                    </span>
                                     <span
-										className={`text-base font-sm flex-1 duration-200 ${!open && "hidden"}`}
-										id={index}
-										onClick={() => {
-											setCurrentMenu(menu.title)
-									
-										}}
-									>
-										{menu.title}
+                                        className={`text-base font-sm flex-1 duration-200 ${!open && "hidden"}`}
+                                        id={index}
+                                        onClick={() => {
+                                            setCurrentMenu(menu.title)
 
-										
-									</span>
+                                        }}
+                                    >
+                                        {menu.title}
+
+
+                                    </span>
 
                                 </li>
                             </>
