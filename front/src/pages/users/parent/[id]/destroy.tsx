@@ -4,7 +4,7 @@ import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 
 const DestroyParent = (props: any) => {
-    const { setId, parentDelete } = useContext(FormContext)
+    const { setId, positionDelete } = useContext(FormContext)
     const { setOpen, open, user } = props
     return (
         <>
@@ -17,7 +17,7 @@ const DestroyParent = (props: any) => {
             >
                 <form onSubmit={e => {
                     e.preventDefault()
-                    parentDelete()
+                    positionDelete()
                 }} >
                     <div className="flex flex-col">
                         <td className={`${Style.tableBorder}`}>

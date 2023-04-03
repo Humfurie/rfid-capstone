@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Style } from "../../../lib/Style";
-import DestroyParent from "../../../pages/users/parent/[id]/destroyParent";
+import DestroyParent from "../../../pages/users/parent/[id]/destroy";
 
 
 const ParentDatatable = (props: any) => {
@@ -48,10 +48,6 @@ const ParentDatatable = (props: any) => {
                       <BsTrash className="hover:text-red-600" />
                       <DestroyParent setOpen={setOpen} open={open} user={user} />
                     </button>
-
-                    {/* <Link href={`/users/parent/${user.id}/delete`}>
-                      <BsTrash className="hover:text-red-600" />
-                    </Link> */}
                   </div>
 
                 </td>
