@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { useState } from "react";
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Style } from "../../../lib/Style";
+import DestroyParent from "../../../pages/users/parent/[id]/destroyParent";
+
 
 const ParentDatatable = (props: any) => {
   const { users } = props
@@ -17,6 +20,8 @@ const ParentDatatable = (props: any) => {
         </thead>
         <tbody>
           {users.map((user: any, id: number) => {
+
+            const [open, setOpen] = useState(false)
 
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
@@ -37,9 +42,16 @@ const ParentDatatable = (props: any) => {
                     <Link href={`/users/parent/${user.id}/edit`}>
                       <BsPencil className="hover:text-green-600" />
                     </Link>
-                    <Link href={`/users/parent/${user.id}/delete`}>
+                    <button onClick={e => {
+                      setOpen(true)
+                    }}>
                       <BsTrash className="hover:text-red-600" />
-                    </Link>
+                      <DestroyParent setOpen={setOpen} open={open} user={user} />
+                    </button>
+
+                    {/* <Link href={`/users/parent/${user.id}/delete`}>
+                      <BsTrash className="hover:text-red-600" />
+                    </Link> */}
                   </div>
 
                 </td>

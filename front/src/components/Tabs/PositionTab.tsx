@@ -29,7 +29,7 @@ const PositionTab = () => {
                         <MyButton
                             type="submit"
                             label="Add Position"
-                            className="p-2 hover:bg-magic-mint hover:rounded-lg border-r-[1px] border-powder-blue "
+                            className="pr-2 pl-2 hover:bg-magic-mint hover:rounded-lg border-r-[1px] border-powder-blue text-sm"
                         />
                     </form>
                 </div>

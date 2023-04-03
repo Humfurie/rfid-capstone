@@ -12,7 +12,7 @@ const ParentTab = () => {
                     />
                     <label
                         htmlFor=""
-                        className=" p-2 hover:bg-magic-mint hover:rounded-lg border-r-[1px] border-powder-blue"
+                        className=" p-2 hover:bg-magic-mint hover:rounded-lg border-r-[1px] border-powder-blue text-sm"
                     >Search</label>
 
 
@@ -20,7 +20,7 @@ const ParentTab = () => {
                 <div>
                     <Link
                         href={"/users/registration/parent"}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg">
+                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-sm">
                         Add Parent
                     </Link>
                 </div>
@@ -28,7 +28,7 @@ const ParentTab = () => {
                 <div>
                     <Link
                         href={""}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg">
+                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-sm">
                         Export
                     </Link>
                 </div>

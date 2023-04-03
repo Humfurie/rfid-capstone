@@ -1,12 +1,11 @@
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import Link from "next/link";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Header from "../../../../components/Header";
 import UserView from "../../../../components/UsersComponents/Show/UserView";
 
 const index = (props: any) => {
-    const { users } = props
+    const { user } = props
 
     return (
         <div className="flex h-screen w-screen bg-white">
@@ -16,7 +15,7 @@ const index = (props: any) => {
                     <div>
                         <AdminNavbar />
                     </div>
-                    <UserView users={users}/>
+                    <UserView user={user}/>
                 </div>
 
             </div>
@@ -33,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
     return {
         props: {
-            users: data.data
+            user: data.data[0]
         }
     }
 }

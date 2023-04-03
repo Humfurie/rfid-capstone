@@ -16,7 +16,7 @@ const StudentTab = () => {
                     <Link
                         href={"/users/registration/student"}
                         className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg">
-                        Add Employee
+                        Add Student
                     </Link>
                 </div>
                 

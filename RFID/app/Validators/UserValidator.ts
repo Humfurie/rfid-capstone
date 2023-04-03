@@ -27,15 +27,20 @@ export default class UserValidator {
     firstName: schema.string(),
     middleName: schema.string(),
     lastName: schema.string(),
-    birthdate: schema.date(),
+    birthdate: schema.string(),
     gender: schema.string({ trim: true }),
-    email: schema.string({ trim: true }, [rules.email(), rules.unique({ table: 'users', column: 'email', caseInsensitive: true })]),
     address: schema.string(),
+    email: schema.string({ trim: true }, [rules.email()]),
     contactNumber: schema.string({ trim: true }),
     facebook: schema.string({ trim: true }),
-    // idNumber: schema.string({ trim: true }, [rules.minLength(8), rules.unique({ table: 'users', column: 'id_number', caseInsensitive: true })]),
-    // rfidNumber: schema.string({ trim: true }, [rules.minLength(12), rules.unique({ table: 'users', column: 'rfid_number', caseInsensitive: true })]),
+    idNumber: schema.string({ trim: true }),
+    rfidNumber: schema.string({ trim: true }),
     isAlumni: schema.boolean(),
+    emergencyName: schema.string(),
+    emergencyContactNumber: schema.string({ trim: true }),
+    emergencyEmail: schema.string({ trim: true }, [rules.email(), rules.unique({ table: 'users', column: 'email', caseInsensitive: true })]),
+    emergencyFacebook: schema.string({ trim: true }),
+    // role: schema.string({ trim: true })
   })
 
   /**

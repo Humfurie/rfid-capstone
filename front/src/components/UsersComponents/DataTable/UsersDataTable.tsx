@@ -2,12 +2,12 @@ import * as React from "react";
 import Link from "next/link";
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Style } from "../../../lib/Style";
+import { useState } from "react";
+import Destroy from "../../../pages/users/destroy";
 
 export default function UsersDataTable(props: any) {
-  const { users } = props
-  const [isLoading, setLoading] = React.useState(true)
-
-  console.log(users)
+  const { user } = props
+  const [isLoading, setLoading] = useState(true)
 
   return (
     <div className="w-full">
@@ -21,9 +21,10 @@ export default function UsersDataTable(props: any) {
           </tr>
         </thead>
         <tbody >
-          {users.map((user: any, id: number) => {
+          {user.map((user: any, id: number) => {
             const roles = user.role[0].role
             const role = roles.toString().toLowerCase()
+            const [open, setOpen] = useState(false)
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
                 <td className={`${Style.tableBorder}`}>
@@ -43,11 +44,13 @@ export default function UsersDataTable(props: any) {
                     <Link href={`/users/${role}/${user.id}/edit`} >
                       <BsPencil className="hover:text-green-600" />
                     </Link>
-                    <Link href={`/users/${role}/${user.id}/delete`} >
+                    <button onClick={e => {
+                      setOpen(true)
+                    }}>
                       <BsTrash className="hover:text-red-600" />
-                    </Link>
+                      <Destroy setOpen={setOpen} open={open} user={user} userRole={role}/>
+                    </button>
                   </div>
-
                 </td>
               </tr>
             )

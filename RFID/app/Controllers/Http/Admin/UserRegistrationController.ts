@@ -14,18 +14,18 @@ export default class newUserRegistrationController {
          * this input is received from the axios endpoint from app.tsx
          */
         const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account'])
-     
+
         // console.log(input)
 
         /**
         * transactions are normally used for relationships
-        */ 
+        */
         const trx = await Database.transaction()
 
         /**
         * separating role into 3 segments
         * employee, student, parents
-        */ 
+        */
         if (input.role === 'employee') {
 
             /**
@@ -106,8 +106,8 @@ export default class newUserRegistrationController {
                  * account model
                  */
                 const account = new UserLogin()
-                account.username = input.account.username
-                account.password = input.account.password
+                account.username = user.lastName
+                account.password = user.idNumber
                 account.userId = user.id
 
                 /**
@@ -125,7 +125,7 @@ export default class newUserRegistrationController {
                  * transaction commmit for safe saving all data without failure
                  */
                 await trx.commit()
-                return response.status(200).json({...user})
+                return response.status(200).json({ ...user })
             } catch (error) {
 
                 /**
@@ -161,9 +161,9 @@ export default class newUserRegistrationController {
                 user.idNumber = input.userRegistration.idNumber
                 user.rfidNumber = input.userRegistration.rfidNumber
 
-                 /**
-                 * use transaction on current user model
-                 */
+                /**
+                * use transaction on current user model
+                */
                 user.useTransaction(trx)
 
                 /**
@@ -171,46 +171,46 @@ export default class newUserRegistrationController {
                  */
                 await user.save()
 
-                 /**
-                 * related tables specifically role and year_level
-                 */
+                /**
+                * related tables specifically role and year_level
+                */
                 // await user.related('yearLevel').attach()
                 await user.related('role').attach([1])
 
-                  /**
-                 *  emergency_contact table for specific user
-                 */
-                  const emergency = new EmergencyContact()
-                  emergency.name = input.emergency.name
-                  emergency.contactNumber = input.emergency.contactNumber
-                  emergency.facebook = input.emergency.facebook
-                  emergency.email = input.emergency.email
-                  emergency.userId = user.id
-  
-                  /**
-                   * EmergencyContact model transaction
-                   */
-                  emergency.useTransaction(trx)
-  
-                  /**
-                   * saving emergency_contact data
-                   */
-                  await emergency.save()
-  
-                  /**
-                   * account model
-                   */
-                  const account = new UserLogin()
-                  account.username = input.account.username
-                  account.password = input.account.password
-                  account.userId = user.id
-                
-                  /**
-                   * UserLogin transaction
-                   */
-                  account.useTransaction(trx)
+                /**
+               *  emergency_contact table for specific user
+               */
+                const emergency = new EmergencyContact()
+                emergency.name = input.emergency.name
+                emergency.contactNumber = input.emergency.contactNumber
+                emergency.facebook = input.emergency.facebook
+                emergency.email = input.emergency.email
+                emergency.userId = user.id
 
-                  await account.save()
+                /**
+                 * EmergencyContact model transaction
+                 */
+                emergency.useTransaction(trx)
+
+                /**
+                 * saving emergency_contact data
+                 */
+                await emergency.save()
+
+                /**
+                 * account model
+                 */
+                const account = new UserLogin()
+                account.username = user.lastName
+                account.password = user.idNumber
+                account.userId = user.id
+
+                /**
+                 * UserLogin transaction
+                 */
+                account.useTransaction(trx)
+
+                await account.save()
                 /**
                  * transaction commmit for safe saving all data without failure
                  */
@@ -226,7 +226,7 @@ export default class newUserRegistrationController {
             }
         }
         else if (input.role === 'parent') {
-            
+
             /**
              * parent model
              */
@@ -250,7 +250,7 @@ export default class newUserRegistrationController {
                  * using database transaction for saving related table
                  */
                 user.useTransaction(trx)
-                
+
                 /**
                  * saving parent model data
                  */

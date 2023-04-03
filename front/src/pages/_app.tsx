@@ -40,14 +40,12 @@ export default function App({ Component, pageProps }: AppProps) {
   /**
    * these states contain backend data
    */
-  const [apiPosition, setApiPosition] = useState([])
-  const [apiYearLevel, setApiYearLevel] = useState([])
 
   /*
    *
    * this here contains all the forms and states stuff of the users
    */
-  const [userRegistration, setUserRegistration] = useState({
+  const [userInfo, setUserInfo] = useState({
     firstName: "",
     middleName: "",
     lastName: "",
@@ -60,7 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
     year: "",
     idNumber: "",
     rfidNumber: "",
-    isAlumni: "",
+    isAlumni: false,
   })
   // console.log(userRegistration)
   // year levels
@@ -81,13 +79,15 @@ export default function App({ Component, pageProps }: AppProps) {
     username: "",
     password: "",
   });
+  //specific id for delete
+  const [id, setId] = useState('')
 
   /*
    *
    * this here contains all the functions
    */
   const userOnChange = (value: any, column: string) => {
-    setUserRegistration((prev) => {
+    setUserInfo((prev) => {
       return { ...prev, [column]: value };
     })
   }
@@ -124,16 +124,14 @@ export default function App({ Component, pageProps }: AppProps) {
     setYear('')
     router.push('/users/year_level')
   }
-
   const userSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
-      userRegistration: userRegistration,
+      userRegistration: userInfo,
       position: position,
       role: role,
       emergency: emergency,
-      account: account,
     })
-    setUserRegistration({
+    setUserInfo({
       firstName: "",
       middleName: "",
       lastName: "",
@@ -146,7 +144,7 @@ export default function App({ Component, pageProps }: AppProps) {
       year: "",
       idNumber: "",
       rfidNumber: "",
-      isAlumni: "",
+      isAlumni: false,
     })
     setPosition("")
     setRole('')
@@ -162,6 +160,26 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
+
+  /**
+   * Delete User
+   */
+  const userDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/delete`, {
+      role: role,
+      id: id
+    })
+    setRole('')
+    setId('')
+  }
+
+  const parentDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/parent/delete`, {
+      id: id
+    })
+    setId('')
+  }
+
   console.log(role)
 
   useEffect(() => {
@@ -169,12 +187,6 @@ export default function App({ Component, pageProps }: AppProps) {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
         // router.push("/AdminDashboard");
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => {
-          setApiPosition(res.data)
-        })
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/year_level`).then(res => {
-          setApiYearLevel(res.data)
-        })
       } catch (error) {
         // router.push("/");
       }
@@ -192,7 +204,10 @@ export default function App({ Component, pageProps }: AppProps) {
         setCurrentMenu,
         registration,
         setRegistration,
-        userRegistration,
+        userInfo,
+        setUserInfo,
+        emergency,
+        setEmergency,
 
         userOnChange,
         setRole,
@@ -213,8 +228,13 @@ export default function App({ Component, pageProps }: AppProps) {
         year,
         setYear,
         //retrieved data
-        apiPosition,
-        apiYearLevel
+
+        //user delete
+        userDelete,
+        parentDelete,
+
+        id,
+        setId,
       }}
     >
       <Component {...pageProps} />

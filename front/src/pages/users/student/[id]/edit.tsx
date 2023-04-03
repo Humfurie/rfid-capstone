@@ -1,38 +1,102 @@
-import { useContext } from "react";
-import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import axios from "axios";
+import { useState } from "react";
 
 
-const edit = () => {
-  const {
-    registration,
-    setRegistration,
-    userOnChange,
-    emergencyOnChange,
-    accountOnChange,
-    userSubmit,
-    setRole
-  } = useContext(FormContext);
+const edit = (props: any) => {
 
+  const { user, yearLevel } = props
+  const userYearLevel = user.yearLevel[0].id
+
+  const [form, setForm] = useState({
+    firstName: user.first_name,
+    middleName: user.middle_name,
+    lastName: user.last_name,
+    birthdate: user.birthdate,
+    gender: user.gender,
+    address: user.address,
+    email: user.email,
+    contactNumber: user.contact_number,
+    facebook: user.facebook,
+    idNumber: user.id_number,
+    rfidNumber: user.rfid_number,
+    isAlumni: user.is_alumni,
+    yearLevel: userYearLevel,
+    emergencyName: user.emergencyContact.name,
+    emergencyContactNumber: user.emergencyContact.contact_number,
+    emergencyEmail: user.emergencyContact.email,
+    emergencyFacebook: user.emergencyContact.facebook,
+    role: "student"
+  })
+  console.log(form)
+
+  const formOnChange = (value: any, column: string) => {
+    setForm((prev: any) => {
+      return { ...prev, [column]: value }
+    })
+  }
+  console.log("this is setForm",setForm)
+
+  const userUpdate = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
+      firstName: form.firstName,
+      middleName: form.middleName,
+      lastName: form.lastName,
+      birthdate: form.birthdate,
+      gender: form.gender,
+      address: form.address,
+      email: form.email,
+      contactNumber: form.contactNumber,
+      facebook: form.facebook,
+      idNumber: form.idNumber,
+      rfidNumber: form.rfidNumber,
+      isAlumni: form.isAlumni,
+      yearLevel: form.yearLevel,
+      emergencyName: form.emergencyName,
+      emergencyContactNumber: form.emergencyContactNumber,
+      emergencyEmail: form.emergencyEmail,
+      emergencyFacebook: form.emergencyFacebook,
+      role: "student"
+    })
+    setForm({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      birthdate: "",
+      gender: "",
+      address: "",
+      email: "",
+      contactNumber: "",
+      facebook: "",
+      idNumber: "",
+      rfidNumber: "",
+      isAlumni: false,
+      yearLevel: "",
+      emergencyName: "",
+      emergencyContactNumber: "",
+      emergencyEmail: "",
+      emergencyFacebook: "",
+      role: ""
+    })
+  }
+
+  console.log('yearLevel', yearLevel)
   return (
     <div>
       <h4 className="text-center">Update Student</h4>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setRegistration(false)
-          userSubmit();
-        }}
+      <form onSubmit={(e) => {
+        e.preventDefault()
+        userUpdate()
+      }}
       >
-        {setRole('student')}
-
-        <div className="grid lg:grid-cols-5 gap-1  text-center mt-10 mb-2">
+        <div className="grid lg:grid-cols-4 gap-1  text-center mt-10 mb-2">
           <div>
             <h5 className={Style.registrationNavBar}>
               Personal Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className="flex justify-center flex-col mt-2">
                 <label htmlFor="" className={Style.label}>
                   First Name:
@@ -40,8 +104,9 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.firstName}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "firstName");
+                    formOnChange(e.target.value, "firstName");
                   }}
                 />
               </div>
@@ -53,8 +118,9 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.middleName}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "middleName");
+                    formOnChange(e.target.value, "middleName");
                   }}
                 />
               </div>
@@ -66,8 +132,9 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.lastName}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "lastName");
+                    formOnChange(e.target.value, "lastName");
                   }}
                 />
               </div>
@@ -77,10 +144,11 @@ const edit = () => {
                   Birthday:
                 </label>
                 <input
-                  type="date"
+                  type="date" // reminder
                   className={Style.inputType}
+                  value={form.birthdate}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "birthdate");
+                    formOnChange(e.target.value, "birthdate");
                   }}
                 />
               </div>
@@ -93,8 +161,9 @@ const edit = () => {
                   name=""
                   id=""
                   className={Style.inputType}
+                  value={form.gender}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "gender");
+                    formOnChange(e.target.value, "gender");
                   }}
                 >
                   <option selected disabled>
@@ -112,8 +181,9 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.address}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "address");
+                    formOnChange(e.target.value, "address");
                   }}
                 />
               </div>
@@ -123,7 +193,7 @@ const edit = () => {
             <h5 className={Style.registrationNavBar}>
               School Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className="flex justify-center flex-col mt-1">
                 <label htmlFor="" className={Style.label}>
                   Student ID:
@@ -131,8 +201,9 @@ const edit = () => {
                 <input
                   type="number"
                   className={Style.inputType}
+                  value={form.idNumber}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "studentId");
+                    formOnChange(e.target.value, "idNumber");
                   }}
                 />
               </div>
@@ -144,20 +215,28 @@ const edit = () => {
                 <select
                   name=""
                   id=""
+                  value={form.yearLevel}
                   className={Style.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "schoolYear");
+                    formOnChange(e.target.value, "schoolYear");
                   }}
                 >
                   <option selected disabled>
                     ---Select School Year---
                   </option>
-                  <option value="grade 7">Grade 7</option>
+                  {yearLevel.map((yearLevel: { id: number, year: string }, id: number) => {
+                    return (
+                      <>
+                        <option key={id} value={yearLevel.id}>{yearLevel.year}</option>
+                      </>
+                    )
+                  })}
+                  {/* <option value="grade 7">Grade 7</option>
                   <option value="grade 8">Grade 8</option>
                   <option value="grade 9">Grade 9</option>
                   <option value="grade 10">Grade 10</option>
                   <option value="grade 11">Grade 11</option>
-                  <option value="grade 12">Grade 12</option>
+                  <option value="grade 12">Grade 12</option> */}
                 </select>
               </div>
               <div className="flex justify-center flex-col mt-2">
@@ -165,7 +244,7 @@ const edit = () => {
                   type="checkbox"
                   className={Style.inputType}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "schoolYear");
+                    formOnChange(e.target.checked, "isAlumni");
                   }}
                 />
                 <label htmlFor="" className={Style.label}>
@@ -178,7 +257,7 @@ const edit = () => {
             <h5 className={Style.registrationNavBar}>
               Contact Information
             </h5>
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   E-mail:
@@ -186,8 +265,9 @@ const edit = () => {
                 <input
                   type="email"
                   className={Style.inputType}
+                  value={form.email}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "email");
+                    formOnChange(e.target.value, "email");
                   }}
                 />
               </div>
@@ -197,10 +277,11 @@ const edit = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="number"
+                  type="text" // reminder
                   className={Style.inputType}
+                  value={form.contactNumber}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "contactNumber");
+                    formOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -212,8 +293,9 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.facebook}
                   onChange={(e) => {
-                    userOnChange(e.target.value, "facebook");
+                    formOnChange(e.target.value, "facebook");
                   }}
                 />
               </div>
@@ -222,7 +304,7 @@ const edit = () => {
           <div>
             <h5 className={Style.registrationNavBar}>Emergency Contact</h5>
 
-            <div className={Style.reg}>
+            <div className={Style.registerBtn}>
               <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                   Name:
@@ -230,8 +312,9 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.emergencyName}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "name");
+                    formOnChange(e.target.value, "emergencyName");
                   }}
                 />
               </div>
@@ -241,10 +324,11 @@ const edit = () => {
                   Contact Number:
                 </label>
                 <input
-                  type="number"
+                  type="text" // reminder
                   className={Style.inputType}
+                  value={form.emergencyContactNumber}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "contactNumber");
+                    formOnChange(e.target.value, "contactNumber");
                   }}
                 />
               </div>
@@ -256,8 +340,9 @@ const edit = () => {
                 <input
                   type="email"
                   className={Style.inputType}
+                  value={form.emergencyEmail}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "email");
+                    formOnChange(e.target.value, "emergencyEmail");
                   }}
                 />
               </div>
@@ -269,61 +354,34 @@ const edit = () => {
                 <input
                   type="text"
                   className={Style.inputType}
+                  value={form.emergencyFacebook}
                   onChange={(e) => {
-                    emergencyOnChange(e.target.value, "facebook");
+                    formOnChange(e.target.value, "emergencyFacebook");
                   }}
                 />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h5 className={Style.registrationNavBar}>Account</h5>
-            <div className={Style.reg}>
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Username:
-                </label>
-                <input
-                  type="text"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "username")
-                  }}
-                />
-              </div>
-
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  className={Style.inputType}
-                  onChange={(e) => {
-                    accountOnChange(e.target.value, "password");
-                  }}
-                />
-              </div>
-
-              <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                  Confirm Password:
-                </label>
-                <input type="password" className={Style.inputType} />
               </div>
             </div>
           </div>
         </div>
-
         <div className={Style.registerBtn}>
           <MyButton type="submit" label="Save Changes" />
         </div>
       </form>
-
-
     </div>
   );
 };
 
 export default edit;
+
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { params } = context
+
+  const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/student/${params?.id}`)
+
+  return {
+    props: {
+      user: data.data[0],
+      yearLevel: data.data[1]
+    }
+  }
+}

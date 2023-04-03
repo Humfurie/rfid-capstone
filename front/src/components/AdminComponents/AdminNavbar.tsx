@@ -8,6 +8,7 @@ import { destroyCookie } from "nookies";
 import { useRouter } from "next/router";
 
 
+
 export default function AdminNavbar() {
 
 	const router = useRouter()
@@ -23,67 +24,64 @@ export default function AdminNavbar() {
 
 
 	// console.log("naopen", open)
-	const Menus = [
+	const Menus = [{
+		title: <Link href="/">Dashboard</Link>,
+		icon: ""
+	},
 
-		{
-			title: <Link href="/admin/profile">Profile</Link>,
-			icon: <FaUserAlt />,
-		},
-		{
-			title: "Users",
-			icon: <FaUsers />,
-			submenuItems: [
-				{
-					src: <Link href="/users/employee" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-magic-mint focus:bg-magic-mint active:bg-powderblue-shades10%"
-					>Employees</Link>
-				},
-				{
-					src: <Link href="/users/student" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-magic-mint focus:bg-powderblue-shades10% "
-					>Students</Link>
-				}
-			],
-			button: true
-		},
-		{
-			title: <Link href="/users/parent">Parents</Link>,
-			icon: ""
-		},
-		{
-			title: "Records",
-			icon: <FaThList />
-		},
-		{
-			title: <Link href="/users/position">Positions</Link>,
-			icon: ""
-		},
-		{
-			title: <Link href="/users/year_level">Year Levels</Link>,
-			icon: ""
-		},
-		{
-			title: <button onClick={e => {
-				destroyCookie(null, 'Admin')
-				router.push('/login')
-			}}>Log Out</button>,
-			icon: <FaSignOutAlt />
-		}
+	{
+		title: <Link href="/admin/profile" type="button">Profile</Link>,
+		icon: <FaUserAlt />
+	},
+	{
+		title: "Users",
+		icon: <FaUsers />,
+		submenuItems: [
+			{
+				src: <Link href="/users/employee" className="text-white-smoke text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-gray-700 hover:bg-magic-mint hover:rounded-lg"
+				>Employees</Link>
+			},
+			{
+				src: <Link href="/users/student" className="text-white-smoke text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-gray-700 hover:bg-magic-mint hover:rounded-lg"
+				>Students</Link>
+			}
+		],
+		button: true
+	},
+	{
+		title: <Link href="/users/parent">Parent/Guardian</Link>,
+		icon: ""
+	},
+	{
+		title: "Records",
+		icon: <FaThList />
+	},
+	{
+		title: <Link href="/users/position">Positions</Link>,
+		icon: ""
+	},
+	{
+		title: <Link href="/users/year_level">Year Levels</Link>,
+		icon: ""
+	},
+	{
+		title: <button onClick={e => {
+			destroyCookie(null, 'Admin')
+			router.push('/login')
+		}}>Log Out</button>,
+		icon: <FaSignOutAlt />
+	}
 
 	]
 	return (
 		<div className="flex h-full">
-			<div className={`h-full p-5 pt-8 ${open ? "w-48" : "w-20"}  relative duration-500 text-black bg-gray-700`} >
+			<div className={`h-full p-5 pt-8 ${open ? "w-48" : "w-20"}  relative duration-500 text-gray-300 bg-gray-700`} >
 
 				<div>
 					<IoIosArrowBack
 						className={`w-6 h-6 bg-white  text=3xl rounded-3xl absolute
-					-right-3 top-12  cursor-pointer duration-100 border border-gray-700 text-gray-500  ${!open && "rotate-180"}`}
+					-right-3 top-12  cursor-pointer duration-100 border border-gray-700 text-gray-700  ${!open && "rotate-180"}`}
 						onClick={() => setOpen(!open)} />
-
-
-					{/* <span><img src="../" alt="" /></span> */}
-
-					<Link href="/admin/dashboard" className={`inline-flex text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
-
 				</div>
 
 				<div className="sidebar-menu ">
@@ -92,7 +90,7 @@ export default function AdminNavbar() {
 						{Menus.map((menu: any, index: number) => (
 							<div key={index}>
 								<li
-									className={`text-sm text-white-smoke flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
+									className={`text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
 								>
 									<span className="text-xl bock float-left">
 										{menu.icon ? menu.icon : <MdDashboard />}
@@ -111,8 +109,8 @@ export default function AdminNavbar() {
 								</li>
 								{
 									//  submenuOpen && currentMenu === menu.title && open && (
-										submenuOpen === open && currentMenu === menu.title && (
-										<ul className="duration-500">
+									submenuOpen === open && currentMenu === menu.title && (
+										<ul className="duration-500 bg-gray-600 rounded-lg">
 											{menu.submenuItems.map((menu: any, index: any) => {
 												return (
 													<li

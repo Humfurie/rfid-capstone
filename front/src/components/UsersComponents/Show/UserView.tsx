@@ -3,11 +3,8 @@ import StudentView from "./includes/StudentView"
 import ViewError from "./includes/ViewError"
 
 const UserView = (props: any) => {
-    const { users } = props
-    const user = users[0]
+    const { user } = props
     const role = user.role[0].role.toString().toLowerCase()
-
-    console.log(role)
 
     return (
         <>
