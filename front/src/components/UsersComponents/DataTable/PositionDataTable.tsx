@@ -9,6 +9,47 @@ import PositionEdit from "../../../pages/users/positions/[id]/edit";
 export default function PositionDataTable(props: any) {
   const { position } = props
 
+  const [editOpen, setEditOpen] = useState(
+    position.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
+      num[position.id] = false
+      return num
+    }, {})
+  )
+
+  const [deleteOpen, setDeleteOpen] = useState(
+    position.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
+      num[position.id] = false
+      return num
+    }, {})
+  )
+
+  const [selected, setSelected] = useState(null)
+
+  const handleDelete = (positionId: any) => {
+    setSelected(positionId)
+    setDeleteOpen((prev: any) => {
+      return { ...prev, [positionId]: true }
+    })
+  }
+
+  const handleEdit = (positionId: any) => {
+    setSelected(positionId)
+    setEditOpen((prev: any) => {
+      return { ...prev, [positionId]: true }
+    })
+  }
+
+  const handleClosePosition = (positionId: any) => {
+    setSelected(null)
+    setDeleteOpen((prev: any) => {
+      return { ...prev, [positionId]: false }
+    })
+    setEditOpen((prev: any) => {
+      return { ...prev, [positionId]: false }
+    })
+  }
+
+
   return (
     <div className="w-full">
       <table className="table-fixed bg-white-smoke w-full rounded-lg">
@@ -21,10 +62,6 @@ export default function PositionDataTable(props: any) {
         </thead>
         <tbody>
           {position.map((position: any, id: number) => {
-
-            const [open, setOpen] = useState(false)
-            const [ editOpen, setEditOpen ] = useState(false)
-
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
                 <td className={`${Style.tableBorder}`}>
@@ -43,17 +80,17 @@ export default function PositionDataTable(props: any) {
                     </Link> */}
 
                     <button onClick={e => {
-                      setEditOpen(true)
+                      handleEdit(position.id)
                     }}>
                       <BsPencil className="hover:text-green-600" />
-                      <PositionEdit setEditOpen={setEditOpen} editOpen={editOpen} position={position} />
+                      <PositionEdit handleClosePosition={handleClosePosition} editOpen={editOpen[position.id]} position={position} key={selected} />
                     </button>
 
                     <button onClick={e => {
-                      setOpen(true)
+                      handleDelete(position.id)
                     }}>
                       <BsTrash className="hover:text-red-600" />
-                      <DestroyPosition setOpen={setOpen} open={open} position={position} />
+                      <DestroyPosition handleClosePosition={handleClosePosition} deleteOpen={deleteOpen[position.id]} position={position} key={selected} />
                     </button>
                   </div>
                 </td>

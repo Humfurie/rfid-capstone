@@ -188,6 +188,15 @@ const positionDelete = async () => {
   })
   setId('')
 }
+/**
+ * Delete Year Level
+ */
+const yearlevelDelete = async () => {
+  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/year_level/delete`, {
+    id: id
+  })
+  setId('')
+}
 
 
   console.log(role)
@@ -243,6 +252,7 @@ const positionDelete = async () => {
         userDelete,
         parentDelete,
         positionDelete,
+        yearlevelDelete,
 
         id,
         setId,

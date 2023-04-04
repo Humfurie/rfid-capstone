@@ -5,13 +5,13 @@ import { Style } from "../../../../lib/Style";
 
 const DestroyPosition = (props: any) => {
     const { setId, positionDelete } = useContext(FormContext)
-    const { setOpen, open, position } = props
+    const { deleteOpen, position, handleClosePosition, key } = props
     return (
         <>
             <Modal
-                key={position.id}
-                opened={open}
-                onClose={() => setOpen(false)}
+                key={key}
+                opened={deleteOpen}
+                onClose={() => handleClosePosition(position.id)}
                 title="Please consider this"
             // transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
             >
@@ -28,7 +28,7 @@ const DestroyPosition = (props: any) => {
                         </td>
                     </div>
                     <div className="flex justify-evenly">
-                        <button onClick={e => setOpen(false)}>Cancel</button>
+                        <button onClick={e => handleClosePosition(position.id)}>Cancel</button>
                         <button type="submit" onClick={e => {
                             setId(position.id)
                             location.reload()
