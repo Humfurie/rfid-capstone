@@ -11,12 +11,10 @@ export default class ParetController {
     public async index({ response }: HttpContextContract) {
 
         const user = await Parent.query().where('flag', 1)
-
         console.log(user)
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
-
         return response.status(200).json(user)
     }
 
