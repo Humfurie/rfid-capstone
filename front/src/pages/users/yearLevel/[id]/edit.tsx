@@ -15,7 +15,6 @@ const YearLevelEdit = (props: any) => {
     const [form, setForm] = useState({
         yearLevel: yearLevel.year
     })
-    console.log('thisis form year', form)
 
     const formOnChange = (value: any, column: string) => {
         setForm((prev: any) => {
@@ -58,7 +57,9 @@ const YearLevelEdit = (props: any) => {
                         </div>
 
                         <div className="flex gap-5">
-                            <button>
+                            <button type="button" onClick={e => {
+                                handleCloseYearLevel(yearLevel.id)
+                            }}>
                                 Cancel
                             </button>
                             <div>

@@ -1,11 +1,17 @@
-import { Modal } from "@mantine/core";
 import { useContext } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
+import { useRouter } from 'next/router';
+import { Modal } from "@mantine/core";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+
 
 const DestroyPosition = (props: any) => {
     const { setId, positionDelete } = useContext(FormContext)
     const { deleteOpen, position, handleClosePosition, key } = props
+    const router = useRouter()
+
     return (
         <>
             <Modal
@@ -13,7 +19,7 @@ const DestroyPosition = (props: any) => {
                 opened={deleteOpen}
                 onClose={() => handleClosePosition(position.id)}
                 title="Please consider this"
-            // transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
+                // transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
             >
                 <form onSubmit={e => {
                     e.preventDefault()
@@ -28,10 +34,11 @@ const DestroyPosition = (props: any) => {
                         </td>
                     </div>
                     <div className="flex justify-evenly">
-                        <button onClick={e => handleClosePosition(position.id)}>Cancel</button>
+                        {/* <button onClick={e => handleClosePosition(position.id)}>Cancel</button> */}
+                        <Button variant="text" onClick={e => handleClosePosition(position.id)}>Cancel</Button>
                         <button type="submit" onClick={e => {
                             setId(position.id)
-                            location.reload()
+                            router.push('/users/position')
                         }}>Delete</button>
                     </div>
                 </form>
