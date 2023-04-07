@@ -12,6 +12,7 @@ import StudentTab from "../../components/Tabs/StudentTab";
 
 export default function student(props: any) {
 	const { user } = props
+	
 	return (
 		<div className="flex h-screen">
 			<Head>
@@ -44,8 +45,6 @@ export default function student(props: any) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
 	const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/studentIndex`)
-
-	
 
 	return {
 		props: {

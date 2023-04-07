@@ -12,13 +12,18 @@ export default class UserLoginsController {
   public async login({ request, response }: HttpContextContract) {
     const username = request.input('username')
     const password = request.input('password')
-    // const user = await UserLogin.query().whereHas('user', user => {
-    //   user.whereHas('role', userRole => {
-    //     userRole.join()
-    //   })
-    // })
-    const user = await UserLogin.query().where('username', username).firstOrFail()
-    if (!user) {
+
+    const userLogin = await UserLogin.query()
+      .preload('user', (user) => {
+        user.preload('role')
+      })
+      .where('username', username)
+      .where('flag', 1)
+      .firstOrFail()
+
+    console.log(userLogin.serialize())
+
+    if (!userLogin) {
       return response.status(401).json({ "message": "User not found!" })
     }
 
@@ -26,9 +31,9 @@ export default class UserLoginsController {
       username: username
     }
 
-    if (!user) return response.status(401).json({ message: 'Unauthorized Access, User not found' })
+    if (!userLogin) return response.status(401).json({ message: 'Unauthorized Access, User not found' })
 
-    if (!await Hash.verify(user.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
+    if (!await Hash.verify(userLogin.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
 
     try {
 
@@ -43,7 +48,8 @@ export default class UserLoginsController {
       // }
       return response.status(200).send({
         token: token,
-        data: { user }
+        data: { ...userLogin },
+        role: userLogin.user.role[0].role
       })
     } catch (error) {
       return response.status(401)
