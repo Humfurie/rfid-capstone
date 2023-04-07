@@ -11,6 +11,9 @@ import Activity from './Activity'
 
 export default class User extends BaseModel {
   public static table = 'users'
+  /**
+   * this is the updated users model
+   */
 
   @column({ isPrimary: true })
   public id: number

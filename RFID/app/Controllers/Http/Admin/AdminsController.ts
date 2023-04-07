@@ -69,23 +69,13 @@ export default class AdminsController {
 
     try {
       const token = jwt.sign(jwtAuth, 'maotClofel')
-      // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
 
-      // if (request.input('remember')) {
-      //   jwtCookie = `${jwtCookie} Max-Age=361560000`
-      // }
       console.log(token, 'token')
       return response.status(200).send({
         token: token,
         data: { admin }
       })
-      // {
-      //   statusCode: 200,
-      //   headers: {
-      //     'Set-Cookie': `Admin=${token}; HttpOnly; Max-Age=24*60*60; Path=/`
-      //   },
-      //   data: { admin }, 
-      // }
+
 
     } catch (error) {
       return response.status(401).send(error)
