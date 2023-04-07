@@ -9,15 +9,21 @@ export function middleware(request: NextRequest) {
     try {
         const cookie = request.cookies.get('JWToken')
         const url = request.nextUrl.pathname
-        // const verifiedToken = jwtVerify(cookie!.value, new TextEncoder().encode('userStudent'))
-        // const verifiedToken = jwtVerify(cookie!.value, 'userStudent')
-        // console.log(verifiedToken)
-        // if (!verifiedToken && url.includes('/')) {
-        //     request.nextUrl.pathname = '/login'
-        //     return NextResponse.redirect(request.nextUrl)
-        // }
-        console.log(request.nextUrl.pathname)
-        if (!cookie && url === '/') {
+        const paths = (url === '/'
+            || url === '/employee'
+            || url === '/employee/activity'
+            || url === '/employee/profile'
+            || url === '/student'
+            || url === '/student/activity'
+            || url === '/student/profile'
+            || url === '/student/schedule'
+            || url === '/parent'
+            || url === '/parent/profile'
+            || url === '/parent/children'
+        )
+        // console.log(request.nextUrl.pathname)
+        if (!cookie && paths) {
+            // console.log("wa nigana")
             request.nextUrl.pathname = '/login'
             return NextResponse.redirect(request.nextUrl)
             // request.nextUrl.pathname = "/login"
@@ -29,25 +35,17 @@ export function middleware(request: NextRequest) {
         }
         return NextResponse.next()
 
-
-
-        // if (request.nextUrl.pathname === '/login') {
-        //     return NextResponse.rewrite('/')
-        // }
-
-
-        // return NextResponse.redirect(new URL('/about-2', request.url))
-
-
-
     } catch (error) {
-
+        console.log(error)
     }
 }
 
 export const config = {
     matcher: [
         '/',
-        '/login'
+        '/login',
+        '/employee/:path*',
+        '/parent/:path*',
+        '/student/:path*'
     ]
 }
