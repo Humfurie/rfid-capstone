@@ -23,7 +23,9 @@ export default class PositionValidator {
    *     ])
    *    ```
    */
-  public schema = schema.create({})
+  public schema = schema.create({
+    position: schema.string()
+  })
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

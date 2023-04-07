@@ -1,9 +1,13 @@
 import Head from "next/head";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
+import axios from "axios";
+import { GetServerSideProps } from "next";
 
 
 
-const index = () => {
+const index = (props: any) => {
+
+    const { position } = props
     return (
         <div>
             <div>
@@ -21,3 +25,14 @@ const index = () => {
 }
 
 export default index;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
+    console.log(data)
+    return {
+        props: {
+            position: data.data
+
+        }
+    }
+}

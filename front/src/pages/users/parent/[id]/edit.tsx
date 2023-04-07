@@ -29,7 +29,7 @@ const edit = (props: any) => {
       return { ...prev, [column]: value }
     })
   }
-  console.log("thiis form", form)
+  // console.log("thiis form", form)
 
   const parentUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/parent/edit/${user.id}`, {

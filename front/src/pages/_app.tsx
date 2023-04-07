@@ -179,6 +179,16 @@ export default function App({ Component, pageProps }: AppProps) {
     })
     setId('')
   }
+/**
+ * Delete Position
+ */
+const positionDelete = async () => {
+  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
+    id: id
+  })
+  setId('')
+}
+
 
   console.log(role)
 
@@ -229,9 +239,10 @@ export default function App({ Component, pageProps }: AppProps) {
         setYear,
         //retrieved data
 
-        //user delete
+        //delete
         userDelete,
         parentDelete,
+        positionDelete,
 
         id,
         setId,
