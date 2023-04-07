@@ -12,7 +12,7 @@ import StudentTab from "../../components/Tabs/StudentTab";
 
 export default function student(props: any) {
 	const { user } = props
-	
+	console.log(user)
 	return (
 		<div className="flex h-screen">
 			<Head>
