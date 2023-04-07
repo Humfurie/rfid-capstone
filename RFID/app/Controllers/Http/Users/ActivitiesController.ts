@@ -12,7 +12,7 @@ export default class ActivitiesController {
         const d = new Date()
         let day = weekday[d.getDay()]
 
-        if (input === null) {
+        if (!input) {
             return response.status(400).json({ "message": "null" })
         }
 

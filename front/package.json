@@ -29,6 +29,7 @@
     "child_process": "^1.0.2",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "jose": "^4.13.1",
     "next": "^13.1.6",
     "nookies": "^2.5.2",
     "prop-types": "^15.8.1",
