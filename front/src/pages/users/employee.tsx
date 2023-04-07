@@ -10,6 +10,7 @@ import { Style } from "../../lib/Style";
 
 export default function employee(props: any) {
 	const { user } = props
+	console.log('this is employee user',user)
 	return (
 		<div className="flex h-screen">
 			<Head>

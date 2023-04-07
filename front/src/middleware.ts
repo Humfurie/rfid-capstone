@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { jwtVerify } from 'jose'
+// import { jwtVerify } from 'jose'
 import { redirect } from 'next/dist/server/api-utils'
 import NextNodeServer from 'next/dist/server/next-server'
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
     try {
-        const cookie = request.cookies.get('JWToken')
+        const cookie = request.cookies.get('Admin')
         const url = request.nextUrl.pathname
         // const verifiedToken = jwtVerify(cookie!.value, new TextEncoder().encode('userStudent'))
         // const verifiedToken = jwtVerify(cookie!.value, 'userStudent')
