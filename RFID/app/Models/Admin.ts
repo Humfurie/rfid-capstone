@@ -16,6 +16,9 @@ export default class Admin extends BaseModel {
   public password: string
 
   @column()
+  public flag: number
+
+  @column()
   public rememberMeToken: string | null
 
   @column.dateTime({ autoCreate: true })
@@ -23,6 +26,9 @@ export default class Admin extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column.dateTime()
+  public deletedAt: DateTime
 
   @beforeSave()
   public static async hashPassword (admin: Admin) {

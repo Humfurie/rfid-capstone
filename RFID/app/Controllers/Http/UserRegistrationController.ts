@@ -35,3 +35,4 @@ export default class UserRegistrationController {
         return response.status(200)
     }
 }
+

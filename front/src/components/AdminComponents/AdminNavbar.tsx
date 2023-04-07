@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
-import { useState } from 'react';
-import { BsArrowLeft, BsChevronUp } from "react-icons/bs"
 import { MdDashboard } from "react-icons/md"
 import { FaUserAlt, FaUsers, FaThList, FaSignOutAlt } from "react-icons/fa"
-
+import { IoIosArrowBack } from "react-icons/io"
 import Link from "next/link";
 import { FormContext } from "../../lib/FormContext";
+import { destroyCookie } from "nookies";
+import { useRouter } from "next/router";
+
 
 
 export default function AdminNavbar() {
+
+	const router = useRouter()
 
 	const {
 		open,
@@ -18,83 +21,76 @@ export default function AdminNavbar() {
 		currentMenu,
 		setCurrentMenu
 	} = useContext(FormContext)
-	
+
 
 	// console.log("naopen", open)
-	const Menus = [
+	const Menus = [{
+		title: <Link href="/">Dashboard</Link>,
+		icon: ""
+	},
 
-		{
-			title: <Link href="../AdminProfile">Profile</Link>,
-			icon: <FaUserAlt />,
-		},
-		{
-			title: "Users",
-			icon: <FaUsers />,
-			submenu: true,
-			submenuItems: [
-				{
-					src: <Link href="../UsersEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Employees</Link>
-				},
-				{
-					src: <Link href="../UsersStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Students</Link>
-				},
-				{
-					src: <Link href="../UsersParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Parents</Link>
-				}
-			],
-			button: true
-
-		},
-		{
-			title: "Records",
-			icon: <FaThList />,
-			submenu: true,
-			submenuItems: [
-				{
-					src: <Link href="./RecordsEmployeesDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% active:bg-powderblue-shades10%"
-					>Employees</Link>
-				},
-				{
-					src: <Link href="./RecordsStudentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Students</Link>
-				},
-				{
-					src: <Link href="./RecordsParentsDashboard" className="text-gray-500 bg-gray-100 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-black hover:bg-powderblue-shades10% "
-					>Parents</Link>
-				}
-			],
-		},
-		{
-			title: "Log out",
-			icon: <FaSignOutAlt />
-		}
+	{
+		title: <Link href="/admin/profile" type="button">Profile</Link>,
+		icon: <FaUserAlt />
+	},
+	{
+		title: "Users",
+		icon: <FaUsers />,
+		submenuItems: [
+			{
+				src: <Link href="/users/employee" className="text-white-smoke text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-gray-700 hover:bg-magic-mint hover:rounded-lg"
+				>Employees</Link>
+			},
+			{
+				src: <Link href="/users/student" className="text-white-smoke text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:text-gray-700 hover:bg-magic-mint hover:rounded-lg"
+				>Students</Link>
+			}
+		],
+		button: true
+	},
+	{
+		title: <Link href="/users/parent">Parent/Guardian</Link>,
+		icon: ""
+	},
+	{
+		title: "Records",
+		icon: <FaThList />
+	},
+	{
+		title: <Link href="/users/position">Positions</Link>,
+		icon: ""
+	},
+	{
+		title: <Link href="/users/year_level">Year Levels</Link>,
+		icon: ""
+	},
+	{
+		title: <button onClick={e => {
+			destroyCookie(null, 'Admin')
+			router.push('/login')
+		}}>Log Out</button>,
+		icon: <FaSignOutAlt />
+	}
 
 	]
 	return (
-		<div className="flex">
-			<div className={`h-screen p-5 pt-8 ${open ? "w-48" : "w-20"}  relative bg-white duration-500 text-black border-r-[1px] border-powderblue-shades10%`}>
+		<div className="flex h-full">
+			<div className={`h-full p-5 pt-8 ${open ? "w-48" : "w-20"}  relative duration-500 text-gray-300 bg-gray-700`} >
 
 				<div>
-					<BsArrowLeft className={`w-6 h-6 bg-white  text=3xl rounded-3xl absolute
-					-right-3 top-9  cursor-pointer duration-100 border border-powderblue-shades10% ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
-
-					<span><img src="../" alt="" /></span>
-
-					<Link href="./AdminDashboard" className={`inline-flex logo text-black font-extrabold text-2xl ${!open && "hidden"}`}> A I S - R F T </Link>
-
+					<IoIosArrowBack
+						className={`w-6 h-6 bg-white  text=3xl rounded-3xl absolute
+					-right-3 top-12  cursor-pointer duration-100 border border-gray-700 text-gray-700  ${!open && "rotate-180"}`}
+						onClick={() => setOpen(!open)} />
 				</div>
 
 				<div className="sidebar-menu ">
 
 					<ul className="pt-2">
-						{Menus.map((menu: any, index: any) => (
-							<>
+						{Menus.map((menu: any, index: number) => (
+							<div key={index}>
 								<li
-									key={index}
-									className={`text-sm text-gray-500 flex items-center gap-x-4 cursor-pointer p-2 hover:bg-powderblue-shades10% rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
+									className={`text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
 								>
 									<span className="text-xl bock float-left">
 										{menu.icon ? menu.icon : <MdDashboard />}
@@ -102,7 +98,6 @@ export default function AdminNavbar() {
 
 									<span
 										className={`text-base font-sm flex-1 duration-200 ${!open && "hidden"}`}
-										id={index}
 										onClick={() => {
 											setCurrentMenu(menu.title)
 											setSubmenuOpen(!submenuOpen)
@@ -110,12 +105,12 @@ export default function AdminNavbar() {
 									>
 										{menu.title}
 
-										{menu.submenu}
 									</span>
 								</li>
 								{
-									menu.submenu && submenuOpen && currentMenu === menu.title && open && (
-										<ul className="duration-500">
+									//  submenuOpen && currentMenu === menu.title && open && (
+									submenuOpen === open && currentMenu === menu.title && (
+										<ul className="duration-500 bg-gray-600 rounded-lg">
 											{menu.submenuItems.map((menu: any, index: any) => {
 												return (
 													<li
@@ -128,7 +123,7 @@ export default function AdminNavbar() {
 										</ul>
 									)
 								}
-							</>
+							</div>
 						))}
 					</ul>
 				</div>

@@ -9,13 +9,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "powderblue-tints80%": "#eef8f9",
-        "powderblue-shades10%": "#9ac5cc",
+        "powderblue-tints80%": "#ee9b55",
+        "powderblue-shades10%": "#8c8585",
         "powderblue-shades20%":"#89afb6",
         "powderblue-shades50%": "#566e72",
 
         "light-grey": "#F2f2f2",
         "theme-blue": "#0A1578",
+        
+        //color-scheme
+        "teal-blue": "#388087",
+        "moonstone-blue": "#6fb3b8",
+        "powder-blue": "#badfe7",
+        "magic-mint": "#c2edce",
+        "white-smoke": "#f6f6f2",
+
+        "teal-blue2": "#4B9AA2"
       }
     },
     borderWidth: {

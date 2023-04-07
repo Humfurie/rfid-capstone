@@ -1,150 +1,105 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { FormContext } from "../lib/FormContext";
 
 export default function App({ Component, pageProps }: AppProps) {
+  /**
+   * next router
+   */
+  const router = useRouter()
+
+  /**
+   * nookies cookie parser
+   */
   const parsedToken = parseCookies();
-  console.log(parsedToken);
+
+  /**
+   * axios interceptor, custom made
+   */
   axios.interceptors.request.use(async (config) => {
-    const token = parsedToken.JWToken;
+    const token = parsedToken.Admin;
     if (token) {
       config.headers!.authorization = "Bearer " + token;
     }
     return config;
   });
-  const test = useCallback(async () => {
-    try {
-      await axios.get(`http://127.0.0.1:3333/auth`);
-      Router.push("/AdminDashboard");
-    } catch (error) {
-      Router.push("/");
-    }
-  }, []);
 
+  /**
+   * states
+   */
   const [open, setOpen] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
 
+
+  /**
+   * these states contain backend data
+   */
+
   /*
    *
    * this here contains all the forms and states stuff of the users
    */
-
-  //employee
-  const [employeeRegistration, setEmployeeRegistration] = useState({
-    firstname: "",
-    middlename: "",
-    lastname: "",
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    birthdate: "",
+    gender: "",
     address: "",
     email: "",
     contactNumber: "",
     facebook: "",
-  });
-
-  const [employeeEmergency, setEmployeeEmergency] = useState({
-    name: "",
-    contactNumber: "",
-    facebook: "",
-  });
-
-  const [employeeAccount, setEmployeeAccount] = useState({
-    username: "",
-    password: "",
-  });
-
-  //student
-  const [studentRegistration, setStudentRegistration] = useState({
-    studentId: "",
-    schoolYear: "",
-    firstname: "",
-    middlename: "",
-    lastname: "",
-    address: "",
-    email: "",
-    contactNumber: "",
-    facebook: "",
-  });
-
-  const [studentEmergency, setStudentEmergency] = useState({
-    name: "",
-    contactNumber: "",
-    facebook: "",
-  });
-
-  const [studentAccount, setStudentAccount] = useState({
-    username: "",
-    password: "",
-  });
-
-  //parents
-  const [parentRegistration, setParentRegistration] = useState({
-    firstname: '',
-    middlename: '',
-    lastname: '',
-    address: '',
-    email: '',
-    contactNumber: '',
-    facebook: ''
+    year: "",
+    idNumber: "",
+    rfidNumber: "",
+    isAlumni: false,
   })
-
-  const [parentAccount, setParentAccount] = useState({
+  // console.log(userRegistration)
+  // year levels
+  const [year, setYear] = useState("")
+  //position-employee
+  const [position, setPosition] = useState("")
+  //role
+  const [role, setRole] = useState('')
+  //emergency contact
+  const [emergency, setEmergency] = useState({
+    name: "",
+    contactNumber: "",
+    email: "",
+    facebook: "",
+  });
+  //account
+  const [account, setAccount] = useState({
     username: "",
     password: "",
   });
+  //specific id for delete
+  const [id, setId] = useState('')
 
   /*
    *
    * this here contains all the functions
    */
-  const employeeOnChange = (value: any, column: string) => {
-    setEmployeeRegistration((prev) => {
+  const userOnChange = (value: any, column: string) => {
+    setUserInfo((prev) => {
+      return { ...prev, [column]: value };
+    })
+  }
+
+  const emergencyOnChange = (value: any, column: string) => {
+    setEmergency((prev) => {
       return { ...prev, [column]: value };
     });
   };
 
-  const employeeEmergencyOnChange = (value: any, column: string) => {
-    setEmployeeEmergency((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const employeeAccountOnChange = (value: any, column: string) => {
-    setEmployeeAccount((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const studentOnChange = (value: any, column: string) => {
-    setStudentRegistration((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const studentEmergencyOnChange = (value: any, column: string) => {
-    setStudentEmergency((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const studentAccountOnChange = (value: any, column: string) => {
-    setStudentAccount((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const parentOnChange = (value: any, column: string) => {
-    setParentRegistration((prev) => {
-      return { ...prev, [column]: value };
-    });
-  };
-
-  const parentAccountOnChange = (value: any, column: string) => {
-    setParentAccount((prev) => {
+  const accountOnChange = (value: any, column: string) => {
+    setAccount((prev) => {
       return { ...prev, [column]: value };
     });
   };
@@ -153,15 +108,90 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the endpoints
    */
-  const employeeRegister = () => {};
+  // add position
+  const positionSubmit = async () => {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
+      position: position,
+    })
+    setPosition('')
+    router.push('/users/position')
+  }
+  // add year
+  const yearSubmit = async () => {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`, {
+      year: year,
+    })
+    setYear('')
+    router.push('/users/year_level')
+  }
+  const userSubmit = async () => {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
+      userRegistration: userInfo,
+      position: position,
+      role: role,
+      emergency: emergency,
+    })
+    setUserInfo({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      birthdate: "",
+      gender: "",
+      address: "",
+      email: "",
+      contactNumber: "",
+      facebook: "",
+      year: "",
+      idNumber: "",
+      rfidNumber: "",
+      isAlumni: false,
+    })
+    setPosition("")
+    setRole('')
+    setEmergency({
+      name: "",
+      contactNumber: "",
+      email: "",
+      facebook: "",
+    })
+    setAccount({
+      username: "",
+      password: "",
+    })
+  }
 
-  const studentRegister = () => {};
 
-  const parentRegister = () => {};
+  /**
+   * Delete User
+   */
+  const userDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/delete`, {
+      role: role,
+      id: id
+    })
+    setRole('')
+    setId('')
+  }
+
+  const parentDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/parent/delete`, {
+      id: id
+    })
+    setId('')
+  }
+
+  console.log(role)
 
   useEffect(() => {
-    test();
-  }, [test]);
+    (async () => {
+      try {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+        // router.push("/AdminDashboard");
+      } catch (error) {
+        // router.push("/");
+      }
+    })()
+  }, [])
 
   return (
     <FormContext.Provider
@@ -174,23 +204,37 @@ export default function App({ Component, pageProps }: AppProps) {
         setCurrentMenu,
         registration,
         setRegistration,
+        userInfo,
+        setUserInfo,
+        emergency,
+        setEmergency,
 
-        //employee functions
-        employeeRegister,
-        employeeOnChange,
-        employeeEmergencyOnChange,
-        employeeAccountOnChange,
+        userOnChange,
+        setRole,
 
-        //student functions
-        studentRegister,
-        studentOnChange,
-        studentEmergencyOnChange,
-        studentAccountOnChange,
+        //emergency and account onChange
+        emergencyOnChange,
+        accountOnChange,
 
-        //parents functions
-        parentRegister,
-        parentOnChange,
-        parentAccountOnChange,
+        //onsubmit event action
+        userSubmit,
+        positionSubmit,
+        yearSubmit,
+
+        //input position
+        position,
+        setPosition,
+        //year
+        year,
+        setYear,
+        //retrieved data
+
+        //user delete
+        userDelete,
+        parentDelete,
+
+        id,
+        setId,
       }}
     >
       <Component {...pageProps} />
