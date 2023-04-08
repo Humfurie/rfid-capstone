@@ -7,7 +7,7 @@ import { TextField } from "@mui/material";
 
 const LoginForm = () => {
     const { loginOnChange,
-        userLogin } = useContext(FormContext)
+        userLogin } = useContext(FormContext) ?? null
     return (
         <div className="flex flex-col w-screen">
             <div >

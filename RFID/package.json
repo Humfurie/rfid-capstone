@@ -24,6 +24,7 @@
     "@adonisjs/core": "^5.8.6",
     "@adonisjs/lucid": "^18.3.0",
     "@adonisjs/repl": "^3.1.11",
+    "johnny-five": "^2.1.0",
     "jsonwebtoken": "^8.5.1",
     "luxon": "^3.0.4",
     "mysql": "^2.18.1",
@@ -31,6 +32,7 @@
     "phc-argon2": "^1.1.4",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
+    "serialport": "^10.5.0",
     "source-map-support": "^0.5.21"
   }
 }

@@ -3,6 +3,7 @@ import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm
 import User from './User'
 
 export default class Activity extends BaseModel {
+  public static table = 'activities'
   @column({ isPrimary: true })
   public id: number
 
@@ -23,7 +24,7 @@ export default class Activity extends BaseModel {
 
   @column.dateTime()
   public deletedAt: DateTime
-  
+
   @manyToMany(() => User, {
     pivotTable: 'user_activities'
   })

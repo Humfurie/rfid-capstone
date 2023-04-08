@@ -11,6 +11,9 @@ import Activity from './Activity'
 
 export default class User extends BaseModel {
   public static table = 'users'
+  /**
+   * this is the updated users model
+   */
 
   @column({ isPrimary: true })
   public id: number
@@ -31,10 +34,16 @@ export default class User extends BaseModel {
   public gender: string
 
   @column()
-  public email: string
+  public birthday: Date
 
   @column()
+  public gender: string
+  
+  @column()
   public address: string
+  
+  @column()
+  public email: string
 
   @column()
   public contactNumber: string

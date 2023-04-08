@@ -61,7 +61,7 @@ export default class UsersController {
         const user = await User.query()
             .whereHas('role', (builder) => {
                 builder.where('role', 'Student');
-            }).where('flag', 1)
+            })
             .where('flag', 1)
             .preload('emergencyContact')
             .preload('yearLevel')

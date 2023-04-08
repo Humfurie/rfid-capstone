@@ -1,5 +1,5 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-    Route.get('/rfid', 'RifdsController.show')
-}).namespace('App/Controllers/Http/Users')
+    Route.get('/rfid', 'RfidsController.show')
+}).namespace('App/Controllers/Http/Admin')
