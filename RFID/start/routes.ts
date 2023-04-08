@@ -25,7 +25,6 @@ import 'App/Routes/Admin/AdminRoute'
  * user Routes
  */
 import 'App/Routes/User/UserLoginRoute'
-import 'App/Routes/RfidRoutes'
 import 'App/Routes/Admin/UserRegistrationRoute'
 import 'App/Routes/UserRoute'
 import 'App/Routes/ParentRoute'
