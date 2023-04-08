@@ -7,6 +7,25 @@ import DestroyParent from "../../../pages/users/parent/[id]/destroy";
 
 const ParentDatatable = (props: any) => {
   const { users } = props
+
+  const [deleteOpen, setDeleteOpen] = useState(
+    users.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
+      num[position.id] = false
+      return num
+    }, {})
+  )
+
+  const handleDelete = (positionId: any) => {
+    setDeleteOpen((prev: any) => {
+      return { ...prev, [positionId]: true }
+    })
+  }
+
+  const handleClosePosition = (positionId: any) => {
+    setDeleteOpen((prev: any) => {
+      return { ...prev, [positionId]: false }
+    })
+  }
   return (
     <div className="w-full">
       <table className="table-fixed bg-white-smoke w-full rounded-lg">
@@ -20,8 +39,6 @@ const ParentDatatable = (props: any) => {
         </thead>
         <tbody>
           {users.map((user: any, id: number) => {
-
-            const [open, setOpen] = useState(false)
 
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
@@ -43,10 +60,10 @@ const ParentDatatable = (props: any) => {
                       <BsPencil className="hover:text-green-600" />
                     </Link>
                     <button onClick={e => {
-                      setOpen(true)
+                      handleDelete(user.id)
                     }}>
                       <BsTrash className="hover:text-red-600" />
-                      <DestroyParent setOpen={setOpen} open={open} user={user} />
+                      <DestroyParent setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} />
                     </button>
                   </div>
 

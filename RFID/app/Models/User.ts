@@ -34,7 +34,7 @@ export default class User extends BaseModel {
   public gender: string
 
   @column()
-  public birthday: Date
+  public birthday: string
 
   @column()
   public gender: string
