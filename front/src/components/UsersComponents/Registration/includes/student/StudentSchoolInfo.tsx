@@ -4,13 +4,9 @@ import { Style } from "../../../../../lib/Style";
 
 export const StudentSchoolInfo = () => {
     const {
-        registration,
-        setRegistration,
         userOnChange,
-        emergencyOnChange,
-        accountOnChange,
-        userSubmit,
-        setRole
+        userInfo,
+        apiYearLevel
     } = useContext(FormContext);
     return (
         <div>
@@ -22,8 +18,9 @@ export const StudentSchoolInfo = () => {
                     <input
                         type="number"
                         className={Style.inputType}
+                        value={userInfo.idNumber}
                         onChange={(e) => {
-                            userOnChange(e.target.value, "studentId");
+                            userOnChange(e.target.value, "idNumber");
                         }}
                     />
                 </div>
@@ -36,6 +33,7 @@ export const StudentSchoolInfo = () => {
                         name=""
                         id=""
                         className={Style.inputType}
+                        value={userInfo.schoolYear}
                         onChange={(e) => {
                             userOnChange(e.target.value, "schoolYear");
                         }}
@@ -43,18 +41,20 @@ export const StudentSchoolInfo = () => {
                         <option selected disabled>
                             ---Select School Year---
                         </option>
-                        <option value="grade 7">Grade 7</option>
-                        <option value="grade 8">Grade 8</option>
-                        <option value="grade 9">Grade 9</option>
-                        <option value="grade 10">Grade 10</option>
-                        <option value="grade 11">Grade 11</option>
-                        <option value="grade 12">Grade 12</option>
+                        {(apiYearLevel?.data || []).map((yearLevel: { id: number, year: string }, id: number) => {
+                            return (
+                                <>
+                                    <option key={id} value={yearLevel.id}>{yearLevel.year}</option>
+                                </>
+                            )
+                        })}
                     </select>
                 </div>
                 <div className="flex justify-center flex-col mt-2">
                     <input
                         type="checkbox"
                         className={Style.inputType}
+                        value={userInfo.schoolYear}
                         onChange={(e) => {
                             userOnChange(e.target.value, "schoolYear");
                         }}

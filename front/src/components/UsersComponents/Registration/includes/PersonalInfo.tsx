@@ -4,13 +4,9 @@ import { Style } from "../../../../lib/Style";
 
 export const PersonalInfo = () => {
     const {
-        registration,
-        setRegistration,
         userOnChange,
-        emergencyOnChange,
-        accountOnChange,
-        userSubmit,
-        setRole
+        userInfo
+        
     } = useContext(FormContext);
     return (
         <div>
@@ -22,8 +18,9 @@ export const PersonalInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={userInfo.firstName}
                         onChange={(e) => {
-                            userOnChange(e.target.value, "firstname");
+                            userOnChange(e.target.value, "firstName");
                         }}
                     />
                 </div>
@@ -34,8 +31,9 @@ export const PersonalInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={userInfo.middleName}
                         onChange={(e) => {
-                            userOnChange(e.target.value, "middlename");
+                            userOnChange(e.target.value, "middleName");
                         }}
                     />
                 </div>
@@ -46,8 +44,9 @@ export const PersonalInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={userInfo.lastName}
                         onChange={(e) => {
-                            userOnChange(e.target.value, "lastname");
+                            userOnChange(e.target.value, "lastName");
                         }}
                     />
                 </div>
@@ -58,8 +57,9 @@ export const PersonalInfo = () => {
                     <input
                         type="date"
                         className={Style.inputType}
+                        value={userInfo.birthdate}
                         onChange={(e) => {
-                            userOnChange(e.target.value, "birthday");
+                            userOnChange(e.target.value, "birthdate");
                         }}
                     />
                 </div>
@@ -69,6 +69,7 @@ export const PersonalInfo = () => {
                     </label>
                     <select
                         className={Style.inputType}
+                        value={userInfo.gender}
                         onChange={(e) => {
                             userOnChange(e.target.value, "gender");
                         }}
@@ -87,6 +88,7 @@ export const PersonalInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={userInfo.address}
                         onChange={(e) => {
                             userOnChange(e.target.value, "address");
                         }}

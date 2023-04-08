@@ -5,6 +5,7 @@ import { Style } from "../../../../lib/Style";
 export const ContactInfo = () => {
     const {
         userOnChange,
+        userInfo
     } = useContext(FormContext)
 
     return (
@@ -17,6 +18,7 @@ export const ContactInfo = () => {
                     <input
                         type="email"
                         className={Style.inputType}
+                        value={userInfo.email}
                         onChange={(e) => {
                             userOnChange(e.target.value, "email");
                         }}
@@ -29,6 +31,7 @@ export const ContactInfo = () => {
                     <input
                         type="number"
                         className={Style.inputType}
+                        value={userInfo.contactNumber}
                         onChange={(e) => {
                             userOnChange(e.target.value, "contactNumber");
                         }}
@@ -41,6 +44,7 @@ export const ContactInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={userInfo.facebook}
                         onChange={(e) => {
                             userOnChange(e.target.value, "facebook");
                         }}

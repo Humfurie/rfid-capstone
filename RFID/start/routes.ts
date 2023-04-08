@@ -33,6 +33,7 @@ import 'App/Routes/PositionRoute'
 import 'App/Routes/Role'
 import 'App/Routes/YearLevelRoute'
 import 'App/Routes/User/ActivityRoute'
+import 'App/Routes/Admin/AdminRoute'
 
 Route.get('/', async () => {
   return { hello: 'world' }

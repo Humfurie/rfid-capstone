@@ -8,7 +8,7 @@ const index = (props: any) => {
     const { user } = props
 
     return (
-        <div className="flex h-screen w-screen bg-white">
+        <div className="flex h-screen w-screen bg-gray-200">
             <div className="flex flex-col h-full w-full">
                 <Header />
                 <div className="flex h-full w-full">

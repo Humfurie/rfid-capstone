@@ -2,13 +2,18 @@ import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FormContext } from "../../../../lib/FormContext";
+import { useRouter } from "next/router";
 
 
 const edit = (props: any) => {
+  const { apiYearLevel } = useContext(FormContext)
+ const router = useRouter()
 
-  const { user, yearLevel } = props
+  const { user } = props
   const userYearLevel = user.yearLevel[0].id
+
 
   const [form, setForm] = useState({
     firstName: user.first_name,
@@ -37,7 +42,7 @@ const edit = (props: any) => {
       return { ...prev, [column]: value }
     })
   }
-  console.log("this is setForm",setForm)
+  console.log("this is setForm", setForm)
 
   const userUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
@@ -60,29 +65,9 @@ const edit = (props: any) => {
       emergencyFacebook: form.emergencyFacebook,
       role: "student"
     })
-    setForm({
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      birthdate: "",
-      gender: "",
-      address: "",
-      email: "",
-      contactNumber: "",
-      facebook: "",
-      idNumber: "",
-      rfidNumber: "",
-      isAlumni: false,
-      yearLevel: "",
-      emergencyName: "",
-      emergencyContactNumber: "",
-      emergencyEmail: "",
-      emergencyFacebook: "",
-      role: ""
-    })
+    router.push('/users/student')
   }
 
-  console.log('yearLevel', yearLevel)
   return (
     <div>
       <h4 className="text-center">Update Student</h4>
@@ -218,13 +203,13 @@ const edit = (props: any) => {
                   value={form.yearLevel}
                   className={Style.inputType}
                   onChange={(e) => {
-                    formOnChange(e.target.value, "schoolYear");
+                    formOnChange(e.target.value, "yearLevel");
                   }}
                 >
                   <option selected disabled>
                     ---Select School Year---
                   </option>
-                  {yearLevel.map((yearLevel: { id: number, year: string }, id: number) => {
+                  {(apiYearLevel?.data || []).map((yearLevel: { id: number, year: string }, id: number) => {
                     return (
                       <>
                         <option key={id} value={yearLevel.id}>{yearLevel.year}</option>
@@ -380,8 +365,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   return {
     props: {
-      user: data.data[0],
-      yearLevel: data.data[1]
+      user: data.data
     }
   }
 }

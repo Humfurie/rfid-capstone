@@ -2,10 +2,12 @@ import { Modal } from "@mantine/core";
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import { Style } from "../../lib/Style";
+import { useRouter } from "next/router";
 
 const Destroy = (props: any) => {
     const { setRole, id, setId, userDelete } = useContext(FormContext)
     const { setOpen, open, user, userRole } = props
+    const router = useRouter()
     return (
         <>
             <Modal
@@ -38,7 +40,7 @@ const Destroy = (props: any) => {
                         <button type="submit" onClick={e => {
                             setId(user.id)
                             setRole(userRole)
-                            location.reload()
+                            router.push(location)
                         }}>Delete</button>
                     </div>
                 </form>

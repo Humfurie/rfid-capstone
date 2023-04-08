@@ -30,7 +30,7 @@ export default function employee(props: any) {
 
 						</div>
 						<div className={`w-full p-2`}>
-							<UsersDataTable user={user} />
+							<UsersDataTable user={user}/>
 						</div>
 					</div>
 
