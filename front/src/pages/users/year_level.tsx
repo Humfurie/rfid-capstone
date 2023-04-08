@@ -15,7 +15,7 @@ const year_level = (props: any) => {
         setYear,
         yearSubmit
     } = useContext(FormContext)
-    console.log(yearLevel)
+
     return (
         <div className="flex h-screen w-screen bg-white">
             <div>

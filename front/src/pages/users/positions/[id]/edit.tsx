@@ -59,9 +59,10 @@ const PositionEdit = (props: any) => {
 
                         <div className="flex gap-5">
                             <button
-                            onClick={(e) => {
-                                handleClosePosition
-                            }}
+                                type="button"
+                                onClick={(e) => {
+                                    handleClosePosition(position.id)
+                                }}
                             >
                                 Cancel
                             </button>

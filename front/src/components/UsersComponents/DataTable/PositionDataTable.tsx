@@ -42,9 +42,11 @@ export default function PositionDataTable(props: any) {
   const handleClosePosition = (positionId: any) => {
     setSelected(null)
     setDeleteOpen((prev: any) => {
+      console.log(prev, positionId)
       return { ...prev, [positionId]: false }
     })
     setEditOpen((prev: any) => {
+      // console.log(prev, positionId)
       return { ...prev, [positionId]: false }
     })
   }

@@ -2,11 +2,13 @@ import { Modal } from "@mantine/core";
 import { useContext } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
+import { Router, useRouter } from "next/router";
 
 const DestroyYearLevel = (props: any) => {
     const { setId, yearlevelDelete } = useContext(FormContext)
     const { deleteOpen, yearLevel, handleCloseDelete, key } = props
     // console.log('this is year', yearLevel)
+    const router = useRouter()
     return (
         <>
             <Modal
@@ -29,10 +31,10 @@ const DestroyYearLevel = (props: any) => {
                         </td>
                     </div>
                     <div className="flex justify-evenly">
-                        <button onClick={e => handleCloseDelete(yearLevel.id)}>Cancel</button>
+                        <button type="button" onClick={e => handleCloseDelete(yearLevel.id)}>Cancel</button>
                         <button type="submit" onClick={e => {
                             setId(yearLevel.id)
-                            location.reload()
+                            router.push('/users/year_level')
                         }}>Delete</button>
                     </div>
                 </form>

@@ -47,7 +47,7 @@ export default function YearLevelDataTable(props: any) {
       return { ...prev, [yearLevelId]: false }
     })
   }
- 
+
 
 
   return (
