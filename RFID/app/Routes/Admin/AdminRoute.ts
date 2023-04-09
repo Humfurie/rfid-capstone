@@ -4,4 +4,5 @@ Route.group(() => {
     Route.post('/register', 'AdminsController.create')
     Route.post('/login', 'AdminsController.login')
     Route.get('/auth', 'AdminsController.invoke').middleware(['admin'])
+    Route.get('/show/:id', 'AdminsController.show')
 }).namespace('App/Controllers/Http/Admin')

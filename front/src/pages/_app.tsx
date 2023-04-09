@@ -65,6 +65,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [year, setYear] = useState("")
   //position-employee
   const [position, setPosition] = useState("")
+  const [apiPosition, setApiPosition] = useState({})
+  const [apiYearLevel, setApiYearLevel] = useState({})
   //role
   const [role, setRole] = useState('')
   //emergency contact
@@ -147,7 +149,7 @@ export default function App({ Component, pageProps }: AppProps) {
       isAlumni: false,
     })
     setPosition("")
-    setRole('')
+    setRole("")
     setEmergency({
       name: "",
       contactNumber: "",
@@ -158,6 +160,13 @@ export default function App({ Component, pageProps }: AppProps) {
       username: "",
       password: "",
     })
+    // if (role === "student") {
+    //   router.push("/users/student")
+    // } else if (role === "employee") {
+    //   router.push("/users/employee")
+    // }
+    // 
+    // 
   }
 
 
@@ -179,37 +188,43 @@ export default function App({ Component, pageProps }: AppProps) {
     })
     setId('')
   }
-/**
- * Delete Position
- */
-const positionDelete = async () => {
-  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
-    id: id
-  })
-  setId('')
-}
-/**
- * Delete Year Level
- */
-const yearlevelDelete = async () => {
-  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/year_level/delete`, {
-    id: id
-  })
-  setId('')
-}
+  /**
+   * Delete Position
+   */
+  const positionDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
+      id: id
+    })
+    setId('')
+  }
+  /**
+   * Delete Year Level
+   */
+  const yearlevelDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/year_level/delete`, {
+      id: id
+    })
+    setId('')
+  }
 
 
-  console.log(role)
+  // useEffect(() => {
 
+  // }, [])
   useEffect(() => {
     (async () => {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+        const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
+        const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
+        setApiPosition(getPosition)
+        setApiYearLevel(getYearLevel)
         // router.push("/AdminDashboard");
       } catch (error) {
         // router.push("/");
       }
     })()
+
   }, [])
 
   return (
@@ -240,12 +255,16 @@ const yearlevelDelete = async () => {
         positionSubmit,
         yearSubmit,
 
+        //position
+        apiPosition,
         //input position
         position,
         setPosition,
+
         //year
         year,
         setYear,
+        apiYearLevel,
         //retrieved data
 
         //delete

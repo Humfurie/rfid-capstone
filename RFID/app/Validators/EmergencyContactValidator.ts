@@ -23,7 +23,12 @@ export default class EmergencyContactValidator {
    *     ])
    *    ```
    */
-  public schema = schema.create({})
+  public schema = schema.create({
+    name: schema.string(),
+    contact_number: schema.string(),
+    facebook: schema.string(),
+    email: schema.string()
+  })
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

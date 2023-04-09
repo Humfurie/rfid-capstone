@@ -4,13 +4,13 @@ import ViewError from "./includes/ViewError"
 
 const UserView = (props: any) => {
     const { user } = props
-    const role = user[0].role[0].role.toString().toLowerCase()
-    console.log()
-    const currentUser = user[0]
+     const role = user.role[0].role.toString().toLowerCase()
+    console.log("thus is role", user)
+    
 
     return (
         <>
-            {role === 'employee' ? <EmployeeView user={currentUser} /> : role === 'student' ? <StudentView user={currentUser} /> : <ViewError />}
+            {role === 'employee' ? <EmployeeView user={user} /> : role === 'student' ? <StudentView user={user} /> : <ViewError />}
         </>
 
     );
