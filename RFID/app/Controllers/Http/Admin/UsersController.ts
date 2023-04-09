@@ -47,9 +47,7 @@ export default class UsersController {
             .preload('position')
             .firstOrFail()
 
-        const position = await Position.query().where('flag', 1)
-
-        return response.status(200).send([user, position])
+        return response.status(200).json(user)
     }
 
     /**
@@ -66,8 +64,6 @@ export default class UsersController {
             .preload('emergencyContact')
             .preload('yearLevel')
             .preload('role')
-            .preload('position')
-
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -93,9 +89,7 @@ export default class UsersController {
             .preload('role')
             .firstOrFail()
 
-        const year = await YearLevel.query().where('flag', 1)
-
-        return response.status(200).send([user, year])
+        return response.status(200).send(user)
 
     }
 

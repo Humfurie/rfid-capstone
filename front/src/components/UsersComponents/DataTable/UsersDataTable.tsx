@@ -9,6 +9,24 @@ export default function UsersDataTable(props: any) {
   const { user } = props
   const [isLoading, setLoading] = useState(true)
 
+  const [deleteOpen, setDeleteOpen] = useState(
+    user.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
+      num[position.id] = false
+      return num
+    }, {})
+  )
+
+  const handleDelete = (positionId: any) => {
+    setDeleteOpen((prev: any) => {
+      return { ...prev, [positionId]: true }
+    })
+  }
+
+  const handleClosePosition = (positionId: any) => {
+    setDeleteOpen((prev: any) => {
+      return { ...prev, [positionId]: false }
+    })
+  }
   return (
     <div className="w-full">
       <table className="table-fixed bg-white-smoke w-full rounded-lg">
@@ -24,7 +42,6 @@ export default function UsersDataTable(props: any) {
           {user.map((user: any, id: number) => {
             const roles = user.role[0].role
             const role = roles.toString().toLowerCase()
-            const [open, setOpen] = useState(false)
             return (
               <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
                 <td className={`${Style.tableBorder}`}>
@@ -45,10 +62,10 @@ export default function UsersDataTable(props: any) {
                       <BsPencil className="hover:text-green-600" />
                     </Link>
                     <button onClick={e => {
-                      setOpen(true)
+                      handleDelete(user.id)
                     }}>
                       <BsTrash className="hover:text-red-600" />
-                      <Destroy setOpen={setOpen} open={open} user={user} userRole={role}/>
+                      <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} userRole={role} />
                     </button>
                   </div>
                 </td>

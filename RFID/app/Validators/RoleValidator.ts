@@ -23,7 +23,9 @@ export default class RoleValidator {
    *     ])
    *    ```
    */
-  public schema = schema.create({})
+  public schema = schema.create({
+    role: schema.string()
+  })
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

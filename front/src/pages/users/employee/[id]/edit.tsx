@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
+import { FormContext } from "../../../../lib/FormContext";
+import { useRouter } from "next/router";
 
 
 const edit = (props: any) => {
 
-  const { user, userPosition } = props
+  const { apiPosition } = useContext(FormContext)
+  const { user } = props
+  const router = useRouter()
 
 
   const [form, setForm] = useState({
@@ -58,26 +62,7 @@ const edit = (props: any) => {
       emergencyFacebook: form.emergencyFacebook,
       role: "employee"
     })
-    setForm({
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      birthdate: "",
-      gender: "",
-      address: "",
-      email: "",
-      contactNumber: "",
-      facebook: "",
-      idNumber: "",
-      rfidNumber: "",
-      isAlumni: "",
-      position: "",
-      emergencyName: "",
-      emergencyContactNumber: "",
-      emergencyEmail: "",
-      emergencyFacebook: "",
-      role: ""
-    })
+    router.push('/users/employee')
   }
   return (
     <div>
@@ -207,7 +192,7 @@ const edit = (props: any) => {
                   <option value=''>
                     ---Select Position---
                   </option>
-                  {userPosition.map((element: { id: number, position: string }, id: number) => {
+                  {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
                     return (
                       <>
                         <option key={id} value={element.id}>{element.position}</option>
@@ -347,8 +332,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   return {
     props: {
-      user: data.data[0],
-      userPosition: data.data[1]
+      user: data.data
     }
   }
 }

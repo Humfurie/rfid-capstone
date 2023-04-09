@@ -5,8 +5,11 @@ import { Style } from "../../../../../lib/Style";
 export const EmployeeSchoolInfo = () => {
     const {
         setPosition,
-        apiPosition
+        apiPosition,
+        position
     } = useContext(FormContext);
+
+    console.log(apiPosition)
     return (
 
         <div>
@@ -18,6 +21,7 @@ export const EmployeeSchoolInfo = () => {
                     <select
                         name="positions"
                         className={Style.inputType}
+                        value={position}
                         onChange={(e) => {
                             setPosition(e.target.value);
                         }}
@@ -25,11 +29,13 @@ export const EmployeeSchoolInfo = () => {
                         <option value=''>
                             ---Select Position---
                         </option>
-                        {apiPosition.map((element: { id: number, position: string }, id: number) => (
-                            <>
-                                <option key={id} value={element.id}>{element.position}</option>
-                            </>
-                        ))}
+                        {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
+                            return (
+                                <>
+                                    <option key={id} value={element.id}>{element.position}</option>
+                                </>
+                            )
+                        })}
 
                     </select>
                 </div>
