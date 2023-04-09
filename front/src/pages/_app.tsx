@@ -160,13 +160,6 @@ export default function App({ Component, pageProps }: AppProps) {
       username: "",
       password: "",
     })
-    // if (role === "student") {
-    //   router.push("/users/student")
-    // } else if (role === "employee") {
-    //   router.push("/users/employee")
-    // }
-    // 
-    // 
   }
 
 
@@ -219,6 +212,7 @@ export default function App({ Component, pageProps }: AppProps) {
         const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
         setApiPosition(getPosition)
         setApiYearLevel(getYearLevel)
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
         // router.push("/AdminDashboard");
       } catch (error) {
         // router.push("/");
