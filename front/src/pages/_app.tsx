@@ -179,15 +179,24 @@ export default function App({ Component, pageProps }: AppProps) {
     })
     setId('')
   }
-  /**
-   * Delete Position
-   */
-  const positionDelete = async () => {
-    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
-      id: id
-    })
-    setId('')
-  }
+/**
+ * Delete Position
+ */
+const positionDelete = async () => {
+  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
+    id: id
+  })
+  setId('')
+}
+/**
+ * Delete Year Level
+ */
+const yearlevelDelete = async () => {
+  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/year_level/delete`, {
+    id: id
+  })
+  setId('')
+}
 
 
   console.log(role)
@@ -243,6 +252,7 @@ export default function App({ Component, pageProps }: AppProps) {
         userDelete,
         parentDelete,
         positionDelete,
+        yearlevelDelete,
 
         id,
         setId,

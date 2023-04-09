@@ -82,8 +82,16 @@ export default class AdminsController {
     }
   }
 
-  public async show({ }: HttpContextContract){
+  public async show({ response, params }: HttpContextContract) {
+    const user = await Admin.query()
+      .where('id', params.id)
+      .where('flag', 1)
+      .firstOrFail()
 
+    if (!user) {
+      return response.status(401).json({ 'Message': 'User not found.' })
+    }
+    return response.status(200).json(user)
   }
 
   public async edit({ }: HttpContextContract) { }

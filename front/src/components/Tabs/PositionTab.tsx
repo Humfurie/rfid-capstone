@@ -5,7 +5,7 @@ import { Style } from "../../lib/Style";
 
 const PositionTab = () => {
     const { positionSubmit,
-        setPosition
+        setPosition, position
     } = useContext(FormContext)
     return (
         <div>
@@ -19,6 +19,7 @@ const PositionTab = () => {
                     >
                         <input
                             type="text"
+                            value={position}
                             className={`${Style.searchInput}`}
                             onChange={(e) => {
                                 setPosition(e.target.value)

@@ -25,7 +25,7 @@ export default function AdminNavbar() {
 
 	// console.log("naopen", open)
 	const Menus = [{
-		title: <Link href="/">Dashboard</Link>,
+		title: <Link href="/" type="button">Dashboard</Link>,
 		icon: ""
 	},
 

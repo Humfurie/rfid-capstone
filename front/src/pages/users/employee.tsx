@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import UsersDataTable from "../../components/UsersComponents/DataTable/UsersDataTable";
@@ -10,6 +10,7 @@ import { Style } from "../../lib/Style";
 
 export default function employee(props: any) {
 	const { user } = props
+	console.log('this is employee user',user)
 	return (
 		<div className="flex h-screen">
 			<Head>
@@ -41,13 +42,14 @@ export default function employee(props: any) {
 	);
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/employeeIndex`)
 
 	return {
 		props: {
 			user: data.data
-		}
+		},
+		revalidate: 5
 	}
 }
 

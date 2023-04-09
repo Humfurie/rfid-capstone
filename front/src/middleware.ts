@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { jwtVerify } from 'jose'
+// import { jwtVerify } from 'jose'
 import { redirect } from 'next/dist/server/api-utils'
 import NextNodeServer from 'next/dist/server/next-server'
 
