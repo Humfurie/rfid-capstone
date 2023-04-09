@@ -32,9 +32,6 @@ export default class User extends BaseModel {
 
   @column()
   public gender: string
-
-  @column()
-  public birthday: Date
   
   @column()
   public address: string
