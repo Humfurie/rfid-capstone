@@ -14,14 +14,14 @@ const DestroyParent = (props: any) => {
             <Modal
                 key={user.id}
                 opened={open}
-                onClose={() => setOpen(false)}
+                onClose={() => setOpen(user.id)}
                 title="Please consider this"
             // transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
             >
                 <form onSubmit={e => {
                     e.preventDefault()
                     parentDelete()
-                    router.push('/users/parent')
+                    router.push("/users/parent")
                 }} >
                     <div className="flex flex-col">
                         <td className={`${Style.tableBorder}`}>
@@ -35,10 +35,9 @@ const DestroyParent = (props: any) => {
                         </td>
                     </div>
                     <div className="flex justify-evenly">
-                        <button onClick={e => setOpen(false)}>Cancel</button>
+                        <button type="button" onClick={e => setOpen(user.id)}>Cancel</button>
                         <button type="submit" onClick={e => {
                             setId(user.id)
-                            router.push("/users/parent")
                         }}>Delete</button>
                     </div>
                 </form>

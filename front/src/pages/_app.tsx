@@ -208,14 +208,11 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
 
-
-  console.log(role)
-
   // useEffect(() => {
 
   // }, [])
-  useMemo(() => {
-    const fetchData = async () => {
+  useEffect(() => {
+    (async () => {
       try {
         await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
         const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
@@ -226,8 +223,8 @@ export default function App({ Component, pageProps }: AppProps) {
       } catch (error) {
         // router.push("/");
       }
-    }
-    fetchData()
+    })()
+
   }, [])
 
   return (
