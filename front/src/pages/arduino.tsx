@@ -1,17 +1,17 @@
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const Arduino = () => {
+    const [data, setData] = useState<any>(null)
     useEffect(() => {
-        (async () => {
-            const arduinoData = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
-            console.log(arduinoData)
-        })
+        const fetchData = async () => {
+            await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`).then(res => setData(res))
+        }
+        fetchData()
     }, [])
 
     return (
         <>
-            haw
         </>
     )
 }

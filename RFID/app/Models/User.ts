@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany, HasOne, hasOne, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import UserLogin from './UserLogin'
 import EmergencyContact from './EmergencyContact'
 import Role from './Role'
@@ -35,9 +35,6 @@ export default class User extends BaseModel {
 
   @column()
   public birthday: Date
-
-  @column()
-  public gender: string
   
   @column()
   public address: string
@@ -101,9 +98,7 @@ export default class User extends BaseModel {
   })
   public parent: ManyToMany <typeof Parent>
 
-  @manyToMany(() => Activity, {
-    pivotTable: 'user_activities'
-  })
-  public activity: ManyToMany<typeof Activity>
+  @hasMany(() => Activity)
+  public activity: HasMany<typeof Activity>
 
 }

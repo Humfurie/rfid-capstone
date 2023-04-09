@@ -29,7 +29,6 @@ export default class Parent extends BaseModel {
   @column()
   public gender: string
 
-
   @column()
   public address: string
 
