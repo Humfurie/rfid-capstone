@@ -41,6 +41,7 @@ export default class ActivitiesController {
 
                 const latestActivity = await Activity.query().whereHas('user', (user) => {
                     user.where('rfidNumber', myData)
+                        .where('flag', 1)
                 })
                     .where('flag', 1)
                     .orderBy([{
@@ -69,6 +70,7 @@ export default class ActivitiesController {
                     const index = latestActivity[0].id
                     const activity = await Activity.query().whereHas('user', (user) => {
                         user.where('rfidNumber', myData)
+                            .where('flag', 1)
                     })
                         .where('id', index)
                         .where('flag', 1)
@@ -129,6 +131,15 @@ export default class ActivitiesController {
 
     public async show({ response }: HttpContextContract) {
 
-        return response.status(200)
+        const activity = await Activity.query().whereHas('user', (user) => {
+            user.where('flag', 1)
+        }).where('flag', 1)
+            .preload('user')
+            .orderBy([{
+                column: 'id',
+                order: 'desc'
+            }])
+        console.log(activity)
+        return response.status(200).json(activity)
     }
 }
