@@ -16,7 +16,7 @@ const profile = () => {
 			</Head>
 			<div className="flex flex-col max-h-full w-full">
 				<Header />
-				<div className="flex h-full bg-white">
+				<div className="flex h-full bg-gray-200">
 					<div className="h-full">
 						<AdminNavbar />
 					</div>

@@ -21,8 +21,16 @@ const ParentRegistration = () => {
   })
 
   const submitButton = (
-    <div className={Style.registerBtn}>
-      <MyButton type="submit" label="Register" />
+    <div >
+      <button
+        className={Style.registerBtn}
+        type="submit"
+        onClick={() => {
+          setRole("parent")
+        }}
+      >
+        Register
+      </button>
     </div>
   )
 
@@ -32,11 +40,10 @@ const ParentRegistration = () => {
         <div className="text-center">Parent Registration</div>
         <form
           onSubmit={(e) => {
-            setRole("parent")
             e.preventDefault();
             setRegistration(false)
             userSubmit();
-            // router.push("/users/parent")
+            router.push("/users/parent")
           }}
         >
 

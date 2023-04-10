@@ -17,7 +17,7 @@ export default class extends BaseSeeder {
 
     // Write your database queries inside the run method
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
 
       const trx = await Database.transaction()
       const user = new User()
@@ -64,7 +64,7 @@ export default class extends BaseSeeder {
       await trx.commit()
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
 
       const trx = await Database.transaction()
       const user = new User()
@@ -111,7 +111,7 @@ export default class extends BaseSeeder {
       await trx.commit()
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
 
       const trx = await Database.transaction()
       const user = new Parent()
@@ -119,7 +119,7 @@ export default class extends BaseSeeder {
       user.firstName = faker.name.firstName()
       user.middleName = faker.name.middleName()
       user.lastName = faker.name.lastName()
-      user.birthdate = faker.date.birthdate()
+      user.birthdate = faker.date.birthdate().toDateString()
       user.gender = gender[Math.floor(Math.random() * gender.length)]
       user.email = faker.internet.email()
       user.address = faker.address.city()
