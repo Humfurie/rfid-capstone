@@ -103,7 +103,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <div className='flex'>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -211,6 +211,6 @@ export default function MiniDrawer() {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
-    </Box>
+    </div>
   );
 }
