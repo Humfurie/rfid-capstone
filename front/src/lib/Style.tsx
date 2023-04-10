@@ -37,6 +37,11 @@ export const Style = {
     /**
      * Table design
      */
-    tableBorder:'border border-teal-blue border-collapse p-3'
+    tableBorder:'border border-teal-blue border-collapse p-3',
+
+    /**
+     * navbar
+     */
+    navbarBtn: 'text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-magic-mint focus:text-black'
     
 }

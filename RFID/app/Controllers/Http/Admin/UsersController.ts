@@ -100,7 +100,7 @@ export default class UsersController {
 
         // const req = request.only(['role', 'position'])
         const req = request.all()
-        console.log(req)
+        console.log("this is edit req", req)
         const validated = await request.validate(UserValidator)
         const trx = await Database.transaction()
         // return response.status(200).json(validated)

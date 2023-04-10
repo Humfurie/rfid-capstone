@@ -12,7 +12,7 @@ const edit = (props: any) => {
  const router = useRouter()
 
   const { user } = props
-  const userYearLevel = user.yearLevel[0].id
+  // const userYearLevel = user.yearLevel[0].id
 
 
   const [form, setForm] = useState({
@@ -28,21 +28,21 @@ const edit = (props: any) => {
     idNumber: user.id_number,
     rfidNumber: user.rfid_number,
     isAlumni: user.is_alumni,
-    yearLevel: userYearLevel,
+    yearLevel: user?.yearLevel[0]?.id,
     emergencyName: user.emergencyContact.name,
     emergencyContactNumber: user.emergencyContact.contact_number,
     emergencyEmail: user.emergencyContact.email,
     emergencyFacebook: user.emergencyContact.facebook,
     role: "student"
   })
-  console.log(form)
+
 
   const formOnChange = (value: any, column: string) => {
     setForm((prev: any) => {
       return { ...prev, [column]: value }
     })
   }
-  console.log("this is setForm", setForm)
+  console.log("this is setForm", form)
 
   const userUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
@@ -69,7 +69,7 @@ const edit = (props: any) => {
   }
 
   return (
-    <div>
+    <div className="flex h-screen w-full">
       <h4 className="text-center">Update Student</h4>
       <form onSubmit={(e) => {
         e.preventDefault()
