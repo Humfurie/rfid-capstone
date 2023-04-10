@@ -3,12 +3,13 @@ import AdminNavbar from '../components/AdminComponents/AdminNavbar';
 import Population from '../components/AdminComponents/AdminContPopulation';
 import LiveActivity from '../components/AdminComponents/AdminContLiveActivity';
 import Percentage from '../components/AdminComponents/AdminContPercentage';
+import { Style } from '../lib/Style';
 
 
 export default function Home() {
 
   return (
-    <div className='flex flex-col h-screen'>
+    <div className={`flex-col ${Style.parentDiv}`}>
 
       <Header />
 

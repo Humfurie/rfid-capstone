@@ -9,8 +9,8 @@ export default function Header() {
 	const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
 
 	return (
-		<div className="flex w-full">
-			<div className={` p-2 inline-flex w-full border-b-[1px] border-teal-blue2 shadow-lg ${Style.toRight}`}>
+		<div className={`${Style.parentDiv}`}>
+			<div className={`${Style.header}`}>
 
 				<div className="flex">
 					<Link href="/" className={`inline-flex pl-4 text-black font-extrabold text-2xl`}> A I S - R F T </Link>

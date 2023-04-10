@@ -1,5 +1,11 @@
 export const Style = {
     /**
+     * General
+     */
+    parentDiv: "flex w-full h-full",
+    header: "flex w-full p-2 bg-white shadow",
+
+    /**
      * for search bar input field
      */
     searchInput:"border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue rounded",
