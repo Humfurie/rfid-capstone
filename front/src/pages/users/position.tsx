@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import Header from "../../components/Navigation";
+import Header from "../../components/Header";
 import PositionTab from "../../components/Tabs/PositionTab";
 import PositionDataTable from "../../components/UsersComponents/DataTable/PositionDataTable";
 

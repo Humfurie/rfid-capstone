@@ -11,7 +11,7 @@ import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
 import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
 import Button from "@mui/material/Button";
 import Head from "next/head";
-import Header from "../../../../components/Navigation";
+import Header from "../../../../components/Header";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import UsersFormButtonSelection from "../../../../components/Tabs/UsersFormButtonSelection";
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import Header from "../../components/Navigation";
+import Header from "../../components/Header";
 import RecordsList from "../../components/UsersComponents/Records/RecordsList";
 
 const records = (props: any) => {

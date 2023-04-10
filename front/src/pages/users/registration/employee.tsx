@@ -1,6 +1,6 @@
 import Head from "next/head";
 import AdminNavbar from "../../../components/AdminComponents/AdminNavbar";
-import Header from "../../../components/Navigation";
+import Header from "../../../components/Header";
 import EmployeeRegistration from "../../../components/UsersComponents/Registration/EmployeeRegistration";
 
 const employee = () => {

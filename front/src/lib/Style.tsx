@@ -4,7 +4,7 @@ export const Style = {
      */
     parentDiv: "flex w-full h-full",
     drawerHeader: "flex items-center p-2",
-    mainContent: "p-3 flex-1",
+    mainContent: "p-3 flex",
 
     /**
      * for search bar input field
