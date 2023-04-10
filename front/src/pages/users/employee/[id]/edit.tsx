@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Style } from "../../../../lib/Style";
-import MyButton from "../../../../lib/partials/MyButton";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
 import { FormContext } from "../../../../lib/FormContext";
@@ -9,6 +8,10 @@ import Head from "next/head";
 import Header from "../../../../components/Header";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Button from "@mui/material/Button";
+import PersonalInfo from "../../../../components/Edit/PersonalInfo";
+import EmployeeSchoolInfo from "../../../../components/Edit/includes/employee/EmployeeSchoolInfo";
+import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
+import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
 
 
 const edit = (props: any) => {
@@ -91,8 +94,15 @@ const edit = (props: any) => {
             <AdminNavbar />
           </div>
           <div className="flex flex-col w-full">
-            <div className={`w-full p-2`}>
-              <div className="w-full bg-white rounded-2xl mx-auto shadow-xl p-2">
+            <div className="w-full p-2">
+            <div>
+                <Button
+                  href="/users/employeet"
+                  variant="contained" className="text-black bg-powder-blue hover:bg-magic-mint">
+                  Back
+                </Button>
+              </div>
+              <div className="w-full mt-1 bg-white rounded-2xl mx-auto shadow-xl p-2">
 
                 <h3 className="text-center">Update Employee</h3>
                 <form
@@ -103,222 +113,76 @@ const edit = (props: any) => {
                   }}
                 >
                   <div className="grid grid-cols-4 gap-1  text-center ">
-                    <div>
 
-                      <button
-                        type="button"
-                        className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                        onClick={e => {
-                          setSelection('personal')
-                          setActive({
-                            personal: true,
-                            school: false,
-                            contact: false,
-                            emergency: false
-                          })
-                        }}
-                      >
-                        Personal Informmation
-                      </button>
-                      <button
-                        type="button"
-                        className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                        onClick={e => {
-                          setSelection('personal')
-                          setActive({
-                            personal: false,
-                            school: true,
-                            contact: false,
-                            emergency: false
-                          })
-                        }}
-                      >
-                        School Informmation
-                      </button>
-                      <button
-                        type="button"
-                        className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                        onClick={e => {
-                          setSelection('personal')
-                          setActive({
-                            personal: false,
-                            school: false,
-                            contact: true,
-                            emergency: false
-                          })
-                        }}
-                      >
-                        Contact Informmation
-                      </button>
-                      <button type="button"
-                        className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                        onClick={e => {
-                          setSelection('personal')
-                          setActive({
-                            personal: false,
-                            school: false,
-                            contact: false,
-                            emergency: true
-                          })
-                        }}
-                      >
-                        Emergency Contact
-                      </button>
-                    </div>
-                    <div>
+                    <button
+                      type="button"
+                      className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
+                      onClick={e => {
+                        setSelection('personal')
+                        setActive({
+                          personal: true,
+                          school: false,
+                          contact: false,
+                          emergency: false
+                        })
+                      }}
+                    >
+                      Personal Informmation
+                    </button>
+                    <button
+                      type="button"
+                      className={`${Style.registrationNavBar} ${active.school === true ? "bg-magic-mint" : ""}`}
+                      onClick={e => {
+                        setSelection('school')
+                        setActive({
+                          personal: false,
+                          school: true,
+                          contact: false,
+                          emergency: false
+                        })
+                      }}
+                    >
+                      School Informmation
+                    </button>
+                    <button
+                      type="button"
+                      className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
+                      onClick={e => {
+                        setSelection('contact')
+                        setActive({
+                          personal: false,
+                          school: false,
+                          contact: true,
+                          emergency: false
+                        })
+                      }}
+                    >
+                      Contact Informmation
+                    </button>
+                    <button type="button"
+                      className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-magic-mint" : ""}`}
+                      onClick={e => {
+                        setSelection('emergency')
+                        setActive({
+                          personal: false,
+                          school: false,
+                          contact: false,
+                          emergency: true
+                        })
+                      }}
+                    >
+                      Emergency Contact
+                    </button>
+                  </div>
+                  <div>
+                    {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
+                  </div>
 
-                    </div>
-
-
-
-
-
-
-
-                   
-                    <div>
-                      
-                      <div >
-                        <div className="flex justify-center flex-col mt-2">
-                          <label htmlFor="" className={Style.label}>
-                            Position:
-                          </label>
-                          <select
-                            name="positions"
-                            className={Style.inputType}
-                            value={form.position}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, 'position');
-                            }}
-                          >
-                            <option value=''>
-                              ---Select Position---
-                            </option>
-                            {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
-                              return (
-                                <>
-                                  <option key={id} value={element.id}>{element.position}</option>
-                                </>
-                              )
-                            })}
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className={Style.registrationNavBar}>
-                        Contact Information
-                      </h5>
-
-                      <div className={Style.registerBtn}>
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            E-mail:
-                          </label>
-                          <input
-                            type="email"
-                            className={Style.inputType}
-                            value={form.email}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "email");
-                            }}
-                          />
-                        </div>
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            Contact Number:
-                          </label>
-                          <input
-                            type="text" // should be number, but cannot get contact number cause value has characters
-                            className={Style.inputType}
-                            value={form.contactNumber}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "contactNumber");
-                            }}
-                          />
-                        </div>
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            Facebook:
-                          </label>
-                          <input
-                            type="text"
-                            className={Style.inputType}
-                            value={form.facebook}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "facebook");
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className={Style.registrationNavBar}>
-                        Emergency Contact
-                      </h5>
-
-                      <div className={Style.registerBtn}>
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            Name:
-                          </label>
-                          <input
-                            type="text"
-                            className={Style.inputType}
-                            value={form.emergencyName}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "emergencyName");
-                            }}
-                          />
-                        </div>
-
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            Contact Number:
-                          </label>
-                          <input
-                            type="text" // should be number, but cannot get contact number cause value has characters
-                            className={Style.inputType}
-                            value={form.emergencyContactNumber}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "emergencyContactNumber");
-                            }}
-                          />
-                        </div>
-
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            Email:
-                          </label>
-                          <input
-                            type="email"
-                            className={Style.inputType}
-                            value={form.emergencyEmail}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "emergencyEmail");
-                            }}
-                          />
-                        </div>
-
-                        <div className={Style.inputDiv}>
-                          <label htmlFor="" className={Style.label}>
-                            Facebook:
-                          </label>
-                          <input
-                            type="text"
-                            className={Style.inputType}
-                            value={form.emergencyFacebook}
-                            onChange={(e) => {
-                              formOnChange(e.target.value, "emergencyFacebook");
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  <div>
                   </div>
 
                   <div >
-                    <Button type="submit" variant="contained" color="success" className={`mx-auto ${Style.registerBtn}`}>
+                    <Button type="submit" variant="contained"  className={` ${Style.registerBtn}`}>
                       Save Changes
                     </Button>
                   </div>

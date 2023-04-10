@@ -7,7 +7,7 @@ import { PersonalInfo } from "./includes/PersonalInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 
 const ParentRegistration = () => {
-  const [selection, setSelection] = useState('personal')
+  
   const router = useRouter()
   const {
     setRegistration,
@@ -15,6 +15,7 @@ const ParentRegistration = () => {
     setRole
   } = useContext(FormContext);
 
+  const [selection, setSelection] = useState('personal')
   const [active, setActive] = useState({
     personal: true,
     contact: false,

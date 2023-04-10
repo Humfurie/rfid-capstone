@@ -52,8 +52,8 @@ export default function YearLevelDataTable(props: any) {
 
   return (
     <div className="w-full">
-      <table className="table-fixed bg-white-smoke w-full rounded-lg">
-        <thead className={`${Style.toLeft}`}>
+      <table className="table-fixed w-full rounded-lg">
+        <thead className="bg-magic-mint">
           <tr className="border-collapse ">
             <th className={`${Style.tableBorder}`}>ID</th>
             <th className={`${Style.tableBorder}`}>Name</th>
@@ -64,7 +64,7 @@ export default function YearLevelDataTable(props: any) {
           {yearLevel.map((yearLevel: any, id: number) => {
 
             return (
-              <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
+              <tr key={id} className="border-collapse hover:bg-gray-200">
                 <td className={`${Style.tableBorder}`}>
                   {yearLevel.id}
                 </td>

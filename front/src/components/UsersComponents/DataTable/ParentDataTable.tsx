@@ -43,7 +43,7 @@ const ParentDatatable = (props: any) => {
           {users.map((user: any, id: number) => {
 
             return (
-              <tr key={id} className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
+              <tr key={id} className="border-collapse hover:bg-gray-200">
                 <td className={`${Style.tableBorder}`}> {user.id} </td>
 
                 <td className={`${Style.tableBorder}`}> {user.first_name} {user.last_name} </td>

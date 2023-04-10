@@ -5,6 +5,7 @@ import { useContext } from "react";
 const PersonalInfo = (props: any) => {
     // const { apiPosition } = useContext(FormContext)
     const { user } = props
+    console.log("this is pronal user", user)
     const router = useRouter()
     return (
         <div>
