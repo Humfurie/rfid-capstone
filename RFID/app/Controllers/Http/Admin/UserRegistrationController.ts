@@ -231,7 +231,7 @@ export default class newUserRegistrationController {
              */
             const user = new Parent()
             try {
-
+                console.log('this is parent user', user)
                 /**
                  * these are parent model properties
                  */
@@ -267,7 +267,6 @@ export default class newUserRegistrationController {
             }
         }
         else {
-
             /**
              * in case everything else all fails
              */

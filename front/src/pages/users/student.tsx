@@ -19,7 +19,7 @@ export default function student(props: any) {
 			</Head>
 			<div className="flex flex-col h-full">
 				<Header />
-				<div className="flex h-full bg-white">
+				<div className="flex h-full bg-gray-200">
 					<div className="h-full">
 						<AdminNavbar />
 					</div>

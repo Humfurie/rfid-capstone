@@ -26,8 +26,16 @@ const EmployeeRegistration = () => {
   })
 
   const submitButton = (
-    <div className={Style.registerBtn}>
-      <MyButton type="submit" label="Register" />
+    <div >
+      <button
+        type="submit"
+        className={Style.registerBtn}
+        onClick={() => {
+          setRole("employee")
+        }}
+      >
+        Register
+      </button>
     </div>
   )
 
@@ -37,11 +45,10 @@ const EmployeeRegistration = () => {
         <div className="text-center">Employee Registration</div>
         <form
           onSubmit={(e) => {
-            setRole("employee")
             e.preventDefault();
             setRegistration(false)
             userSubmit();
-
+            router.push("/users/employee")
           }}
         >
           <div className="grid grid-cols-4 gap-1">
