@@ -1,7 +1,7 @@
-import { FormContext } from "../../lib/FormContext";
-import MyButton from "../../partials/MyButton";
+import { FormContext } from "../lib/FormContext";
 import { useContext } from 'react'
-import { Style } from "../../lib/Style";
+import { Style } from "../lib/Style";
+import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
 
@@ -9,7 +9,7 @@ const LoginForm = () => {
     const { loginOnChange,
         userLogin } = useContext(FormContext) ?? null
     return (
-        <div className="flex flex-col w-screen">
+        <div className="flex flex-col w-full h-full">
             <div >
                 <form onSubmit={e => {
                     e.preventDefault()
@@ -19,13 +19,13 @@ const LoginForm = () => {
                         <div>
                             logo
                         </div>
-                        <div className={Style.formDiv}>
+                        <div  className=" mx-auto border border-red-100">
                             <div>
-                                <h1>Log In</h1>
+                                Log In
                             </div>
                             <div className={Style.inputDiv}>
                                 <TextField type="text" id="outlined-basic" label="Username" variant="outlined"
-                                    className={Style.loginInput}
+                                    // className={Style.loginInput}
                                     onChange={(e: any) => {
                                         loginOnChange(e.target.value, "username")
                                     }} />
@@ -35,15 +35,16 @@ const LoginForm = () => {
                                     type="password"
                                     label="Password"
                                     variant="outlined"
-                                    className={Style.loginInput}
+                                    // className={Style.loginInput}
                                     onChange={(e: any) => {
                                         loginOnChange(e.target.value, "password")
                                     }} />
                             </div>
                             <div>
-                                <MyButton
-                                    label="Login"
-                                    className={Style.loginBtn}
+                                <Button
+                                // color="primary"
+                                //   variant="text"
+                                     className={Style.loginBtn}
                                     onClick={() => {
                                         if ('employee') {
 
@@ -55,7 +56,9 @@ const LoginForm = () => {
                                             'Not Found!'
                                         }
                                     }}
-                                />
+                                >
+                                    Log In
+                                    </Button>
                             </div>
                         </div>
                     </div>
