@@ -47,8 +47,7 @@ export default class AdminsController {
     }
   }
 
-  public async invoke({ request, response }: HttpContextContract) {
-
+  public async __invoke({ request, response }: HttpContextContract) {
     return response.status(200).json({ admin: request.admin })
   }
 
@@ -69,7 +68,7 @@ export default class AdminsController {
     }
 
     try {
-      const token = jwt.sign(jwtAuth, 'maotClofel')
+      const token = jwt.sign(jwtAuth, `${process.env.ADMIN}`)
 
       console.log(token, 'token')
       return response.status(200).send({
