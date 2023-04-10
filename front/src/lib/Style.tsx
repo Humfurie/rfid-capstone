@@ -28,7 +28,7 @@ export const Style = {
     /**
      * for registration
      */
-    registerBtn:' p-1 bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
+    registerBtn:' p-1 text-black bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
     registrationNavBar:'border-[2px] border-powder-blue bg-powder-blue cursor-pointer text-center rounded-t-lg p-1 mt-2 font-bold hover:bg-magic-mint hover:cursor-',
    
     

@@ -25,12 +25,12 @@ export default function AdminNavbar() {
 
 	// console.log("naopen", open)
 	const Menus = [{
-		title: <Link href="/" type="button">Dashboard</Link>,
+		title: <Link href="/" >Dashboard</Link>,
 		icon: ""
 	},
 
 	{
-		title: <Link href="/admin/profile" type="button">Profile</Link>,
+		title: <Link href="/admin/profile" >Profile</Link>,
 		icon: <FaUserAlt />
 	},
 	{

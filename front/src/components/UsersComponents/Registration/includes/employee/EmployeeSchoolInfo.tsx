@@ -6,7 +6,9 @@ export const EmployeeSchoolInfo = () => {
     const {
         setPosition,
         apiPosition,
-        position
+        position,
+        userInfo,
+        userOnChange
     } = useContext(FormContext);
 
     console.log(apiPosition)
@@ -15,6 +17,28 @@ export const EmployeeSchoolInfo = () => {
         <div>
             <div >
                 <div className="flex justify-center flex-col mt-2">
+                    <label htmlFor="" className={Style.label}>
+                        ID Number:
+                    </label>
+                    <input type="number"
+                        className={Style.inputType}
+                        value={userInfo.idNumber}
+                        onChange={(e) => {
+                            userOnChange(e.target.value, "idNumber")
+                        }}
+                    />
+
+                    <label htmlFor="" className={Style.label}>
+                        RFID Number:
+                    </label>
+                    <input type="number"
+                        className={Style.inputType}
+                        value={userInfo.rfidNumber}
+                        onChange={(e) => {
+                            userOnChange(e.target.value, "rfidNumber")
+                        }}
+                    />
+
                     <label htmlFor="" className={Style.label}>
                         Position:
                     </label>

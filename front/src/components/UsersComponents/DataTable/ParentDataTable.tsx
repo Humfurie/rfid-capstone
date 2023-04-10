@@ -3,7 +3,6 @@ import { SetStateAction, useState } from "react";
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Style } from "../../../lib/Style";
 import DestroyParent from "../../../pages/users/parent/[id]/destroy";
-import Paginator from "../../Paginator";
 import { Pagination } from "@mui/material";
 
 
