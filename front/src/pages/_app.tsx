@@ -207,7 +207,8 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     (async () => {
       try {
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+        const admin = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+        console.log(admin)
         const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
         const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
         setApiPosition(getPosition)

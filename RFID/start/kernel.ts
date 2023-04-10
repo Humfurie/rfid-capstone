@@ -41,6 +41,8 @@ Server.middleware.register([
 |
 */
 Server.middleware.registerNamed({
-  admin: () => import('App/Middleware/Admin'),
-  user: () => import('App/Middleware/User')
+  user: () => import('App/Middleware/Admin'),
+  student: () => import('App/Middleware/Student'),
+  employee: () => import('App/Middleware/Employee'),
+  parent: () => import('App/Middleware/Parent')
 })
