@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import Header from "../../components/Header";
+import Header from "../../components/Navigation";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import UsersDataTable from "../../components/UsersComponents/DataTable/UsersDataTable";
 

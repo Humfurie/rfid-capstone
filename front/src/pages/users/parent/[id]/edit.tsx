@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Style } from "../../../../lib/Style";
 import MyButton from "../../../../lib/partials/MyButton";
 import Head from "next/head";
-import Header from "../../../../components/Header";
+import Header from "../../../../components/Navigation";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";

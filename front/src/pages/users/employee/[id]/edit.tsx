@@ -5,7 +5,7 @@ import axios from "axios";
 import { FormContext } from "../../../../lib/FormContext";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Header from "../../../../components/Header";
+import Header from "../../../../components/Navigation";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Button from "@mui/material/Button";
 import PersonalInfo from "../../../../components/Edit/PersonalInfo";

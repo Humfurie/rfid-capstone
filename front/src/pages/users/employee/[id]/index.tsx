@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
-import Header from "../../../../components/Header";
+import Header from "../../../../components/Navigation";
 import UserView from "../../../../components/UsersComponents/Show/UserView";
 
 const index = (props: any) => {

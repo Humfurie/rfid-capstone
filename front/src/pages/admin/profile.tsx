@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import AdminProfileContent from "../../components/AdminComponents/AdminProfileContent";
-import Header from "../../components/Header";
+import Header from "../../components/Navigation";
 
 
 const profile = () => {

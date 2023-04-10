@@ -3,7 +3,8 @@ export const Style = {
      * General
      */
     parentDiv: "flex w-full h-full",
-    header: "flex w-full p-2 bg-white shadow",
+    drawerHeader: "flex items-center p-2",
+    mainContent: "p-3 flex-1",
 
     /**
      * for search bar input field

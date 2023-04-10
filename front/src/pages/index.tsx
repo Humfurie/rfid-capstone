@@ -1,9 +1,11 @@
-import Header from '../components/Header';
+import Header from '../components/Navigation';
 import AdminNavbar from '../components/AdminComponents/AdminNavbar';
 import Population from '../components/AdminComponents/AdminContPopulation';
 import LiveActivity from '../components/AdminComponents/AdminContLiveActivity';
 import Percentage from '../components/AdminComponents/AdminContPercentage';
 import { Style } from '../lib/Style';
+import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import Navigation from '../components/Navigation';
 
 
 export default function Home() {
@@ -11,21 +13,19 @@ export default function Home() {
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
 
-      <Header />
 
-      <div className="flex h-full">
+      <div className={`${Style.mainContent}`}>
+        <Navigation />
 
-        <AdminNavbar />
+        {/* <AdminNavbar /> */}
 
-        <div className="">
+        <Population />
 
-          <Population />
+        <LiveActivity />
 
-          <LiveActivity />
+        <Percentage />
 
-          <Percentage />
 
-        </div>
       </div>
     </div>
   )

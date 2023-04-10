@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useContext } from "react";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
-import Header from "../../components/Header";
+import Header from "../../components/Navigation";
 import YearLevelTab from "../../components/Tabs/YearLevelTab";
 import YearLevelDataTable from "../../components/UsersComponents/DataTable/YearLevelDataTable";
 import { FormContext } from "../../lib/FormContext";
