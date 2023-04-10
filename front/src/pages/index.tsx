@@ -25,10 +25,7 @@ export default function Home() {
 
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
-
-
       <div className={`${Style.mainContent}`}>
-
         <div>
           <Header open={open} handleDrawerOpen={handleDrawerOpen} />
         </div>
@@ -41,7 +38,6 @@ export default function Home() {
           <LiveActivity />
           <Percentage />
         </div>
-
       </div>
     </div>
   )
