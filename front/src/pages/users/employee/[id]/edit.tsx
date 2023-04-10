@@ -12,6 +12,7 @@ import PersonalInfo from "../../../../components/Edit/PersonalInfo";
 import EmployeeSchoolInfo from "../../../../components/Edit/includes/employee/EmployeeSchoolInfo";
 import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
 import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
+import UsersFormButtonSelection from "../../../../components/Tabs/UsersFormButtonSelection";
 
 
 const edit = (props: any) => {
@@ -95,9 +96,9 @@ const edit = (props: any) => {
           </div>
           <div className="flex flex-col w-full">
             <div className="w-full p-2">
-            <div>
+              <div>
                 <Button
-                  href="/users/employeet"
+                  href="/users/employee"
                   variant="contained" className="text-black bg-powder-blue hover:bg-magic-mint">
                   Back
                 </Button>
@@ -112,77 +113,20 @@ const edit = (props: any) => {
                     userUpdate()
                   }}
                 >
-                  <div className="grid grid-cols-4 gap-1  text-center ">
-
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('personal')
-                        setActive({
-                          personal: true,
-                          school: false,
-                          contact: false,
-                          emergency: false
-                        })
-                      }}
-                    >
-                      Personal Informmation
-                    </button>
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.school === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('school')
-                        setActive({
-                          personal: false,
-                          school: true,
-                          contact: false,
-                          emergency: false
-                        })
-                      }}
-                    >
-                      School Informmation
-                    </button>
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('contact')
-                        setActive({
-                          personal: false,
-                          school: false,
-                          contact: true,
-                          emergency: false
-                        })
-                      }}
-                    >
-                      Contact Informmation
-                    </button>
-                    <button type="button"
-                      className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('emergency')
-                        setActive({
-                          personal: false,
-                          school: false,
-                          contact: false,
-                          emergency: true
-                        })
-                      }}
-                    >
-                      Emergency Contact
-                    </button>
-                  </div>
+                  < UsersFormButtonSelection
+                    active={active}
+                    setActive={setActive}
+                    setSelection={setSelection}
+                  />
                   <div>
-                    {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
+                    {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <EmployeeSchoolInfo formOnChange={formOnChange} form={form} apiPosition={apiPosition} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
                   </div>
 
                   <div>
                   </div>
 
                   <div >
-                    <Button type="submit" variant="contained"  className={` ${Style.registerBtn}`}>
+                    <Button type="submit" variant="contained" className={` ${Style.registerBtn}`}>
                       Save Changes
                     </Button>
                   </div>

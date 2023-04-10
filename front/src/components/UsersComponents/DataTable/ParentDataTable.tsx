@@ -34,10 +34,9 @@ const ParentDatatable = (props: any) => {
     setCurrentPage(newPage)
   }
 
-  let parentMap = (users).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((user: any, id: number) => {
+  let parentMap = (users).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((user: any) => {
     return (
-      <>
-        <tbody key={id}>
+        <tbody key={user.id}>
           <tr className="border-collapse even:bg-white odd:bg-white-smoke hover:bg-gray-200">
             <td className={`${Style.tableBorder}`}> {user.id} </td>
 
@@ -61,7 +60,6 @@ const ParentDatatable = (props: any) => {
             </td>
           </tr>
         </tbody>
-      </>
     )
   })
 

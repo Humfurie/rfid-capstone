@@ -72,8 +72,8 @@ const edit = (props: any) => {
             <div className=" w-full p-2 ">
               <div>
                 <Button
-                href="/users/parent"
-                variant="contained"  className="text-black bg-powder-blue hover:bg-magic-mint">
+                  href="/users/parent"
+                  variant="contained" className="text-black bg-powder-blue hover:bg-magic-mint">
                   Back
                 </Button>
               </div>
@@ -116,7 +116,7 @@ const edit = (props: any) => {
 
                   </div>
                   <div>
-                    {selection === 'personal' ? <PersonalInfo /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
+                    {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : "We found nothing"}
                   </div>
                   <div>
 
