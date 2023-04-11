@@ -18,5 +18,8 @@ Route.group(() => {
     /**
      * user login
      */
-    Route.post('/users/login', 'UserLoginsController.login')
 }).namespace('App/Controllers/Http/Admin')
+
+Route.group(() => {
+    Route.post('/users/login', 'UserLoginsController.login')
+}).namespace('App/Controllers/Http/Users')

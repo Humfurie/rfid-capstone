@@ -70,10 +70,12 @@ export default function App({ Component, pageProps }: AppProps) {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
       username: loginForm.username,
       password: loginForm.password
-    }).then((res: { data: { token: any; }; }) => {
+    }).then((res: { data: { token: any, data: any, role: string } }) => {
       try {
+        const role = res.data.role
         const token = res.data.token
-        setCookie({}, 'JWToken', token, {
+        console.log(role)
+        setCookie({}, role, token, {
           maxAge: 24 * 60 * 60
         })
         router.push('/')

@@ -75,9 +75,6 @@ export default class ActivitiesController {
                         .where('id', index)
                         .where('flag', 1)
 
-                    console.log('whwaw', activity)
-                    console.log('asa ka')
-
                     if (activity[0].status === "In") {
                         const activity = new Activity()
                         activity.day = day
@@ -139,7 +136,7 @@ export default class ActivitiesController {
                 column: 'id',
                 order: 'desc'
             }])
-        console.log(activity)
+
         return response.status(200).json(activity)
     }
 }
