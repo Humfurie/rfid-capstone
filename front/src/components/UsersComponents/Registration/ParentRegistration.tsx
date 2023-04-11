@@ -5,6 +5,8 @@ import MyButton from "../../../lib/partials/MyButton";
 import { useRouter } from "next/router";
 import { PersonalInfo } from "./includes/PersonalInfo";
 import { ContactInfo } from "./includes/ContactInfo";
+import Button from "@mui/material/Button";
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const ParentRegistration = () => {
   
@@ -22,22 +24,25 @@ const ParentRegistration = () => {
   })
 
   const submitButton = (
-    <div >
-      <button
-        className={Style.registerBtn}
+    <div className={`flex justify-end mt-3`}>
+      <Button
+        variant="contained"
+        color="primary"
+         className={`bg-gray-500`}
+        endIcon={<CheckCircleRoundedIcon/>}
         type="submit"
         onClick={() => {
           setRole("parent")
         }}
       >
         Register
-      </button>
+      </Button>
     </div>
   )
 
   return (
     <div className="w-full">
-      <div className="w-full bg-white rounded-2xl mx-auto shadow-xl p-2">
+     
         <div className="text-center">Parent Registration</div>
         <form
           onSubmit={(e) => {
@@ -52,7 +57,7 @@ const ParentRegistration = () => {
           <div className="grid grid-cols-2 gap-1">
             <button
               type="button"
-              className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
+              className={`${Style.registrationNavBar} ${active.personal === true ? "bg-slate-300 text-gray-700" : ""}`}
               onClick={e => {
                 setSelection('personal')
                 setActive({
@@ -66,7 +71,7 @@ const ParentRegistration = () => {
 
             <button
               type="button"
-              className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
+              className={`${Style.registrationNavBar} ${active.contact === true ? "bg-slate-300 text-gray-700" : ""}`}
               onClick={e => {
                 setSelection('contact')
                 setActive({
@@ -87,7 +92,7 @@ const ParentRegistration = () => {
           </div>
         </form>
       </div>
-    </div>
+    
   );
 };
 

@@ -1,98 +1,147 @@
 import { useContext } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
+import TextField from "@mui/material/TextField";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 export const PersonalInfo = () => {
     const {
         userOnChange,
         userInfo
-        
+
     } = useContext(FormContext);
+    const gender = [
+        {
+            value: 'Male',
+            label: 'Male'
+        },
+        {
+            value: 'Female',
+            label: 'Female'
+        }
+    ]
     return (
         <div>
             <div >
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
-                        First Name:
+                        First Name
                     </label>
-                    <input
+
+                    <TextField
+
+                        id="outlined-basic"
+                        variant="filled"
+                        size="small"
                         type="text"
-                        className={Style.inputType}
                         value={userInfo.firstName}
                         onChange={(e) => {
                             userOnChange(e.target.value, "firstName");
                         }}
+                        required
                     />
+
                 </div>
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
-                        Middle Name:
+                        Middle Name
                     </label>
-                    <input
+
+                    <TextField
+
+                        id="outlined-basic"
+                        variant="filled"
+                        size="small"
                         type="text"
-                        className={Style.inputType}
                         value={userInfo.middleName}
                         onChange={(e) => {
                             userOnChange(e.target.value, "middleName");
                         }}
                     />
+
                 </div>
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
-                        Last Name:
+                        Last Name
                     </label>
-                    <input
+
+                    <TextField
+
+                        id="outlined-basic"
+                        variant="filled"
+                        size="small"
                         type="text"
-                        className={Style.inputType}
                         value={userInfo.lastName}
                         onChange={(e) => {
                             userOnChange(e.target.value, "lastName");
                         }}
                     />
+
                 </div>
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
-                        Birthday:
+                        Birthday
                     </label>
-                    <input
+
+                    <TextField
+
+                        id="outlined-basic"
+                        variant="filled"
+                        size="small"
                         type="date"
-                        className={Style.inputType}
                         value={userInfo.birthdate}
                         onChange={(e) => {
                             userOnChange(e.target.value, "birthdate");
                         }}
                     />
+
+
                 </div>
+
                 <div className={Style.inputDiv}>
+
                     <label htmlFor="" className={Style.label}>
-                        Gender:
+                        Gender
                     </label>
-                    <select
-                        className={Style.inputType}
+
+                    <TextField
+
+                        id="outlined-basic"
+
+                        variant="filled"
+                        size="small"
+                        select
                         value={userInfo.gender}
                         onChange={(e) => {
                             userOnChange(e.target.value, "gender");
                         }}
+
                     >
-                        <option value=''>
-                            ---Select Gender---
-                        </option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                        {gender.map((option) => (
+                            
+                            <MenuItem key={option.value} value={option.value}> 
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    
+                    
                 </div>
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
-                        Address:
+                        Address
                     </label>
-                    <input
+                    <TextField
+                        variant="filled"
+                        size="small"
                         type="text"
-                        className={Style.inputType}
                         value={userInfo.address}
                         onChange={(e) => {
                             userOnChange(e.target.value, "address");
                         }}
                     />
+
                 </div>
             </div>
         </div>

@@ -40,14 +40,14 @@ export const Style = {
      * for input fields and labels
      */
     inputType: ' rounded border border-teal-blue focus:outline-none focus:ring focus:ring-teal-blue ...',
-    inputDiv:'flex justify-center flex-col',
+    inputDiv:'flex justify-center flex-col mt-2',
     label:'text-sm text-left',
 
     /**
      * for registration
      */
     registerBtn:' p-1 text-black bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
-    registrationNavBar:'border-[2px] border-powder-blue bg-powder-blue cursor-pointer text-center rounded-t-lg p-1 mt-2 font-bold hover:bg-magic-mint hover:cursor-',
+    registrationNavBar:'bg-gray-500 text-white hover:bg-slate-300 hover:text-gray-700 hover:cursor cursor-pointer text-center  rounded-t-lg p-1 mt-2 font-bold ',
    
     
     selectHover: 'hover:text-black hover:bg-light-blue',

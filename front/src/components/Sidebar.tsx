@@ -20,7 +20,7 @@ import EscalatorWarningRoundedIcon from '@mui/icons-material/EscalatorWarningRou
 import Face6RoundedIcon from '@mui/icons-material/Face6Rounded';
 import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
 
-
+import BrandingWatermarkRoundedIcon from '@mui/icons-material/BrandingWatermarkRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React, { useState } from 'react';
@@ -87,6 +87,11 @@ const Sidebar = (props: any) => {
         <>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
+                <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'rtl' ? <BrandingWatermarkRoundedIcon /> : <BrandingWatermarkRoundedIcon />}
+                    </IconButton>
+                <span className={`font-bold text-center`}>A I S - R F T</span>
+                
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
@@ -96,7 +101,9 @@ const Sidebar = (props: any) => {
                 <List>
                     {['Dashboard'].map((text, index) => (
                         <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <Link href={'/'}>
+                            <Link href={'/'}
+                            // className={`${text === "Dashboard" ? 'bg-gray-200': ""}`}
+                            >
 
                                 <ListItemButton
                                     sx={{

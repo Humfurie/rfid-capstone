@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { FormContext } from "../../../../../lib/FormContext";
 import { Style } from "../../../../../lib/Style";
+import TextField from "@mui/material/TextField";
+import MenuItem from '@mui/material/MenuItem';
 
 export const EmployeeSchoolInfo = () => {
     const {
@@ -11,57 +13,71 @@ export const EmployeeSchoolInfo = () => {
         userOnChange
     } = useContext(FormContext);
 
-    console.log(apiPosition)
+    
     return (
 
         <div>
             <div >
                 <div className="flex justify-center flex-col mt-2">
                     <label htmlFor="" className={Style.label}>
-                        ID Number:
+                        Employee ID:
                     </label>
-                    <input type="number"
-                        className={Style.inputType}
+                    <TextField
+                        variant="filled"
+                        size="small"
+                        type="number"
                         value={userInfo.idNumber}
                         onChange={(e) => {
                             userOnChange(e.target.value, "idNumber")
                         }}
+
                     />
+
 
                     <label htmlFor="" className={Style.label}>
                         RFID Number:
                     </label>
-                    <input type="number"
-                        className={Style.inputType}
+
+                    <TextField
+                        variant="filled"
+                        size="small"
+                        type="number"
                         value={userInfo.rfidNumber}
                         onChange={(e) => {
                             userOnChange(e.target.value, "rfidNumber")
                         }}
+
                     />
+
 
                     <label htmlFor="" className={Style.label}>
                         Position:
                     </label>
-                    <select
-                        name="positions"
-                        className={Style.inputType}
+
+                    <TextField
+
+                        id="outlined-basic"
+                        variant="filled"
+                        size="small"
+                         select
                         value={position}
                         onChange={(e) => {
                             setPosition(e.target.value);
                         }}
-                    >
-                        <option value=''>
-                            ---Select Position---
-                        </option>
-                        {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
-                            return (
-                                <>
-                                    <option key={id} value={element.id}>{element.position}</option>
-                                </>
-                            )
-                        })}
 
-                    </select>
+                    >
+                    {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
+                        // console.log(element.position)
+                        return (
+                                <MenuItem key={id} value={element.id}>
+                                    {element.position}
+                                </MenuItem>
+                        )
+                    })}
+
+                    </TextField>
+
+
                 </div>
             </div>
         </div>

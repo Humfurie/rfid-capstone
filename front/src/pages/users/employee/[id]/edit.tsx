@@ -125,8 +125,8 @@ const edit = (props: any) => {
                   <div>
                   </div>
 
-                  <div >
-                    <Button type="submit" variant="contained" className={` ${Style.registerBtn}`}>
+                  <div className="flex justify-end mt-3">
+                    <Button type="submit" variant="contained" color="primary">
                       Save Changes
                     </Button>
                   </div>
