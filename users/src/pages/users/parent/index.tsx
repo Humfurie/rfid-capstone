@@ -14,11 +14,30 @@ const ParentDashboard = () => {
 
             <div className="flex flex-col w-full">
                 <ParentHeader />
-                <div className="flex h-full bg-gray-200  ">
+                <div className="flex flex-col h-full bg-gray-200   ">
+                    <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
+                        <div>
+                            Your recent activities
+                        </div>
+                        <div className="w-full bg-white rounded-2xl shadow-xl ">
+                            <div className="grid grid-cols-2 text-center">
+                                <div className="">
+                                    INS
+                                    <div className="border border-spacing-1">  
+                                        in
+                                    </div>
+                                </div>
+                                <div>
+                                    OUTS
+                                    <div className="border border-spacing-1">  
+                                        out
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div>
-                        content
+                        </div>
                     </div>
+
                 </div>
             </div>
 
