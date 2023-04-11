@@ -1,13 +1,9 @@
-import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
-import React from "react";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useRouter } from "next/router";
-import Link from "next/link";
+import React from "react";
 
-const EmployeeHeader = () => {
-
+const Tabs = () => {
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -16,29 +12,15 @@ const EmployeeHeader = () => {
     const handleClose = () => {
         setDrop(null);
     };
-    const router = useRouter();
-
     return (
-        <div className="flex w-full">
-            <div className={`${Style.header}`}>
-                <div className="flex w-full">
-                    <div className="flex w-56">
-                        <Button
-                            href={"/users/employee"}
-                            className="font-bold pl-5 pr-5 text-2xl text-gray-800 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            A I S - R F T
+        <div>
+            <div className="flex pt-5 pr-20 pl-20 ">
+                        <Button>
+                            Search
                         </Button>
-                    </div>
-                    <div className="flex w-full">
-                        <Button
-                            href={"/users/employee/activities"}
-                            className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            Your Activities
+                        <Button>
+                            Export
                         </Button>
-                    </div>
-                    <div className=" flex justify-end ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"
@@ -47,7 +29,7 @@ const EmployeeHeader = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                            Image
+                            Filter By
                         </Button>
                         <Menu
                             id="demo-positioned-menu"
@@ -58,7 +40,7 @@ const EmployeeHeader = () => {
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'right',
-                                
+
                             }}
                             transformOrigin={{
                                 vertical: 'top',
@@ -66,24 +48,16 @@ const EmployeeHeader = () => {
                             }}
                         >
                             <MenuItem>
-                                <Link
-                                href={'/users/employee/profile'}>
-                                Profile
-                                </Link>
-                                
+                                Today
+
                             </MenuItem>
-                            <MenuItem
-                                onClick={handleClose}>
-                                Logout
+                            <MenuItem>
+                               Last Month
                             </MenuItem>
                         </Menu>
                     </div>
-
-
-                </div>
-            </div>
         </div>
     );
 }
 
-export default EmployeeHeader;
+export default Tabs;

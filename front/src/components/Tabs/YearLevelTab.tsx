@@ -1,45 +1,94 @@
-import { useContext, useState } from "react";
-import { FormContext } from "../../lib/FormContext";
-import MyButton from "../../lib/partials/MyButton";
+import { TextField } from '@mui/material';
 import { Style } from "../../lib/Style";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Pagination from "@mui/material/Pagination";
+import { useContext, useState } from 'react';
+import { FormContext } from '../../lib/FormContext';
 
-const YearLevelTab = () => {
+const YearLevelTab = (props: any) => {
+    const { totalPages, currentPage, handleChangePage } = props
+
     const {
-        setYear,
-        yearSubmit
-    } = useContext(FormContext)
+                setYear,
+                year,
+                yearSubmit
+            } = useContext(FormContext)
+        
+            const [inputValue, setInputValue] = useState('');
+        
+            const handleReloadInput = () => {
+                setInputValue('');
+            }
 
-    const [inputValue, setInputValue] = useState('');
-
-    const handleReloadInput = () => {
-        setInputValue('');
-    }
     return (
-        <div>
-            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm  border-powder-blue">
-                <div className="pl-3">
-                <form
-                            onSubmit={(e) => {
+        <div className={`flex-col ${Style.parentDiv}`}>
+            <div className={`pt-3`}>
+                <div className={`${Style.menuTab}`}>
+
+                    <div className={`flex`}>
+                        <div className={`pl-50`}>
+                            <Pagination
+                                count={totalPages}
+                                page={currentPage}
+                                onChange={handleChangePage}
+                                variant="text"
+                            />
+                        </div>
+
+                        <div className={`flex justify-end`}>
+                            <Divider
+                                flexItem
+                                orientation="vertical"
+                            />
+                            <form onSubmit={(e) => {
                                 e.preventDefault()
                                 yearSubmit()
-                            }}
-                        >
-                            <input
-                                type="text"
-                                className={`${Style.searchInput}`}
-                                onChange={(e) => {
-                                    setYear(e.target.value)
-                                    
-                                }}
+                            }}>
+                                <TextField
+
+                                    id="outlined-basic"
+                                    label="Add new year level"
+                                    variant="filled"
+                                    size="small"
+                                    type="text"
+                                    value={year}
+                                    onChange={(e) => {
+                                        setYear(e.target.value)
+                                    }}
+                                    required
+                                />
+                                <Button
+                                    type="submit"
+                                    className={`${Style.textColor}`}>
+                                    Add New
+                                </Button>
+
+                            </form>
+                            <Divider
+                                flexItem
+                                orientation="vertical"
                             />
-                            <MyButton
-                                type="submit"
-                                label="Add Year Level"
-                                className=" p-2 hover:bg-magic-mint hover:rounded-lg border-r-[1px] border-powder-blue text-sm"
-                                onClick={handleReloadInput}
+                            <Button
+                                className={`${Style.textColor}`}
+                            >
+                                Search
+                            </Button>
+                            <Divider
+                                flexItem
+                                orientation="vertical"
                             />
 
-                        </form>
+
+                            <Button
+                                href={""}
+                                className={`${Style.textColor}`}>
+                                Export
+                            </Button>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

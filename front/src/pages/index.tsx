@@ -7,6 +7,7 @@ import { Style } from '../lib/Style';
 import Sidebar from '../components/Sidebar';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
+import Head from 'next/head';
 
 
 export default function Home() {
@@ -25,14 +26,23 @@ export default function Home() {
 
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
+
+      <Head>
+        <title>Index</title>
+        <meta name="description" content="Created by streamline" />
+        <link rel="icon" href=".../img/ais-rft-logo.jpg" />
+      </Head>
+
       <div className={`${Style.mainContent}`}>
+
         <div>
           <Header open={open} handleDrawerOpen={handleDrawerOpen} />
         </div>
         <div>
           <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
         </div>
-        <div className='pt-12'>
+
+        <div className={`pt-12`}>
           {/* <DrawerHeader /> */}
           <Population />
           <LiveActivity />
