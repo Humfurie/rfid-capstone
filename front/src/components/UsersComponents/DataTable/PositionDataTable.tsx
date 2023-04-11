@@ -1,23 +1,24 @@
 import * as React from "react";
-import Link from "next/link";
 import { Style } from "../../../lib/Style";
-import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 import { useState } from "react";
 import DestroyPosition from "../../../pages/users/positions/[id]/destroy";
 import PositionEdit from "../../../pages/users/positions/[id]/edit";
+import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+
 
 export default function PositionDataTable(props: any) {
-  const { position } = props
+  const { positions, currentPage, itemsPerPage } = props
 
   const [editOpen, setEditOpen] = useState(
-    position.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
+    positions.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
       num[position.id] = false
       return num
     }, {})
   )
 
   const [deleteOpen, setDeleteOpen] = useState(
-    position.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
+    positions.reduce((num: { [x: string]: boolean; }, position: { id: string | number; }) => {
       num[position.id] = false
       return num
     }, {})
@@ -51,58 +52,59 @@ export default function PositionDataTable(props: any) {
     })
   }
 
+  let positionMap = (positions).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((position: any) => {
+    console.log("hello", positions)
+    return (
+      <tbody key={position.id}>
+
+        <tr className="border-collapse hover:bg-gray-200">
+          <td className={`${Style.tableBorder}`}>
+            {position.id}
+          </td>
+          <td className={`${Style.tableBorder}`}>
+            {position.position}
+          </td>
+          <td className={`${Style.tableBorder}`}>
+            <div className="flex gap-3 justify-center">
+
+              <button onClick={e => {
+                handleEdit(position.id)
+              }}>
+                <BorderColorRoundedIcon className={`${Style.edit}`} />
+                <PositionEdit handleClosePosition={handleClosePosition} editOpen={editOpen[position.id]} position={position} key={selected} />
+              </button>
+
+              <button onClick={e => {
+                handleDelete(position.id)
+              }}>
+                <DeleteRoundedIcon className={`${Style.delete}`} />
+                <DestroyPosition handleClosePosition={handleClosePosition} deleteOpen={deleteOpen[position.id]} position={position} key={selected} />
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+
+    );
+  })
 
   return (
-    <div className="w-full">
-      <table className="table-fixed bg-white-smoke w-full rounded-lg">
-        <thead className={`${Style.toLeft}`}>
+    <div className={`w-full`}>
+      <table className={`table-fixed w-full`}>
+        <thead className={`bg-gray-500 text-white`}>
           <tr className="border-collapse ">
             <th className={`${Style.tableBorder}`}>ID</th>
             <th className={`${Style.tableBorder}`}>Name</th>
             <th className={`${Style.tableBorder}`}>Action</th>
           </tr>
         </thead>
-        <tbody>
-          {position.map((position: any, id: number) => {
-            return (
-              <tr key={id} className="border-collapse hover:bg-gray-200">
-                <td className={`${Style.tableBorder}`}>
-                  {position.id}
-                </td>
-                <td className={`${Style.tableBorder}`}>
-                  {position.position}
-                </td>
-                <td className={`${Style.tableBorder}`}>
-                  <div className="flex gap-3 items-center">
-                    {/* <Link href={`/users/positions/${position.id}`}>
-                      <BsEye className="hover:text-blue-600" />
-                    </Link> */}
-                    {/* <Link href={`/users/positions/${position.id}/edit`}>
-                      <BsPencil className="hover:text-green-600" />
-                    </Link> */}
-
-                    <button onClick={e => {
-                      handleEdit(position.id)
-                    }}>
-                      <BsPencil className="hover:text-green-600" />
-                      <PositionEdit handleClosePosition={handleClosePosition} editOpen={editOpen[position.id]} position={position} key={selected} />
-                    </button>
-
-                    <button onClick={e => {
-                      handleDelete(position.id)
-                    }}>
-                      <BsTrash className="hover:text-red-600" />
-                      <DestroyPosition handleClosePosition={handleClosePosition} deleteOpen={deleteOpen[position.id]} position={position} key={selected} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
+        {positionMap}
       </table>
     </div>
-  );
+
+  )
+
 }
 
 

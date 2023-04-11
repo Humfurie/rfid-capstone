@@ -1,12 +1,13 @@
-import { Style } from "../../lib/Style";
-import Button from "@mui/material/Button";
 import React from "react";
+import Button from "@mui/material/Button";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Style } from "../../lib/Style";
 
-const ParentHeader = () => {
+
+const StudentHeader = () => {
 
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
@@ -24,7 +25,7 @@ const ParentHeader = () => {
                 <div className="flex w-full">
                     <div className="flex w-56">
                         <Button
-                            href={"/users/parent"}
+                            href={"/users/student"}
                             className="font-bold pl-5 pr-5 text-2xl text-gray-800 hover:bg-gray-200 hover: rounded-lg"
                         >
                             A I S - R F T
@@ -32,13 +33,13 @@ const ParentHeader = () => {
                     </div>
                     <div className="flex w-full">
                         <Button
-                            href={"/users/parent/children"}
+                            href={"/users/student/activities"}
                             className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                         >
-                            Your Children
+                            Your Activities
                         </Button>
                     </div>
-                    <div className=" flex justify-end ">
+                    <div className=" flex justify-end  ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"
@@ -56,18 +57,18 @@ const ParentHeader = () => {
                             open={open}
                             onClose={handleClose}
                             anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
+                                vertical: 'bottom',
+                                horizontal: 'right',
                                 
                             }}
                             transformOrigin={{
                                 vertical: 'top',
-                                horizontal: 'left',
+                                horizontal: 'right',
                             }}
                         >
                             <MenuItem>
                                 <Link
-                                href={'/users/parent/profile'}>
+                                href={'/users/student/profile'}>
                                 Profile
                                 </Link>
                                 
@@ -86,4 +87,4 @@ const ParentHeader = () => {
     );
 }
 
-export default ParentHeader;
+export default StudentHeader;

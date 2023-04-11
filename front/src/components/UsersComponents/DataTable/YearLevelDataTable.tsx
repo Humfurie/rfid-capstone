@@ -1,22 +1,22 @@
 import * as React from "react";
-import Link from "next/link";
-import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 import { Style } from "../../../lib/Style";
 import { useState } from "react";
 import DestroyYearLevel from "../../../pages/users/yearLevel/[id]/destroy";
 import YearLevelEdit from "../../../pages/users/yearLevel/[id]/edit";
+import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 export default function YearLevelDataTable(props: any) {
-  const { yearLevel } = props
+  const { yearLevels, currentPage, itemsPerPage } = props
 
   const [editOpen, setEditOpen] = useState(
-    yearLevel.reduce((num: { [x: string]: boolean; }, yearLevel: { id: string | number; }) => {
+    yearLevels.reduce((num: { [x: string]: boolean; }, yearLevel: { id: string | number; }) => {
       num[yearLevel.id] = false
       return num
     }, {})
   )
   const [deleteOpen, setDeleteOpen] = useState(
-    yearLevel.reduce((num: { [x: string]: boolean; }, yearLevel: { id: string | number; }) => {
+    yearLevels.reduce((num: { [x: string]: boolean; }, yearLevel: { id: string | number; }) => {
       num[yearLevel.id] = false
       return num
     }, {})
@@ -48,60 +48,55 @@ export default function YearLevelDataTable(props: any) {
     })
   }
 
+  let yearLevelMap = (yearLevels).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((yearLevel: any) => {
+    
+    return (
+      <tbody key={yearLevel.id}>
+
+        <tr className="border-collapse hover:bg-gray-200">
+          <td className={`${Style.tableBorder}`}>
+            {yearLevel.id}
+          </td>
+          <td className={`${Style.tableBorder}`}>
+            {yearLevel.year}
+          </td>
+          <td className={`${Style.tableBorder}`}>
+            <div className="flex gap-3 justify-center">
+
+              <button onClick={e => {
+                handleEdit(yearLevel.id)
+              }}>
+                <BorderColorRoundedIcon className={`${Style.edit}`} />
+                <YearLevelEdit handleCloseYearLevel={handleCloseYearLevel} editOpen={editOpen[yearLevel.id]} yearLevel={yearLevel} key={selected} />
+              </button>
+
+              <button onClick={e => {
+                handleDelete(yearLevel.id)
+              }}>
+                <DeleteRoundedIcon className={`${Style.delete}`}/>
+                <DestroyYearLevel handleCloseDelete={handleCloseYearLevel} deleteOpen={deleteOpen[yearLevel.id]} yearLevel={yearLevel} key={selected} />
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    )
+  })
 
 
   return (
-    <div className="w-full">
-      <table className="table-fixed w-full rounded-lg">
-        <thead className="bg-magic-mint">
+    <div className={`w-full`}>
+      <table className={`table-fixed w-full`}>
+        <thead className={`bg-gray-500 text-white`}>
           <tr className="border-collapse ">
             <th className={`${Style.tableBorder}`}>ID</th>
             <th className={`${Style.tableBorder}`}>Name</th>
             <th className={`${Style.tableBorder}`}>Action</th>
           </tr>
         </thead>
-        <tbody>
-          {yearLevel.map((yearLevel: any, id: number) => {
-
-            return (
-              <tr key={id} className="border-collapse hover:bg-gray-200">
-                <td className={`${Style.tableBorder}`}>
-                  {yearLevel.id}
-                </td>
-                <td className={`${Style.tableBorder}`}>
-                  {yearLevel.year}
-                </td>
-                <td className={`${Style.tableBorder}`}>
-                  <div className="flex gap-3 items-center">
-                    {/* <Link href={`/users/yearLevel/${yearLevel.id}`}>
-                      <BsEye className="hover:text-blue-600" />
-                    </Link> */}
-                    {/* <Link href={`/users/yearLevel/${yearLevel.id}/edit`}>
-                      <BsPencil className="hover:text-green-600" />
-                    </Link> */}
-                    <button onClick={e => {
-                      handleEdit(yearLevel.id)
-                    }}>
-                      <BsPencil className="hover:text-green-600" />
-                      <YearLevelEdit handleCloseYearLevel={handleCloseYearLevel} editOpen={editOpen[yearLevel.id]} yearLevel={yearLevel} key={selected} />
-                    </button>
-                    {/* <Link href={`/users/yearLevel/${yearLevel.id}/delete`}>
-                      <BsTrash className="hover:text-red-600" />
-                    </Link> */}
-                    <button onClick={e => {
-                      handleDelete(yearLevel.id)
-                    }}>
-                      <BsTrash className="hover:text-red-600" />
-                      <DestroyYearLevel handleCloseDelete={handleCloseYearLevel} deleteOpen={deleteOpen[yearLevel.id]} yearLevel={yearLevel} key={selected} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
+        {yearLevelMap}
       </table>
     </div>
-  );
+  )
 }
 
