@@ -6,7 +6,7 @@ import UserLogin from 'App/Models/UserLogin'
 export default class UserLoginsController {
 
   public async __invoke({ request, response }: HttpContextContract) {
-    return response.status(200).json({ user: request.user })
+    return response.status(200).json({ employee: request.employee })
   }
 
   public async login({ request, response }: HttpContextContract) {
@@ -21,8 +21,8 @@ export default class UserLoginsController {
       .where('flag', 1)
       .firstOrFail()
 
-    console.log(userLogin.serialize())
-
+    console.log(username, password)
+    return
     if (!userLogin) {
       return response.status(401).json({ "message": "User not found!" })
     }
@@ -37,15 +37,8 @@ export default class UserLoginsController {
 
     try {
 
-      /**
-       * using jsonwebtoken authentication and authorization
-       */
       const token = jwt.sign(jwtAuth, 'userStudent')
-      // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
 
-      // if (request.input('remember')) {
-      //   jwtCookie = `${jwtCookie} Max-Age=361560000`
-      // }
       return response.status(200).send({
         token: token,
         data: { ...userLogin },

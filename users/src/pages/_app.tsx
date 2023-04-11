@@ -67,7 +67,7 @@ export default function App({ Component, pageProps }: AppProps) {
    * user login
    */
   const userLogin = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/users/login`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
       username: loginForm.username,
       password: loginForm.password
     }).then((res: { data: { token: any; }; }) => {

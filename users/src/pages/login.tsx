@@ -1,8 +1,9 @@
-import LoginForm from "../components/GeneralComponents/LoginForm";
+import LoginForm from "../components/LoginForm";
+
 
 const Login = () => {
     return (
-        <div>
+        <div className="flex h-screen">
             <LoginForm />
         </div>
     );

@@ -8,6 +8,7 @@ import { EmployeeSchoolInfo } from "./includes/employee/EmployeeSchoolInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 import { PersonalInfo } from "./includes/PersonalInfo";
 import { EmergencyContactInfo } from "./includes/EmergencyContactInfo";
+import UsersFormButtonSelection from "../../Tabs/UsersFormButtonSelection";
 
 const EmployeeRegistration = () => {
   const router = useRouter()
@@ -51,68 +52,11 @@ const EmployeeRegistration = () => {
             router.push("/users/employee")
           }}
         >
-          <div className="grid grid-cols-4 gap-1">
-            <button
-              type="button"
-              className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-              onClick={e => {
-                setSelection('personal')
-                setActive({
-                  personal: true,
-                  school: false,
-                  contact: false,
-                  emergency: false
-                })
-              }}
-            >
-              Personal Information
-            </button>
-            <button
-              type="button"
-              className={`${Style.registrationNavBar} ${active.school === true ? "bg-magic-mint" : ""}`}
-              onClick={e => {
-                setSelection('school')
-                setActive({
-                  personal: false,
-                  school: true,
-                  contact: false,
-                  emergency: false
-                })
-              }}
-            >
-              School Information
-            </button>
-            <button
-              type="button"
-              className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
-              onClick={e => {
-                setSelection('contact')
-                setActive({
-                  personal: false,
-                  school: false,
-                  contact: true,
-                  emergency: false
-                })
-              }}
-            >
-              Contact Information
-            </button>
-            <button
-              type="button"
-              className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-magic-mint" : ""}`}
-              onClick={e => {
-                setSelection('emergency')
-                setActive({
-                  personal: false,
-                  school: false,
-                  contact: false,
-                  emergency: true
-                })
-              }}
-            >
-              Emergency Contact
-            </button>
-          </div>
+          < UsersFormButtonSelection
+            active={active}
+            setActive={setActive}
+            setSelection={setSelection}
+          />
           <div>
             {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
           </div>
@@ -123,8 +67,8 @@ const EmployeeRegistration = () => {
 
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

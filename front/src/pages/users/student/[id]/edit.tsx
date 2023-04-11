@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import Head from "next/head";
 import Header from "../../../../components/Header";
 import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
+import UsersFormButtonSelection from "../../../../components/Tabs/UsersFormButtonSelection";
 
 
 const edit = (props: any) => {
@@ -112,72 +113,13 @@ const edit = (props: any) => {
                   userUpdate()
                 }}
                 >
-
-
-                  <div className="grid grid-cols-4 gap-1  text-center ">
-
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('personal')
-                        setActive({
-                          personal: true,
-                          school: false,
-                          contact: false,
-                          emergency: false
-                        })
-                      }}
-                    >
-                      Personal Informmation
-                    </button>
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.school === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('school')
-                        setActive({
-                          personal: false,
-                          school: true,
-                          contact: false,
-                          emergency: false
-                        })
-                      }}
-                    >
-                      School Informmation
-                    </button>
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('contact')
-                        setActive({
-                          personal: false,
-                          school: false,
-                          contact: true,
-                          emergency: false
-                        })
-                      }}
-                    >
-                      Contact Informmation
-                    </button>
-                    <button type="button"
-                      className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('emergency')
-                        setActive({
-                          personal: false,
-                          school: false,
-                          contact: false,
-                          emergency: true
-                        })
-                      }}
-                    >
-                      Emergency Contact
-                    </button>
-                  </div>
+                  < UsersFormButtonSelection
+                    active={active}
+                    setActive={setActive}
+                    setSelection={setSelection}
+                  />
                   <div>
-                    {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <StudentSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
+                    {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
                   </div>
                   <div>
                     <Button type="submit" variant="contained" color="success" className={`mx-auto ${Style.registerBtn}`}>

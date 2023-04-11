@@ -1,8 +1,12 @@
-const ContactInfo = () => {
+import { Style } from "../../../lib/Style";
+
+const ContactInfo = (props: any) => {
+
+    const { formOnChange, form } = props
     return (
         <div>
             contact info
-            {/* <div >
+            <div >
                 <div className={Style.inputDiv}>
                     <label htmlFor="" className={Style.label}>
                         E-mail:
@@ -42,7 +46,7 @@ const ContactInfo = () => {
                         }}
                     />
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 }
