@@ -48,7 +48,8 @@ export default class AdminsController {
   }
 
   public async __invoke({ request, response }: HttpContextContract) {
-    return response.status(200).json({ admin: request.admin })
+    const token = process.env.ADMIN
+    return response.status(200).json([{ admin: request.admin }, token])
   }
 
   public async login({ request, response }: HttpContextContract) {
