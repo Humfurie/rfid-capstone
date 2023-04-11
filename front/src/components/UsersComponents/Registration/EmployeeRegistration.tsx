@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { Style } from "../../../lib/Style";
-import MyButton from "../../../lib/partials/MyButton";
 import { EmployeeSchoolInfo } from "./includes/employee/EmployeeSchoolInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 import { PersonalInfo } from "./includes/PersonalInfo";

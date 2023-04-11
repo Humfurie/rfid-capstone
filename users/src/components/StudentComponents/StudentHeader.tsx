@@ -1,10 +1,11 @@
-import { Style } from "../../lib/Style";
-import Button from "@mui/material/Button";
 import React from "react";
+import Button from "@mui/material/Button";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Style } from "../../lib/Style";
+
 
 const StudentHeader = () => {
 
@@ -38,7 +39,7 @@ const StudentHeader = () => {
                             Your Activities
                         </Button>
                     </div>
-                    <div className=" flex justify-end ">
+                    <div className=" flex justify-end  ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"

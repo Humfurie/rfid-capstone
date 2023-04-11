@@ -5,6 +5,17 @@ export const Style = {
     parentDiv: "flex w-full h-full",
     drawerHeader: "flex items-center p-2",
     mainContent: "p-3 flex",
+    textColor: "text-gray-700",
+    tableBg: "bg-white shadow-sm p-2 mt-2 rounded-lg", 
+    view:"text-gray-700 hover:text-blue-600",
+    edit:"text-gray-700 hover:text-green-600",
+    delete:"text-gray-700 hover:text-red-600",
+    menuTab: "flex p-1 bg-white rounded-lg shadow-sm",
+
+    /**
+     * Table design
+     */
+    tableBorder:'border border-gray-500 border-collapse p-3',
 
     /**
      * for search bar input field
@@ -41,10 +52,7 @@ export const Style = {
     
     selectHover: 'hover:text-black hover:bg-light-blue',
     
-    /**
-     * Table design
-     */
-    tableBorder:'border border-teal-blue border-collapse p-3',
+    
 
     /**
      * navbar

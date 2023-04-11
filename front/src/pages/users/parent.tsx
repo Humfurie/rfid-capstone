@@ -1,39 +1,58 @@
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import Sidebar from "../../components/Sidebar";
 import Head from "next/head"
-import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import Header from "../../components/Header";
 import ParentTab from "../../components/Tabs/ParentTab";
 import ParentDatatable from "../../components/UsersComponents/DataTable/ParentDataTable";
+import { Style } from "../../lib/Style";
+import { useTheme } from '@mui/material/styles';
+import { SetStateAction, useState } from 'react';
+import { GetServerSideProps } from "next";
+
 
 
 export default function parent(props: any) {
 	const { users } = props
-	console.log(users)
+
+	const theme = useTheme();
+	const [open, setOpen] = useState(false);
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
+
+	const itemsPerPage = 10
+	const [currentPage, setCurrentPage] = useState(1)
+	const totalPages = Math.ceil(users.length / itemsPerPage)
+	const handleChangePage = (_event: any, newPage: SetStateAction<number>) => {
+		setCurrentPage(newPage)
+	}
+
 	return (
-		<div className="flex h-screen">
+		<div className={`flex h-screen`}>
 			<Head>
 				<title>List of Parents</title>
 				<meta name="description" content="Created by streamline" />
 				<link rel="icon" href=".../img/ais-rft-logo.jpg" />
 			</Head>
-			<div className="flex flex-col max-h-full">
-				<Header />
-				<div className="flex h-full bg-gray-200">
-					<div className="h-full">
-						<AdminNavbar />
-					</div>
-					<div className="flex flex-col w-full">
-						<div>
-							<ParentTab />
-						</div>
-						<div className={`w-full p-2`}>
-							<ParentDatatable users={users} />
-						</div>
-					</div>
-
+			<div className={`${Style.mainContent}`}>
+				<div>
+					<Header open={open} handleDrawerOpen={handleDrawerOpen} />
+				</div>
+				<div>
+					<Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
 				</div>
 
+				<div className={`flex flex-col w-full pt-12`}>
+					<div>
+						<ParentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} />
+					</div>
+					<div className={`${Style.tableBg}`}>
+						<ParentDatatable users={users} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} />
+					</div>
+				</div>
 			</div>
 		</div>
 	);

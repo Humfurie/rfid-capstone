@@ -1,41 +1,62 @@
-import Link from "next/link";
 import { Style } from "../../lib/Style";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Pagination from "@mui/material/Pagination";
 
-const ParentTab = () => {
+const StudentTab = (props: any) => {
+    const { totalPages, currentPage, handleChangePage } = props
     return (
-        <div>
-            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm  border-powder-blue">
-                <div className="pl-3">
-                    <input
-                        type="text"
-                        className={`${Style.searchInput}`}
-                    />
-                    <label
-                        htmlFor=""
-                        className=" p-2 hover:bg-magic-mint hover:rounded-lg border-r-[1px] border-powder-blue text-sm"
-                    >Search</label>
+        <div className={`flex-col ${Style.parentDiv}`}>
+            <div className={`pt-3`}>
+                <div className={`${Style.menuTab}`}>
 
+                    <div className={`flex`}>
+                        <div className={`pl-50`}>
+                            <Pagination
+                                count={totalPages}
+                                page={currentPage}
+                                onChange={handleChangePage}
+                                variant="text"
+                            />
+                        </div>
 
+                        <div className={`flex justify-end`}>
+                            <Divider
+                                flexItem
+                                orientation="vertical"
+                            />
+                            <Button
+                                className={`${Style.textColor}`}
+                            >
+                                Search
+                            </Button>
+                            <Divider
+                                flexItem
+                                orientation="vertical"
+                            />
+                            <Button
+                                href={"/users/registration/parent"}
+                                className={`${Style.textColor}`}>
+                                Add New
+                            </Button>
+                            <Divider
+                                flexItem
+                                orientation="vertical"
+                            />
+
+                            <Button
+                                href={""}
+                                className={`${Style.textColor}`}>
+                                Export
+                            </Button>
+
+                        </div>
+
+                    </div>
                 </div>
-                <div>
-                    <Link
-                        href={"/users/registration/parent"}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-sm">
-                        Add Parent
-                    </Link>
-                </div>
-
-                <div>
-                    <Link
-                        href={""}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-sm">
-                        Export
-                    </Link>
-                </div>
-
             </div>
         </div>
     );
 }
 
-export default ParentTab;
+export default StudentTab;

@@ -1,44 +1,70 @@
-import Link from "next/link";
+import { Style } from "../../lib/Style";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Pagination from "@mui/material/Pagination";
 
-const StudentTab = () => {
-    return (
-        <div>
-            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm  border-powder-blue text-xs">
-                <div>
-                    <Link
-                        href={""}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-xs">
-                        Search
-                    </Link>
+const StudentTab = (props: any) => {
+  const { totalPages, currentPage, handleChangePage } = props
+  return (
+    <div className={`flex-col ${Style.parentDiv}`}>
+      <div className={`pt-3`}>
+        <div className={`${Style.menuTab}`}>
 
-                </div>
-                <div>
-                    <Link
-                        href={"/users/registration/student"}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-xs">
-                        Add Student
-                    </Link>
-                </div>
-                
-                <div>
-                    <Link
-                        href={""}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-xs">
-                        Export
-                    </Link>
-                </div>
-                <div>
-                    <select
-                    className=" border-r-[1px] border-powder-blue hover:bg-magic-mint hover:rounded-lg"
-                    >
-                        <option value="">Grade 7</option>
-                        <option value="">Grader 8</option>
-                    </select>
-                </div>
+          <div className={`flex`}>
+            <div className={`pl-50`}>
+              <Pagination
+                count={totalPages}
+                page={currentPage}
+                onChange={handleChangePage}
+                variant="text"
+              />
+            </div>
+
+            <div className={`flex justify-end`}>
+              <Divider
+                flexItem
+                orientation="vertical"
+              />
+              <Button
+                className={`${Style.textColor}`}
+              >
+                Search
+              </Button>
+              <Divider
+                flexItem
+                orientation="vertical"
+              />
+              <Button
+                href={"/users/registration/student"}
+                className={`${Style.textColor}`}>
+                Add New
+              </Button>
+              <Divider
+                flexItem
+                orientation="vertical"
+              />
+              <Button
+                href={""}
+                className={`${Style.textColor}`}>
+                Filter By
+              </Button>
+              <Divider
+                flexItem
+                orientation="vertical"
+              />
+              <Button
+                href={""}
+                className={`${Style.textColor}`}>
+                Export
+              </Button>
 
             </div>
+
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default StudentTab;

@@ -113,6 +113,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // add position
   const positionSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
+      
       position: position,
     })
     setPosition('')
@@ -124,7 +125,7 @@ export default function App({ Component, pageProps }: AppProps) {
       year: year,
     })
     setYear('')
-    router.push('/users/year_level')
+    router.push('/users/year-level')
   }
   const userSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
@@ -264,6 +265,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         id,
         setId,
+
       }}
     >
       <Component {...pageProps} />
