@@ -13,7 +13,7 @@ export const ContactInfo = () => {
         <div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
-                    E-mail:
+                    E-mail
                 </label>
                 <TextField
                     variant="filled"
@@ -28,7 +28,7 @@ export const ContactInfo = () => {
             </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
-                    Contact Number:
+                    Contact Number
                 </label>
                 <TextField
                     variant="filled"
@@ -43,7 +43,7 @@ export const ContactInfo = () => {
             </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
-                    Facebook:
+                    Facebook
                 </label>
                 <TextField
                     variant="filled"

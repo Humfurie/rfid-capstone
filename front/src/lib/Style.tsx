@@ -17,18 +17,6 @@ export const Style = {
      */
     tableBorder:'border border-gray-500 border-collapse p-3',
 
-    /**
-     * for search bar input field
-     */
-    searchInput:"border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue rounded",
-
-    /**
-     * for background color gradients
-     */
-    toRight: "bg-gradient-to-r from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
-    toLeft:"bg-gradient-to-l from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
-    toBottom:"bg-gradient-to-b from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
-    toTop:"bg-gradient-to-t from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
     
     /**
      * for login
@@ -40,7 +28,7 @@ export const Style = {
      * for input fields and labels
      */
     inputType: ' rounded border border-teal-blue focus:outline-none focus:ring focus:ring-teal-blue ...',
-    inputDiv:'flex justify-center flex-col mt-2',
+    inputDiv:'flex justify-center flex-col mt-1',
     label:'text-sm text-left',
 
     /**

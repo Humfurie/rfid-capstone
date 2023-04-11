@@ -39,21 +39,21 @@ const employee = () => {
                 </div>
 
                 <div className={`flex flex-col w-full pt-12`}>
-               
-                        <div className={`pt-3`}>
-                            <div className={`${Style.menuTab}`}>
 
-                                <Button
-                                    startIcon={<ArrowBackRoundedIcon />}
-                                    className={`${Style.textColor}`}
-                                    href="/users/employee"
-                                >
-                                    Back
-                                </Button>
+                    <div className={`pt-3`}>
+                        <div className={`${Style.menuTab}`}>
 
-                            </div>
+                            <Button
+                                startIcon={<ArrowBackRoundedIcon />}
+                                className={`${Style.textColor}`}
+                                href="/users/employee"
+                            >
+                                Back
+                            </Button>
+
                         </div>
-       
+                    </div>
+
 
                     <div className={`${Style.tableBg}`}>
                         <EmployeeRegistration />

@@ -48,7 +48,7 @@ export default function UsersDataTable(props: any) {
           </td>
           
           <td className={`${Style.tableBorder}`}>
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 justify-center">
 
               <Link href={`/users/${role}/${user.id}`} >
                 <RemoveRedEyeRoundedIcon className={`${Style.view}`} />
@@ -71,15 +71,8 @@ export default function UsersDataTable(props: any) {
     )
   })
 
-  // const role = users?.role[0]?.role.toLowerCase()
-  // console.log(role)
- 
   return (
     <div className={`w-full`}>
-      {/* <div className={`text-center`}>
-        {role === "employee" ? "Employee List" : role === "student" ? "Student List" : ""}
-      
-      </div> */}
       <table className={`table-fixed w-full`}>
         <thead className={`bg-gray-500 text-white`}>
           <tr className="border-collapse ">

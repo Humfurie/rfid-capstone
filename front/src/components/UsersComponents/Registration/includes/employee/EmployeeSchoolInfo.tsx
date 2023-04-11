@@ -13,74 +13,64 @@ export const EmployeeSchoolInfo = () => {
         userOnChange
     } = useContext(FormContext);
 
-    
     return (
-
         <div>
-            <div >
-                <div className="flex justify-center flex-col mt-2">
-                    <label htmlFor="" className={Style.label}>
-                        Employee ID:
-                    </label>
-                    <TextField
-                        variant="filled"
-                        size="small"
-                        type="number"
-                        value={userInfo.idNumber}
-                        onChange={(e) => {
-                            userOnChange(e.target.value, "idNumber")
-                        }}
+            <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    Employee ID:
+                </label>
+                <TextField
+                    variant="filled"
+                    size="small"
+                    type="number"
+                    value={userInfo.idNumber}
+                    onChange={(e) => {
+                        userOnChange(e.target.value, "idNumber")
+                    }}
+                />
+            </div >
 
-                    />
-
-
-                    <label htmlFor="" className={Style.label}>
-                        RFID Number:
-                    </label>
-
-                    <TextField
-                        variant="filled"
-                        size="small"
-                        type="number"
-                        value={userInfo.rfidNumber}
-                        onChange={(e) => {
-                            userOnChange(e.target.value, "rfidNumber")
-                        }}
-
-                    />
+            <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    RFID Number:
+                </label>
+                <TextField
+                    variant="filled"
+                    size="small"
+                    type="number"
+                    value={userInfo.rfidNumber}
+                    onChange={(e) => {
+                        userOnChange(e.target.value, "rfidNumber")
+                    }}
+                />
+            </div >
 
 
-                    <label htmlFor="" className={Style.label}>
-                        Position:
-                    </label>
+            <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    Position:
+                </label>
+                <TextField
 
-                    <TextField
-
-                        id="outlined-basic"
-                        variant="filled"
-                        size="small"
-                         select
-                        value={position}
-                        onChange={(e) => {
-                            setPosition(e.target.value);
-                        }}
-
-                    >
+                    id="outlined-basic"
+                    variant="filled"
+                    size="small"
+                    select
+                    value={position}
+                    onChange={(e) => {
+                        setPosition(e.target.value);
+                    }}
+                >
                     {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
                         // console.log(element.position)
                         return (
-                                <MenuItem key={id} value={element.id}>
-                                    {element.position}
-                                </MenuItem>
+                            <MenuItem key={id} value={element.id}>
+                                {element.position}
+                            </MenuItem>
                         )
                     })}
-
-                    </TextField>
-
-
-                </div>
-            </div>
+                </TextField>
+            </div >
         </div>
-
     )
 }

@@ -10,9 +10,9 @@ export const StudentSchoolInfo = () => {
         userInfo,
         apiYearLevel
     } = useContext(FormContext);
+ console.log("userInfo", userInfo)
     return (
         <div>
-
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                     Student ID
@@ -46,7 +46,7 @@ export const StudentSchoolInfo = () => {
 
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
-                    School Year:
+                    Year Level
                 </label>
                 <TextField
 
@@ -54,9 +54,9 @@ export const StudentSchoolInfo = () => {
                     variant="filled"
                     size="small"
                     select
-                    value={userInfo.schoolYear}
+                    value={userInfo.year}
                     onChange={(e) => {
-                        userOnChange(e.target.value, "schoolYear");
+                        userOnChange(e.target.value, "year");
                     }}
 
                 >

@@ -1,65 +1,84 @@
 import { Style } from "../../../../lib/Style";
+import TextField from "@mui/material/TextField";
+import MenuItem from '@mui/material/MenuItem';
 
 const StudentSchoolInfo = (props: any) => {
 
   const { formOnChange, form, apiYearLevel } = props
+
   return (
     <div>
-      student school info edit
 
-      <div className={Style.registerBtn}>
-        <div className="flex justify-center flex-col mt-1">
-          <label htmlFor="" className={Style.label}>
-            Student ID:
-          </label>
-          <input
-            type="number"
-            className={Style.inputType}
-            value={form.idNumber}
-            onChange={(e) => {
-              formOnChange(e.target.value, "idNumber");
-            }}
-          />
-        </div>
+      <div className={Style.inputDiv}>
+        <label htmlFor="" className={Style.label}>
+          Student ID:
+        </label>
+        <TextField
+          variant="standard"
+          size="small"
+          type="number"
+          value={form.idNumber}
+          onChange={(e) => {
+            formOnChange(e.target.value, "idNumber");
+          }}
+        />
+      </div>
 
-        <div className="flex justify-center flex-col mt-2">
-          <label htmlFor="" className={Style.label}>
-            School Year:
-          </label>
-          <select
-            name=""
-            id=""
-            value={form.yearLevel}
-            className={Style.inputType}
-            onChange={(e) => {
-              formOnChange(e.target.value, "yearLevel");
-            }}
-          >
-            <option selected disabled>
-              ---Select School Year---
-            </option>
-            {(apiYearLevel?.data || []).map((yearLevel: { id: number, year: string }, id: number) => {
-              return (
-                <>
-                  <option key={id} value={yearLevel.id}>{yearLevel.year}</option>
-                </>
-              )
-            })}
+      <div className={Style.inputDiv}>
+        <label htmlFor="" className={Style.label}>
+          RFID Number
+        </label>
+        <TextField
+          variant="filled"
+          size="small"
+          type="number"
+          value={form.rfidNumber}
+          onChange={(e) => {
+            formOnChange(e.target.value, "rfidNumber");
+          }}
+        />
 
-          </select>
-        </div>
-        <div className="flex justify-center flex-col mt-2">
-          <input
-            type="checkbox"
-            className={Style.inputType}
-            onChange={(e) => {
-              formOnChange(e.target.checked, "isAlumni");
-            }}
-          />
-          <label htmlFor="" className={Style.label}>
-            Alumni
-          </label>
-        </div>
+      </div>
+
+      <div className={Style.inputDiv}>
+        <label htmlFor="" className={Style.label}>
+          Year Level
+        </label>
+
+
+        <TextField
+          variant="filled"
+          size="small"
+          select
+          value={form.yearLevel}
+          onChange={(e) => {
+            formOnChange(e.target.value, 'yearLevel');
+          }}
+        >
+          {(apiYearLevel?.data || []).map((yearLevel: { id: number, year: string }, id: number) => {
+            return (
+              <MenuItem key={id} value={yearLevel.id}>
+                {yearLevel.year}
+              </MenuItem>
+            )
+          })}
+
+        </TextField>
+      </div>
+
+
+
+      <div className={Style.inputDiv}>
+        <input
+          type="checkbox"
+          className={Style.inputType}
+          onChange={(e) => {
+            formOnChange(e.target.checked, "isAlumni");
+          }}
+        />
+        <label htmlFor="" className={Style.label}>
+          Alumni
+        </label>
       </div>
     </div>
   );

@@ -1,8 +1,6 @@
-
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
-import { Style } from "../../../lib/Style";
 import { EmployeeSchoolInfo } from "./includes/employee/EmployeeSchoolInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 import { PersonalInfo } from "./includes/PersonalInfo";

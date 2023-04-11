@@ -70,7 +70,6 @@ const ParentDatatable = (props: any) => {
 
   return (
     <div className={`w-full`}>
-      <div className={`text-center`}>Parent List</div>
       <table className={`table-fixed w-full`}>
         <thead className={`bg-gray-500 text-white`}>
           <tr className="border-collapse ">

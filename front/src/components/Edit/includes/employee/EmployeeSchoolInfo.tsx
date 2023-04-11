@@ -1,4 +1,6 @@
+import TextField from "@mui/material/TextField";
 import { Style } from "../../../../lib/Style";
+import { MenuItem } from "@mui/material";
 
 const EmployeeSchoolInfo = (props: any) => {
 
@@ -6,30 +8,56 @@ const EmployeeSchoolInfo = (props: any) => {
 
   return (
     <div>
-      employee school info
-      <div >
-        <div className="flex justify-center flex-col mt-2">
-          <label htmlFor="" className={Style.label}>
-            Position:
-          </label>
-          <select
-            name="positions"
-            className={Style.inputType}
-            value={form.position}
-            onChange={(e) => {
-              formOnChange(e.target.value, 'position');
-            }}
-          >
-            <option value=''>
-              ---Select Position---
-            </option>
-            {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
-              return (
-                <option key={id} value={element.id}>{element.position}</option>
-              )
-            })}
-          </select>
-        </div>
+      <div className={Style.inputDiv}>
+        <label htmlFor="" className={Style.label}>
+          Employee ID:
+        </label>
+        <TextField
+          variant="filled"
+          size="small"
+          type="number"
+          value={form.idNumber}
+          onChange={(e) => {
+            formOnChange(e.target.value, "idNumber")
+          }}
+        />
+      </div>
+
+      <div className={Style.inputDiv}>
+        <label htmlFor="" className={Style.label}>
+          RFID Number:
+        </label>
+        <TextField
+          variant="filled"
+          size="small"
+          type="number"
+          value={form.rfidNumber}
+          onChange={(e) => {
+            formOnChange(e.target.value, "rfidNumber")
+          }}
+        />
+      </div>
+
+      <div className={Style.inputDiv}>
+        <label htmlFor="" className={Style.label}>
+          Position:
+        </label>
+
+        <TextField
+          variant="filled"
+          size="small"
+          select
+          value={form.position}
+          onChange={(e) => {
+            formOnChange(e.target.value, 'position');
+          }}
+        >
+          {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
+            return (
+              <MenuItem key={id} value={element.id}>{element.position}</MenuItem>
+            )
+          })}
+        </TextField>
       </div>
     </div>
   );
