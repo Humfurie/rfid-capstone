@@ -31,17 +31,16 @@ export default class newUserRegistrationController {
             /**
              * user Model
              */
-            const user = new User()
             try {
-
-                const validated = input.userRegistration.validate(UserValidator)
-
-
+                // const validated = input.userRegistration.validate(UserValidator)
+                console.log('this is inpiyt')
 
                 /**
                  * 
                  * these are user model properties
-                 */
+                */
+                const user = new User()
+
                 user.firstName = input.userRegistration.firstName
                 user.middleName = input.userRegistration.middleName
                 user.lastName = input.userRegistration.lastName
@@ -132,7 +131,7 @@ export default class newUserRegistrationController {
                  * transaction rollback is for not saving related data in case of failure
                  */
                 await trx.rollback()
-                return response.status(400).json(error)
+                return response.status(400).json([error, { 'message': 'maot' }])
 
             }
 
@@ -232,7 +231,7 @@ export default class newUserRegistrationController {
              */
             const user = new Parent()
             try {
-
+                console.log('this is parent user', user)
                 /**
                  * these are parent model properties
                  */
@@ -268,7 +267,6 @@ export default class newUserRegistrationController {
             }
         }
         else {
-
             /**
              * in case everything else all fails
              */

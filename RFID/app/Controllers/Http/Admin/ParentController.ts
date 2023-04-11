@@ -11,19 +11,16 @@ export default class ParetController {
     public async index({ response }: HttpContextContract) {
 
         const user = await Parent.query().where('flag', 1)
-
         console.log(user)
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
-
         return response.status(200).json(user)
     }
 
     /**
-     * show one parent
+     * get parent byId
      */
-
     public async parentShow({ response, params }: HttpContextContract) {
 
         const user = await Parent.query()
@@ -69,7 +66,6 @@ export default class ParetController {
     /*
    * delete parent
    */
-
     public async delete({ request, response }: HttpContextContract) {
         const req = request.only(['id'])
         const deleteParent = await Parent.query()

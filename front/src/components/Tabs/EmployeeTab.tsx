@@ -4,7 +4,7 @@ import { Style } from "../../lib/Style";
 const EmployeeTab = () => {
     return (
         <div>
-            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm border-b-[1px] border-powder-blue">
+            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm  border-powder-blue">
                 <div className="pl-3">
                     <input
                         type="text"

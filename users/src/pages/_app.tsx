@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   const parsedToken = parseCookies()
-  console.log(parsedToken)
+  // console.log(parsedToken)
   axios.interceptors.request.use(
     async config => {
       const token = parsedToken.JWToken
@@ -22,16 +22,16 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   )
 
-    // useMemo(
-    //   async () => {
-    //     try {
-    //       await axios.get(`http://127.0.0.1:3333/auth`)
-    //       router.push('/')
-    //     } catch (error) {
-    //       router.push('/login')
-    //     }
-    //   }, []
-    // )
+  // useMemo(
+  //   async () => {
+  //     try {
+  //       await axios.get(`http://127.0.0.1:3333/auth`)
+  //       router.push('/')
+  //     } catch (error) {
+  //       router.push('/login')
+  //     }
+  //   }, []
+  // )
 
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
@@ -46,7 +46,6 @@ export default function App({ Component, pageProps }: AppProps) {
     username: '',
     password: ''
   })
-console.log(loginForm)
 
   const onChange = (value: any, column: any) => {
     setForm((prev: any) => {
@@ -68,16 +67,23 @@ console.log(loginForm)
    * user login
    */
   const userLogin = async () => {
-    await axios.post(`http://127.0.0.1:3333/api/users/login`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
       username: loginForm.username,
       password: loginForm.password
     }).then((res: { data: { token: any; }; }) => {
-      const token = res.data.token
-      setCookie({}, 'JWToken', token, {
-        maxAge: 24 * 60 * 60
-      })
+      try {
+        const token = res.data.token
+        setCookie({}, 'JWToken', token, {
+          maxAge: 24 * 60 * 60
+        })
+        router.push('/')
+      } catch (error) {
+        console.log(error)
+        return 401
+      }
+
     })
-    router.push('/')
+
   }
 
   // navigation bar
@@ -99,8 +105,8 @@ console.log(loginForm)
       setOpen,
       currentMenu,
       setCurrentMenu
-   
-    }}> 
+
+    }}>
       <Component {...pageProps} />
     </FormContext.Provider>
   )

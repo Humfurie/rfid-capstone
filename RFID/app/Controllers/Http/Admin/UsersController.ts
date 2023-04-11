@@ -47,9 +47,7 @@ export default class UsersController {
             .preload('position')
             .firstOrFail()
 
-        const position = await Position.query().where('flag', 1)
-
-        return response.status(200).send([user, position])
+        return response.status(200).json(user)
     }
 
     /**
@@ -61,13 +59,11 @@ export default class UsersController {
         const user = await User.query()
             .whereHas('role', (builder) => {
                 builder.where('role', 'Student');
-            }).where('flag', 1)
+            })
             .where('flag', 1)
             .preload('emergencyContact')
             .preload('yearLevel')
             .preload('role')
-            .preload('position')
-
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -93,9 +89,7 @@ export default class UsersController {
             .preload('role')
             .firstOrFail()
 
-        const year = await YearLevel.query().where('flag', 1)
-
-        return response.status(200).send([user, year])
+        return response.status(200).send(user)
 
     }
 
@@ -106,7 +100,7 @@ export default class UsersController {
 
         // const req = request.only(['role', 'position'])
         const req = request.all()
-        console.log(req)
+        console.log("this is edit req", req)
         const validated = await request.validate(UserValidator)
         const trx = await Database.transaction()
         // return response.status(200).json(validated)

@@ -5,6 +5,7 @@ import { Style } from "../../../../lib/Style";
 export const EmergencyContactInfo = () => {
     const {
         emergencyOnChange,
+        emergency
     } = useContext(FormContext)
 
     return (
@@ -17,6 +18,7 @@ export const EmergencyContactInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={emergency.name}
                         onChange={(e) => {
                             emergencyOnChange(e.target.value, "name");
                         }}
@@ -30,6 +32,7 @@ export const EmergencyContactInfo = () => {
                     <input
                         type="number"
                         className={Style.inputType}
+                        value={emergency.contactNumber}
                         onChange={(e) => {
                             emergencyOnChange(e.target.value, "contactNumber");
                         }}
@@ -43,6 +46,7 @@ export const EmergencyContactInfo = () => {
                     <input
                         type="email"
                         className={Style.inputType}
+                        value={emergency.email}
                         onChange={(e) => {
                             emergencyOnChange(e.target.value, "email");
                         }}
@@ -56,6 +60,7 @@ export const EmergencyContactInfo = () => {
                     <input
                         type="text"
                         className={Style.inputType}
+                        value={emergency.facebook}
                         onChange={(e) => {
                             emergencyOnChange(e.target.value, "facebook");
                         }}

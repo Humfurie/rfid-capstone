@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 
 export default class Activity extends BaseModel {
+  public static table = 'activities'
   @column({ isPrimary: true })
   public id: number
 
@@ -11,6 +12,9 @@ export default class Activity extends BaseModel {
 
   @column()
   public status: string
+
+  @column()
+  public userId: number
 
   @column()
   public flag: number
@@ -23,11 +27,9 @@ export default class Activity extends BaseModel {
 
   @column.dateTime()
   public deletedAt: DateTime
-  
-  @manyToMany(() => User, {
-    pivotTable: 'user_activities'
-  })
-  public user: ManyToMany<typeof User>
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 
   // table.increments('id')
   // table.string('day').notNullable()

@@ -8,6 +8,7 @@ import { EmployeeSchoolInfo } from "./includes/employee/EmployeeSchoolInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 import { PersonalInfo } from "./includes/PersonalInfo";
 import { EmergencyContactInfo } from "./includes/EmergencyContactInfo";
+import UsersFormButtonSelection from "../../Tabs/UsersFormButtonSelection";
 
 const EmployeeRegistration = () => {
   const router = useRouter()
@@ -16,7 +17,28 @@ const EmployeeRegistration = () => {
     userSubmit,
     setRole,
   } = useContext(FormContext);
+
   const [selection, setSelection] = useState('personal')
+  const [active, setActive] = useState({
+    personal: true,
+    school: false,
+    contact: false,
+    emergency: false
+  })
+
+  const submitButton = (
+    <div >
+      <button
+        type="submit"
+        className={Style.registerBtn}
+        onClick={() => {
+          setRole("employee")
+        }}
+      >
+        Register
+      </button>
+    </div>
+  )
 
   return (
     <div className="w-full">
@@ -24,65 +46,29 @@ const EmployeeRegistration = () => {
         <div className="text-center">Employee Registration</div>
         <form
           onSubmit={(e) => {
-            setRole("employee")
             e.preventDefault();
             setRegistration(false)
             userSubmit();
             router.push("/users/employee")
           }}
         >
-          <div className="grid grid-cols-4 gap-1">
-            <button
-              type="button"
-              className={Style.registrationNavBar}
-              onClick={e => {
-                setSelection('personal')
-              }}
-            >
-              Personal Information
-            </button>
-            <button
-              type="button"
-              className={Style.registrationNavBar}
-              onClick={e => {
-                setSelection('school')
-              }}
-            >
-              School Information
-            </button>
-            <button
-              type="button"
-              className={Style.registrationNavBar}
-              onClick={e => {
-                setSelection('contact')
-              }}
-            >
-              Contact Information
-            </button>
-            <button
-              type="button"
-              className={Style.registrationNavBar}
-              onClick={e => {
-                setSelection('emergency')
-              }}
-            >
-              Emergency Contact
-            </button>
+          < UsersFormButtonSelection
+            active={active}
+            setActive={setActive}
+            setSelection={setSelection}
+          />
+          <div>
+            {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
           </div>
-<div>
-  { selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
-</div>
 
           <div>
-            
-            
-            <div className={Style.registerBtn}>
-              <MyButton type="submit" label="Register" />
-            </div>
+
+            {active.emergency === true ? submitButton : ''}
+
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

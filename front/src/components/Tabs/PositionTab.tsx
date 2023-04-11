@@ -5,11 +5,11 @@ import { Style } from "../../lib/Style";
 
 const PositionTab = () => {
     const { positionSubmit,
-        setPosition
+        setPosition, position
     } = useContext(FormContext)
     return (
         <div>
-            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm border-b-[1px] border-powder-blue">
+            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm  border-powder-blue">
                 <div className="pl-3">
                     <form
                         onSubmit={(e) => {
@@ -19,10 +19,12 @@ const PositionTab = () => {
                     >
                         <input
                             type="text"
+                            value={position}
                             className={`${Style.searchInput}`}
                             onChange={(e) => {
                                 setPosition(e.target.value)
                             }}
+                            required
                         />
 
 

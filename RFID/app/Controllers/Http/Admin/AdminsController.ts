@@ -32,7 +32,7 @@ export default class AdminsController {
     }
 
     try {
-      const token = jwt.sign(tokenAuth, 'maotClofel', { expiresIn: '30 mins' })
+      const token = jwt.sign(tokenAuth, `${process.env.ADMIN}`)
       // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
 
       // if (request.input('remember')) {
@@ -47,7 +47,7 @@ export default class AdminsController {
     }
   }
 
-  public async invoke({ request, response }: HttpContextContract) {
+  public async __invoke({ request, response }: HttpContextContract) {
     return response.status(200).json({ admin: request.admin })
   }
 
@@ -68,32 +68,30 @@ export default class AdminsController {
     }
 
     try {
-      const token = jwt.sign(jwtAuth, 'maotClofel')
-      // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
+      const token = jwt.sign(jwtAuth, `${process.env.ADMIN}`)
 
-      // if (request.input('remember')) {
-      //   jwtCookie = `${jwtCookie} Max-Age=361560000`
-      // }
       console.log(token, 'token')
       return response.status(200).send({
         token: token,
         data: { admin }
       })
-      // {
-      //   statusCode: 200,
-      //   headers: {
-      //     'Set-Cookie': `Admin=${token}; HttpOnly; Max-Age=24*60*60; Path=/`
-      //   },
-      //   data: { admin }, 
-      // }
+
 
     } catch (error) {
       return response.status(401).send(error)
     }
   }
 
-  public async show({ }: HttpContextContract){
+  public async show({ response, params }: HttpContextContract) {
+    const user = await Admin.query()
+      .where('id', params.id)
+      .where('flag', 1)
+      .firstOrFail()
 
+    if (!user) {
+      return response.status(401).json({ 'Message': 'User not found.' })
+    }
+    return response.status(200).json(user)
   }
 
   public async edit({ }: HttpContextContract) { }

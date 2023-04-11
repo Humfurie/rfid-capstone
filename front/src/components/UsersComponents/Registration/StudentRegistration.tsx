@@ -17,7 +17,27 @@ const StudentRegistration = () => {
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')
-  // const info = ['personal', 'school', 'contact', 'emergency']
+  const [active, setActive] = useState({
+    personal: true,
+    school: false,
+    contact: false,
+    emergency: false
+  })
+
+  const submitButton = (
+    <div >
+      <button
+        type="submit"
+        className={Style.registerBtn}
+        onClick={() => {
+          setRole("student")
+        }}
+      >
+        Register
+      </button>
+    </div>
+  )
+
 
   return (
     <div className="w-full">
@@ -25,7 +45,6 @@ const StudentRegistration = () => {
         <h4 className="text-center">Student Registration</h4>
         <form
           onSubmit={(e) => {
-            setRole("student")
             e.preventDefault();
             setRegistration(false)
             userSubmit();
@@ -35,38 +54,62 @@ const StudentRegistration = () => {
           <div className="grid grid-cols-4 gap-1">
             <button
               type="button"
-              className={Style.registrationNavBar}
+              className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
               onClick={e => {
                 setSelection('personal')
+                setActive({
+                  personal: true,
+                  school: false,
+                  contact: false,
+                  emergency: false
+                })
               }}
             >
               Personal Information
             </button>
             <button
               type="button"
-              className={Style.registrationNavBar}
+              className={`${Style.registrationNavBar} ${active.school === true ? "bg-magic-mint" : ""}`}
               onClick={e => {
                 setSelection('school')
+                setActive({
+                  personal: false,
+                  school: true,
+                  contact: false,
+                  emergency: false
+                })
               }}
-              >
+            >
               School Information
             </button>
             <button
               type="button"
-              className={Style.registrationNavBar}
+              className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
               onClick={e => {
                 setSelection('contact')
+                setActive({
+                  personal: false,
+                  school: false,
+                  contact: true,
+                  emergency: false
+                })
               }}
-              >
+            >
               Contact Information
             </button>
             <button
               type="button"
-              className={Style.registrationNavBar}
+              className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-magic-mint" : ""}`}
               onClick={e => {
                 setSelection('emergency')
+                setActive({
+                  personal: false,
+                  school: false,
+                  contact: false,
+                  emergency: true
+                })
               }}
-              >
+            >
               Emergency Contact
             </button>
           </div>
@@ -79,8 +122,8 @@ const StudentRegistration = () => {
             <EmergencyContactInfo /> */}
           </div>
 
-          <div className={Style.registerBtn}>
-            <MyButton type="submit" label="Register" />
+          <div>
+            {active.emergency === true ? submitButton : ''}
           </div>
         </form>
       </div>

@@ -25,14 +25,14 @@ import 'App/Routes/Admin/AdminRoute'
  * user Routes
  */
 import 'App/Routes/User/UserLoginRoute'
-import 'App/Routes/RfidRoutes'
 import 'App/Routes/Admin/UserRegistrationRoute'
 import 'App/Routes/UserRoute'
 import 'App/Routes/ParentRoute'
-import 'App/Routes/Position'
+import 'App/Routes/PositionRoute'
 import 'App/Routes/Role'
-import 'App/Routes/YearLevel'
+import 'App/Routes/YearLevelRoute'
 import 'App/Routes/User/ActivityRoute'
+import 'App/Routes/Admin/AdminRoute'
 
 Route.get('/', async () => {
   return { hello: 'world' }

@@ -1,91 +1,104 @@
 const EmployeeView = (props: any) => {
     const { user } = props
+    console.log("this is user", user)
     return (
         <div className=" w-full h-full">
-            <div className="border bg-white shadow-lg w-fit h-fit mx-auto mt-3">
-                <div className="text-lg text-center font-bold bg-magic-mint p-2">
-                    Personal Information
-                </div>
-                <div className="grid grid-cols-2 p-4">
+            <div className="grid grid-cols-2 bg-white shadow-lg w-fit h-fit mx-auto mt-3 rounded-2xl">
+
+                <div className="mx-auto pt-3">
                     <div>
-                        <div className="p-2">
-                            <span className="font-bold">Name: </span>
-                            {user.first_name} {user.middle_name} {user.last_name}
+                        image
+                    </div>
+                    <div className="text-lg font-bold">
+                        {user.first_name} {user.middle_name} {user.last_name}
+                    </div>
+                </div>
+
+                <div className="border-[1px]-l p-2" >
+                    <div>
+                        <div className="bg-magic-mint p-1 rounded-lg font-bold">
+                            Personal Information
                         </div>
                         <div className="p-2">
-                            <span className="font-bold">Birthday: </span>
-                             {user.birthdate}
+                            <div className="p-1">
+                                <span className="font-semibold">Birthday: </span>
+                                {user.birthdate}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Gender: </span>
+                                {user.gender}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Address: </span>
+                                {user.address}
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <div className="p-2">
-                            <span className="font-bold">
-                            Gender: </span>
-                             {user.gender}
+                        <div className="bg-magic-mint p-1 rounded-lg font-bold">
+                            School Information
                         </div>
                         <div className="p-2">
-                            <span className="font-bold">Address: </span>
-                            {user.address}
+                            <div className="p-1">
+                                <span className="font-semibold">ID Number: </span>
+                                {user.id_number}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">RFID Number: </span>
+                                {user.rfid_number}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Position: </span>
+                                {user?.position[0]?.position}
+                            </div>
+
+
                         </div>
                     </div>
 
-                </div>
-
-                <div className="text-lg text-center font-bold bg-powder-blue p-2">
-                    School Information
-                </div>
-                <div className="p-5">
-                    <span className="font-bold">Position: </span>
-                    {user?.position[0]?.position}
-                </div>
-                <div className="text-lg text-center text-white-smoke font-bold bg-teal-blue p-2">
-                    Contact Information
-                </div>
-                <div className="grid grid-cols-2">
                     <div>
-                        <div className="p-2">
-                            <span className="font-bold">E-mail: </span>
-                            {user.email}
+                        <div className="bg-magic-mint p-1 rounded-lg font-bold">
+                            Contact Information
                         </div>
                         <div className="p-2">
-                            <span className="font-bold">Contact Number: </span>
-                            {user.contact_number}
+                            <div className="p-1">
+                                <span className="font-semibold">E-mail: </span>
+                                {user.email}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Contact Number: </span>
+                                {user.contact_number}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Facebook: </span>
+                                {user.facebook}
+                            </div>
                         </div>
                     </div>
                     <div>
+                        <div className="bg-magic-mint p-1 rounded-lg font-bold">
+                            Emergency Contact
+                        </div>
                         <div className="p-2">
-                            <span className="font-bold">Facebook: </span>
-                            {user.facebook}
+                            <div className="p-1">
+                                <span className="font-semibold">Name: </span>
+                                {user.emergencyContact.name}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Contact Number: </span>
+                                {user.emergencyContact.contact_number}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">E-mail: </span>
+                                {user.emergencyContact.email}
+                            </div>
+                            <div className="p-1">
+                                <span className="font-semibold">Facebook: </span>
+                                {user.emergencyContact.facebook}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="text-lg text-center text-white-smoke font-bold bg-red-400">
-                    Emergency Contact
-                </div>
-                <div className="grid grid-cols-2 p-4">
-                    <div>
-                        <div className="p-2">
-                            <span className="font-bold">Name: </span>
-                            {user.emergencyContact.name}
-                        </div>
-                        <div className="p-2">
-                            <span className="font-bold">Contact Number: </span>
-                            {user.emergencyContact.contact_number}
-                        </div>
-                    </div>
-                    <div>
-                        <div className="p-2">
-                            <span className="font-bold">E-mail: </span>
-                            {user.emergencyContact.email}
-                        </div>
-                        <div className="p-2">
-                            <span className="font-bold">Facebook: </span>
-                            {user.emergencyContact.facebook}
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
         </div>
     );

@@ -1,5 +1,12 @@
 export const Style = {
     /**
+     * General
+     */
+    parentDiv: "flex w-full h-full",
+    drawerHeader: "flex items-center p-2",
+    mainContent: "p-3 flex",
+
+    /**
      * for search bar input field
      */
     searchInput:"border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue rounded",
@@ -28,7 +35,7 @@ export const Style = {
     /**
      * for registration
      */
-    registerBtn:' p-1 bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
+    registerBtn:' p-1 text-black bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
     registrationNavBar:'border-[2px] border-powder-blue bg-powder-blue cursor-pointer text-center rounded-t-lg p-1 mt-2 font-bold hover:bg-magic-mint hover:cursor-',
    
     
@@ -37,6 +44,11 @@ export const Style = {
     /**
      * Table design
      */
-    tableBorder:'border border-teal-blue border-collapse p-3'
+    tableBorder:'border border-teal-blue border-collapse p-3',
+
+    /**
+     * navbar
+     */
+    navbarBtn: 'text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-magic-mint focus:text-black'
     
 }

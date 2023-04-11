@@ -1,5 +1,5 @@
 import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
-    Route.post('/users/rfid/signIn', 'ActivitiesController.signIn')
-    Route.post('/users/rfid/signOut', 'ActititiesController.signOut')
+    Route.get('/rfid', 'ActivitiesController.store')
+    Route.get('/rfid/show', 'ActivitiesController.show')
 }).namespace('App/Controllers/Http/Users')

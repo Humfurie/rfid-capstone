@@ -5,46 +5,48 @@ import UserLogin from 'App/Models/UserLogin'
 
 export default class UserLoginsController {
 
-    public async login({ request, response }: HttpContextContract) {
-        const username = request.input('username')
-        const password = request.input('password')
-        // const user = await UserLogin.query().whereHas('user', user => {
-        //   user.whereHas('role', userRole => {
-        //     userRole.join()
-        //   })
-        // })
-        const user = await UserLogin.query().where('username', username).first()
+  public async __invoke({ request, response }: HttpContextContract) {
+    return response.status(200).json({ employee: request.employee })
+  }
 
-        
-        const jwtAuth = {
-          username: username
-        }
-        
-        if (!user) return response.status(401).json({ message: 'Unauthorized Access, User not found' })
+  public async login({ request, response }: HttpContextContract) {
+    const username = request.input('username')
+    const password = request.input('password')
 
-        if (!await Hash.verify(user.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
-    
-        try {
+    const userLogin = await UserLogin.query()
+      .preload('user', (user) => {
+        user.preload('role')
+      })
+      .where('username', username)
+      .where('flag', 1)
+      .firstOrFail()
 
-          /**
-           * using jsonwebtoken authentication and authorization
-           */
-          const token = jwt.sign(jwtAuth, 'userMaotClofel')
-          // let jwtCookie = `JWT=${token}; Domain=${"localhost"}`
-    
-          // if (request.input('remember')) {
-          //   jwtCookie = `${jwtCookie} Max-Age=361560000`
-          // }
-          return response.status(200).send({
-            token: token,
-            data: { user }
-          })
-        } catch (error) {
-          return response.status(401)  
-        }
-      }
+    console.log(username, password)
+    return
+    if (!userLogin) {
+      return response.status(401).json({ "message": "User not found!" })
+    }
 
-      public async invoke({ request, response }: HttpContextContract) {
-        return response.status(200).json({ user: request.user })
-      }
+    const jwtAuth = {
+      username: username
+    }
+
+    if (!userLogin) return response.status(401).json({ message: 'Unauthorized Access, User not found' })
+
+    if (!await Hash.verify(userLogin.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
+
+    try {
+
+      const token = jwt.sign(jwtAuth, 'userStudent')
+
+      return response.status(200).send({
+        token: token,
+        data: { ...userLogin },
+        role: userLogin.user.role[0].role
+      })
+    } catch (error) {
+      return response.status(401)
+    }
+  }
+
 }

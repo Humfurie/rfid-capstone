@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import AdminNavbar from "../../components/AdminComponents/AdminNavbar";
 import UsersDataTable from "../../components/UsersComponents/DataTable/UsersDataTable";
@@ -29,7 +29,7 @@ export default function employee(props: any) {
 
 						</div>
 						<div className={`w-full p-2`}>
-							<UsersDataTable user={user} />
+							<UsersDataTable user={user}/>
 						</div>
 					</div>
 
@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 	return {
 		props: {
 			user: data.data
-		}
+		},
 	}
 }
 

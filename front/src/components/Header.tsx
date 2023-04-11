@@ -1,30 +1,67 @@
-import Link from "next/link";
-import React from "react";
-import { Style } from "../lib/Style";
-import CurrentDate from "./Date";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 // Rearrange date value to get the order you want... also replace / with a cooler separator like ⋅
-export default function Header() {
-	const current = new Date();
-	const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+const drawerWidth = 240;
+
+interface AppBarProps extends MuiAppBarProps {
+	open?: boolean;
+}
+
+const AppBar = styled(MuiAppBar, {
+	shouldForwardProp: (prop) => prop !== 'open',
+})<AppBarProps>(({ theme, open }) => ({
+	zIndex: theme.zIndex.drawer + 1,
+	transition: theme.transitions.create(['width', 'margin'], {
+		easing: theme.transitions.easing.sharp,
+		duration: theme.transitions.duration.leavingScreen,
+	}),
+	...(open && {
+		marginLeft: drawerWidth,
+		width: `calc(100% - ${drawerWidth}px)`,
+		transition: theme.transitions.create(['width', 'margin'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	}),
+}));
+
+
+
+export default function Header(props: any) {
+
+	const { open, handleDrawerOpen } = props
 
 	return (
-		<div className="flex">
-			<div className={` p-4 inline-flex w-full border-b-[1px] border-teal-blue2 shadow-lg ${Style.toRight}`}>
-
-				<div className="flex">
-					<Link href="/" className={`inline-flex pl-4 text-black font-extrabold text-2xl`}> A I S - R F T </Link>
-				</div>
-
-				<div className="flex">
-					<img alt="profile" className="mr-4" />
-					<h2>
-						HWDYD, <span>Admin</span>
-					</h2>
-					<CurrentDate />
-				</div>
-
-			</div>
-		</div>
-	);
+		<>
+			<AppBar
+				position="fixed"
+				open={open}
+				className="bg-white"
+			>
+				<Toolbar>
+					<IconButton
+						color="inherit"
+						aria-label="open drawer"
+						onClick={handleDrawerOpen}
+						edge="start"
+						sx={{
+							marginRight: 5,
+							...(open && { display: 'none' }),
+						}}
+					>
+						<MenuIcon className="text-gray-700" />
+					</IconButton>
+					<div className="text-gray-700">
+						Admin
+					</div>
+				</Toolbar>
+			</AppBar>
+		</>
+	)
 }

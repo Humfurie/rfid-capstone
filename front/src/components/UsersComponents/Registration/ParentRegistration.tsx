@@ -7,16 +7,33 @@ import { PersonalInfo } from "./includes/PersonalInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 
 const ParentRegistration = () => {
-  const [selection, setSelection] = useState('personal')
+  
   const router = useRouter()
   const {
-    registration,
     setRegistration,
-    userOnChange,
-    accountOnChange,
     userSubmit,
-    roleOnChange
+    setRole
   } = useContext(FormContext);
+
+  const [selection, setSelection] = useState('personal')
+  const [active, setActive] = useState({
+    personal: true,
+    contact: false,
+  })
+
+  const submitButton = (
+    <div >
+      <button
+        className={Style.registerBtn}
+        type="submit"
+        onClick={() => {
+          setRole("parent")
+        }}
+      >
+        Register
+      </button>
+    </div>
+  )
 
   return (
     <div className="w-full">
@@ -35,36 +52,38 @@ const ParentRegistration = () => {
           <div className="grid grid-cols-2 gap-1">
             <button
               type="button"
-              className={Style.registrationNavBar}
+              className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
               onClick={e => {
                 setSelection('personal')
+                setActive({
+                  personal: true,
+                  contact: false,
+                })
               }}
             >
               Personal Information
             </button>
-            
+
             <button
               type="button"
-              className={Style.registrationNavBar}
+              className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
               onClick={e => {
                 setSelection('contact')
+                setActive({
+                  personal: false,
+                  contact: true,
+                })
               }}
             >
               Contact Information
             </button>
-           
+
           </div>
           <div>
             {selection === 'personal' ? <PersonalInfo /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
-            {/* <StudentPersonalInfo />
-            <StudentSchoolInfo />
-            <ContactInfo />
-            <EmergencyContactInfo /> */}
           </div>
-
-
-          <div className={Style.registerBtn}>
-            <MyButton type="submit" label="Register" />
+          <div>
+            {active.contact === true ? submitButton : ''}
           </div>
         </form>
       </div>

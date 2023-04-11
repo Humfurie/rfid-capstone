@@ -4,11 +4,12 @@ import { DateTime } from 'luxon'
 export default class extends BaseSchema {
   protected tableName = 'activities'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('day').notNullable()
       table.string('status').notNullable()
+      table.integer('user_id').unsigned().references('users.id').onUpdate('CASCADE').onDelete('CASCADE')
       table.integer('flag').defaultTo(1)
 
       /**
@@ -20,7 +21,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

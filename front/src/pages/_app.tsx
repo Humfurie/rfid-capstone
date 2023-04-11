@@ -65,6 +65,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [year, setYear] = useState("")
   //position-employee
   const [position, setPosition] = useState("")
+  const [apiPosition, setApiPosition] = useState({})
+  const [apiYearLevel, setApiYearLevel] = useState({})
   //role
   const [role, setRole] = useState('')
   //emergency contact
@@ -147,7 +149,7 @@ export default function App({ Component, pageProps }: AppProps) {
       isAlumni: false,
     })
     setPosition("")
-    setRole('')
+    setRole("")
     setEmergency({
       name: "",
       contactNumber: "",
@@ -179,18 +181,39 @@ export default function App({ Component, pageProps }: AppProps) {
     })
     setId('')
   }
-
-  console.log(role)
+  /**
+   * Delete Position
+   */
+  const positionDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
+      id: id
+    })
+    setId('')
+  }
+  /**
+   * Delete Year Level
+   */
+  const yearlevelDelete = async () => {
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/year_level/delete`, {
+      id: id
+    })
+    setId('')
+  }
 
   useEffect(() => {
     (async () => {
       try {
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+        const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
+        const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
+        setApiPosition(getPosition)
+        setApiYearLevel(getYearLevel)
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
         // router.push("/AdminDashboard");
       } catch (error) {
         // router.push("/");
       }
     })()
+
   }, [])
 
   return (
@@ -221,17 +244,23 @@ export default function App({ Component, pageProps }: AppProps) {
         positionSubmit,
         yearSubmit,
 
+        //position
+        apiPosition,
         //input position
         position,
         setPosition,
+
         //year
         year,
         setYear,
+        apiYearLevel,
         //retrieved data
 
-        //user delete
+        //delete
         userDelete,
         parentDelete,
+        positionDelete,
+        yearlevelDelete,
 
         id,
         setId,

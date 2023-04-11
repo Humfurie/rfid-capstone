@@ -23,7 +23,9 @@ export default class YearlevelValidator {
    *     ])
    *    ```
    */
-  public schema = schema.create({})
+  public schema = schema.create({
+    year: schema.string()
+  })
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

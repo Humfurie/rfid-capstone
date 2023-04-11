@@ -5,12 +5,7 @@ import Role from './Role'
 // import { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
 
 export default class Parent extends BaseModel {
-  // static merge(arg0: { firstName: any; middleName: any; lastName: any; birthdate: any; gender: any; email: any; address: any; contactNumber: any; facebook: any; }) {
-  //     throw new Error('Method not implemented.')
-  // }
-  // static useTransaction(trx: TransactionClientContract) {
-  //     throw new Error('Method not implemented.')
-  // }
+
   @column({ isPrimary: true })
   public id: number
 
@@ -28,7 +23,6 @@ export default class Parent extends BaseModel {
 
   @column()
   public gender: string
-
 
   @column()
   public address: string

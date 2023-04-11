@@ -3,11 +3,11 @@ import Link from "next/link";
 const StudentTab = () => {
     return (
         <div>
-            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm border-b-[1px] border-powder-blue">
+            <div className="flex bg-white w-full pt-3 pb-3 shadow-sm  border-powder-blue text-xs">
                 <div>
                     <Link
                         href={""}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg">
+                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-xs">
                         Search
                     </Link>
 
@@ -15,7 +15,7 @@ const StudentTab = () => {
                 <div>
                     <Link
                         href={"/users/registration/student"}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg">
+                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-xs">
                         Add Student
                     </Link>
                 </div>
@@ -23,7 +23,7 @@ const StudentTab = () => {
                 <div>
                     <Link
                         href={""}
-                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg">
+                        className=" border-r-[1px] border-powder-blue p-2 hover:bg-magic-mint hover:rounded-lg text-xs">
                         Export
                     </Link>
                 </div>

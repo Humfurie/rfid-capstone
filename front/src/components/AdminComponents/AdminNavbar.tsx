@@ -25,12 +25,12 @@ export default function AdminNavbar() {
 
 	// console.log("naopen", open)
 	const Menus = [{
-		title: <Link href="/">Dashboard</Link>,
+		title: <Link href="/" >Dashboard</Link>,
 		icon: ""
 	},
 
 	{
-		title: <Link href="/admin/profile" type="button">Profile</Link>,
+		title: <Link href="/admin/profile" >Profile</Link>,
 		icon: <FaUserAlt />
 	},
 	{
@@ -53,7 +53,7 @@ export default function AdminNavbar() {
 		icon: ""
 	},
 	{
-		title: "Records",
+		title: <Link href="/users/records">Records</Link>,
 		icon: <FaThList />
 	},
 	{
@@ -89,23 +89,26 @@ export default function AdminNavbar() {
 					<ul className="pt-2">
 						{Menus.map((menu: any, index: number) => (
 							<div key={index}>
-								<li
-									className={`text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-light-grey focus:text-black`}
-								>
-									<span className="text-xl bock float-left">
-										{menu.icon ? menu.icon : <MdDashboard />}
-									</span>
+								<li>
+									< span
+									className={`text-sm  flex gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-magic-mint focus:text-black`}>
 
-									<span
-										className={`text-base font-sm flex-1 duration-200 ${!open && "hidden"}`}
-										onClick={() => {
-											setCurrentMenu(menu.title)
-											setSubmenuOpen(!submenuOpen)
-										}}
-									>
-										{menu.title}
 
-									</span>
+										<span className="text-xl bock float-left">
+											{menu.icon ? menu.icon : <MdDashboard />}
+										</span>
+
+										<span
+											className={`text-base font-sm flex-1 duration-200 ${!open && "hidden"}`}
+											onClick={() => {
+												setCurrentMenu(menu.title)
+												setSubmenuOpen(!submenuOpen)
+											}}
+										>
+											{menu.title}
+
+										</span>
+									</ span>
 								</li>
 								{
 									//  submenuOpen && currentMenu === menu.title && open && (
