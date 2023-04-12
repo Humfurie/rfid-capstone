@@ -30,7 +30,7 @@ export default function employee(props: any) {
 	}
 
 	return (
-		<div className={`flex h-screen`}>
+		<div className={`flex h-full`}>
 			<Head>
 				<title>List of Employees</title>
 				<meta name="description" content="Created by streamline" />

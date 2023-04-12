@@ -10,16 +10,10 @@ const YearLevelTab = (props: any) => {
     const { totalPages, currentPage, handleChangePage } = props
 
     const {
-                setYear,
-                year,
-                yearSubmit
-            } = useContext(FormContext)
-        
-            const [inputValue, setInputValue] = useState('');
-        
-            const handleReloadInput = () => {
-                setInputValue('');
-            }
+        setYear,
+        year,
+        yearSubmit
+    } = useContext(FormContext)
 
     return (
         <div className={`flex-col ${Style.parentDiv}`}>
@@ -37,10 +31,7 @@ const YearLevelTab = (props: any) => {
                         </div>
 
                         <div className={`flex justify-end`}>
-                            <Divider
-                                flexItem
-                                orientation="vertical"
-                            />
+                           
                             <form onSubmit={(e) => {
                                 e.preventDefault()
                                 yearSubmit()
@@ -49,7 +40,7 @@ const YearLevelTab = (props: any) => {
 
                                     id="outlined-basic"
                                     label="Add new year level"
-                                    variant="filled"
+                                    variant="standard"
                                     size="small"
                                     type="text"
                                     value={year}
@@ -65,6 +56,7 @@ const YearLevelTab = (props: any) => {
                                 </Button>
 
                             </form>
+
                             <Divider
                                 flexItem
                                 orientation="vertical"

@@ -53,7 +53,7 @@ export default function YearLevelDataTable(props: any) {
     return (
       <tbody key={yearLevel.id}>
 
-        <tr className="border-collapse hover:bg-gray-200">
+        <tr className="border-collapse hover:bg-slate-100">
           <td className={`${Style.tableBorder}`}>
             {yearLevel.id}
           </td>

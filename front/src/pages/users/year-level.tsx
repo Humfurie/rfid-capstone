@@ -10,7 +10,7 @@ import Sidebar from "../../components/Sidebar";
 import { useTheme } from "@mui/material/styles";
 
 
-const year_level = (props: any) => {
+const YearLevel = (props: any) => {
     const { yearLevels } = props
 
     const theme = useTheme();
@@ -62,7 +62,7 @@ const year_level = (props: any) => {
         </div>
     );
 }
-export default year_level;
+export default YearLevel;
 
 export const getServerSideProps: GetServerSideProps = async () => {
 

@@ -146,7 +146,7 @@ const edit = (props: any) => {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
+                  color="info"
                   className={`bg-gray-500`}
                   endIcon={<CheckCircleRoundedIcon />}
                 >

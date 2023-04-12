@@ -34,7 +34,7 @@ const DestroyYearLevel = (props: any) => {
                         <button type="button" onClick={e => handleCloseDelete(yearLevel.id)}>Cancel</button>
                         <button type="submit" onClick={e => {
                             setId(yearLevel.id)
-                            router.push('/users/year_level')
+                            router.push('/users/year-level')
                         }}>Delete</button>
                     </div>
                 </form>
