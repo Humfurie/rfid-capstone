@@ -21,30 +21,50 @@ export default class UserLoginsController {
       .where('flag', 1)
       .firstOrFail()
 
-    console.log(username, password)
-    return
-    if (!userLogin) {
-      return response.status(401).json({ "message": "User not found!" })
-    }
+    // console.log(userLogin.serialize())
 
+    if (!userLogin) {
+      return response.status(400).json({ "message": "User not found!" })
+    }
     const jwtAuth = {
       username: username
     }
-
-    if (!userLogin) return response.status(401).json({ message: 'Unauthorized Access, User not found' })
-
+    
     if (!await Hash.verify(userLogin.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
-
+    
+    
     try {
+      
+      // console.log(userLogin.user.serialize())
+      if (userLogin.user === null){
+          const token = jwt.sign(jwtAuth, `${process.env.PARENT}`)
+         
+          return response.status(200).send({
+            token: token,
+            data: { ...userLogin },
+            role: 'Parent'
+          })
+      }
 
-      const token = jwt.sign(jwtAuth, 'userStudent')
-
-      return response.status(200).send({
-        token: token,
-        data: { ...userLogin },
-        role: userLogin.user.role[0].role
-      })
+      if (userLogin.user.role[0].role === 'Employee') {
+        const token = jwt.sign(jwtAuth, `${process.env.EMPLOYEE}`)
+        
+        return response.status(200).send({
+          token: token,
+          data: { ...userLogin },
+          role: userLogin.user.role[0].role
+        })
+      } else if (userLogin.user.role[0].role === 'Student') {
+        const token = jwt.sign(jwtAuth, `${process.env.STUDENT}`)
+        
+        return response.status(200).send({
+          token: token,
+          data: { ...userLogin },
+          role: userLogin.user.role[0].role
+        })
+      } 
     } catch (error) {
+      console.log(error)
       return response.status(401)
     }
   }

@@ -19,7 +19,7 @@ const LoginForm = () => {
                         <div>
                             logo
                         </div>
-                        <div  className=" mx-auto border border-red-100">
+                        <div className=" mx-auto border border-red-100">
                             <div>
                                 Log In
                             </div>
@@ -42,23 +42,13 @@ const LoginForm = () => {
                             </div>
                             <div>
                                 <Button
-                                // color="primary"
-                                //   variant="text"
-                                     className={Style.loginBtn}
-                                    onClick={() => {
-                                        if ('employee') {
-
-                                        } else if ('student') {
-
-                                        } else if ('parent') {
-
-                                        } else {
-                                            'Not Found!'
-                                        }
-                                    }}
+                                    // color="primary"
+                                    //   variant="text"
+                                    className={Style.loginBtn}
+                                    type="submit"
                                 >
                                     Log In
-                                    </Button>
+                                </Button>
                             </div>
                         </div>
                     </div>

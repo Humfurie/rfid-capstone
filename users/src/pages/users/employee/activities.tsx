@@ -1,9 +1,9 @@
 import Head from "next/head";
 import EmployeeHeader from "../../../components/EmployeeComponents/EmployeeHeader";
-
-
+import Tabs from "../../../components/Tabs";
 
 const Activities = () => {
+   
     return (
         <div className="flex w-full h-screen">
             <Head>
@@ -13,11 +13,18 @@ const Activities = () => {
             </Head>
 
             <div className="flex flex-col w-full">
-                <EmployeeHeader />
-                <div className="flex h-full bg-gray-200  ">
+                <EmployeeHeader/>
+                <div className="flex flex-col h-full bg-gray-200   ">
+                   <div>
+                    <Tabs/>
+                   </div>
+                    <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
+                        <div className="w-full bg-white rounded-2xl shadow-xl ">
+                            <div className=" text-center">
+                                list
+                            </div>
 
-                    <div>
-                        Activities
+                        </div>
                     </div>
                 </div>
             </div>

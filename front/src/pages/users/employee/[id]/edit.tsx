@@ -6,13 +6,16 @@ import { FormContext } from "../../../../lib/FormContext";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Header from "../../../../components/Header";
-import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import Button from "@mui/material/Button";
-import PersonalInfo from "../../../../components/Edit/PersonalInfo";
-import EmployeeSchoolInfo from "../../../../components/Edit/includes/employee/EmployeeSchoolInfo";
-import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
-import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
 import UsersFormButtonSelection from "../../../../components/Tabs/UsersFormButtonSelection";
+import { useTheme } from "@mui/material/styles";
+import Sidebar from "../../../../components/Sidebar";
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import PersonalInfo from "../../../../components/UsersComponents/Update/PersonalInfo";
+import EmployeeSchoolInfo from "../../../../components/UsersComponents/Update/employee/EmployeeSchoolInfo";
+import ContactInfo from "../../../../components/UsersComponents/Update/ContactInfo";
+import EmergencyContactInfo from "../../../../components/UsersComponents/Update/EmergencyContactInfo";
 
 
 const edit = (props: any) => {
@@ -81,62 +84,81 @@ const edit = (props: any) => {
     emergency: false
   })
 
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="flex h-screen">
+
+    <div className={`flex h-screen`}>
+
       <Head>
         <title>Update Employee</title>
         <meta name="description" content="Created by streamline" />
         <link rel="icon" href=".../img/ais-rft-logo.jpg" />
       </Head>
-      <div className="flex flex-col h-full w-full">
-        <Header />
-        <div className="flex h-full bg-gray-200">
-          <div className="h-full">
-            <AdminNavbar />
+
+      <div className={` w-full ${Style.mainContent}`}>
+
+        <div>
+          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        </div>
+        <div>
+          <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
+        </div>
+
+        <div className={`flex flex-col w-full pt-12`}>
+          <div className={`pt-3`}>
+            <div className={`${Style.menuTab}`}>
+              <Button
+                startIcon={<ArrowBackRoundedIcon />}
+                className={`${Style.textColor}`}
+                href="/users/employee"
+              >
+                Back to List
+              </Button>
+            </div>
           </div>
-          <div className="flex flex-col w-full">
-            <div className="w-full p-2">
+
+          <div className={`${Style.tableBg}`}>
+            <h3 className="text-center">Update Employee</h3>
+            <form
+              onSubmit={(e) => {
+
+                e.preventDefault()
+                userUpdate()
+              }}
+            >
+              < UsersFormButtonSelection
+                active={active}
+                setActive={setActive}
+                setSelection={setSelection}
+              />
               <div>
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <EmployeeSchoolInfo formOnChange={formOnChange} form={form} apiPosition={apiPosition} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
+              </div>
+              <div className="flex justify-end mt-3">
                 <Button
-                  href="/users/employee"
-                  variant="contained" className="text-black bg-powder-blue hover:bg-magic-mint">
-                  Back
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={`bg-gray-500`}
+                  endIcon={<CheckCircleRoundedIcon />}
+                >
+                  Save Changes
                 </Button>
               </div>
-              <div className="w-full mt-1 bg-white rounded-2xl mx-auto shadow-xl p-2">
-
-                <h3 className="text-center">Update Employee</h3>
-                <form
-                  onSubmit={(e) => {
-
-                    e.preventDefault()
-                    userUpdate()
-                  }}
-                >
-                  < UsersFormButtonSelection
-                    active={active}
-                    setActive={setActive}
-                    setSelection={setSelection}
-                  />
-                  <div>
-                    {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <EmployeeSchoolInfo formOnChange={formOnChange} form={form} apiPosition={apiPosition} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
-                  </div>
-
-                  <div>
-                  </div>
-
-                  <div >
-                    <Button type="submit" variant="contained" className={` ${Style.registerBtn}`}>
-                      Save Changes
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 

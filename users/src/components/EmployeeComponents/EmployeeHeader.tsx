@@ -56,13 +56,13 @@ const EmployeeHeader = () => {
                             open={open}
                             onClose={handleClose}
                             anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
+                                vertical: 'bottom',
+                                horizontal: 'right',
                                 
                             }}
                             transformOrigin={{
                                 vertical: 'top',
-                                horizontal: 'left',
+                                horizontal: 'right',
                             }}
                         >
                             <MenuItem>

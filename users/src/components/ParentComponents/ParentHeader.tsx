@@ -24,7 +24,7 @@ const ParentHeader = () => {
                 <div className="flex w-full">
                     <div className="flex w-56">
                         <Button
-                            href={"/users/employee"}
+                            href={"/users/parent"}
                             className="font-bold pl-5 pr-5 text-2xl text-gray-800 hover:bg-gray-200 hover: rounded-lg"
                         >
                             A I S - R F T

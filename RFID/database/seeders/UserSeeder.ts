@@ -135,7 +135,7 @@ export default class extends BaseSeeder {
       account.username = user.lastName
       account.password = "Humfurie"
       // account.password = user.idNumber
-      account.userId = user.id
+      account.parentId = user.id
 
       account.useTransaction(trx)
 

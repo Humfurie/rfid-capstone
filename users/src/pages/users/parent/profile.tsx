@@ -14,10 +14,16 @@ const Profile = () => {
 
             <div className="flex flex-col w-full">
                 <ParentHeader />
-                <div className="flex h-full bg-gray-200  ">
+                <div className="flex flex-col h-full bg-gray-200   ">
+                
+                       
+                    <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
+                        <div className="w-full bg-white rounded-2xl shadow-xl ">
+                            <div className=" text-center">
+                                list
+                            </div>
 
-                    <div>
-                        PRofile
+                        </div>
                     </div>
                 </div>
             </div>

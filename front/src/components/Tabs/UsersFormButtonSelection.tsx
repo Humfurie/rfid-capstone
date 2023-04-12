@@ -6,7 +6,7 @@ const UsersFormButtonSelection = (props: any) => {
         <div className="grid grid-cols-4 gap-1">
             <button
                 type="button"
-                className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
+                className={`${Style.registrationNavBar} ${active.personal === true ? "bg-slate-300 text-gray-700" : ""}`}
                 onClick={e => {
                     setSelection('personal')
                     setActive({
@@ -21,7 +21,7 @@ const UsersFormButtonSelection = (props: any) => {
             </button>
             <button
                 type="button"
-                className={`${Style.registrationNavBar} ${active.school === true ? "bg-magic-mint" : ""}`}
+                className={`${Style.registrationNavBar} ${active.school === true ? "bg-slate-300 text-gray-700" : ""}`}
                 onClick={e => {
                     setSelection('school')
                     setActive({
@@ -36,7 +36,7 @@ const UsersFormButtonSelection = (props: any) => {
             </button>
             <button
                 type="button"
-                className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
+                className={`${Style.registrationNavBar} ${active.contact === true ? "bg-slate-300 text-gray-700" : ""}`}
                 onClick={e => {
                     setSelection('contact')
                     setActive({
@@ -51,7 +51,7 @@ const UsersFormButtonSelection = (props: any) => {
             </button>
             <button
                 type="button"
-                className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-magic-mint" : ""}`}
+                className={`${Style.registrationNavBar} ${active.emergency === true ? "bg-slate-300 text-gray-700" : ""}`}
                 onClick={e => {
                     setSelection('emergency')
                     setActive({

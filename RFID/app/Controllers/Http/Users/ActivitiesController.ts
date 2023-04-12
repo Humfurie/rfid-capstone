@@ -3,6 +3,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from "@ioc:Adonis/Lucid/Database"
 import Activity from "App/Models/Activity"
 import User from "App/Models/User"
+import YearLevel from 'App/Models/YearLevel'
 import { ReadlineParser, SerialPort } from "serialport"
 
 
@@ -75,9 +76,6 @@ export default class ActivitiesController {
                         .where('id', index)
                         .where('flag', 1)
 
-                    console.log('whwaw', activity)
-                    console.log('asa ka')
-
                     if (activity[0].status === "In") {
                         const activity = new Activity()
                         activity.day = day
@@ -134,12 +132,131 @@ export default class ActivitiesController {
         const activity = await Activity.query().whereHas('user', (user) => {
             user.where('flag', 1)
         }).where('flag', 1)
-            .preload('user')
+            .preload('user', (user) => {
+                user.preload('yearLevel')
+            })
             .orderBy([{
                 column: 'id',
                 order: 'desc'
             }])
-        console.log(activity)
-        return response.status(200).json(activity)
+
+        const grade7 = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        }).whereHas('yearLevel', (yearLevel) => {
+            yearLevel.where('year', 'grade 7')
+        })
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity
+                    .where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const grade8 = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        }).whereHas('yearLevel', (yearLevel) => {
+            yearLevel.where('year', 'grade 8')
+        })
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity
+                    .where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const grade9 = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        }).whereHas('yearLevel', (yearLevel) => {
+            yearLevel.where('year', 'grade 9')
+        })
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity
+                    .where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const grade10 = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        }).whereHas('yearLevel', (yearLevel) => {
+            yearLevel.where('year', 'grade 10')
+        })
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity
+                    .where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const grade11 = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        })
+            .whereHas('yearLevel', (yearLevel) => {
+                yearLevel.where('year', 'grade 11')
+            })
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity
+                    .where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const grade12 = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        })
+            .whereHas('yearLevel', (yearLevel) => {
+                yearLevel.where('year', 'grade 12')
+            })
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity
+                    .where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const grade = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Student')
+        })
+            .whereHas('yearLevel', (yearLevel) => {
+                yearLevel
+            })
+            .preload('yearLevel')
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity.where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+            // console.log(grade)
+
+        const yearLevel = await YearLevel.query().where('flag', 1)
+        const yearLevelMap = yearLevel.map((year) => {
+            return year.year
+        })
+
+        const allGradeMap = grade.map((user) => {
+    
+            return user.yearLevel[0].year
+        })
+
+        
+
+        let allGradeLevels = []
+
+        return response.status(200).json([grade, yearLevelMap, allGradeLevels, allGradeMap])
+        // return response.status(200).json([activity, grade7, grade8, grade9, grade10, grade11, grade12])
     }
 }

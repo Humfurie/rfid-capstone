@@ -38,7 +38,7 @@ export default class UserValidator {
     isAlumni: schema.boolean(),
     emergencyName: schema.string(),
     emergencyContactNumber: schema.string({ trim: true }),
-    emergencyEmail: schema.string({ trim: true }, [rules.email(), rules.unique({ table: 'users', column: 'email', caseInsensitive: true })]),
+    emergencyEmail: schema.string({ trim: true }, [rules.email()]),
     emergencyFacebook: schema.string({ trim: true }),
     // role: schema.string({ trim: true })
   })

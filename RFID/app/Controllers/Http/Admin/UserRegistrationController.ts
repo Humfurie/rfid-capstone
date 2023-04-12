@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import EmergencyContact from 'App/Models/EmergencyContact'
 import Parent from 'App/Models/Parent'
+import ProfilePic from 'App/Models/ProfilePic'
 import User from 'App/Models/User'
 import UserLogin from 'App/Models/UserLogin'
 import UserValidator from 'App/Validators/UserValidator'
@@ -13,7 +14,7 @@ export default class newUserRegistrationController {
         /**
          * this input is received from the axios endpoint from app.tsx
          */
-        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account'])
+        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'profilePic'])
 
         // console.log(input)
 
@@ -80,6 +81,15 @@ export default class newUserRegistrationController {
                  */
                 await user.related('role').attach([2])
                 await user.related('position').attach([1])
+
+                /**
+                 * profile pic
+                 */
+                const profilePic = new ProfilePic()
+                profilePic.url = input.profilePic
+                profilePic.useTransaction(trx)
+
+                await profilePic.save()
 
                 /**
                  *  emergency_contact table for specific user
@@ -159,6 +169,7 @@ export default class newUserRegistrationController {
                 user.facebook = input.userRegistration.facebook
                 user.idNumber = input.userRegistration.idNumber
                 user.rfidNumber = input.userRegistration.rfidNumber
+                user.isAlumni = input.userRegistration.isAlumni
 
                 /**
                 * use transaction on current user model
@@ -175,6 +186,15 @@ export default class newUserRegistrationController {
                 */
                 // await user.related('yearLevel').attach()
                 await user.related('role').attach([1])
+
+                /**
+                 * profile pic
+                 */
+                const profilePic = new ProfilePic()
+                profilePic.url = input.profilePic
+                profilePic.useTransaction(trx)
+
+                await profilePic.save()
 
                 /**
                *  emergency_contact table for specific user
@@ -254,6 +274,15 @@ export default class newUserRegistrationController {
                  * saving parent model data
                  */
                 await user.save()
+
+                /**
+                 * profile pic
+                 */
+                const profilePic = new ProfilePic()
+                profilePic.url = input.profilePic
+                profilePic.useTransaction(trx)
+
+                await profilePic.save()
 
                 await trx.commit()
                 return response.status(200)

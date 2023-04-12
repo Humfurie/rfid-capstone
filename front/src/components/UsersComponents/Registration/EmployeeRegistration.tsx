@@ -1,14 +1,14 @@
-
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
-import { Style } from "../../../lib/Style";
-import MyButton from "../../../lib/partials/MyButton";
 import { EmployeeSchoolInfo } from "./includes/employee/EmployeeSchoolInfo";
 import { ContactInfo } from "./includes/ContactInfo";
 import { PersonalInfo } from "./includes/PersonalInfo";
 import { EmergencyContactInfo } from "./includes/EmergencyContactInfo";
 import UsersFormButtonSelection from "../../Tabs/UsersFormButtonSelection";
+import Button from "@mui/material/Button";
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+
 
 const EmployeeRegistration = () => {
   const router = useRouter()
@@ -27,22 +27,25 @@ const EmployeeRegistration = () => {
   })
 
   const submitButton = (
-    <div >
-      <button
+    <div className={`flex justify-end mt-3`} >
+      <Button
         type="submit"
-        className={Style.registerBtn}
+        variant="contained"
+        color="primary"
+         className={`bg-gray-500`}
+        endIcon={<CheckCircleRoundedIcon/>}
         onClick={() => {
           setRole("employee")
         }}
       >
         Register
-      </button>
+      </Button>
     </div>
   )
 
   return (
     <div className="w-full">
-      <div className="w-full bg-white rounded-2xl mx-auto shadow-xl p-2">
+     
         <div className="text-center">Employee Registration</div>
         <form
           onSubmit={(e) => {
@@ -68,7 +71,7 @@ const EmployeeRegistration = () => {
           </div>
         </form>
       </div >
-    </div >
+   
   );
 };
 
