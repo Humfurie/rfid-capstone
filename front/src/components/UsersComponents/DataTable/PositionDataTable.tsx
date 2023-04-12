@@ -57,7 +57,7 @@ export default function PositionDataTable(props: any) {
     return (
       <tbody key={position.id}>
 
-        <tr className="border-collapse hover:bg-gray-200">
+        <tr className="border-collapse hover:bg-slate-100">
           <td className={`${Style.tableBorder}`}>
             {position.id}
           </td>

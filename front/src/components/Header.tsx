@@ -27,6 +27,7 @@ const AppBar = styled(MuiAppBar, {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
 	}),
+	backgroundColor: 'white',
 	...(open && {
 		marginLeft: drawerWidth,
 		width: `calc(100% - ${drawerWidth}px)`,
@@ -58,7 +59,6 @@ export default function Header(props: any) {
 			<AppBar
 				position="fixed"
 				open={open}
-				className="bg-white shadow"
 			>
 				<Toolbar>
 					<IconButton

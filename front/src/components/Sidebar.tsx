@@ -1,4 +1,3 @@
-
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -11,21 +10,16 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SpaceDashboardRoundedIcon from '@mui/icons-material/SpaceDashboardRounded';
-import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
-
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import EscalatorWarningRoundedIcon from '@mui/icons-material/EscalatorWarningRounded';
 import Face6RoundedIcon from '@mui/icons-material/Face6Rounded';
 import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
-
 import BrandingWatermarkRoundedIcon from '@mui/icons-material/BrandingWatermarkRounded';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import React, { useState } from 'react';
+import RecentActorsRoundedIcon from '@mui/icons-material/RecentActorsRounded';
+import React from 'react';
 import Link from 'next/link';
-import Chip from '@mui/material/Chip';
+import { BsUpcScan } from 'react-icons/bs';
 
 
 const drawerWidth = 240;
@@ -158,9 +152,9 @@ const Sidebar = (props: any) => {
                 </List>
                 <Divider />
                 <List>
-                    {['Records'].map((text, index) => (
+                    {['Activities'].map((text, index) => (
                         <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <Link href={'/users/records'}>
+                            <Link href={'/users/activities'}>
                                 <ListItemButton
                                     sx={{
                                         minHeight: 48,
@@ -203,6 +197,33 @@ const Sidebar = (props: any) => {
                                         }}
                                     >
                                         {text === "Positions" ? <SpaceDashboardRoundedIcon /> : text === "Year Levels" ? <BarChartRoundedIcon /> : ""}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    {['Scanner',].map((text) => (
+                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                            <Link href={'/users/scan-here'}>
+                                <ListItemButton
+                                    sx={{
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
+                                    }}
+                                >
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        {text === "Scanner" ? <RecentActorsRoundedIcon /> : ""}
                                     </ListItemIcon>
                                     <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>

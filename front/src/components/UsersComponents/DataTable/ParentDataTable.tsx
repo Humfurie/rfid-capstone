@@ -32,7 +32,7 @@ console.log("ehe",deleteOpen)
   let parentMap = (users).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((user: any) => {
     return (
       <tbody key={user.id}>
-        <tr className={`border-collapse  hover:bg-gray-200`}>
+        <tr className={`border-collapse  hover:bg-slate-100`}>
           <td className={`${Style.tableBorder}`}>
             {user.id}
           </td>
