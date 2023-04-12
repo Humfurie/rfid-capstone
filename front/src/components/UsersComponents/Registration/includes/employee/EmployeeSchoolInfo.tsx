@@ -20,7 +20,7 @@ export const EmployeeSchoolInfo = () => {
                     Employee ID:
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={userInfo.idNumber}
@@ -35,7 +35,7 @@ export const EmployeeSchoolInfo = () => {
                     RFID Number:
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={userInfo.rfidNumber}
@@ -51,9 +51,7 @@ export const EmployeeSchoolInfo = () => {
                     Position:
                 </label>
                 <TextField
-
-                    id="outlined-basic"
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     select
                     value={position}

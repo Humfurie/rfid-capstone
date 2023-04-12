@@ -16,7 +16,7 @@ export const EmergencyContactInfo = () => {
                     Name
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={emergency.name}
@@ -32,7 +32,7 @@ export const EmergencyContactInfo = () => {
                     Contact Number
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={emergency.contactNumber}
@@ -48,7 +48,7 @@ export const EmergencyContactInfo = () => {
                     Email:
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="email"
                     value={emergency.email}

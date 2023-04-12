@@ -11,7 +11,7 @@ const ContactInfo = (props: any) => {
                     E-mail
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="email"
                     value={form.email}
@@ -26,7 +26,7 @@ const ContactInfo = (props: any) => {
                     Contact Number
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={form.contactNumber}
@@ -41,7 +41,7 @@ const ContactInfo = (props: any) => {
                     Facebook
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={form.facebook}

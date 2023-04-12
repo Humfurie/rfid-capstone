@@ -12,7 +12,7 @@ const EmergencyContactInfo = (props: any) => {
           Name
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="text"
           value={form.emergencyName}
@@ -27,7 +27,7 @@ const EmergencyContactInfo = (props: any) => {
           Contact Number
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="number"
           value={form.emergencyContactNumber}
@@ -43,7 +43,7 @@ const EmergencyContactInfo = (props: any) => {
           Email:
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="email"
           value={form.emergencyEmail}
@@ -58,7 +58,7 @@ const EmergencyContactInfo = (props: any) => {
           Facebook:
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="text"
           value={form.emergencyFacebook}

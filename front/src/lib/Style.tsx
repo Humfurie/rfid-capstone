@@ -29,7 +29,7 @@ export const Style = {
      */
     inputType: ' rounded border border-teal-blue focus:outline-none focus:ring focus:ring-teal-blue ...',
     inputDiv:'flex justify-center flex-col mt-1',
-    label:'text-sm text-left',
+    label:'text-sm font-bold text-left',
 
     /**
      * for registration

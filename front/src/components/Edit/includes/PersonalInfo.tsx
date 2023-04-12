@@ -25,8 +25,7 @@ const PersonalInfo = (props: any) => {
         </label>
 
         <TextField
-          id="outlined-basic"
-          variant="filled"
+          variant="standard"
           size="small"
           type="text"
           value={form.firstName}
@@ -43,8 +42,7 @@ const PersonalInfo = (props: any) => {
         </label>
 
         <TextField
-          id="outlined-basic"
-          variant="filled"
+          variant="standard"
           size="small"
           type="text"
           value={form.middleName}
@@ -62,8 +60,7 @@ const PersonalInfo = (props: any) => {
         </label>
 
         <TextField
-          id="outlined-basic"
-          variant="filled"
+          variant="standard"
           size="small"
           type="text"
           value={form.lastName}
@@ -80,8 +77,7 @@ const PersonalInfo = (props: any) => {
         </label>
 
         <TextField
-          id="outlined-basic"
-          variant="filled"
+          variant="standard"
           size="small"
           type="date"
           value={form.birthdate}
@@ -98,8 +94,7 @@ const PersonalInfo = (props: any) => {
         </label>
 
         <TextField
-          id="outlined-basic"
-          variant="filled"
+          variant="standard"
           size="small"
           select
           value={form.gender}
@@ -123,8 +118,7 @@ const PersonalInfo = (props: any) => {
         </label>
 
         <TextField
-          id="outlined-basic"
-          variant="filled"
+          variant="standard"
           size="small"
           type="text"
           value={form.address}

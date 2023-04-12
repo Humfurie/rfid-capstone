@@ -16,7 +16,7 @@ export const ContactInfo = () => {
                     E-mail
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="email"
                     value={userInfo.email}
@@ -31,7 +31,7 @@ export const ContactInfo = () => {
                     Contact Number
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={userInfo.contactNumber}
@@ -46,7 +46,7 @@ export const ContactInfo = () => {
                     Facebook
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={userInfo.facebook}

@@ -18,7 +18,7 @@ export const StudentSchoolInfo = () => {
                     Student ID
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={userInfo.idNumber}
@@ -33,7 +33,7 @@ export const StudentSchoolInfo = () => {
                     RFID Number
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="number"
                     value={userInfo.rfidNumber}
@@ -49,9 +49,7 @@ export const StudentSchoolInfo = () => {
                     Year Level
                 </label>
                 <TextField
-
-                    id="outlined-basic"
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     select
                     value={userInfo.year}
@@ -76,9 +74,9 @@ export const StudentSchoolInfo = () => {
                 <input
                     type="checkbox"
                     className={Style.inputType}
-                    value={userInfo.schoolYear}
+                    value={userInfo.isAlumni}
                     onChange={(e) => {
-                        userOnChange(e.target.value, "schoolYear");
+                        userOnChange(e.target.value, "isAlumni");
                     }}
                 />
                 <label htmlFor="" className={Style.label}>

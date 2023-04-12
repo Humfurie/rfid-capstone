@@ -13,11 +13,11 @@ export const PersonalInfo = () => {
 
     const gender = [
         {
-            value: 'Male',
+            value: 'male',
             label: 'Male'
         },
         {
-            value: 'Female',
+            value: 'female',
             label: 'Female'
         }
     ]
@@ -29,8 +29,7 @@ export const PersonalInfo = () => {
                 </label>
 
                 <TextField
-                    id="outlined-basic"
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={userInfo.firstName}
@@ -47,9 +46,7 @@ export const PersonalInfo = () => {
                 </label>
 
                 <TextField
-
-                    id="outlined-basic"
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={userInfo.middleName}
@@ -65,9 +62,7 @@ export const PersonalInfo = () => {
                 </label>
 
                 <TextField
-
-                    id="outlined-basic"
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={userInfo.lastName}
@@ -83,9 +78,7 @@ export const PersonalInfo = () => {
                 </label>
 
                 <TextField
-
-                    id="outlined-basic"
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="date"
                     value={userInfo.birthdate}
@@ -93,8 +86,6 @@ export const PersonalInfo = () => {
                         userOnChange(e.target.value, "birthdate");
                     }}
                 />
-
-
             </div>
 
             <div className={Style.inputDiv}>
@@ -104,10 +95,7 @@ export const PersonalInfo = () => {
                 </label>
 
                 <TextField
-
-                    id="outlined-basic"
-
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     select
                     value={userInfo.gender}
@@ -131,7 +119,7 @@ export const PersonalInfo = () => {
                     Address
                 </label>
                 <TextField
-                    variant="filled"
+                    variant="standard"
                     size="small"
                     type="text"
                     value={userInfo.address}

@@ -29,7 +29,7 @@ const StudentSchoolInfo = (props: any) => {
           RFID Number
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="number"
           value={form.rfidNumber}
@@ -47,7 +47,7 @@ const StudentSchoolInfo = (props: any) => {
 
 
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           select
           value={form.yearLevel}

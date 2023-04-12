@@ -13,7 +13,7 @@ const EmployeeSchoolInfo = (props: any) => {
           Employee ID:
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="number"
           value={form.idNumber}
@@ -28,7 +28,7 @@ const EmployeeSchoolInfo = (props: any) => {
           RFID Number:
         </label>
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           type="number"
           value={form.rfidNumber}
@@ -44,7 +44,7 @@ const EmployeeSchoolInfo = (props: any) => {
         </label>
 
         <TextField
-          variant="filled"
+          variant="standard"
           size="small"
           select
           value={form.position}
