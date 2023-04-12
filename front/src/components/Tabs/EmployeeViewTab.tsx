@@ -56,6 +56,7 @@ const EmployeeViewTab = (props: any) => {
               <Button
                 href={`/users/${role}/${user.id}/edit`}
                 className={`${Style.textColor}`}>
+                  
                 Edit
               </Button>
               <Divider
@@ -70,7 +71,7 @@ const EmployeeViewTab = (props: any) => {
                 }}
               >
                 Delete
-                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} />
+                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} userRole={role} user={user} />
               </Button>
 
               <Divider

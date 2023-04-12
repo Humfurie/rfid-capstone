@@ -2,9 +2,19 @@ import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Pagination from "@mui/material/Pagination";
+import XLSX from 'xlsx';
 
 const EmployeeTab = (props: any) => {
-  const { totalPages, currentPage, handleChangePage } = props
+  const { totalPages, currentPage, handleChangePage, users } = props
+
+  // function exportToExcel(data) {
+  //   const worksheet = XLSX.utils.json_to_sheet(data);
+  //   const workbook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+  //   XLSX.writeFile(workbook, 'data.xlsx');
+
+  // }
+
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
       <div className={`pt-3`}>
@@ -45,7 +55,10 @@ const EmployeeTab = (props: any) => {
               />
               <Button
                 href={""}
-                className={`${Style.textColor}`}>
+                className={`${Style.textColor}`}
+                onClick={e => {
+                  // exportToExcel(users);
+                }}>
                 Export
               </Button>
 

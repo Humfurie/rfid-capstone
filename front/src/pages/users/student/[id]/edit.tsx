@@ -16,6 +16,7 @@ import PersonalInfo from "../../../../components/UsersComponents/Update/Personal
 import StudentSchoolInfo from "../../../../components/UsersComponents/Update/student/StudentSchoolInfo";
 import ContactInfo from "../../../../components/UsersComponents/Update/ContactInfo";
 import EmergencyContactInfo from "../../../../components/UsersComponents/Update/EmergencyContactInfo";
+import { userInfo } from "os";
 
 
 const edit = (props: any) => {
@@ -141,7 +142,7 @@ const edit = (props: any) => {
                 setSelection={setSelection}
               />
               <div>
-                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel}/> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
               </div>
               <div className="flex justify-end mt-3">
                 <Button

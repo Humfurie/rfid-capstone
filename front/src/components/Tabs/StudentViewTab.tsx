@@ -21,6 +21,7 @@ const StudentViewTab = (props: any) => {
   const handleClosePosition = (positionId: any) => {
     setDeleteOpen({ [positionId]: false })
   }
+   const role = user.role[0].role.toLowerCase()
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
       <div className={`pt-3`}>
@@ -30,7 +31,7 @@ const StudentViewTab = (props: any) => {
 
               <Button
                 className={`${Style.textColor}`}
-
+                href={"/users/student"}
               
               >
                 Back
@@ -51,7 +52,7 @@ const StudentViewTab = (props: any) => {
               />
 
               <Button
-                href={"/users/student/edit"}
+                href={`/users/${role}/${user.id}/edit`}
                 className={`${Style.textColor}`}>
                 Edit
               </Button>
@@ -59,7 +60,7 @@ const StudentViewTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
-              
+
               <Button
 
                 className={`${Style.textColor}`}
@@ -68,7 +69,7 @@ const StudentViewTab = (props: any) => {
                 }}
               >
                 Delete
-                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} />
+                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} userRole={role} user={user} />
               </Button>
 
               <Divider
