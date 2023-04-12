@@ -2,11 +2,11 @@ import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { useState } from "react";
-import DestroyParent from "../../pages/users/parent/[id]/destroy";
 import Destroy from "../../pages/users/destroy";
 
 const EmployeeViewTab = (props: any) => {
   const { user } = props
+  console.log("juju", user.id)
 
   console.log("this is usesr", user)
 
@@ -21,14 +21,19 @@ const EmployeeViewTab = (props: any) => {
   const handleClosePosition = (positionId: any) => {
     setDeleteOpen({ [positionId]: false })
   }
+
+  const role = user.role[0].role.toLowerCase()
+
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
       <div className={`pt-3`}>
         <div className={`${Style.menuTab}`}>
           <div className={`flex`}>
+
             <div className={`flex justify-end`}>
               <Button
                 className={`${Style.textColor}`}
+                href={"/users/employee"}
               >
                 Back
               </Button>
@@ -36,18 +41,22 @@ const EmployeeViewTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
+
               <Button
-                href={"/users/registration/employee"}
-                className={`${Style.textColor}`}>
+                className={`${Style.textColor}`}
+                href={`/users/registration/employee`}
+              >
                 Add New
               </Button>
               <Divider
                 flexItem
                 orientation="vertical"
               />
+
               <Button
-                href={"/users/employee/edit"}
+                href={`/users/${role}/${user.id}/edit`}
                 className={`${Style.textColor}`}>
+                  
                 Edit
               </Button>
               <Divider
@@ -62,7 +71,7 @@ const EmployeeViewTab = (props: any) => {
                 }}
               >
                 Delete
-                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} />
+                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} userRole={role} user={user} />
               </Button>
 
               <Divider

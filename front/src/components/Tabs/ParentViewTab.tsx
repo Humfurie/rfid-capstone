@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { useState } from "react";
 import DestroyParent from "../../pages/users/parent/[id]/destroy";
-import Destroy from "../../pages/users/destroy";
 
 const ParentViewTab = (props: any) => {
   const { user } = props
@@ -21,6 +20,8 @@ const ParentViewTab = (props: any) => {
   const handleClosePosition = (positionId: any) => {
     setDeleteOpen({ [positionId]: false })
   }
+  
+
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
       <div className={`pt-3`}>
@@ -29,6 +30,7 @@ const ParentViewTab = (props: any) => {
             <div className={`flex justify-end`}>
               <Button
                 className={`${Style.textColor}`}
+                href={"/users/parent"}
               >
                 Back
               </Button>
@@ -37,7 +39,7 @@ const ParentViewTab = (props: any) => {
                 orientation="vertical"
               />
               <Button
-                href={"/users/registration/student"}
+                href={"/users/registration/parent"}
                 className={`${Style.textColor}`}>
                 Add New
               </Button>
@@ -46,7 +48,7 @@ const ParentViewTab = (props: any) => {
                 orientation="vertical"
               />
               <Button
-                href={"/users/student/edit"}
+                href={`/users/parent/${user.id}/edit`}
                 className={`${Style.textColor}`}>
                 Edit
               </Button>
@@ -62,7 +64,7 @@ const ParentViewTab = (props: any) => {
                 }}
               >
                 Delete
-                <Destroy setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} />
+                <DestroyParent setOpen={handleClosePosition} open={deleteOpen[user.id]} user={user} />
               </Button>
 
               <Divider

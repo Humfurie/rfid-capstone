@@ -4,10 +4,6 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { useRouter } from "next/router";
-import PersonalInfo from "../../../../components/Edit/includes/PersonalInfo";
-import StudentSchoolInfo from "../../../../components/Edit/includes/student/StudentSchoolInfo";
-import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
-import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
 import Button from "@mui/material/Button";
 import Head from "next/head";
 import Header from "../../../../components/Header";
@@ -16,6 +12,11 @@ import { useTheme } from "@mui/material/styles";
 import Sidebar from "../../../../components/Sidebar";
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import PersonalInfo from "../../../../components/UsersComponents/Update/PersonalInfo";
+import StudentSchoolInfo from "../../../../components/UsersComponents/Update/student/StudentSchoolInfo";
+import ContactInfo from "../../../../components/UsersComponents/Update/ContactInfo";
+import EmergencyContactInfo from "../../../../components/UsersComponents/Update/EmergencyContactInfo";
+import { userInfo } from "os";
 
 
 const edit = (props: any) => {
@@ -141,7 +142,7 @@ const edit = (props: any) => {
                 setSelection={setSelection}
               />
               <div>
-                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel}/> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
               </div>
               <div className="flex justify-end mt-3">
                 <Button

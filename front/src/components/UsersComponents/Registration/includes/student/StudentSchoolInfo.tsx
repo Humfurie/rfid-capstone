@@ -3,6 +3,10 @@ import { FormContext } from "../../../../../lib/FormContext";
 import { Style } from "../../../../../lib/Style";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
+import Switch from '@mui/material/Switch';
+import * as React from 'react';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 export const StudentSchoolInfo = () => {
     const {
@@ -10,7 +14,9 @@ export const StudentSchoolInfo = () => {
         userInfo,
         apiYearLevel
     } = useContext(FormContext);
- console.log("userInfo", userInfo)
+
+
+    console.log("userInfo", userInfo)
     return (
         <div>
             <div className={Style.inputDiv}>
@@ -69,20 +75,31 @@ export const StudentSchoolInfo = () => {
                 </TextField>
 
             </div>
+            <div >
+                <FormControl>
+                    <FormControlLabel
+                        className={Style.label}
+                        label="Alumni"
 
-            <div className={Style.inputDiv}>
-                <input
-                    type="checkbox"
-                    className={Style.inputType}
-                    value={userInfo.isAlumni}
-                    onChange={(e) => {
-                        userOnChange(e.target.value, "isAlumni");
-                    }}
-                />
-                <label htmlFor="" className={Style.label}>
-                    Alumni
-                </label>
+                        control={
+                            <Switch
+                                checked={userInfo.isAlumni}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value={userInfo.isAlumni}
+                                onChange={(e) => {
+                                    userOnChange(e.target.checked, "isAlumni");
+                                }}
+
+                            />
+                        }
+                    />
+
+
+                </FormControl>
+
+
             </div>
+
         </div>
 
     )

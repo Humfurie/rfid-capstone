@@ -5,13 +5,13 @@ import Header from "../../../../components/Header";
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
-import PersonalInfo from "../../../../components/Edit/includes/PersonalInfo";
-import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import Sidebar from "../../../../components/Sidebar";
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
+import PersonalInfo from "../../../../components/UsersComponents/Update/PersonalInfo";
+import ContactInfo from "../../../../components/UsersComponents/Update/ContactInfo";
 
 const edit = (props: any) => {
   const { user } = props

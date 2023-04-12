@@ -1,10 +1,15 @@
 import { Style } from "../../../../lib/Style";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
-
+import Switch from '@mui/material/Switch';
+import * as React from 'react';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 const StudentSchoolInfo = (props: any) => {
 
   const { formOnChange, form, apiYearLevel } = props
+
+  console.log("aumliu", form.isAlumni)
 
   return (
     <div>
@@ -66,20 +71,31 @@ const StudentSchoolInfo = (props: any) => {
         </TextField>
       </div>
 
+      <div >
+        <FormControl>
+          <FormControlLabel
+            className={Style.label}
+            label="Alumni"
+
+            control={
+              <Switch
+                checked={form.isAlumni === 0 ? false : true}
+                inputProps={{ 'aria-label': 'controlled' }}
+                value={form.isAlumni}
+                onChange={(e) => {
+                  formOnChange(e.target.checked, "isAlumni");
+                }}
+
+              />
+            }
+          />
 
 
-      <div className={Style.inputDiv}>
-        <input
-          type="checkbox"
-          className={Style.inputType}
-          onChange={(e) => {
-            formOnChange(e.target.checked, "isAlumni");
-          }}
-        />
-        <label htmlFor="" className={Style.label}>
-          Alumni
-        </label>
+        </FormControl>
+
+
       </div>
+
     </div>
   );
 }
