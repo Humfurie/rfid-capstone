@@ -8,6 +8,7 @@ import Sidebar from '../components/Sidebar';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import Head from 'next/head';
+import { PieChart } from '../components/AdminComponents/PieChart';
 
 
 export default function Home() {
@@ -47,6 +48,7 @@ export default function Home() {
           <Population />
           <LiveActivity />
           <Percentage />
+          <PieChart />
         </div>
       </div>
     </div>

@@ -21,31 +21,10 @@ export default class UserLoginsController {
       .where('flag', 1)
       .firstOrFail()
 
-    console.log(userLogin.serialize())
+    // console.log(userLogin.serialize())
 
     if (!userLogin) {
       return response.status(400).json({ "message": "User not found!" })
-      // const parentLogin = await UserLogin.query().where('username', username).where('flag', 1).firstOrFail()
-
-      // if (!parentLogin) return response.status(401).json({ message: 'Unauthorized Access, User not found' })
-
-      // const jwtAuth = {
-      //   username: username
-      // }
-
-      // if (!await Hash.verify(parentLogin.password, password)) return response.status(401).json({ message: 'Unauthorized Access' })
-
-      // try {
-      // const token = jwt.sign(jwtAuth, `${process.env.STUDENT}`)
-
-      // return response.status(200).send({
-      //   token: token,
-      //   data: { ...parentLogin },
-      //   role: 'Parent'
-      // })
-      // } catch (error) {
-      //   return response.status(401)
-      // }
     }
     const jwtAuth = {
       username: username
