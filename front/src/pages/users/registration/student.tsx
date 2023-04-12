@@ -44,7 +44,7 @@ const student = () => {
                             <Button
                                 startIcon={<ArrowBackRoundedIcon />}
                                 className={`${Style.textColor}`}
-                                href="/users/employee"
+                                href="/users/student"
                             >
                                 Back
                             </Button>

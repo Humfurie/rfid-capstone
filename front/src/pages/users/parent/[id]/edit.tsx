@@ -109,7 +109,7 @@ const edit = (props: any) => {
               <div className="grid grid-cols-2 gap-1">
                 <button
                   type="button"
-                  className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
+                  className={`${Style.registrationNavBar} ${active.personal === true ? "bg-slate-300 text-gray-700" : ""}`}
                   onClick={e => {
                     setSelection('personal')
                     setActive({
@@ -123,7 +123,7 @@ const edit = (props: any) => {
 
                 <button
                   type="button"
-                  className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
+                  className={`${Style.registrationNavBar} ${active.contact === true ? "bg-slate-300 text-gray-700" : ""}`}
                   onClick={e => {
                     setSelection('contact')
                     setActive({
