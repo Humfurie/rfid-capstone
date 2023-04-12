@@ -7,6 +7,9 @@ export default class ProfilePic extends BaseModel {
   public id: number
 
   @column()
+  public url: string
+
+  @column()
   public flag: number
 
   @column.dateTime({ autoCreate: true })
