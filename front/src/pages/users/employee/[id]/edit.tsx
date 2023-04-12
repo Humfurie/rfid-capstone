@@ -7,15 +7,15 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Header from "../../../../components/Header";
 import Button from "@mui/material/Button";
-import PersonalInfo from "../../../../components/Edit/includes/PersonalInfo";
-import EmployeeSchoolInfo from "../../../../components/Edit/includes/employee/EmployeeSchoolInfo";
-import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
-import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
 import UsersFormButtonSelection from "../../../../components/Tabs/UsersFormButtonSelection";
 import { useTheme } from "@mui/material/styles";
 import Sidebar from "../../../../components/Sidebar";
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import PersonalInfo from "../../../../components/UsersComponents/Update/PersonalInfo";
+import EmployeeSchoolInfo from "../../../../components/UsersComponents/Update/employee/EmployeeSchoolInfo";
+import ContactInfo from "../../../../components/UsersComponents/Update/ContactInfo";
+import EmergencyContactInfo from "../../../../components/UsersComponents/Update/EmergencyContactInfo";
 
 
 const edit = (props: any) => {
@@ -120,7 +120,7 @@ const edit = (props: any) => {
                 className={`${Style.textColor}`}
                 href="/users/employee"
               >
-                Back
+                Back to List
               </Button>
             </div>
           </div>

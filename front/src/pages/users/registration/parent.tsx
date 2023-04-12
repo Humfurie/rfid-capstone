@@ -48,7 +48,7 @@ const parent = () => {
                                     className={`${Style.textColor}`}
                                     href="/users/parent"
                                 >
-                                    Back
+                                    Back to List
                                 </Button>
 
                             </div>

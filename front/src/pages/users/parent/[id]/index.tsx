@@ -26,7 +26,7 @@ const index = (props: any) => {
         <div className={`${Style.parentDiv}`}>
 
             <Head>
-                <title>View Employee</title>
+                <title>View Parent</title>
                 <meta name="description" content="Created by streamline" />
                 <link rel="icon" href=".../img/ais-rft-logo.jpg" />
             </Head>

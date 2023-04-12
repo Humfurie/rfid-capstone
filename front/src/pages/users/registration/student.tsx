@@ -46,7 +46,7 @@ const student = () => {
                                 className={`${Style.textColor}`}
                                 href="/users/student"
                             >
-                                Back
+                                Back to List
                             </Button>
 
                         </div>

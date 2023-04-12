@@ -27,8 +27,11 @@ const StudentViewTab = (props: any) => {
         <div className={`${Style.menuTab}`}>
           <div className={`flex`}>
             <div className={`flex justify-end`}>
+
               <Button
                 className={`${Style.textColor}`}
+
+              
               >
                 Back
               </Button>
@@ -36,6 +39,7 @@ const StudentViewTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
+
               <Button
                 href={"/users/registration/student"}
                 className={`${Style.textColor}`}>
@@ -45,6 +49,7 @@ const StudentViewTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
+
               <Button
                 href={"/users/student/edit"}
                 className={`${Style.textColor}`}>
@@ -54,6 +59,7 @@ const StudentViewTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
+              
               <Button
 
                 className={`${Style.textColor}`}

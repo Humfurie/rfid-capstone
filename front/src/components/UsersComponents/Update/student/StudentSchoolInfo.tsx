@@ -66,10 +66,10 @@ const StudentSchoolInfo = (props: any) => {
         </TextField>
       </div>
 
-
-
       <div className={Style.inputDiv}>
-        <input
+
+        
+        {/* <input
           type="checkbox"
           className={Style.inputType}
           onChange={(e) => {
@@ -78,7 +78,7 @@ const StudentSchoolInfo = (props: any) => {
         />
         <label htmlFor="" className={Style.label}>
           Alumni
-        </label>
+        </label> */}
       </div>
     </div>
   );
