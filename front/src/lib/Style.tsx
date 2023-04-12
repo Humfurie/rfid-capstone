@@ -11,24 +11,13 @@ export const Style = {
     edit:"text-gray-700 hover:text-green-600",
     delete:"text-gray-700 hover:text-red-600",
     menuTab: "flex p-1 bg-white rounded-lg shadow-sm",
+    infoHeader:"bg-slate-300 p-1 rounded-lg font-bold",
 
     /**
      * Table design
      */
     tableBorder:'border border-gray-500 border-collapse p-3',
 
-    /**
-     * for search bar input field
-     */
-    searchInput:"border border-moonstone-blue caret-teal-blue focus:outline-none focus:ring focus:ring-moonstone-blue rounded",
-
-    /**
-     * for background color gradients
-     */
-    toRight: "bg-gradient-to-r from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
-    toLeft:"bg-gradient-to-l from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
-    toBottom:"bg-gradient-to-b from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
-    toTop:"bg-gradient-to-t from-[#c2edce] via-[#badfe7] to-[#6fb3b8]",
     
     /**
      * for login
@@ -40,14 +29,14 @@ export const Style = {
      * for input fields and labels
      */
     inputType: ' rounded border border-teal-blue focus:outline-none focus:ring focus:ring-teal-blue ...',
-    inputDiv:'flex justify-center flex-col',
-    label:'text-sm text-left',
+    inputDiv:'flex justify-center flex-col mt-1',
+    label:'text-sm font-bold text-left',
 
     /**
      * for registration
      */
     registerBtn:' p-1 text-black bg-powder-blue hover:bg-magic-mint rounded-md  mt-3 w-full text-center',
-    registrationNavBar:'border-[2px] border-powder-blue bg-powder-blue cursor-pointer text-center rounded-t-lg p-1 mt-2 font-bold hover:bg-magic-mint hover:cursor-',
+    registrationNavBar:'bg-gray-500 text-white hover:bg-slate-300 hover:text-gray-700 hover:cursor cursor-pointer text-center  rounded-t-lg p-1 mt-2 font-bold ',
    
     
     selectHover: 'hover:text-black hover:bg-light-blue',

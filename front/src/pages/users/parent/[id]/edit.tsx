@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Style } from "../../../../lib/Style";
-import MyButton from "../../../../lib/partials/MyButton";
 import Head from "next/head";
 import Header from "../../../../components/Header";
-import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import axios from "axios";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
-import PersonalInfo from "../../../../components/Edit/PersonalInfo";
-import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
 import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
+import Sidebar from "../../../../components/Sidebar";
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
+import PersonalInfo from "../../../../components/UsersComponents/Update/PersonalInfo";
+import ContactInfo from "../../../../components/UsersComponents/Update/ContactInfo";
 
 const edit = (props: any) => {
   const { user } = props
@@ -55,82 +57,105 @@ const edit = (props: any) => {
     contact: false,
   })
 
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="flex h-screen ">
+    <div className={`flex h-screen`}>
+
       <Head>
-        <title>Update Parent/Guardian</title>
+        <title>Update Parent</title>
         <meta name="description" content="Created by streamline" />
         <link rel="icon" href=".../img/ais-rft-logo.jpg" />
       </Head>
-      <div className="flex flex-col h-full w-full">
-        <Header />
-        <div className="flex h-full bg-gray-200">
-          <div className="flex h-full">
-            <AdminNavbar />
+
+      <div className={` w-full ${Style.mainContent}`}>
+
+        <div>
+          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        </div>
+        <div>
+          <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
+        </div>
+
+        <div className={`flex flex-col w-full pt-12`}>
+          <div className={`pt-3`}>
+            <div className={`${Style.menuTab}`}>
+              <Button
+                startIcon={<ArrowBackRoundedIcon />}
+                className={`${Style.textColor}`}
+                href="/users/parent"
+              >
+                Back
+              </Button>
+            </div>
           </div>
-          <div className="flex flex-col w-full ">
-            <div className=" w-full p-2 ">
-              <div>
-                <Button
-                  href="/users/parent"
-                  variant="contained" className="text-black bg-powder-blue hover:bg-magic-mint">
-                  Back
-                </Button>
-              </div>
-              <div className="w-full p-2 mt-1 bg-white shadow-lg rounded-lg">
-                <h4 className="text-center">Update Parent</h4>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    parentUpdate()
+
+          <div className={`${Style.tableBg}`}>
+
+            <h4 className="text-center">Update Parent</h4>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                parentUpdate()
+              }}
+            >
+              <div className="grid grid-cols-2 gap-1">
+                <button
+                  type="button"
+                  className={`${Style.registrationNavBar} ${active.personal === true ? "bg-slate-300 text-gray-700" : ""}`}
+                  onClick={e => {
+                    setSelection('personal')
+                    setActive({
+                      personal: true,
+                      contact: false,
+                    })
                   }}
                 >
-                  <div className="grid grid-cols-2 gap-1">
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.personal === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('personal')
-                        setActive({
-                          personal: true,
-                          contact: false,
-                        })
-                      }}
-                    >
-                      Personal Information
-                    </button>
+                  Personal Information
+                </button>
 
-                    <button
-                      type="button"
-                      className={`${Style.registrationNavBar} ${active.contact === true ? "bg-magic-mint" : ""}`}
-                      onClick={e => {
-                        setSelection('contact')
-                        setActive({
-                          personal: false,
-                          contact: true,
-                        })
-                      }}
-                    >
-                      Contact Information
-                    </button>
+                <button
+                  type="button"
+                  className={`${Style.registrationNavBar} ${active.contact === true ? "bg-slate-300 text-gray-700" : ""}`}
+                  onClick={e => {
+                    setSelection('contact')
+                    setActive({
+                      personal: false,
+                      contact: true,
+                    })
+                  }}
+                >
+                  Contact Information
+                </button>
 
-                  </div>
-                  <div>
-                    {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : "We found nothing"}
-                  </div>
-                  <div>
-
-                    <Button type="submit" variant="contained" className={`mx-auto ${Style.registerBtn}`}>
-                      Save Changes
-                    </Button>
-                  </div>
-                </form>
               </div>
-            </div>
+              <div>
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : "We found nothing"}
+              </div>
+              <div className="flex justify-end mt-3">
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={`bg-gray-500`}
+                  endIcon={<CheckCircleRoundedIcon />}
+                >
+                  Save Changes
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
   );
 }
 

@@ -73,7 +73,6 @@ export default function UsersDataTable(props: any) {
 
   return (
     <div className={`w-full`}>
-
       <table className={`table-fixed w-full`}>
         <thead className={`bg-gray-500 text-white`}>
           <tr className="border-collapse ">

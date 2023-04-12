@@ -1,14 +1,9 @@
-import { useContext } from "react";
-import { FormContext } from "../../../../lib/FormContext";
-import { Style } from "../../../../lib/Style";
+import { Style } from "../../../lib/Style";
 import TextField from "@mui/material/TextField";
 
-export const ContactInfo = () => {
-    const {
-        userOnChange,
-        userInfo
-    } = useContext(FormContext)
+const ContactInfo = (props: any) => {
 
+    const { formOnChange, form } = props
     return (
         <div>
             <div className={Style.inputDiv}>
@@ -19,13 +14,13 @@ export const ContactInfo = () => {
                     variant="standard"
                     size="small"
                     type="email"
-                    value={userInfo.email}
+                    value={form.email}
                     onChange={(e) => {
-                        userOnChange(e.target.value, "email");
+                        formOnChange(e.target.value, "email");
                     }}
                 />
-
             </div>
+
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                     Contact Number
@@ -34,13 +29,13 @@ export const ContactInfo = () => {
                     variant="standard"
                     size="small"
                     type="number"
-                    value={userInfo.contactNumber}
+                    value={form.contactNumber}
                     onChange={(e) => {
-                        userOnChange(e.target.value, "contactNumber");
+                        formOnChange(e.target.value, "contactNumber");
                     }}
                 />
-
             </div>
+
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                     Facebook
@@ -49,13 +44,14 @@ export const ContactInfo = () => {
                     variant="standard"
                     size="small"
                     type="text"
-                    value={userInfo.facebook}
+                    value={form.facebook}
                     onChange={(e) => {
-                        userOnChange(e.target.value, "facebook");
+                        formOnChange(e.target.value, "facebook");
                     }}
                 />
             </div>
         </div>
-
-    )
+    );
 }
+
+export default ContactInfo;
