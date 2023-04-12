@@ -113,7 +113,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // add position
   const positionSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
-      
+
       position: position,
     })
     setPosition('')
@@ -201,22 +201,23 @@ export default function App({ Component, pageProps }: AppProps) {
     setId('')
   }
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const admin = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
-        console.log(admin)
-        const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
-        const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
-        setApiPosition(getPosition)
-        setApiYearLevel(getYearLevel)
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
-        // router.push("/AdminDashboard");
-      } catch (error) {
-        // router.push("/");
-      }
-    })()
+  const effect = useCallback(async () => {
+    try {
+      const admin = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+      console.log(admin)
+      const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
+      const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
+      setApiPosition(getPosition)
+      setApiYearLevel(getYearLevel)
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
+    } catch (error) {
+      router.push("/");
+    }
 
+  }, [])
+
+  useEffect(() => {
+    effect()
   }, [])
 
   return (
