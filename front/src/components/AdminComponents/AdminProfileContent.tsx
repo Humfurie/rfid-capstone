@@ -3,7 +3,6 @@
 const AdminProfileContent = () => {
     return (
         <div className="w-full">
-            <div className="w-full bg-white rounded-2xl border shadow-lg ">
                 <div className="grid grid-cols-2 mx-auto">
                     <div className="p-2">
 
@@ -23,7 +22,7 @@ const AdminProfileContent = () => {
                     </div>
                 </div>
             </div>
-        </div>
+      
     );
 }
 
