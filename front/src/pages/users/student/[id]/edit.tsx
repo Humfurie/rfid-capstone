@@ -1,19 +1,21 @@
 import { Style } from "../../../../lib/Style";
-import MyButton from "../../../../lib/partials/MyButton";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { useRouter } from "next/router";
-import PersonalInfo from "../../../../components/Edit/PersonalInfo";
+import PersonalInfo from "../../../../components/Edit/includes/PersonalInfo";
 import StudentSchoolInfo from "../../../../components/Edit/includes/student/StudentSchoolInfo";
 import ContactInfo from "../../../../components/Edit/includes/ContactInfo";
 import EmergencyContactInfo from "../../../../components/Edit/includes/EmergencyContactInfo";
 import Button from "@mui/material/Button";
 import Head from "next/head";
 import Header from "../../../../components/Header";
-import AdminNavbar from "../../../../components/AdminComponents/AdminNavbar";
 import UsersFormButtonSelection from "../../../../components/Tabs/UsersFormButtonSelection";
+import { useTheme } from "@mui/material/styles";
+import Sidebar from "../../../../components/Sidebar";
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 
 const edit = (props: any) => {
@@ -51,7 +53,7 @@ const edit = (props: any) => {
       return { ...prev, [column]: value }
     })
   }
-  console.log("this is setForm", form)
+  
 
   const userUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
@@ -84,56 +86,80 @@ const edit = (props: any) => {
     emergency: false
   })
 
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="flex h-screen w-full">
+    <div className={`flex h-screen`}>
+
       <Head>
         <title>Update Employee</title>
         <meta name="description" content="Created by streamline" />
         <link rel="icon" href=".../img/ais-rft-logo.jpg" />
       </Head>
-      <div className="flex flex-col h-full w-full">
-        <Header />
-        <div className="flex h-full bg-gray-200">
-          <div className="h-full">
-            <AdminNavbar />
+
+      <div className={` w-full ${Style.mainContent}`}>
+
+        <div>
+          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        </div>
+        <div>
+          <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
+        </div>
+
+        <div className={`flex flex-col w-full pt-12`}>
+          <div className={`pt-3`}>
+            <div className={`${Style.menuTab}`}>
+
+              <Button
+                startIcon={<ArrowBackRoundedIcon />}
+                className={`${Style.textColor}`}
+                href="/users/student"
+              >
+                Back
+              </Button>
+
+            </div>
           </div>
-          <div className="flex flex-col w-full">
-            <div className="w-full p-2">
+          <div className={`${Style.tableBg}`}>
+
+            <h4 className="text-center">Update Student</h4>
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              userUpdate()
+            }}
+            >
+              < UsersFormButtonSelection
+                active={active}
+                setActive={setActive}
+                setSelection={setSelection}
+              />
               <div>
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
+              </div>
+              <div className="flex justify-end mt-3">
                 <Button
-                  href="/users/student"
-                  variant="contained" className="text-black bg-powder-blue hover:bg-magic-mint">
-                  Back
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={`bg-gray-500`}
+                  endIcon={<CheckCircleRoundedIcon />}
+                >
+                  Save Changes
                 </Button>
               </div>
-              <div className="w-full mt-1 bg-white rounded-2xl mx-auto shadow-xl p-2">
-                <h4 className="text-center">Update Student</h4>
-                <form onSubmit={(e) => {
-                  e.preventDefault()
-                  userUpdate()
-                }}
-                >
-                  < UsersFormButtonSelection
-                    active={active}
-                    setActive={setActive}
-                    setSelection={setSelection}
-                  />
-                  <div>
-                    {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
-                  </div>
-                  <div>
-                    <Button type="submit" variant="contained" color="success" className={`mx-auto ${Style.registerBtn}`}>
-                      Save Changes
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
 
-    </div >
   );
 };
 

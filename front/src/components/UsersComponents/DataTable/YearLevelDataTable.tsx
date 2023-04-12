@@ -83,7 +83,6 @@ export default function YearLevelDataTable(props: any) {
     )
   })
 
-
   return (
     <div className={`w-full`}>
       <table className={`table-fixed w-full`}>

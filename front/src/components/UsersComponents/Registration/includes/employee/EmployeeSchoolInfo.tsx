@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { FormContext } from "../../../../../lib/FormContext";
 import { Style } from "../../../../../lib/Style";
+import TextField from "@mui/material/TextField";
+import MenuItem from '@mui/material/MenuItem';
 
 export const EmployeeSchoolInfo = () => {
     const {
@@ -11,60 +13,62 @@ export const EmployeeSchoolInfo = () => {
         userOnChange
     } = useContext(FormContext);
 
-    console.log(apiPosition)
     return (
-
         <div>
-            <div >
-                <div className="flex justify-center flex-col mt-2">
-                    <label htmlFor="" className={Style.label}>
-                        ID Number:
-                    </label>
-                    <input type="number"
-                        className={Style.inputType}
-                        value={userInfo.idNumber}
-                        onChange={(e) => {
-                            userOnChange(e.target.value, "idNumber")
-                        }}
-                    />
+            <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    Employee ID:
+                </label>
+                <TextField
+                    variant="standard"
+                    size="small"
+                    type="number"
+                    value={userInfo.idNumber}
+                    onChange={(e) => {
+                        userOnChange(e.target.value, "idNumber")
+                    }}
+                />
+            </div >
 
-                    <label htmlFor="" className={Style.label}>
-                        RFID Number:
-                    </label>
-                    <input type="number"
-                        className={Style.inputType}
-                        value={userInfo.rfidNumber}
-                        onChange={(e) => {
-                            userOnChange(e.target.value, "rfidNumber")
-                        }}
-                    />
+            <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    RFID Number:
+                </label>
+                <TextField
+                    variant="standard"
+                    size="small"
+                    type="number"
+                    value={userInfo.rfidNumber}
+                    onChange={(e) => {
+                        userOnChange(e.target.value, "rfidNumber")
+                    }}
+                />
+            </div >
 
-                    <label htmlFor="" className={Style.label}>
-                        Position:
-                    </label>
-                    <select
-                        name="positions"
-                        className={Style.inputType}
-                        value={position}
-                        onChange={(e) => {
-                            setPosition(e.target.value);
-                        }}
-                    >
-                        <option value=''>
-                            ---Select Position---
-                        </option>
-                        {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
-                            return (
-                                <>
-                                    <option key={id} value={element.id}>{element.position}</option>
-                                </>
-                            )
-                        })}
 
-                    </select>
-                </div>
-            </div>
+            <div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    Position:
+                </label>
+                <TextField
+                    variant="standard"
+                    size="small"
+                    select
+                    value={position}
+                    onChange={(e) => {
+                        setPosition(e.target.value);
+                    }}
+                >
+                    {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
+                        // console.log(element.position)
+                        return (
+                            <MenuItem key={id} value={element.id}>
+                                {element.position}
+                            </MenuItem>
+                        )
+                    })}
+                </TextField>
+            </div >
         </div>
-
     )
 }

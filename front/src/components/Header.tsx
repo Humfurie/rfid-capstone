@@ -71,6 +71,7 @@ export default function Header(props: any) {
 							...(open && { display: 'none' }),
 						}}
 					>
+						
 						<MenuIcon className="text-gray-700 pr-50"  />
 					</IconButton>
 
