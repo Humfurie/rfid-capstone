@@ -11,6 +11,7 @@ export const Style = {
     edit:"text-gray-700 hover:text-green-600",
     delete:"text-gray-700 hover:text-red-600",
     menuTab: "flex p-1 bg-white rounded-lg shadow-sm",
+    infoHeader:"bg-slate-300 p-1 rounded-lg font-bold",
 
     /**
      * Table design

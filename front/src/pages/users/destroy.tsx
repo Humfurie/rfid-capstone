@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const Destroy = (props: any) => {
     const { setRole, setId, userDelete } = useContext(FormContext)
-    const { setOpen, open, user, userRole, key } = props
+    const { setOpen, open, user, userRole } = props
     const router = useRouter()
     return (
         <>
