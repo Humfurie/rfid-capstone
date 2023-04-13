@@ -48,7 +48,7 @@ const index = () => {
                 
                 <div className={`flex flex-col w-full pt-14`}>
                     <div className={`${Style.tableBg}`}>
-                        <ActivityDatatable data={data?.data || []} />
+                        <ActivityDatatable data={data?.data[4] || []} />
                     </div>
                 </div>
             </div>

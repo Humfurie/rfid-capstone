@@ -45,6 +45,9 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the forms and states stuff of the users
    */
+
+  const [imageFile, setImageFile] = useState(null)
+
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     middleName: "",
@@ -268,6 +271,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
         id,
         setId,
+
+        //image
+        imageFile, 
+        setImageFile,
+
 
       }}
     >

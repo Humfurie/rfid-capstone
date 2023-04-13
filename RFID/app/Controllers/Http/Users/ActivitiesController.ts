@@ -16,7 +16,7 @@ export default class ActivitiesController {
 
         let myData
 
-        const port = new SerialPort({ path: 'COM3', baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
+        const port = new SerialPort({ path: 'COM3',  baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
         const parser = new ReadlineParser({
             delimiter: '\r\n'
         });
