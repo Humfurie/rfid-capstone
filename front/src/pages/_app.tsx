@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
    * this here contains all the forms and states stuff of the users
    */
 
-  const [imageFile, setImageFile] = useState(null)
+  const [imageFile, setImageFile] = useState('')
 
   const [userInfo, setUserInfo] = useState({
     firstName: "",
@@ -131,11 +131,21 @@ export default function App({ Component, pageProps }: AppProps) {
     router.push('/users/year-level')
   }
   const userSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
-      userRegistration: userInfo,
-      position: position,
-      role: role,
-      emergency: emergency,
+
+    const formdata = new FormData()
+    formdata.append('banner', imageFile)
+
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, formdata, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      params: {
+        userRegistration: userInfo,
+        position: position,
+        role: role,
+        emergency: emergency,
+        profilePic: formdata
+      }
     })
     setUserInfo({
       firstName: "",
@@ -273,7 +283,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setId,
 
         //image
-        imageFile, 
+        imageFile,
         setImageFile,
 
 

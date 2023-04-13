@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import TextField from "@mui/material/TextField";
@@ -18,8 +18,7 @@ export const PersonalInfo = () => {
     const handleImageChange = (e: any) => {
         const file = e.target.files[0];
         setImageFile(file);
-    };
-
+    }
 
     const gender = [
         {
@@ -31,6 +30,7 @@ export const PersonalInfo = () => {
             label: 'Female'
         }
     ]
+
     return (
         <div>
             <div className={Style.inputDiv}>
@@ -39,37 +39,22 @@ export const PersonalInfo = () => {
                         Profile Picture
                     </label>
 
-                    {imageFile ? (
-                        <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label"
-                        >
-
-                            <img
-                                className="preview-image"
-                                src={URL.createObjectURL(imageFile)}
-                                alt="Profile Picture"
-                                width={100}
-                                height={100}
-                            />
-                            <input
-                                hidden
-                                accept="image/*"
-                                type="file"
-                                id="profile-picture"
-                                onChange={handleImageChange}
-
-                            />
-                        </IconButton>
-
-                    ) : (
-                        <div className="upload-placeholder">
+                    {/* {profilePic} */}
+                    <div>
+                        {imageFile ? (
                             <IconButton
                                 color="primary"
                                 aria-label="upload picture"
                                 component="label"
                             >
+
+                                <img
+                                    className="preview-image"
+                                    src={URL.createObjectURL(imageFile)}
+                                    alt="Profile Picture"
+                                    width={100}
+                                    height={100}
+                                />
                                 <input
                                     hidden
                                     accept="image/*"
@@ -78,30 +63,29 @@ export const PersonalInfo = () => {
                                     onChange={handleImageChange}
 
                                 />
-                                <CameraAltRoundedIcon fontSize="large" />
                             </IconButton>
-                        </div>
-                    )}
 
+                        ) : (
+                            <div className="upload-placeholder">
+                                <IconButton
+                                    color="primary"
+                                    aria-label="upload picture"
+                                    component="label"
+                                >
+                                    <input
+                                        hidden
+                                        accept="image/*"
+                                        type="file"
+                                        id="profile-picture"
+                                        onChange={handleImageChange}
 
+                                    />
+                                    <CameraAltRoundedIcon fontSize="large" />
+                                </IconButton>
+                            </div>
+                        )}
+                    </div>
 
-                    {/* <IconButton color="info" aria-label="upload picture" component="label">
-                        <input 
-                        hidden
-                        accept="image/*" 
-                        type="file" 
-
-                        />
-
-                        <CameraAltRoundedIcon />
-                        Upload
-                    </IconButton >
-                    {imageFile && (
-                        <input 
-                        type="text"
-                        value = {imageFile.name}
-                        />
-                    )} */}
                 </div>
                 {/* <Divider/> */}
             </div>
