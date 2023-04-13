@@ -124,9 +124,9 @@ export default function Home() {
           </div> */}
 
 
-          <div className='grid grid-rows-2 grid-flow-col gap-3'>
+          <div className='grid grid-cols-2 gap-3 sm:h-full sm:w-full'>
 
-            <div className='grid grid-cols-2 '>
+            <div className='grid grid-cols-2 gap-3 '>
               <div className={`${Style.employeePopulationBg}`}>
                 employee population
               </div >
@@ -134,16 +134,18 @@ export default function Home() {
                 <StudentPopulation />
               </div>
             </div>
-            <div className="">
-              <PieChart />
-            </div>
             <div className={`${Style.tableBg}`}>
               date
             </div>
-            <div className={`${Style.tableBg}`}>
+          </div>
+          <div className='grid grid-cols-2 gap-3 sm:h-full sm:w-full'>
+
+            <div className={`${Style.tableBg} `}>
+              <PieChart />
+            </div>
+            <div className={`${Style.tableBg} `}>
               live in and out
             </div>
-
           </div>
 
         </div>
