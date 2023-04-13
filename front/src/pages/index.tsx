@@ -43,13 +43,39 @@ export default function Home() {
           <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
         </div>
 
-        <div className={`pt-12`}>
-          {/* <DrawerHeader /> */}
-          <Population />
-          <LiveActivity />
-          <Percentage />
-          <PieChart />
-        </div>
+        {/* <div className={`pt-16 w-full`}> */}
+
+          {/* <div className='grid grid-cols-2 gap-3'>
+            <div className='grid grid-rows-2 gap-3'>
+              <div className='grid grid-cols-2 gap-3'>
+                <div className={`${Style.employeePopulationBg}`}>
+                  employee population
+                </div >
+                <div className={`${Style.studentPopulationBg}`}>
+                  student population
+                </div>
+              </div>
+
+              <div className={`p-50 ${Style.pieChartBg}`}> */}
+                <PieChart />
+              {/* </div>
+            </div>
+            <div className='grid grid-rows-2 gap-3'>
+              <div className={`${Style.tableBg}`}>
+                date
+              </div>
+              <div className={`${Style.tableBg}`}>
+                live in and out
+
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div> */}
+      {/* </div> */}
       </div>
     </div>
   )
