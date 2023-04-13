@@ -8,7 +8,6 @@ import ProfilePic from 'App/Models/ProfilePic'
 import User from 'App/Models/User'
 import UserLogin from 'App/Models/UserLogin'
 import UserValidator from 'App/Validators/UserValidator'
-import { DateTime } from 'luxon'
 
 export default class newUserRegistrationController {
     //
@@ -17,9 +16,11 @@ export default class newUserRegistrationController {
         /**
          * this input is received from the axios endpoint from app.tsx
          */
-        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'profilePic'])
+        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account',])
         const files = request.file('banner')
-        const folderName = DateTime.now()
+
+ 
+        const folderName = Date.now()
         if (!files) return response.status(422).json({
             message: 'file is missing'
         })
@@ -27,7 +28,6 @@ export default class newUserRegistrationController {
         await files.move(Application.tmpPath(`uploads/${folderName}`))
 
         const uploadDrive = await DriveManager.getUrl(`${folderName}/${files?.clientName}`)
-
         // console.log(input)
 
         /**

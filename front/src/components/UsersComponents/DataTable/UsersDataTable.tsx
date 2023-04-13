@@ -6,6 +6,7 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import Destroy from "../../../pages/users/destroy";
 import { Style } from "../../../lib/Style";
 import { useState } from "react";
+import Avatar from "@mui/material/Avatar";
 
 
 export default function UsersDataTable(props: any) {
@@ -31,6 +32,7 @@ export default function UsersDataTable(props: any) {
 
   let userMap = (users).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((user: any) => {
 
+    console.log(user)
     const role = user.role[0].role.toLowerCase()
     return (
       <tbody key={user.id}>
@@ -40,13 +42,17 @@ export default function UsersDataTable(props: any) {
           </td>
 
           <td className={`${Style.tableBorder}`}>
+            <Avatar alt={`${user.first_name}`} src={`${process.env.NEXT_PUBLIC_API_URL + user.profilePic?.url}`} />
+          </td>
+
+          <td className={`${Style.tableBorder}`}>
             {user.first_name} {user.last_name}
           </td>
 
           <td className={`${Style.tableBorder}`}>
             {user.contact_number}
           </td>
-          
+
           <td className={`${Style.tableBorder}`}>
             <div className="flex gap-3 justify-center">
 
@@ -77,6 +83,7 @@ export default function UsersDataTable(props: any) {
         <thead className={`bg-gray-500 text-white`}>
           <tr className="border-collapse ">
             <th className={`${Style.tableBorder}`}>ID</th>
+            <th className={`${Style.tableBorder}`}>Profile Pic</th>
             <th className={`${Style.tableBorder}`}>Name</th>
             <th className={`${Style.tableBorder}`}>Contact Number</th>
             <th className={`${Style.tableBorder}`}>Action</th>
