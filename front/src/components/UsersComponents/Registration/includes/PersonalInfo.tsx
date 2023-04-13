@@ -1,15 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
+import { Button, IconButton } from "@mui/material";
+import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
+import { Divider } from "@mantine/core";
 
 export const PersonalInfo = () => {
     const {
         userOnChange,
-        userInfo
+        userInfo,
+        imageFile,
+        setImageFile
 
     } = useContext(FormContext);
+
+   
 
     const gender = [
         {
@@ -23,6 +30,32 @@ export const PersonalInfo = () => {
     ]
     return (
         <div>
+            <div className={Style.inputDiv}>
+                <div>
+                    <label htmlFor="" className={Style.label}>
+                        Profile Picture
+                    </label>
+
+                    <IconButton color="info" aria-label="upload picture" component="label">
+                        <input 
+                        hidden
+                        accept="image/*" 
+                        type="file" 
+
+                        />
+
+                        <CameraAltRoundedIcon />
+                        Upload
+                    </IconButton >
+                    {imageFile && (
+                        <input 
+                        type="text"
+                        value = {imageFile.name}
+                        />
+                    )}
+                </div>
+                {/* <Divider/> */}
+            </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                     First Name

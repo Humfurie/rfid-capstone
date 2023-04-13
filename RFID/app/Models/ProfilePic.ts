@@ -7,6 +7,12 @@ export default class ProfilePic extends BaseModel {
   public id: number
 
   @column()
+  public userId: number
+
+  @column()
+  public parentId: number
+
+  @column()
   public url: string
 
   @column()

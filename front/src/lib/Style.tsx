@@ -14,7 +14,7 @@ export const Style = {
     infoHeader: "bg-slate-300 p-1 rounded-lg font-bold",
     employeePopulationBg: " bg-red-100 shadow p-2 mt-2 rounded-lg",
     studentPopulationBg: "bg-yellow-100 shadow p-2 mt-2 rounded-lg",
-    pieChartBg: "bg-slate-500 opacity-25 shadow p-2 mt-2 rounded-lg",
+    pieChartBg: "bg-white shadow p-2 mt-2 rounded-lg",
 
     /**
      * Table design

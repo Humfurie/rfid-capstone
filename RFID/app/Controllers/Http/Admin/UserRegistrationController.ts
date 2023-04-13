@@ -1,3 +1,5 @@
+import Application from '@ioc:Adonis/Core/Application'
+import DriveManager from '@ioc:Adonis/Core/Drive'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import EmergencyContact from 'App/Models/EmergencyContact'
@@ -6,6 +8,7 @@ import ProfilePic from 'App/Models/ProfilePic'
 import User from 'App/Models/User'
 import UserLogin from 'App/Models/UserLogin'
 import UserValidator from 'App/Validators/UserValidator'
+import { DateTime } from 'luxon'
 
 export default class newUserRegistrationController {
     //
@@ -15,6 +18,15 @@ export default class newUserRegistrationController {
          * this input is received from the axios endpoint from app.tsx
          */
         const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'profilePic'])
+        const files = request.file('banner')
+        const folderName = DateTime.now()
+        if (!files) return response.status(422).json({
+            message: 'file is missing'
+        })
+
+        await files.move(Application.tmpPath(`uploads/${folderName}`))
+
+        const uploadDrive = await DriveManager.getUrl(`${folderName}/${files?.clientName}`)
 
         // console.log(input)
 
@@ -34,10 +46,8 @@ export default class newUserRegistrationController {
              */
             try {
                 // const validated = input.userRegistration.validate(UserValidator)
-                console.log('this is inpiyt')
 
                 /**
-                 * 
                  * these are user model properties
                 */
                 const user = new User()
@@ -82,11 +92,14 @@ export default class newUserRegistrationController {
                 await user.related('role').attach([2])
                 await user.related('position').attach([1])
 
+
+
                 /**
                  * profile pic
                  */
                 const profilePic = new ProfilePic()
-                profilePic.url = input.profilePic
+                profilePic.userId = user.id
+                profilePic.url = uploadDrive
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
@@ -191,7 +204,8 @@ export default class newUserRegistrationController {
                  * profile pic
                  */
                 const profilePic = new ProfilePic()
-                profilePic.url = input.profilePic
+                profilePic.userId = user.id
+                profilePic.url = uploadDrive
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
@@ -279,7 +293,8 @@ export default class newUserRegistrationController {
                  * profile pic
                  */
                 const profilePic = new ProfilePic()
-                profilePic.url = input.profilePic
+                profilePic.parentId = user.id
+                profilePic.url = uploadDrive
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
