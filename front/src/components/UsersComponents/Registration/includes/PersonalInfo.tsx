@@ -13,10 +13,13 @@ export const PersonalInfo = () => {
         userInfo,
         imageFile,
         setImageFile
-
     } = useContext(FormContext);
 
-   
+    const handleImageChange = (e: any) => {
+        const file = e.target.files[0];
+        setImageFile(file);
+    };
+
 
     const gender = [
         {
@@ -36,7 +39,53 @@ export const PersonalInfo = () => {
                         Profile Picture
                     </label>
 
-                    <IconButton color="info" aria-label="upload picture" component="label">
+                    {imageFile ? (
+                        <IconButton
+                            color="primary"
+                            aria-label="upload picture"
+                            component="label"
+                        >
+
+                            <img
+                                className="preview-image"
+                                src={URL.createObjectURL(imageFile)}
+                                alt="Profile Picture"
+                                width={100}
+                                height={100}
+                            />
+                            <input
+                                hidden
+                                accept="image/*"
+                                type="file"
+                                id="profile-picture"
+                                onChange={handleImageChange}
+
+                            />
+                        </IconButton>
+
+                    ) : (
+                        <div className="upload-placeholder">
+                            <IconButton
+                                color="primary"
+                                aria-label="upload picture"
+                                component="label"
+                            >
+                                <input
+                                    hidden
+                                    accept="image/*"
+                                    type="file"
+                                    id="profile-picture"
+                                    onChange={handleImageChange}
+
+                                />
+                                <CameraAltRoundedIcon fontSize="large" />
+                            </IconButton>
+                        </div>
+                    )}
+
+
+
+                    {/* <IconButton color="info" aria-label="upload picture" component="label">
                         <input 
                         hidden
                         accept="image/*" 
@@ -52,7 +101,7 @@ export const PersonalInfo = () => {
                         type="text"
                         value = {imageFile.name}
                         />
-                    )}
+                    )} */}
                 </div>
                 {/* <Divider/> */}
             </div>
