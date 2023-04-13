@@ -180,6 +180,30 @@ export default class ActivitiesController {
 
 
         return response.status(200).json([grade, yearLabel, yearLevelMap, gradesMap, activity])
-        // return response.status(200).json([activity, grade7, grade8, grade9, grade10, grade11, grade12])
+    }
+
+    public async latestActivity({ response }: HttpContextContract) {
+
+        const latestIn = await Activity.query().whereHas('user', (user) => {
+            user.where('flag', 1)
+        }).preload('user')
+            .where('status', 'In')
+            .orderBy('id', 'desc')
+            .where('flag', 1)
+            .firstOrFail()
+
+        const latestOut = await Activity.query().whereHas('user', (user) => {
+            user.where('flag', 1)
+        }).preload('user')
+            .where('status', 'Out')
+            .orderBy('id', 'desc')
+            .where('flag', 1)
+            .firstOrFail()
+
+        if (!latestIn || !latestOut) {
+            return response.status(400).json({ 'message': "User Not Found!" })
+        }
+
+        return response.status(200).json([latestIn, latestOut])
     }
 }
