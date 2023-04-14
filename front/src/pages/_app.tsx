@@ -133,7 +133,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const userSubmit = async () => {
 
     const formdata = new FormData()
-    formdata.append('banner', imageFile)
+    formdata.append('banner', imageFile);
+ 
 
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, formdata, {
       headers: {
@@ -144,8 +145,9 @@ export default function App({ Component, pageProps }: AppProps) {
         position: position,
         role: role,
         emergency: emergency,
-        profilePic: formdata
-      }
+        yearLevel: year,
+      },
+    
     })
     setUserInfo({
       firstName: "",

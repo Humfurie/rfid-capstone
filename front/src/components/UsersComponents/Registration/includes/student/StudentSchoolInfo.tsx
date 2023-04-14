@@ -16,7 +16,7 @@ export const StudentSchoolInfo = () => {
     } = useContext(FormContext);
 
 
-    console.log("userInfo", userInfo)
+    console.log("userInfo alinmu", userInfo.isAlumni)
     return (
         <div>
             <div className={Style.inputDiv}>

@@ -99,12 +99,11 @@ export default class UsersController {
      */
     public async edit({ request, response, params }: HttpContextContract) {
 
-        // const req = request.only(['role', 'position'])
         const req = request.all()
-        console.log("this is edit req", req)
+    
         const validated = await request.validate(UserValidator)
         const trx = await Database.transaction()
-        // return response.status(200).json(validated)
+
         if (req.role === 'student') {
             try {
                 const user = await User.query().whereHas('role', (role) => {

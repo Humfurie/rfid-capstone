@@ -87,7 +87,7 @@ export const PersonalInfo = () => {
                     </div>
 
                 </div>
-                {/* <Divider/> */}
+               
             </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
