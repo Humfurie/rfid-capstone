@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, ManyToMany, manyToMany,  HasOne, hasOne, } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 import Role from './Role'
+import ProfilePic from './ProfilePic'
+import UserLogin from './UserLogin'
 // import { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
 
 export default class Parent extends BaseModel {
@@ -53,6 +55,12 @@ export default class Parent extends BaseModel {
   })
   public user: ManyToMany <typeof User>
 
+  @hasOne(() => ProfilePic)
+  public profilePic: HasOne<typeof ProfilePic>
+
+  @hasOne(() => UserLogin)
+  public userLogin: HasOne<typeof UserLogin>
+  
   @manyToMany(() => Role, {
     pivotTable: 'user_roles'
   })

@@ -63,5 +63,15 @@ export function PieChart() {
         ],
     };
 
-    return  <Doughnut data={chart} />;
+    return (
+        <div style={{ maxHeight: '1000px', maxWidth: '1000px', minHeight: '100px', minWidth: '100px' }}>
+            <Doughnut
+                data={chart}
+                options={{
+                    responsive: true, // Enable responsiveness
+                    maintainAspectRatio: true, // Prevent maintaining aspect ratio
+                }}
+            />
+        </div>
+    )
 }

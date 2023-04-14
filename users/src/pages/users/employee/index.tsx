@@ -1,5 +1,6 @@
 import Head from "next/head";
-import EmployeeHeader from "../../../components/StudentComponents/StudentHeader";
+import EmployeeHeader from "../../../components/EmployeeComponents/EmployeeHeader";
+
 
 const EmployeeDashboard = () => {
     return (

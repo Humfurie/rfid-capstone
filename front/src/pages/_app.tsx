@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { FormContext } from "../lib/FormContext";
+import CustomAlert from "../components/alert";
 
 export default function App({ Component, pageProps }: AppProps) {
   /**
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false)
 
 
   /**
@@ -66,6 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // console.log(userRegistration)
   // year levels
   const [year, setYear] = useState("")
+  console.log(year)
   //position-employee
   const [position, setPosition] = useState("")
   const [apiPosition, setApiPosition] = useState({})
@@ -133,7 +136,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const userSubmit = async () => {
 
     const formdata = new FormData()
-    formdata.append('banner', imageFile)
+    formdata.append('banner', imageFile);
+
 
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, formdata, {
       headers: {
@@ -144,8 +148,8 @@ export default function App({ Component, pageProps }: AppProps) {
         position: position,
         role: role,
         emergency: emergency,
-        profilePic: formdata
-      }
+      },
+
     })
     setUserInfo({
       firstName: "",
@@ -184,7 +188,9 @@ export default function App({ Component, pageProps }: AppProps) {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/delete`, {
       role: role,
       id: id
-    })
+    }).then(res => {setAlertOpen(true)
+    return <CustomAlert message={res} /> } ).catch(err => {setAlertOpen(true)
+      return <CustomAlert message={err} />})
     setRole('')
     setId('')
   }
@@ -286,7 +292,7 @@ export default function App({ Component, pageProps }: AppProps) {
         imageFile,
         setImageFile,
 
-
+        setAlertOpen, //alert
       }}
     >
       <Component {...pageProps} />

@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -5,7 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import XLSX from 'xlsx';
 
 const EmployeeTab = (props: any) => {
-  const { totalPages, currentPage, handleChangePage, users } = props
+  const { totalPages, currentPage, handleChangePage, handleSearch, searchUser } = props
 
   // function exportToExcel(data) {
   //   const worksheet = XLSX.utils.json_to_sheet(data);
@@ -35,11 +36,13 @@ const EmployeeTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
-              <Button
+              <TextField
+                variant="standard"
                 className={`${Style.textColor}`}
-              >
-                Search
-              </Button>
+                value={searchUser}
+                onChange={handleSearch}
+                placeholder="Search"
+              />
               <Divider
                 flexItem
                 orientation="vertical"

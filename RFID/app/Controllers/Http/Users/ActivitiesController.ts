@@ -16,7 +16,7 @@ export default class ActivitiesController {
 
 
 
-        const port = new SerialPort({ path: 'COM3',  baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
+        const port = new SerialPort({ path: 'COM3', baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
         const parser = new ReadlineParser({
             delimiter: '\r\n'
         });
@@ -177,33 +177,35 @@ export default class ActivitiesController {
             return currentStatus.length
         });
 
+        const studentTotalIn = grade.reduce((acc: string[], user: { activity: { status: string; }[]; }) => {
+            if (user.activity[0].status === "In") {
+                acc.push('In')
+            }
+            return acc
+        }, [])
+
+        const totalEmployee = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Employee')
+        }).preload('position')
+            .preload('yearLevel')
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity.where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const totalEmployeeIn = totalEmployee.reduce((acc: string[], user: { activity: { status: string; }[]; }) => {
+            if (user.activity[0].status === "In") {
+                acc.push('In')
+            }
+            return acc
+        }, [])
+
 
 
         return response.status(200).json([grade, yearLabel, yearLevelMap, gradesMap, activity])
-    }
-
-    public async latestActivity({ response }: HttpContextContract) {
-
-        const latestIn = await Activity.query().whereHas('user', (user) => {
-            user.where('flag', 1)
-        }).preload('user')
-            .where('status', 'In')
-            .orderBy('id', 'desc')
-            .where('flag', 1)
-            .firstOrFail()
-
-        const latestOut = await Activity.query().whereHas('user', (user) => {
-            user.where('flag', 1)
-        }).preload('user')
-            .where('status', 'Out')
-            .orderBy('id', 'desc')
-            .where('flag', 1)
-            .firstOrFail()
-
-        if (!latestIn || !latestOut) {
-            return response.status(400).json({ 'message': "User Not Found!" })
-        }
-
-        return response.status(200).json([latestIn, latestOut])
+        // return response.status(200).json([activity, grade7, grade8, grade9, grade10, grade11, grade12])
     }
 }

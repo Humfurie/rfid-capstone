@@ -87,7 +87,7 @@ export const PersonalInfo = () => {
                     </div>
 
                 </div>
-                {/* <Divider/> */}
+               
             </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
@@ -103,6 +103,7 @@ export const PersonalInfo = () => {
                         userOnChange(e.target.value, "firstName");
                     }}
                     required
+                    helperText="Please enter first name."
                 />
             </div>
 
@@ -119,6 +120,8 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "middleName");
                     }}
+                    helperText="Please enter middle name."
+                    
                 />
 
             </div>
@@ -135,6 +138,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "lastName");
                     }}
+                    helperText="Please enter lastname."
                 />
 
             </div>
@@ -151,6 +155,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "birthdate");
                     }}
+                    helperText="Please enter birthdate."
                 />
             </div>
 
@@ -168,6 +173,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "gender");
                     }}
+                    helperText="Please enter gender."
 
                 >
                     {gender.map((option) => (
@@ -192,6 +198,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "address");
                     }}
+                    helperText="Please enter address."
                 />
 
             </div>

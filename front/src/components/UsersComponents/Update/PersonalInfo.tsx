@@ -32,6 +32,7 @@ const PersonalInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "firstName");
           }}
+          helperText="Please enter fist name."
           required
         />
       </div>
@@ -49,6 +50,7 @@ const PersonalInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "middleName");
           }}
+          helperText="Please enter middle name."
 
         />
 
@@ -67,6 +69,7 @@ const PersonalInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "lastName");
           }}
+          helperText="Please enter last name."
           required
         />
       </div>
@@ -84,6 +87,7 @@ const PersonalInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "birthdate");
           }}
+          helperText="Please enter birthday."
           required
         />
       </div>
@@ -101,6 +105,7 @@ const PersonalInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "gender");
           }}
+          helperText="Please enter gender."
         >
           {genders.map((option) => (
 
@@ -125,6 +130,7 @@ const PersonalInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "address");
           }}
+          helperText="Please enter address."
           required
         />
       </div>

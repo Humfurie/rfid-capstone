@@ -20,6 +20,7 @@ const EmployeeSchoolInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "idNumber")
           }}
+          helperText="Please enter employee ID."
         />
       </div>
 
@@ -35,6 +36,7 @@ const EmployeeSchoolInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "rfidNumber")
           }}
+          helperText="Please enter RFID number."
         />
       </div>
 
@@ -51,6 +53,7 @@ const EmployeeSchoolInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, 'position');
           }}
+          helperText="Please enter position."
         >
           {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
             return (
