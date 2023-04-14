@@ -7,6 +7,7 @@ export default class ChildrenController {
         const user = await User.query().whereHas('role', role => {
             role.where('role', 'Student')
         }).where('flag', 1)
+        .preload('profilePic')
 
         return response.status(200).json(user)
     }
