@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Style } from '../lib/Style';
 import { Footer } from '@mantine/core';
 import Footers from '../components/Footers';
+import { TextField } from '@mui/material';
 
 export default function login() {
     const router = useRouter()
@@ -43,23 +44,15 @@ export default function login() {
     }
     return (
         <div className='h-screen bg-gradient-to-b from-[#c2edce] via-[#badfe7] to-[#6fb3b8]'>
-            <div className='pt-16'>
-                <Image
-                    src={'/../img/logo.png'}
-                    alt={'logo'}
-                    width={50}
-                    height={50}
-                    className='mx-auto'
-                />
-            </div>
-            <div className='delay-75'>
-                <div className='mx-auto mt-4  '>
+            
+          
+                <div className='mx-auto pt-14  '>
                     <h4
                         className='p-4 text-center text-white-smoke text-lg rounded-t-xl ml-96 mr-96 bg-teal-blue'>
                         Log in here !
                     </h4>
                 </div>
-                <div className='mx-auto  mt-(-2) rounded-b-lg ml-96 mr-96 bg-white-smoke p-4'>
+                <div className='mx-auto  rounded-b-lg ml-96 mr-96 bg-white-smoke p-4'>
                     <form onSubmit={e => {
                         e.preventDefault()
                         adminLogin()
@@ -69,11 +62,10 @@ export default function login() {
                             <label
                                 htmlFor=""
                                 className='block'>
-                                <span className='block text-sm font-medium text-slate-700'>
-                                    Username
-                                </span>
-                                <input
+                                
+                                <TextField
                                     type="text"
+                                    label="Username"
                                     required
                                     onChange={(e: any) => {
                                         loginChange(e.target.value, "username")
@@ -87,11 +79,10 @@ export default function login() {
                             <label
                                 htmlFor=""
                                 className='block'>
-                                <span className='block text-sm font-medium text-slate-700'>
-                                    Password
-                                </span>
-                                <input
+                                
+                                <TextField
                                     type="password"
+                                    label="Password"
                                     required
                                     onChange={(e: any) => {
                                         loginChange(e.target.value, "password")
@@ -110,7 +101,7 @@ export default function login() {
                         </div>
                     </form>
                 </div>
-            </div>
+           
             <div className='absolute bottom-0 right-0'>
                 <Footers />
             </div>
