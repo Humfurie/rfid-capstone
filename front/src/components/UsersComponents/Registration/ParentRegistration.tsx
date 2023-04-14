@@ -14,7 +14,8 @@ const ParentRegistration = () => {
   const {
     setRegistration,
     userSubmit,
-    setRole
+    setRole,
+    userInfo
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')
@@ -34,6 +35,13 @@ const ParentRegistration = () => {
         onClick={() => {
           setRole("parent")
         }}
+        disabled={
+          (userInfo.firstName
+            && userInfo.lastName
+            && userInfo.gender
+            && userInfo.address
+          ) === "" ? true : false
+        }
       >
         Register
       </Button>

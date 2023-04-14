@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { destroyCookie } from "nookies";
 
 const ParentHeader = () => {
 
@@ -17,6 +18,10 @@ const ParentHeader = () => {
         setDrop(null);
     };
     const router = useRouter();
+
+    const destroyCookie = (cookieName: any) => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    };
 
     return (
         <div className="flex w-full">
@@ -58,7 +63,7 @@ const ParentHeader = () => {
                             anchorOrigin={{
                                 vertical: 'top',
                                 horizontal: 'left',
-                                
+
                             }}
                             transformOrigin={{
                                 vertical: 'top',
@@ -67,13 +72,17 @@ const ParentHeader = () => {
                         >
                             <MenuItem>
                                 <Link
-                                href={'/users/parent/profile'}>
-                                Profile
+                                    href={'/users/parent/profile'}>
+                                    Profile
                                 </Link>
-                                
+
                             </MenuItem>
                             <MenuItem
-                                onClick={handleClose}>
+                                onClick={e => {
+                                    handleClose
+                                    destroyCookie('Parent')
+                                    router.push('/login')
+                                }}>
                                 Logout
                             </MenuItem>
                         </Menu>

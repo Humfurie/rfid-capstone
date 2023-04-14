@@ -54,7 +54,7 @@ const edit = (props: any) => {
       return { ...prev, [column]: value }
     })
   }
-  
+
 
   const userUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/edit/${user.id}`, {
@@ -142,7 +142,7 @@ const edit = (props: any) => {
                 setSelection={setSelection}
               />
               <div>
-                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel}/> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'school' ? <StudentSchoolInfo formOnChange={formOnChange} form={form} apiYearLevel={apiYearLevel} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : selection === 'emergency' ? <EmergencyContactInfo formOnChange={formOnChange} form={form} /> : "Sorry, we found nothing."}
               </div>
               <div className="flex justify-end mt-3">
                 <Button
@@ -151,6 +151,16 @@ const edit = (props: any) => {
                   color="primary"
                   className={`bg-gray-500`}
                   endIcon={<CheckCircleRoundedIcon />}
+                  disabled={
+                    (form.firstName
+                      && form.lastName
+                      && form.gender
+                      && form.address
+                      && form.idNumber
+                      && form.rfidNumber
+                      && form.yearLevel
+                    ) === "" ? true : false
+                  }
                 >
                   Save Changes
                 </Button>

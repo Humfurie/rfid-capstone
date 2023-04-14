@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { destroyCookie } from "nookies";
 
 const EmployeeHeader = () => {
 
@@ -17,6 +18,10 @@ const EmployeeHeader = () => {
         setDrop(null);
     };
     const router = useRouter();
+
+    const destroyCookie = (cookieName: any) => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    };
 
     return (
         <div className="flex w-full">
@@ -73,7 +78,11 @@ const EmployeeHeader = () => {
                                 
                             </MenuItem>
                             <MenuItem
-                                onClick={handleClose}>
+                                onClick={e => {
+                                    handleClose
+                                    destroyCookie('Employee')
+                                    router.push('/login')
+                                }}>
                                 Logout
                             </MenuItem>
                         </Menu>

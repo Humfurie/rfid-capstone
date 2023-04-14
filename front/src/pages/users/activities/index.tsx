@@ -1,7 +1,7 @@
 import axios from "axios"
 import { GetStaticProps } from "next"
 import { useRouter } from "next/router"
-import { useEffect, useMemo, useState } from "react"
+import { SetStateAction, useEffect, useMemo, useState } from "react"
 import useSWR from 'swr'
 import ActivityDatatable from "./includes/ActivityDatatable"
 import React from "react"
@@ -10,6 +10,7 @@ import { Style } from "../../../lib/Style"
 import { useTheme } from "@mui/material/styles"
 import Header from "../../../components/Header"
 import Sidebar from "../../../components/Sidebar"
+import Pagination from "@mui/material/Pagination";
 
 const index = () => {
 
@@ -25,7 +26,12 @@ const index = () => {
     const fetcher = (url: any) => axios.get(url)
     const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/rfid/show`, fetcher, { refreshInterval: 1000 })
 
-    console.log("act hehe", data?.data)
+    const itemsPerPage = 15
+    const [currentPage, setCurrentPage] = useState(1)
+    const totalPages = Math.ceil((data?.data[4] || []).length / itemsPerPage)
+    const handleChangePage = (_event: any, newPage: SetStateAction<number>) => {
+        setCurrentPage(newPage)
+    }
 
     if (error) return <> ...error </>
     if (isLoading) return <> ...loading </>
@@ -45,10 +51,16 @@ const index = () => {
                 <div>
                     <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
                 </div>
-                
+
                 <div className={`flex flex-col w-full pt-14`}>
                     <div className={`${Style.tableBg}`}>
-                        <ActivityDatatable data={data?.data[4] || []} />
+                        <Pagination
+                            count={totalPages}
+                            page={currentPage}
+                            onChange={handleChangePage}
+                            variant="text"
+                        />
+                        <ActivityDatatable data={data?.data[4] || []} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} isLoading={isLoading} error={error} />
                     </div>
                 </div>
             </div>

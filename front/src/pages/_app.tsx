@@ -65,10 +65,13 @@ export default function App({ Component, pageProps }: AppProps) {
     rfidNumber: "",
     isAlumni: false,
   })
-  // console.log(userRegistration)
+
   // year levels
   const [year, setYear] = useState("")
-  console.log(year)
+
+  //children
+  const [children, setChildren] = useState({})
+
   //position-employee
   const [position, setPosition] = useState("")
   const [apiPosition, setApiPosition] = useState({})
@@ -121,7 +124,7 @@ export default function App({ Component, pageProps }: AppProps) {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
 
       position: position,
-    })
+    }).catch(err => console.log(err))
     setPosition('')
     router.push('/users/position')
   }
@@ -129,10 +132,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const yearSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`, {
       year: year,
-    })
+    }).catch(err => console.log(err))
     setYear('')
     router.push('/users/year-level')
   }
+
   const userSubmit = async () => {
 
     const formdata = new FormData()
@@ -150,7 +154,7 @@ export default function App({ Component, pageProps }: AppProps) {
         emergency: emergency,
       },
 
-    })
+    }).catch(err => console.log(err))
     setUserInfo({
       firstName: "",
       middleName: "",
@@ -180,6 +184,7 @@ export default function App({ Component, pageProps }: AppProps) {
     })
   }
 
+  console.log('this is children',children, apiPosition, apiYearLevel)
 
   /**
    * Delete User
@@ -188,9 +193,13 @@ export default function App({ Component, pageProps }: AppProps) {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/delete`, {
       role: role,
       id: id
-    }).then(res => {setAlertOpen(true)
-    return <CustomAlert message={res} /> } ).catch(err => {setAlertOpen(true)
-      return <CustomAlert message={err} />})
+    }).then(res => {
+      setAlertOpen(true)
+      return <CustomAlert message={res} />
+    }).catch(err => {
+      setAlertOpen(true)
+      return <CustomAlert message={err} />
+    })
     setRole('')
     setId('')
   }
@@ -198,7 +207,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const parentDelete = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/parent/delete`, {
       id: id
-    })
+    }).catch(err => console.log(err))
     setId('')
   }
   /**
@@ -207,7 +216,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const positionDelete = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/position/delete`, {
       id: id
-    })
+    }).catch(err => console.log(err))
     setId('')
   }
   /**
@@ -216,19 +225,17 @@ export default function App({ Component, pageProps }: AppProps) {
   const yearlevelDelete = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/year_level/delete`, {
       id: id
-    })
+    }).catch(err => console.log(err))
     setId('')
   }
 
   const effect = useCallback(async () => {
     try {
       const admin = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
-      console.log(admin)
-      const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
-      const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
-      setApiPosition(getPosition)
-      setApiYearLevel(getYearLevel)
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => setApiPosition(res)).catch(err => console.log(err))
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`).then(res => setApiYearLevel(res)).catch(err => console.log(err))
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/parent`).then(res => setChildren(res)).catch(err => console.log(err))
     } catch (error) {
       router.push("/");
     }

@@ -1,6 +1,7 @@
 import { Style } from "../../../lib/Style";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
+import moment from "moment"
 
 const genders = [
   {
@@ -83,9 +84,9 @@ const PersonalInfo = (props: any) => {
           variant="standard"
           size="small"
           type="date"
-          value={form.birthdate}
-          onChange={(e) => {
-            formOnChange(e.target.value, "birthdate");
+          defaultValue={moment(form.birthdate, 'MM/DD/YYYY').format('YYYY-MM-DD')}
+          onChange={(e: any) => {
+            formOnChange(moment(e).format('L'), "birthdate");
           }}
           helperText="Please enter birthday."
           required

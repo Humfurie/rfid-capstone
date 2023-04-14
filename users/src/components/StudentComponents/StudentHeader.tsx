@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Style } from "../../lib/Style";
+import { destroyCookie, parseCookies } from "nookies";
 
 
 const StudentHeader = () => {
@@ -17,6 +18,11 @@ const StudentHeader = () => {
     const handleClose = () => {
         setDrop(null);
     };
+
+    const destroyCookie = (cookieName: any) => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    };
+
     const router = useRouter();
 
     return (
@@ -59,7 +65,7 @@ const StudentHeader = () => {
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'right',
-                                
+
                             }}
                             transformOrigin={{
                                 vertical: 'top',
@@ -68,13 +74,17 @@ const StudentHeader = () => {
                         >
                             <MenuItem>
                                 <Link
-                                href={'/users/student/profile'}>
-                                Profile
+                                    href={'/users/student/profile'}>
+                                    Profile
                                 </Link>
-                                
+
                             </MenuItem>
                             <MenuItem
-                                onClick={handleClose}>
+                                onClick={e => {
+                                    handleClose
+                                    destroyCookie('Student')
+                                    router.push('/login')
+                                }}>
                                 Logout
                             </MenuItem>
                         </Menu>

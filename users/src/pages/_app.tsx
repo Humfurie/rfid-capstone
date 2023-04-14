@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useMemo, useState } from 'react'
 import { FormContext } from '../lib/FormContext'
+import useSWR from 'swr'
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -12,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const cookies = parseCookies()
   let token: any
-  let authRoute: string
+  let authRoute: any
   let userGetRole: string
   if ('Employee' in cookies) {
     token = cookies.Employee
@@ -36,19 +37,12 @@ export default function App({ Component, pageProps }: AppProps) {
       return config
     }
   )
+  // const [user, setUser] = useState({})
+  const fetcher = (url: any) => axios.get(url)
+  const { data, error } = useSWR(authRoute, fetcher, { refreshInterval: 5000 })
 
-  useMemo(
-    async () => {
-      try {
-        const auth = await axios.get(authRoute)
-        console.log(auth)
-      } catch (error) {
-        router.push('/login')
-        console.log(error)
-        destroyCookie(null, 'Student' || 'Parent' || "Employee")
-      }
-    }, []
-  )
+  // console.log(data?.data)
+
 
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
@@ -100,8 +94,7 @@ export default function App({ Component, pageProps }: AppProps) {
         console.log(error)
         return 401
       }
-
-    })
+    }).catch(err => console.log(err))
 
   }
 
@@ -123,7 +116,10 @@ export default function App({ Component, pageProps }: AppProps) {
       open,
       setOpen,
       currentMenu,
-      setCurrentMenu
+      setCurrentMenu,
+
+      data, 
+      error, 
 
     }}>
       <Component {...pageProps} />

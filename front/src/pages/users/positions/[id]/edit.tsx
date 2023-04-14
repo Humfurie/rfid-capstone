@@ -32,7 +32,7 @@ const PositionEdit = (props: any) => {
     }
 
     return (
-        <Modal key={key}
+        <Modal key={position.id}
             opened={editOpen}
             onClose={() => handleClosePosition(position.id)}>
             <div className="flex w-full">

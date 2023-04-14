@@ -146,6 +146,13 @@ const edit = (props: any) => {
                   color="primary"
                   className={`bg-gray-500`}
                   endIcon={<CheckCircleRoundedIcon />}
+                  disabled={
+                    (form.firstName
+                      && form.lastName
+                      && form.gender
+                      && form.address
+                    ) === "" ? true : false
+                  }
                 >
                   Save Changes
                 </Button>

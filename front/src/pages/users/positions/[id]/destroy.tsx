@@ -15,7 +15,7 @@ const DestroyPosition = (props: any) => {
     return (
         <>
             <Modal
-                key={key}
+                key={position.id}
                 opened={deleteOpen}
                 onClose={() => handleClosePosition(position.id)}
                 title="Please consider this"

@@ -8,27 +8,10 @@ import useSWR from 'swr'
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-export function PieChart() {
-
-    const fetcher = (url: any) => axios.get(url)
-    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/rfid/show`, fetcher, { refreshInterval: 1000 })
-
-    console.log(data?.data)
-    // console.log(data?.data)
-    // const grade7 = data?.data[1]
-    // const grade8 = data?.data[2]
-    // const grade9 = data?.data[3]
-    // const grade10 = data?.data[4]
-    // const grade11 = data?.data[5]
-    // const grade12 = data?.data[6]
-
-    // const grade11Map = (grade11 || []).reduce((acc: string[], user: { activity: { status: string; }[]; }) => {
-    //     // console.log(user.activity)
-    //     if (user.activity[0].status === "In") {
-    //         acc.push('In')
-    //     }
-    //     return acc
-    // }, [])
+export function PieChart(props: any) {
+    const { data, error, isLoading } = props
+    // const fetcher = (url: any) => axios.get(url)
+    // const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/rfid/show`, fetcher, { refreshInterval: 1000 })
 
     if (error) return <> ...error </>
     if (isLoading) return <> ...loading </>

@@ -17,6 +17,7 @@ export default class newUserRegistrationController {
          * this input is received from the axios endpoint from app.tsx
          */
         const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'yearLevel'])
+        const isAlumni = input.userRegistration.isAlumni === true ? 1 : 0
         const files = request.file('banner')
         console.log(input)
         const trx = await Database.transaction() //transactions are normally used for relationships
@@ -95,7 +96,7 @@ export default class newUserRegistrationController {
                     user.facebook = input.userRegistration.facebook
                     user.idNumber = input.userRegistration.idNumber
                     user.rfidNumber = input.userRegistration.rfidNumber
-                    user.isAlumni = input.userRegistration.isAlumni
+                    user.isAlumni = isAlumni === 1
 
                     user.useTransaction(trx)
 
