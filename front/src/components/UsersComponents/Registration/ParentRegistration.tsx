@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { Style } from "../../../lib/Style";
-import MyButton from "../../../lib/partials/MyButton";
 import { useRouter } from "next/router";
 import { PersonalInfo } from "./includes/PersonalInfo";
 import { ContactInfo } from "./includes/ContactInfo";
@@ -15,7 +14,8 @@ const ParentRegistration = () => {
     setRegistration,
     userSubmit,
     setRole,
-    userInfo
+    userInfo,
+    children,
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')

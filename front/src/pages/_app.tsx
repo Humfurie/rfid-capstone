@@ -70,7 +70,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [year, setYear] = useState("")
 
   //children
-  const [children, setChildren] = useState({})
+  const [children, setChildren] = useState("")
+  const [apiChildren, setApiChildren] = useState({})
 
   //position-employee
   const [position, setPosition] = useState("")
@@ -152,6 +153,7 @@ export default function App({ Component, pageProps }: AppProps) {
         position: position,
         role: role,
         emergency: emergency,
+        children: children,
       },
 
     }).catch(err => console.log(err))
@@ -178,10 +180,7 @@ export default function App({ Component, pageProps }: AppProps) {
       email: "",
       facebook: "",
     })
-    setAccount({
-      username: "",
-      password: "",
-    })
+    setChildren("")
   }
 
   console.log('this is children',children, apiPosition, apiYearLevel)
@@ -235,7 +234,7 @@ export default function App({ Component, pageProps }: AppProps) {
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`).then(res => setApiPosition(res)).catch(err => console.log(err))
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`).then(res => setApiYearLevel(res)).catch(err => console.log(err))
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/parent`).then(res => setChildren(res)).catch(err => console.log(err))
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/parent`).then(res => setApiChildren(res)).catch(err => console.log(err))
     } catch (error) {
       router.push("/");
     }
@@ -298,6 +297,10 @@ export default function App({ Component, pageProps }: AppProps) {
         //image
         imageFile,
         setImageFile,
+        children,
+        setChildren,
+        apiChildren, 
+        setApiChildren,
 
         setAlertOpen, //alert
       }}
