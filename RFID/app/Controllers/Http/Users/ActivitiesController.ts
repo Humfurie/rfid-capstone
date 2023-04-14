@@ -14,7 +14,7 @@ export default class ActivitiesController {
         const d = new Date()
         let day = weekday[d.getDay()]
 
-        let myData
+
 
         const port = new SerialPort({ path: 'COM3', baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
         const parser = new ReadlineParser({
@@ -23,7 +23,7 @@ export default class ActivitiesController {
         port.pipe(parser)
 
         parser.on('data', async (data) => {
-            myData = await data
+            const myData = await data
             console.log(myData)
             const trx = await Database.transaction()
             try {
