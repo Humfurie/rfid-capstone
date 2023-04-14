@@ -16,10 +16,10 @@ export default class newUserRegistrationController {
         /**
          * this input is received from the axios endpoint from app.tsx
          */
-        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'yearLevel'])
+        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'yearLevel', 'children'])
         const isAlumni = input.userRegistration.isAlumni === true ? 1 : 0
         const files = request.file('banner')
-        console.log(input)
+
         const trx = await Database.transaction() //transactions are normally used for relationships
 
         if (!files) {
@@ -325,6 +325,8 @@ export default class newUserRegistrationController {
                 user.useTransaction(trx)
 
                 await user.save()
+
+                await user.related('user').attach([input.children])
 
                 const profilePic = new ProfilePic()
                 profilePic.parentId = user.id
