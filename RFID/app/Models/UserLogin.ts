@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, beforeSave, BelongsTo, belongsTo, column, } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import User from './User'
+import Parent from './Parent'
 
 
 export default class UserLogin extends BaseModel {
@@ -36,6 +37,9 @@ export default class UserLogin extends BaseModel {
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
+
+  @belongsTo(() => Parent)
+  public parent: BelongsTo<typeof Parent>
 
   @beforeSave()
   public static async hashPassword(user: UserLogin) {

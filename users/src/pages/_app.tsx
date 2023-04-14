@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { parseCookies, setCookie } from 'nookies'
+import nookies, { destroyCookie, parseCookies, setCookie } from 'nookies'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useMemo, useState } from 'react'
@@ -10,11 +10,26 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const router = useRouter()
 
-  const parsedToken = parseCookies()
-  // console.log(parsedToken)
+  const cookies = parseCookies()
+  let token: any
+  let authRoute: string
+  let userGetRole: string
+  if ('Employee' in cookies) {
+    token = cookies.Employee
+    authRoute = `${process.env.NEXT_PUBLIC_API_URL}/users/employee/auth`
+    userGetRole = 'employee'
+  } else if ('Student' in cookies) {
+    token = cookies.Student
+    authRoute = `${process.env.NEXT_PUBLIC_API_URL}/users/student/auth`
+    userGetRole = 'student'
+  }
+  else if ('Parent' in cookies) {
+    token = cookies.Parent
+    authRoute = `${process.env.NEXT_PUBLIC_API_URL}/users/parent/auth`
+    userGetRole = 'parent'
+  }
   axios.interceptors.request.use(
     async config => {
-      const token = parsedToken.JWToken
       if (token) {
         config.headers!.authorization = 'Bearer ' + token
       }
@@ -22,16 +37,18 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   )
 
-  // useMemo(
-  //   async () => {
-  //     try {
-  //       await axios.get(`http://127.0.0.1:3333/auth`)
-  //       router.push('/')
-  //     } catch (error) {
-  //       router.push('/login')
-  //     }
-  //   }, []
-  // )
+  useMemo(
+    async () => {
+      try {
+        const auth = await axios.get(authRoute)
+        console.log(auth)
+      } catch (error) {
+        router.push('/login')
+        console.log(error)
+        destroyCookie(null, 'Student' || 'Parent' || "Employee")
+      }
+    }, []
+  )
 
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
@@ -78,7 +95,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setCookie({}, role, token, {
           maxAge: 24 * 60 * 60
         })
-        router.push('/')
+        router.reload()
       } catch (error) {
         console.log(error)
         return 401

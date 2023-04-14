@@ -27,6 +27,7 @@ export const EmployeeSchoolInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "idNumber")
                     }}
+                    helperText="Please enter employee ID."
                 />
             </div >
 
@@ -42,6 +43,7 @@ export const EmployeeSchoolInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "rfidNumber")
                     }}
+                    helperText="Please enter RFID number."
                 />
             </div >
 
@@ -58,6 +60,7 @@ export const EmployeeSchoolInfo = () => {
                     onChange={(e) => {
                         setPosition(e.target.value);
                     }}
+                    helperText="Please enter position."
                 >
                     {(apiPosition?.data || []).map((element: { id: number, position: string }, id: number) => {
                         // console.log(element.position)

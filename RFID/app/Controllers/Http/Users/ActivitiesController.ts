@@ -14,17 +14,17 @@ export default class ActivitiesController {
         const d = new Date()
         let day = weekday[d.getDay()]
 
-        let myData
 
-        const port = new SerialPort({ path: 'COM3',  baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
+
+        const port = new SerialPort({ path: 'COM3', baudRate: 9600, dataBits: 8, parity: 'none', stopBits: 1 })
         const parser = new ReadlineParser({
             delimiter: '\r\n'
         });
         port.pipe(parser)
 
         parser.on('data', async (data) => {
-            myData = await data
-            console.log(myData)
+            const myData = await data
+            // console.log(myData)
             const trx = await Database.transaction()
             try {
                 const user = await User
@@ -177,9 +177,35 @@ export default class ActivitiesController {
             return currentStatus.length
         });
 
+        const studentTotalIn = grade.reduce((acc: string[], user: { activity: { status: string; }[]; }) => {
+            if (user.activity[0].status === "In") {
+                acc.push('In')
+            }
+            return acc
+        }, [])
+
+        const totalEmployee = await User.query().whereHas('role', (role) => {
+            role.where('role', 'Employee')
+        }).preload('position')
+            .preload('yearLevel')
+            .where('flag', 1)
+            .whereHas('activity', (activity) => {
+                activity.where('flag', 1)
+            })
+            .preload('activity', (activity) => {
+                activity.orderBy('id', 'desc')
+            })
+
+        const totalEmployeeIn = totalEmployee.reduce((acc: string[], user: { activity: { status: string; }[]; }) => {
+            if (user.activity[0].status === "In") {
+                acc.push('In')
+            }
+            return acc
+        }, [])
 
 
-        return response.status(200).json([grade, yearLabel, yearLevelMap, gradesMap, activity])
+
+        return response.status(200).json([grade, yearLabel, yearLevelMap, gradesMap, activity, studentTotalIn, totalEmployee, totalEmployeeIn])
         // return response.status(200).json([activity, grade7, grade8, grade9, grade10, grade11, grade12])
     }
 }

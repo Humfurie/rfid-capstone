@@ -46,7 +46,7 @@ export default function Home() {
           <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
         </div>
 
-        <div className={`pt-16 w-full`}>
+        <div className={`pt-16 w-full h-full`}>
 
           {/* <div className="grid grid-cols-3 gap-4">
             <div className="bg-gray-200 p-4">Column 1</div>
@@ -91,7 +91,7 @@ export default function Home() {
 
           </div> */}
 
-          <div className='grid grid-cols-2 gap-3'>
+          {/* <div className='grid grid-cols-2 gap-3'>
             <div className='grid grid-rows-2 '>
               <div className='grid grid-cols-2 gap-3 h-40'>
 
@@ -103,7 +103,7 @@ export default function Home() {
                 </div>
 
               </div>
-              <div className='h-80'>
+              <div className=''>
                 <div className={`w-60 h-60 mx-auto ${Style.pieChartBg}`}>
                   <PieChart />
                 </div>
@@ -117,37 +117,37 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className='h-80'>
+              <div className=''>
                 live ina nd out
               </div>
             </div>
-          </div>
+          </div> */}
 
 
-          {/* <div className='grid grid-rows-2 grid-flow-col gap-3'>
+          <div className='grid grid-cols-2 gap-3 sm:h-full sm:w-full'>
 
-            <div className='grid grid-cols-2 h-40'>
-              <div className={`h-40 ${Style.employeePopulationBg}`}>
+            <div className='grid grid-cols-2 gap-3 '>
+              <div className={`${Style.employeePopulationBg}`}>
                 employee population
               </div >
-              <div className={`h-40 ${Style.studentPopulationBg}`}>
+              <div className={`${Style.studentPopulationBg}`}>
                 <StudentPopulation />
               </div>
             </div>
-            <div className={`h-96 w-80 mx-auto ${Style.pieChartBg}`}>
+            <div className={`${Style.tableBg}`}>
+              date
+            </div>
+          </div>
+          <div className='grid grid-cols-2 gap-3 sm:h-full sm:w-full'>
+
+            <div className={`${Style.tableBg} `}>
               <PieChart />
             </div>
-            <div className={`${Style.tableBg}`}>
-              <div className=" h-32 w-40">
-                date
-              </div>
-
-            </div>
-            <div className={`${Style.tableBg}`}>
+            <div className={`${Style.tableBg} `}>
               live in and out
             </div>
+          </div>
 
-          </div> */}
         </div>
       </div>
     </div>

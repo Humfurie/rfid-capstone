@@ -11,10 +11,12 @@ export const Style = {
     edit: "text-gray-500 hover:text-green-600",
     delete: "text-gray-500 hover:text-red-600",
     menuTab: "flex p-1 bg-white rounded-lg shadow-sm",
-    infoHeader: "bg-slate-300 p-1 rounded-lg font-bold",
+    infoHeader: "bg-slate-300 p-1 rounded-xl font-bold",
     employeePopulationBg: " bg-red-100 shadow p-2 mt-2 rounded-lg",
     studentPopulationBg: "bg-yellow-100 shadow p-2 mt-2 rounded-lg",
     pieChartBg: "bg-white shadow  rounded-lg",
+    viewImgBg: "bg-slate-100 p-1 rounded-2xl",
+    viewName: "text-2xl font-bold mx-auto bg-slate-50 rounded shadow text-center",
 
     /**
      * Table design
