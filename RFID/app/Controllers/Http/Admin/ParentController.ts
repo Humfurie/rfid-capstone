@@ -59,6 +59,8 @@ export default class ParetController {
             user.useTransaction(trx)
             await user.merge(validated).save()
 
+            await user.related('user').sync([req.children])
+
             await trx.commit()
             return response.status(200).json(user)
         } catch (error) {
