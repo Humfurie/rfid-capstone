@@ -39,7 +39,7 @@ export default function login() {
                 maxAge: 24 * 60 * 60,
             })
         })
-        router.push('/')
+        router.reload()
     }
     return (
         <div className='h-screen bg-gradient-to-b from-[#c2edce] via-[#badfe7] to-[#6fb3b8]'>

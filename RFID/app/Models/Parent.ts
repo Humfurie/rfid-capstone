@@ -3,6 +3,7 @@ import { BaseModel, column, ManyToMany, manyToMany,  HasOne, hasOne, } from '@io
 import User from './User'
 import Role from './Role'
 import ProfilePic from './ProfilePic'
+import UserLogin from './UserLogin'
 // import { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
 
 export default class Parent extends BaseModel {
@@ -56,6 +57,9 @@ export default class Parent extends BaseModel {
 
   @hasOne(() => ProfilePic)
   public profilePic: HasOne<typeof ProfilePic>
+
+  @hasOne(() => UserLogin)
+  public userLogin: HasOne<typeof UserLogin>
   
   @manyToMany(() => Role, {
     pivotTable: 'user_roles'

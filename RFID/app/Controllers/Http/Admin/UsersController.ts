@@ -21,6 +21,7 @@ export default class UsersController {
             .preload('role')
             .preload('position')
             .preload('profilePic')
+            .orderBy('id', 'desc')
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -64,6 +65,7 @@ export default class UsersController {
             .preload('yearLevel')
             .preload('role')
             .preload('profilePic')
+            .orderBy('id', 'desc')
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -210,13 +212,15 @@ export default class UsersController {
 
     public async deleteUser({ request, response }: HttpContextContract) {
         const req = request.only(['id', 'role'])
-        const deletedUser = await User.query().whereHas('role', (builder) => {
+        const user = await User.query().whereHas('role', (builder) => {
             builder.where('role', req.role)
         })
             .where('id', req.id)
             .where('flag', 1)
             .update({ flag: 0 })
+            .firstOrFail()
 
-        return response.status(200).json(deletedUser)
+
+        return response.status(200).json({'message' : `User is deleted succesfully`})
     }
 }

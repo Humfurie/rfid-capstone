@@ -16,7 +16,9 @@ const StudentRegistration = () => {
   const {
     setRegistration,
     userSubmit,
-    setRole
+    setRole,
+    userInfo,
+    emergency
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')
@@ -33,11 +35,23 @@ const StudentRegistration = () => {
         type="submit"
         variant="contained"
         color="primary"
-         className={`bg-gray-500`}
-         endIcon={<CheckCircleRoundedIcon/>}
+        className={`bg-gray-500`}
+        endIcon={<CheckCircleRoundedIcon />}
         onClick={() => {
           setRole("student")
         }}
+        disabled={
+          (userInfo.firstName
+            && userInfo.lastName
+            && userInfo.gender
+            && userInfo.birthdate
+            && userInfo.address
+            && userInfo.idNumber
+            && userInfo.rfidNumber
+            && userInfo.year
+            && emergency.name
+          ) === "" ? true : false
+        }
       >
         Register
       </Button>
@@ -47,32 +61,32 @@ const StudentRegistration = () => {
 
   return (
     <div className="w-full">
-     
-        <h4 className="text-center">Student Registration</h4>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setRegistration(false)
-            userSubmit();
-            router.push("/users/student")
-          }}
-        >
-         < UsersFormButtonSelection
-            active={active}
-            setActive={setActive}
-            setSelection={setSelection}
-          />
 
-          <div>
-            {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <StudentSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "We found nothing"}
-          
-          </div>
+      <h4 className="text-center">Student Registration</h4>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setRegistration(false)
+          userSubmit();
+          router.push("/users/student")
+        }}
+      >
+        < UsersFormButtonSelection
+          active={active}
+          setActive={setActive}
+          setSelection={setSelection}
+        />
 
-          <div>
-            {active.emergency === true ? submitButton : ''}
-          </div>
-        </form>
-      </div>
+        <div>
+          {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <StudentSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "We found nothing"}
+
+        </div>
+
+        <div>
+          {active.emergency === true ? submitButton : ''}
+        </div>
+      </form>
+    </div>
 
   );
 };

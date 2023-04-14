@@ -19,6 +19,7 @@ const EmergencyContactInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "emergencyName");
           }}
+          helperText="Please enter name."
         />
       </div>
 
@@ -34,6 +35,7 @@ const EmergencyContactInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "emergencyContactNumber");
           }}
+          helperText="Please enter contact number."
         />
 
       </div>
@@ -50,6 +52,7 @@ const EmergencyContactInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "emergencyEmail");
           }}
+          helperText="Please enter email."
         />
       </div>
 
@@ -65,6 +68,7 @@ const EmergencyContactInfo = (props: any) => {
           onChange={(e) => {
             formOnChange(e.target.value, "emergencyFacebook");
           }}
+          helperText="Please enter facebook."
         />
       </div>
     </div>

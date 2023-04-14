@@ -17,7 +17,7 @@ const ParentDatatable = (props: any) => {
       return num
     }, {})
   )
-console.log("ehe",deleteOpen)
+
   const handleDelete = (positionId: any) => {
     setDeleteOpen((prev: any) => {
       return { ...prev, [positionId]: true }

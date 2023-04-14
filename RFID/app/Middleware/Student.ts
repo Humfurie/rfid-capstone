@@ -13,9 +13,9 @@ export default class student {
       const decode = jwt.verify(token, `${process.env.STUDENT}`)
 
       request.student = decode
-      console.log(decode)
+
     } catch (error) {
-      console.log('error maot')
+      return response.status(401).json({ "message": "User is unauthorized" })
     }
     await next()
   }

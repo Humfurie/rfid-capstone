@@ -47,7 +47,7 @@ export default class PositionsController {
                 .where('flag', 1)
                 .firstOrFail()
             if (!position) {
-                return response.status(401).json({ 'message': 'Poition not found!' })
+                return response.status(401).json({ 'message': 'Position not found!' })
             }
 
             position.useTransaction(trx)

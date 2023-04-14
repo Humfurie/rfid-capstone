@@ -21,18 +21,18 @@ const DestroyParent = (props: any) => {
                 <form onSubmit={e => {
                     e.preventDefault()
                     parentDelete()
-                    router.push("/users/parent")
+                    router.reload()
                 }} >
                     <div className="flex flex-col">
-                        <td className={`${Style.tableBorder}`}>
+                        <div className={`${Style.tableBorder}`}>
                             {user.id}
-                        </td>
-                        <td className={`${Style.tableBorder}`}>
+                        </div>
+                        <div className={`${Style.tableBorder}`}>
                             {user.first_name} {user.last_name}
-                        </td>
-                        <td className={`${Style.tableBorder}`}>
+                        </div>
+                        <div className={`${Style.tableBorder}`}>
                             {user.contact_number}
-                        </td>
+                        </div>
                     </div>
                     <div className="flex justify-evenly">
                         <button type="button" onClick={e => setOpen(user.id)}>Cancel</button>

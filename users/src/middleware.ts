@@ -23,8 +23,6 @@ export function middleware(request: NextRequest) {
         const employeeUrl = (url.startsWith('/users/employee'))
         const parentUrl = (url.startsWith('/users/parent'))
 
-        console.log(studentCookie, employeeCookie, parentCookie)
-
         if (studentCookie?.name === 'Student') {
             cookie = studentCookie
             newPaths = '/users/student'

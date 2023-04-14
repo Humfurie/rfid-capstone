@@ -18,7 +18,7 @@ export default class newUserRegistrationController {
          */
         const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'yearLevel'])
         const files = request.file('banner')
-
+        console.log(input)
         const trx = await Database.transaction() //transactions are normally used for relationships
 
         if (!files) {
@@ -101,7 +101,7 @@ export default class newUserRegistrationController {
 
                     await user.save()
 
-                    await user.related('yearLevel').attach([input.yearLevel])
+                    await user.related('yearLevel').attach([input.userRegistration.year])
                     await user.related('role').attach([1])
 
                     const emergency = new EmergencyContact()
@@ -127,7 +127,7 @@ export default class newUserRegistrationController {
                     await trx.commit()
                     return response.status(200)
                 } catch (error) {
-
+                    console.log(error)
                     await trx.rollback()
                     return response.status(400)
                 }
@@ -267,7 +267,7 @@ export default class newUserRegistrationController {
 
                 await user.save()
 
-                await user.related('yearLevel').attach([input.yearLevel])
+                await user.related('yearLevel').attach([input.userRegistration.year])
                 await user.related('role').attach([1])
 
 

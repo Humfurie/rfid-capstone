@@ -41,7 +41,7 @@ const Destroy = (props: any) => {
                         <button type="button" onClick={e => setOpen(user.id)}>Cancel</button>
                         <button type="submit" onClick={e => {
                             setId(user.id)
-                            setRole(userRole)
+                            setRole(userRole)  
                         }}>Delete</button>
                     </div>
                 </form>
