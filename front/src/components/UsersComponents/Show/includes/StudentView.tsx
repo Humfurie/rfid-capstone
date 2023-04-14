@@ -1,9 +1,12 @@
 import { useContext, useState } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
+import Avatar from "@mui/material/Avatar";
+import { grey, yellow } from "@mui/material/colors";
 
 const StudentView = (props: any) => {
     const { user } = props
+    console.log("student view", user)
 
     const [infoOpen, setInfoOpen] = useState(false)
     // const [submenuOpen, setSubmenuOpen] = useState(false)
@@ -16,13 +19,21 @@ const StudentView = (props: any) => {
         <div className=" w-full h-full">
             <div className="grid grid-cols-2">
 
-                <div className="mx-auto pt-3">
-                    <div>
-                        image
+                <div className={` mx-auto pt-3 bg `}>
+                    <div className="p-2">
+                        <Avatar
+                            alt={`${user.first_name}`}
+                            src={`${process.env.NEXT_PUBLIC_API_URL + user.profilePic?.url}`}
+                            sx={{ width: 300, height: 300, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+
+                        />
                     </div>
-                    <div className="text-lg font-bold">
-                        {user.first_name} {user.middle_name} {user.last_name}
+                    <div className="p-2">
+                        <div className={`${Style.viewName}`}>
+                            {user.first_name} {user.middle_name} {user.last_name}
+                        </div>
                     </div>
+
                 </div>
 
                 <div className="p-1" >
@@ -54,10 +65,18 @@ const StudentView = (props: any) => {
                                 <span className="font-semibold">ID Number: </span>
                                 {user.id_number}
                             </div>
+                            <div className="p-0.5">
+                                <span className="font-semibold">RFID Number: </span>
+                                {user.rfid_number}
+                            </div>
 
                             <div className="p-10.5">
                                 <span className="font-semibold"> Year Level: </span>
                                 {user?.yearLevel[0]?.year}
+                            </div>
+                            <div className="p-10.5">
+                                <span className="font-semibold"> Alumni: </span>
+                                {user.is_alumni === 1 ? "Yes" : "No"}
                             </div>
 
                         </div>

@@ -41,6 +41,7 @@ export function PieChart() {
                 label: '# of Students',
                 // data: [grade7, grade8, grade9, grade10, grade11Map.length, grade12],
                 data: data?.data[3],
+                // data: [],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -62,5 +63,15 @@ export function PieChart() {
         ],
     };
 
-    return <Doughnut data={chart} />;
+    return (
+        <div style={{ maxHeight: '1000px', maxWidth: '1000px', minHeight: '100px', minWidth: '100px' }}>
+            <Doughnut
+                data={chart}
+                options={{
+                    responsive: true, // Enable responsiveness
+                    maintainAspectRatio: true, // Prevent maintaining aspect ratio
+                }}
+            />
+        </div>
+    )
 }

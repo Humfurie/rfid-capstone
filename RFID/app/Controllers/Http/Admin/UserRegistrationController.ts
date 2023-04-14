@@ -1,3 +1,5 @@
+import Application from '@ioc:Adonis/Core/Application'
+import DriveManager from '@ioc:Adonis/Core/Drive'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import EmergencyContact from 'App/Models/EmergencyContact'
@@ -14,35 +16,168 @@ export default class newUserRegistrationController {
         /**
          * this input is received from the axios endpoint from app.tsx
          */
-        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'profilePic'])
+        const input = request.only(['userRegistration', 'position', 'role', 'emergency', 'account', 'yearLevel'])
+        const files = request.file('banner')
+        console.log(input)
+        const trx = await Database.transaction() //transactions are normally used for relationships
 
-        // console.log(input)
+        if (!files) {
 
-        /**
-        * transactions are normally used for relationships
-        */
-        const trx = await Database.transaction()
+            if (input.role === 'employee') {
 
-        /**
-        * separating role into 3 segments
-        * employee, student, parents
-        */
+                try {
+                    // const validated = input.userRegistration.validate(UserValidator)
+
+                    const user = new User() // user model
+
+                    user.firstName = input.userRegistration.firstName //these are user model properties
+                    user.middleName = input.userRegistration.middleName
+                    user.lastName = input.userRegistration.lastName
+                    user.birthdate = input.userRegistration.birthdate
+                    user.gender = input.userRegistration.gender
+                    user.email = input.userRegistration.email
+                    user.address = input.userRegistration.address
+                    user.contactNumber = input.userRegistration.contactNumber
+                    user.facebook = input.userRegistration.facebook
+                    user.idNumber = input.userRegistration.idNumber
+                    user.rfidNumber = input.userRegistration.rfidNumber
+
+                    user.useTransaction(trx) //user transaction
+                    await user.save() //created user save function
+
+                    await user.related('role').attach([2])
+                    await user.related('position').attach([1])
+
+                    const emergency = new EmergencyContact() // emergency contact model
+                    emergency.name = input.emergency.name
+                    emergency.contactNumber = input.emergency.contactNumber
+                    emergency.facebook = input.emergency.facebook
+                    emergency.email = input.emergency.email
+                    emergency.userId = user.id
+
+                    emergency.useTransaction(trx)   //creating
+
+                    await emergency.save() //saving emergency_contact data
+
+                    const account = new UserLogin() // account model
+                    account.username = user.lastName
+                    account.password = user.idNumber
+                    account.userId = user.id
+
+                    account.useTransaction(trx) //UserLogin transaction
+
+                    await account.save() //account save
+
+                    await trx.commit() //transaction commmit for safe saving all data without failure
+                    return response.status(200).json({ ...user })
+                } catch (error) {
+
+                    await trx.rollback() //transaction rollback is for not saving related data in case of failure
+                    return response.status(400).json([error, { 'message': 'Employee is not saved' }])
+
+                }
+
+            }
+            else if (input.role === 'student') {
+
+                try {
+
+
+                    const user = new User() //these are user model properties
+                    user.firstName = input.userRegistration.firstName
+                    user.middleName = input.userRegistration.middleName
+                    user.lastName = input.userRegistration.lastName
+                    user.birthdate = input.userRegistration.birthdate
+                    user.gender = input.userRegistration.gender
+                    user.email = input.userRegistration.email
+                    user.address = input.userRegistration.address
+                    user.contactNumber = input.userRegistration.contactNumber
+                    user.facebook = input.userRegistration.facebook
+                    user.idNumber = input.userRegistration.idNumber
+                    user.rfidNumber = input.userRegistration.rfidNumber
+                    user.isAlumni = input.userRegistration.isAlumni
+
+                    user.useTransaction(trx)
+
+                    await user.save()
+
+                    await user.related('yearLevel').attach([input.userRegistration.year])
+                    await user.related('role').attach([1])
+
+                    const emergency = new EmergencyContact()
+                    emergency.name = input.emergency.name
+                    emergency.contactNumber = input.emergency.contactNumber
+                    emergency.facebook = input.emergency.facebook
+                    emergency.email = input.emergency.email
+                    emergency.userId = user.id
+
+                    emergency.useTransaction(trx)
+
+                    await emergency.save()
+
+                    const account = new UserLogin()
+                    account.username = user.lastName
+                    account.password = user.idNumber
+                    account.userId = user.id
+
+                    account.useTransaction(trx)
+
+                    await account.save()
+
+                    await trx.commit()
+                    return response.status(200)
+                } catch (error) {
+                    console.log(error)
+                    await trx.rollback()
+                    return response.status(400)
+                }
+            }
+            else if (input.role === 'parent') {
+                try {
+
+                    const user = new Parent()
+
+                    user.firstName = input.userRegistration.firstName
+                    user.middleName = input.userRegistration.middleName
+                    user.lastName = input.userRegistration.lastName
+                    user.birthdate = input.userRegistration.birthdate
+                    user.gender = input.userRegistration.gender
+                    user.email = input.userRegistration.email
+                    user.address = input.userRegistration.address
+                    user.contactNumber = input.userRegistration.contactNumber
+                    user.facebook = input.userRegistration.facebook
+
+                    user.useTransaction(trx)
+
+                    await user.save()
+
+                    await trx.commit()
+                    return response.status(200)
+                } catch (error) {
+
+                    await trx.rollback()
+                    return response.status(400)
+                }
+            }
+            else {
+
+                return response.status(300).json({ "message": "role not found!" })
+            }
+        }
+
+        const folderName = Date.now()
+        await files.move(Application.tmpPath(`uploads/${folderName}`))
+
+        const uploadDrive = await DriveManager.getUrl(`${folderName}/${files?.clientName}`)
+
         if (input.role === 'employee') {
 
-            /**
-             * user Model
-             */
             try {
                 // const validated = input.userRegistration.validate(UserValidator)
-                console.log('this is inpiyt')
 
-                /**
-                 * 
-                 * these are user model properties
-                */
-                const user = new User()
+                const user = new User() // user model
 
-                user.firstName = input.userRegistration.firstName
+                user.firstName = input.userRegistration.firstName //these are user model properties
                 user.middleName = input.userRegistration.middleName
                 user.lastName = input.userRegistration.lastName
                 user.birthdate = input.userRegistration.birthdate
@@ -66,98 +201,55 @@ export default class newUserRegistrationController {
                 // user.idNumber = validated.idNumber
                 // user.rfidNumber = validated.rfidNumber
 
-                /**
-                 * use transaction on current user model
-                 */
-                user.useTransaction(trx)
+                user.useTransaction(trx) //user transaction
+                await user.save() //created user save function
 
-                /**
-                 * save function for user
-                 */
-                await user.save()
-
-                /**
-                 * related tables specifically role and position
-                 */
                 await user.related('role').attach([2])
                 await user.related('position').attach([1])
 
-                /**
-                 * profile pic
-                 */
-                const profilePic = new ProfilePic()
-                profilePic.url = input.profilePic
+                const profilePic = new ProfilePic() //ProfilePic model
+                profilePic.userId = user.id
+                profilePic.url = uploadDrive
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
 
-                /**
-                 *  emergency_contact table for specific user
-                 */
-                const emergency = new EmergencyContact()
+                const emergency = new EmergencyContact() // emergency contact model
                 emergency.name = input.emergency.name
                 emergency.contactNumber = input.emergency.contactNumber
                 emergency.facebook = input.emergency.facebook
                 emergency.email = input.emergency.email
                 emergency.userId = user.id
 
-                /**
-                 * EmergencyContact model transaction
-                 */
-                emergency.useTransaction(trx)
+                emergency.useTransaction(trx)   //creating
 
-                /**
-                 * saving emergency_contact data
-                 */
-                await emergency.save()
+                await emergency.save() //saving emergency_contact data
 
-                /**
-                 * account model
-                 */
-                const account = new UserLogin()
+                const account = new UserLogin() // account model
                 account.username = user.lastName
                 account.password = user.idNumber
                 account.userId = user.id
 
-                /**
-                 * UserLogin transaction
-                 */
-                account.useTransaction(trx)
+                account.useTransaction(trx) //UserLogin transaction
 
-                /**
-                 * account save
-                 */
-                await account.save()
+                await account.save() //account save
 
-
-                /**
-                 * transaction commmit for safe saving all data without failure
-                 */
-                await trx.commit()
+                await trx.commit() //transaction commmit for safe saving all data without failure
                 return response.status(200).json({ ...user })
             } catch (error) {
 
-                /**
-                 * transaction rollback is for not saving related data in case of failure
-                 */
-                await trx.rollback()
-                return response.status(400).json([error, { 'message': 'maot' }])
+                await trx.rollback() //transaction rollback is for not saving related data in case of failure
+                return response.status(400).json([error, { 'message': 'Employee is not saved' }])
 
             }
 
         }
         else if (input.role === 'student') {
 
-            /**
-             * 
-             * user Model
-             */
-            const user = new User()
             try {
 
-                /**
-                 * these are user model properties
-                 */
+
+                const user = new User() //these are user model properties
                 user.firstName = input.userRegistration.firstName
                 user.middleName = input.userRegistration.middleName
                 user.lastName = input.userRegistration.lastName
@@ -171,34 +263,21 @@ export default class newUserRegistrationController {
                 user.rfidNumber = input.userRegistration.rfidNumber
                 user.isAlumni = input.userRegistration.isAlumni
 
-                /**
-                * use transaction on current user model
-                */
                 user.useTransaction(trx)
 
-                /**
-                 * save function for user
-                 */
                 await user.save()
 
-                /**
-                * related tables specifically role and year_level
-                */
-                // await user.related('yearLevel').attach()
+                await user.related('yearLevel').attach([input.userRegistration.year])
                 await user.related('role').attach([1])
 
-                /**
-                 * profile pic
-                 */
+
                 const profilePic = new ProfilePic()
-                profilePic.url = input.profilePic
+                profilePic.userId = user.id
+                profilePic.url = uploadDrive
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
 
-                /**
-               *  emergency_contact table for specific user
-               */
                 const emergency = new EmergencyContact()
                 emergency.name = input.emergency.name
                 emergency.contactNumber = input.emergency.contactNumber
@@ -206,55 +285,32 @@ export default class newUserRegistrationController {
                 emergency.email = input.emergency.email
                 emergency.userId = user.id
 
-                /**
-                 * EmergencyContact model transaction
-                 */
                 emergency.useTransaction(trx)
 
-                /**
-                 * saving emergency_contact data
-                 */
                 await emergency.save()
 
-                /**
-                 * account model
-                 */
                 const account = new UserLogin()
                 account.username = user.lastName
                 account.password = user.idNumber
                 account.userId = user.id
 
-                /**
-                 * UserLogin transaction
-                 */
                 account.useTransaction(trx)
 
                 await account.save()
-                /**
-                 * transaction commmit for safe saving all data without failure
-                 */
+
                 await trx.commit()
                 return response.status(200)
             } catch (error) {
 
-                /**
-                 * transaction rollback is for not saving related data in case of failure
-                 */
                 await trx.rollback()
                 return response.status(400)
             }
         }
         else if (input.role === 'parent') {
-
-            /**
-             * parent model
-             */
-            const user = new Parent()
             try {
-                console.log('this is parent user', user)
-                /**
-                 * these are parent model properties
-                 */
+
+                const user = new Parent()
+
                 user.firstName = input.userRegistration.firstName
                 user.middleName = input.userRegistration.middleName
                 user.lastName = input.userRegistration.lastName
@@ -265,21 +321,13 @@ export default class newUserRegistrationController {
                 user.contactNumber = input.userRegistration.contactNumber
                 user.facebook = input.userRegistration.facebook
 
-                /**
-                 * using database transaction for saving related table
-                 */
                 user.useTransaction(trx)
 
-                /**
-                 * saving parent model data
-                 */
                 await user.save()
 
-                /**
-                 * profile pic
-                 */
                 const profilePic = new ProfilePic()
-                profilePic.url = input.profilePic
+                profilePic.parentId = user.id
+                profilePic.url = uploadDrive
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
@@ -288,17 +336,12 @@ export default class newUserRegistrationController {
                 return response.status(200)
             } catch (error) {
 
-                /**
-                 * transaction rollback is for not saving related data in case of failure
-                 */
                 await trx.rollback()
                 return response.status(400)
             }
         }
         else {
-            /**
-             * in case everything else all fails
-             */
+
             return response.status(300).json({ "message": "role not found!" })
         }
     }

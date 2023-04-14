@@ -16,7 +16,7 @@ export const StudentSchoolInfo = () => {
     } = useContext(FormContext);
 
 
-    console.log("userInfo", userInfo)
+    console.log("userInfo alinmu", userInfo.isAlumni)
     return (
         <div>
             <div className={Style.inputDiv}>
@@ -31,6 +31,7 @@ export const StudentSchoolInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "idNumber");
                     }}
+                    helperText="Please enter ID number."
                 />
 
             </div>
@@ -46,6 +47,7 @@ export const StudentSchoolInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "rfidNumber");
                     }}
+                    helperText="Please enter RFID number."
                 />
 
             </div>
@@ -62,6 +64,7 @@ export const StudentSchoolInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "year");
                     }}
+                    helperText="Please enter year level."
 
                 >
                     {(apiYearLevel?.data || []).map((yearLevel: { id: number, year: string }, id: number) => {

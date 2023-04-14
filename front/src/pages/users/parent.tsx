@@ -29,6 +29,25 @@ export default function parent(props: any) {
 	const handleChangePage = (_event: any, newPage: SetStateAction<number>) => {
 		setCurrentPage(newPage)
 	}
+	
+	const [searchUser, setSearchUser] = useState('')
+	const [searchResult, setSearchResult] = useState(users)
+
+	const handleSearch = (event: { target: { value: any } }) => {
+		const { value } = event.target
+		setSearchUser(value)
+
+		const filteredResults = value ? users.filter((user: { first_name: string; last_name: string; contact_number: string; }) => {
+			return (
+				user.first_name.toLowerCase().includes(value.toLowerCase()) ||
+				user.last_name.toLowerCase().includes(value.toLowerCase()) ||
+				user.contact_number.toLowerCase().includes(value.toLowerCase()))
+		}) : users
+
+
+		console.log(filteredResults)
+		setSearchResult(filteredResults)
+	}
 
 	return (
 		<div className={`flex h-screen`}>
@@ -47,10 +66,10 @@ export default function parent(props: any) {
 
 				<div className={`flex flex-col w-full pt-12`}>
 					<div>
-						<ParentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} />
+						<ParentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} searchUser={searchUser} handleSearch={handleSearch} />
 					</div>
 					<div className={`${Style.tableBg}`}>
-						<ParentDatatable users={users} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} />
+						<ParentDatatable users={searchResult} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} />
 					</div>
 				</div>
 			</div>

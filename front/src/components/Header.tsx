@@ -10,6 +10,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from "next/link";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import pic from '../public/Powtaytow.png'
+
 
 
 // Rearrange date value to get the order you want... also replace / with a cooler separator like ⋅
@@ -27,6 +30,7 @@ const AppBar = styled(MuiAppBar, {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
 	}),
+	backgroundColor: 'white',
 	...(open && {
 		marginLeft: drawerWidth,
 		width: `calc(100% - ${drawerWidth}px)`,
@@ -58,7 +62,6 @@ export default function Header(props: any) {
 			<AppBar
 				position="fixed"
 				open={open}
-				className="bg-white shadow"
 			>
 				<Toolbar>
 					<IconButton
@@ -71,24 +74,35 @@ export default function Header(props: any) {
 							...(open && { display: 'none' }),
 						}}
 					>
-						
-						<MenuIcon className="text-gray-700 pr-50"  />
+
+						<MenuIcon className="text-gray-700 pr-50" />
 					</IconButton>
 
 					<div className="grid justify-items-end ">
 						<div>
 
 
-							<Button
+							{/* <Button
 								className="flex justify-end  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
 								id="demo-positioned-button"
 								aria-controls={open ? 'demo-positioned-menu' : undefined}
 								aria-haspopup="true"
 								aria-expanded={open ? 'true' : undefined}
 								onClick={handleClick}
-							>
-								Image
-							</Button>
+							> */}
+							<Image
+								src={pic}
+								alt='/Powtaytow.png'
+							
+								id="demo-positioned-button"
+								aria-controls={open ? 'demo-positioned-menu' : undefined}
+								aria-haspopup="true"
+								aria-expanded={open ? 'true' : undefined}
+								onClick={handleClick}
+								width={50}
+								height={50}
+							/>
+							{/* </Button> */}
 							<Menu
 								id="demo-positioned-menu"
 								aria-labelledby="demo-positioned-button"

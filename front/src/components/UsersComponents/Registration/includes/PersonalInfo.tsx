@@ -1,15 +1,24 @@
-import { useContext } from "react";
+import { useContext, useMemo, useState } from "react";
 import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
+import { Button, IconButton } from "@mui/material";
+import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
+import { Divider } from "@mantine/core";
 
 export const PersonalInfo = () => {
     const {
         userOnChange,
-        userInfo
-
+        userInfo,
+        imageFile,
+        setImageFile
     } = useContext(FormContext);
+
+    const handleImageChange = (e: any) => {
+        const file = e.target.files[0];
+        setImageFile(file);
+    }
 
     const gender = [
         {
@@ -21,8 +30,65 @@ export const PersonalInfo = () => {
             label: 'Female'
         }
     ]
+
     return (
         <div>
+            <div className={Style.inputDiv}>
+                <div>
+                    <label htmlFor="" className={Style.label}>
+                        Profile Picture
+                    </label>
+
+                    {/* {profilePic} */}
+                    <div>
+                        {imageFile ? (
+                            <IconButton
+                                color="primary"
+                                aria-label="upload picture"
+                                component="label"
+                            >
+
+                                <img
+                                    className="preview-image"
+                                    src={URL.createObjectURL(imageFile)}
+                                    alt="Profile Picture"
+                                    width={100}
+                                    height={100}
+                                />
+                                <input
+                                    hidden
+                                    accept="image/*"
+                                    type="file"
+                                    id="profile-picture"
+                                    onChange={handleImageChange}
+
+                                />
+                            </IconButton>
+
+                        ) : (
+                            <div className="upload-placeholder">
+                                <IconButton
+                                    color="primary"
+                                    aria-label="upload picture"
+                                    component="label"
+                                >
+                                    <input
+                                        hidden
+                                        accept="image/*"
+                                        type="file"
+                                        id="profile-picture"
+                                        onChange={handleImageChange}
+
+                                    />
+                                    <CameraAltRoundedIcon fontSize="large" />
+                                </IconButton>
+                            </div>
+                        )}
+                    </div>
+
+                </div>
+               
+            </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                     First Name
@@ -37,6 +103,7 @@ export const PersonalInfo = () => {
                         userOnChange(e.target.value, "firstName");
                     }}
                     required
+                    helperText="Please enter first name."
                 />
             </div>
 
@@ -53,6 +120,8 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "middleName");
                     }}
+                    helperText="Please enter middle name."
+                    
                 />
 
             </div>
@@ -69,6 +138,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "lastName");
                     }}
+                    helperText="Please enter lastname."
                 />
 
             </div>
@@ -85,6 +155,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "birthdate");
                     }}
+                    helperText="Please enter birthdate."
                 />
             </div>
 
@@ -102,6 +173,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "gender");
                     }}
+                    helperText="Please enter gender."
 
                 >
                     {gender.map((option) => (
@@ -126,6 +198,7 @@ export const PersonalInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "address");
                     }}
+                    helperText="Please enter address."
                 />
 
             </div>

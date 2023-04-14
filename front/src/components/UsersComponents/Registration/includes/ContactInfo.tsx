@@ -23,6 +23,7 @@ export const ContactInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "email");
                     }}
+                    helperText="Please enter email."
                 />
 
             </div>
@@ -38,6 +39,7 @@ export const ContactInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "contactNumber");
                     }}
+                    helperText="Please enter contact number."
                 />
 
             </div>
@@ -53,6 +55,7 @@ export const ContactInfo = () => {
                     onChange={(e) => {
                         userOnChange(e.target.value, "facebook");
                     }}
+                    helperText="Please enter facebook."
                 />
             </div>
         </div>

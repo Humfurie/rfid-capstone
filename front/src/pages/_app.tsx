@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { FormContext } from "../lib/FormContext";
+import CustomAlert from "../components/alert";
 
 export default function App({ Component, pageProps }: AppProps) {
   /**
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
   const [registration, setRegistration] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false)
 
 
   /**
@@ -45,6 +47,9 @@ export default function App({ Component, pageProps }: AppProps) {
    *
    * this here contains all the forms and states stuff of the users
    */
+
+  const [imageFile, setImageFile] = useState('')
+
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     middleName: "",
@@ -63,6 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // console.log(userRegistration)
   // year levels
   const [year, setYear] = useState("")
+  console.log(year)
   //position-employee
   const [position, setPosition] = useState("")
   const [apiPosition, setApiPosition] = useState({})
@@ -113,7 +119,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // add position
   const positionSubmit = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/position`, {
-      
+
       position: position,
     })
     setPosition('')
@@ -128,11 +134,22 @@ export default function App({ Component, pageProps }: AppProps) {
     router.push('/users/year-level')
   }
   const userSubmit = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, {
-      userRegistration: userInfo,
-      position: position,
-      role: role,
-      emergency: emergency,
+
+    const formdata = new FormData()
+    formdata.append('banner', imageFile);
+
+
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/registration`, formdata, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      params: {
+        userRegistration: userInfo,
+        position: position,
+        role: role,
+        emergency: emergency,
+      },
+
     })
     setUserInfo({
       firstName: "",
@@ -171,7 +188,9 @@ export default function App({ Component, pageProps }: AppProps) {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/delete`, {
       role: role,
       id: id
-    })
+    }).then(res => {setAlertOpen(true)
+    return <CustomAlert message={res} /> } ).catch(err => {setAlertOpen(true)
+      return <CustomAlert message={err} />})
     setRole('')
     setId('')
   }
@@ -201,22 +220,23 @@ export default function App({ Component, pageProps }: AppProps) {
     setId('')
   }
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const admin = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
-        console.log(admin)
-        const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
-        const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
-        setApiPosition(getPosition)
-        setApiYearLevel(getYearLevel)
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
-        // router.push("/AdminDashboard");
-      } catch (error) {
-        // router.push("/");
-      }
-    })()
+  const effect = useCallback(async () => {
+    try {
+      const admin = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth`);
+      console.log(admin)
+      const getPosition = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/position`)
+      const getYearLevel = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/year_level`)
+      setApiPosition(getPosition)
+      setApiYearLevel(getYearLevel)
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rfid`)
+    } catch (error) {
+      router.push("/");
+    }
 
+  }, [])
+
+  useEffect(() => {
+    effect()
   }, [])
 
   return (
@@ -268,6 +288,11 @@ export default function App({ Component, pageProps }: AppProps) {
         id,
         setId,
 
+        //image
+        imageFile,
+        setImageFile,
+
+        setAlertOpen, //alert
       }}
     >
       <Component {...pageProps} />

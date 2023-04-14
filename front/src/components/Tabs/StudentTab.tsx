@@ -1,10 +1,11 @@
+import { TextField } from "@mui/material";
 import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Pagination from "@mui/material/Pagination";
 
 const StudentTab = (props: any) => {
-  const { totalPages, currentPage, handleChangePage } = props
+  const { totalPages, currentPage, handleChangePage, searchUser, handleSearch } = props
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
       <div className={`pt-3`}>
@@ -25,11 +26,13 @@ const StudentTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
-              <Button
+              <TextField
+                variant="standard"
                 className={`${Style.textColor}`}
-              >
-                Search
-              </Button>
+                value={searchUser}
+                onChange={handleSearch}
+                placeholder="Search"
+              />
               <Divider
                 flexItem
                 orientation="vertical"

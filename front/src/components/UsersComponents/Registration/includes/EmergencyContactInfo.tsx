@@ -23,6 +23,7 @@ export const EmergencyContactInfo = () => {
                     onChange={(e) => {
                         emergencyOnChange(e.target.value, "name");
                     }}
+                    helperText="Please enter name."
                 />
 
             </div>
@@ -39,6 +40,7 @@ export const EmergencyContactInfo = () => {
                     onChange={(e) => {
                         emergencyOnChange(e.target.value, "contactNumber");
                     }}
+                    helperText="Please enter contact number."
                 />
 
             </div>
@@ -55,6 +57,7 @@ export const EmergencyContactInfo = () => {
                     onChange={(e) => {
                         emergencyOnChange(e.target.value, "email");
                     }}
+                    helperText="Please enter email."
                 />
 
             </div>
@@ -71,6 +74,7 @@ export const EmergencyContactInfo = () => {
                     onChange={(e) => {
                         emergencyOnChange(e.target.value, "facebook");
                     }}
+                    helperText="Please enter facebook."
                 />
 
             </div>
