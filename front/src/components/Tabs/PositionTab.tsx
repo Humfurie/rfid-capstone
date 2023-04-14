@@ -45,7 +45,7 @@ const PositionTab = (props: any) => {
 
                                     id="outlined-basic"
                                     label="Add new position"
-                                    variant="filled"
+                                    variant="standard"
                                     size="small"
                                     type="text"
                                     value={position}

@@ -21,12 +21,12 @@ const genders = [
 const PersonalInfo = (props: any) => {
 
   const {
-    
+
     setChildren,
     children,
     apiChildren,
     setApiChildren
-} = useContext(FormContext);
+  } = useContext(FormContext);
 
   const { formOnChange, form } = props
 
@@ -148,39 +148,40 @@ const PersonalInfo = (props: any) => {
         />
       </div>
       <div className={Style.inputDiv}>
-                <label htmlFor="" className={Style.label}>
-                    Children
-                </label>
-                <TextField
-                    variant="standard"
-                    size="small"
-                    select
-                    value={children}
-                    onChange={(e) => {
-                        setChildren(e.target.value)
-                    }}
-                    helperText="Please enter year level."
+        <label htmlFor="" className={Style.label}>
+          Children
+        </label>
+        <TextField
+          variant="standard"
+          size="small"
+          select
+          value={children}
+          onChange={(e) => {
+            setChildren(e.target.value)
+          }}
+          helperText="Please enter year level."
 
-                >
-                    {(apiChildren?.data || []).map((children: {
-                        [x: string]: any; id: number, first_name: string, last_name: string
-                    }, id: number) => {
-                        return (
-                            <MenuItem key={id} value={children.id}>
-                                <Avatar
-                                    alt={`${children.first_name}`}
-                                    src={`${process.env.NEXT_PUBLIC_API_URL + children.profilePic?.url}`}
-                                    sx={{ width:30, height: 30, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+        >
+          {(apiChildren?.data || []).map((children: {
+            [x: string]: any; id: number, first_name: string, last_name: string
+          }, id: number) => {
+            return (
+              <MenuItem key={id} value={children.id}>
+                    <Avatar
+                      alt={`${children.first_name}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL + children.profilePic?.url}`}
+                      sx={{ width: 30, height: 30, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+                    />
+  
+                    {children.first_name}
+                  
+                    {children.last_name}
+              </MenuItem>
+            )
+          })}
 
-                                />
-                                {children.first_name}
-                                {children.last_name}
-                            </MenuItem>
-                        )
-                    })}
-
-                </TextField>
-            </div>
+        </TextField>
+      </div>
     </div>
   );
 }
