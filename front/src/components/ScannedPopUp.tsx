@@ -1,8 +1,10 @@
 import { Backdrop, Button, CircularProgress } from "@mui/material";
-import { useState } from "react";
+
 
 const ScannedPopUp = (props: any) => {
-    const { open, handleClose } = props
+    const { open, handleClose, scanned } = props
+
+
 
     return (
         <div>
@@ -12,9 +14,9 @@ const ScannedPopUp = (props: any) => {
                 onClick={handleClose}
             >
                 <div className={`grid grid-rows-3 text-center`}>
+                    {scanned}
 
-                
-                <div >
+                    {/* <div >
                     Image
                 </div>
                 <div>
@@ -22,7 +24,7 @@ const ScannedPopUp = (props: any) => {
                 </div>
                 <div>
                     Status in or out
-                </div>
+                </div> */}
                 </div>
 
             </Backdrop>

@@ -24,7 +24,7 @@ export default class ActivitiesController {
 
         parser.on('data', async (data) => {
             const myData = await data
-            // console.log(myData)
+            console.log(myData)
             const trx = await Database.transaction()
             try {
                 const user = await User
@@ -205,7 +205,7 @@ export default class ActivitiesController {
 
 
 
-        return response.status(200).json([grade, yearLabel, yearLevelMap, gradesMap, activity, studentTotalIn, totalEmployee, totalEmployeeIn])
+        return response.status(200).json([grade, yearLabel, yearLevelMap, gradesMap, activity])
         // return response.status(200).json([activity, grade7, grade8, grade9, grade10, grade11, grade12])
     }
 }
