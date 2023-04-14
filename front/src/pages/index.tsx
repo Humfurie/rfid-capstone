@@ -3,14 +3,20 @@ import AdminNavbar from '../components/AdminComponents/AdminNavbar';
 import Population from '../components/AdminComponents/AdminContPopulation';
 import LiveActivity from '../components/AdminComponents/AdminContLiveActivity';
 import Percentage from '../components/AdminComponents/AdminContPercentage';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Style } from '../lib/Style';
 import Sidebar from '../components/Sidebar';
 import { useTheme } from '@mui/material/styles';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import Head from 'next/head';
 import { PieChart } from '../components/AdminComponents/PieChart';
 import StudentPopulation from '../components/AdminComponents/StudentPopulation';
-
+import ActivityDatatable from './users/activities/includes/ActivityDatatable';
+import axios from 'axios'
+import useSWR from 'swr'
+import Pagination from "@mui/material/Pagination";
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export default function Home() {
 
@@ -25,6 +31,20 @@ export default function Home() {
   };
 
 
+  const fetcher = (url: any) => axios.get(url)
+  const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/rfid/show`, fetcher, { refreshInterval: 1000 })
+
+  console.log("act hehe", data?.data)
+
+  const itemsPerPage = 15
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil((data?.data[4] || []).length / itemsPerPage)
+  const handleChangePage = (_event: any, newPage: SetStateAction<number>) => {
+    setCurrentPage(newPage)
+  }
+
+  if (error) return <> ...error </>
+  if (isLoading) return <> ...loading </>
 
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
@@ -37,8 +57,6 @@ export default function Home() {
 
       <div className={`${Style.mainContent}`}>
 
-
-
         <div>
           <Header open={open} handleDrawerOpen={handleDrawerOpen} />
         </div>
@@ -46,105 +64,39 @@ export default function Home() {
           <Sidebar open={open} theme={theme} handleDrawerClose={handleDrawerClose} />
         </div>
 
-        <div className={`pt-16 w-full h-full`}>
+        <div className='pt-16 w-full h-full'>
+          <div className='grid grid-cols-2 gap-3'>
 
-          {/* <div className="grid grid-cols-3 gap-4">
-            <div className="bg-gray-200 p-4">Column 1</div>
-            <div className="bg-gray-300 p-4">Column 2</div>
-            <div className="bg-gray-400 p-4">Column 3</div>
-            <div className="bg-gray-500 p-4">Row 2 Column 1</div>
-            <div className="bg-gray-600 p-4">Row 2 Column 2</div>
-          </div> */}
-
-          {/* <div className='grid grid-rows-2 gap-3'>
-
-            <div className='grid grid-cols-3 h-40'>
-              <div>
-                <div className={`h-40  ${Style.employeePopulationBg}`}>
-                  employee population
-                </div >
-              </div>
-              <div>
-                <div className={`h-40 ${Style.studentPopulationBg}`}>
-                  <StudentPopulation />
-                </div>
-              </div>
-              <div>
-                <div className={`h-40 ${Style.tableBg}`}>
-                  date
-                </div>
-              </div>
-            </div>
-
-            <div className='grid grid-cols-2 h-72'>
-              <div>
-                <div className={`w-72 h-72 mx-auto ${Style.pieChartBg}`}>
-                  <PieChart />
-                </div>
-              </div>
-              <div>
-                <div className={`${Style.tableBg}`}>
-                  live in and out
-                </div>
-              </div>
-            </div>
-
-          </div> */}
-
-          {/* <div className='grid grid-cols-2 gap-3'>
-            <div className='grid grid-rows-2 '>
-              <div className='grid grid-cols-2 gap-3 h-40'>
-
-                <div className={`h-40  ${Style.employeePopulationBg}`}>
-                  employee population
-                </div >
-                <div className={`h-40 ${Style.studentPopulationBg}`}>
-                  <StudentPopulation />
-                </div>
-
-              </div>
-              <div className=''>
-                <div className={`w-60 h-60 mx-auto ${Style.pieChartBg}`}>
-                  <PieChart />
-                </div>
-              </div>
-
-            </div>
-            <div className='grid grid-rows-2'>
-              <div className='h-40'>
-                <div className={`h-40 ${Style.tableBg}`}>
-                  date
-                </div>
-              </div>
-
-              <div className=''>
-                live ina nd out
-              </div>
-            </div>
-          </div> */}
-
-
-          <div className='grid grid-cols-2 gap-3 sm:h-full sm:w-full'>
-
-            <div className='grid grid-cols-2 gap-3 '>
+            <div className='grid grid-cols-2 gap-3'>
               <div className={`${Style.employeePopulationBg}`}>
-                employee population
+                {data?.data[6].length} / {data?.data[7].length}
               </div >
               <div className={`${Style.studentPopulationBg}`}>
-                <StudentPopulation />
+                {/* <StudentPopulation /> */}
+                {data?.data[5].length} / {data?.data[8].length}
               </div>
             </div>
             <div className={`${Style.tableBg}`}>
-              date
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateCalendar />
+              </LocalizationProvider>
             </div>
           </div>
+
           <div className='grid grid-cols-2 gap-3 sm:h-full sm:w-full'>
 
             <div className={`${Style.tableBg} `}>
-              <PieChart />
+              <PieChart data={data} error={error} isLoading={isLoading} />
             </div>
             <div className={`${Style.tableBg} `}>
               live in and out
+              <Pagination
+                count={totalPages}
+                page={currentPage}
+                onChange={handleChangePage}
+                variant="text"
+              />
+              <ActivityDatatable data={data?.data[4] || []} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} isLoading={isLoading} error={error} />
             </div>
           </div>
 

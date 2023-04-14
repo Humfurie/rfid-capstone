@@ -63,7 +63,7 @@ export default function employee(props: any) {
 
 				<div className={`flex flex-col w-full pt-12`}>
 					<div>
-						<EmployeeTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} handleSearch={handleSearch} searchUser={searchUser} />
+						<EmployeeTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} handleSearch={handleSearch} searchUser={searchUser} users={users} />
 					</div>
 					<div className={`${Style.tableBg}`}>
 						<UsersDataTable users={searchResult || users} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} />

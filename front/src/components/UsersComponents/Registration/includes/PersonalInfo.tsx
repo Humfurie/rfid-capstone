@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Button, IconButton } from "@mui/material";
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import { Divider } from "@mantine/core";
+import moment from 'moment'
 
 export const PersonalInfo = () => {
     const {
@@ -87,7 +88,7 @@ export const PersonalInfo = () => {
                     </div>
 
                 </div>
-               
+
             </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
@@ -121,7 +122,7 @@ export const PersonalInfo = () => {
                         userOnChange(e.target.value, "middleName");
                     }}
                     helperText="Please enter middle name."
-                    
+
                 />
 
             </div>
@@ -152,8 +153,8 @@ export const PersonalInfo = () => {
                     size="small"
                     type="date"
                     value={userInfo.birthdate}
-                    onChange={(e) => {
-                        userOnChange(e.target.value, "birthdate");
+                    onChange={(e: any) => {
+                        userOnChange(moment(e).format('L'), "birthdate");
                     }}
                     helperText="Please enter birthdate."
                 />

@@ -7,16 +7,14 @@ export default class Parent {
 
     try {
       const token = request.headers().authorization?.split(" ")[1]
-      console.log(token, 'haihai')
 
       if (!token) return response.status(401).json({ message: 'Unauthorized Access' })
 
       const decode = jwt.verify(token, `${process.env.PARENT}`)
 
       request.parent = decode
-      console.log(decode)
     } catch (error) {
-      console.log('error maot')
+      return response.status(401).json({ "message": "User is unauthorized" })
     }
     await next()
   }

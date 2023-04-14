@@ -43,17 +43,15 @@ export default function PositionDataTable(props: any) {
   const handleClosePosition = (positionId: any) => {
     setSelected(null)
     setDeleteOpen((prev: any) => {
-      console.log(prev, positionId)
       return { ...prev, [positionId]: false }
     })
+
     setEditOpen((prev: any) => {
-      // console.log(prev, positionId)
       return { ...prev, [positionId]: false }
     })
   }
 
   let positionMap = (positions).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((position: any) => {
-    console.log("hello", positions)
     return (
       <tbody key={position.id}>
 
@@ -71,14 +69,14 @@ export default function PositionDataTable(props: any) {
                 handleEdit(position.id)
               }}>
                 <BorderColorRoundedIcon className={`${Style.edit}`} />
-                <PositionEdit handleClosePosition={handleClosePosition} editOpen={editOpen[position.id]} position={position} key={selected} />
+                <PositionEdit handleClosePosition={handleClosePosition} editOpen={editOpen[position.id]} position={position}/>
               </button>
 
               <button onClick={e => {
                 handleDelete(position.id)
               }}>
                 <DeleteRoundedIcon className={`${Style.delete}`} />
-                <DestroyPosition handleClosePosition={handleClosePosition} deleteOpen={deleteOpen[position.id]} position={position} key={selected} />
+                <DestroyPosition handleClosePosition={handleClosePosition} deleteOpen={deleteOpen[position.id]} position={position}/>
               </button>
             </div>
           </td>

@@ -13,7 +13,7 @@ export default class Admin {
 
       request.admin = decode
     } catch (error) {
-      console.log('error maot')
+      return response.status(401).json({ "message": "User is unauthorized" })
     }
     await next()
   }

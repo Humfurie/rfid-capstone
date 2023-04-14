@@ -67,14 +67,14 @@ export default function YearLevelDataTable(props: any) {
                 handleEdit(yearLevel.id)
               }}>
                 <BorderColorRoundedIcon className={`${Style.edit}`} />
-                <YearLevelEdit handleCloseYearLevel={handleCloseYearLevel} editOpen={editOpen[yearLevel.id]} yearLevel={yearLevel} key={selected} />
+                <YearLevelEdit handleCloseYearLevel={handleCloseYearLevel} editOpen={editOpen[yearLevel.id]} yearLevel={yearLevel}  />
               </button>
 
               <button onClick={e => {
                 handleDelete(yearLevel.id)
               }}>
                 <DeleteRoundedIcon className={`${Style.delete}`}/>
-                <DestroyYearLevel handleCloseDelete={handleCloseYearLevel} deleteOpen={deleteOpen[yearLevel.id]} yearLevel={yearLevel} key={selected} />
+                <DestroyYearLevel handleCloseDelete={handleCloseYearLevel} deleteOpen={deleteOpen[yearLevel.id]} yearLevel={yearLevel}  />
               </button>
             </div>
           </td>

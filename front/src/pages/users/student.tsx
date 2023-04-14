@@ -64,7 +64,7 @@ export default function student(props: any) {
 				</div>
 				<div className={`flex flex-col w-full pt-12`}>
 					<div>
-						<StudentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} searchUser={searchUser} handleSearch={handleSearch} />
+						<StudentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} searchUser={searchUser} handleSearch={handleSearch} users={users} />
 					</div>
 					<div className={`${Style.tableBg}`}>
 						<UsersDataTable users={searchResult} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} />
