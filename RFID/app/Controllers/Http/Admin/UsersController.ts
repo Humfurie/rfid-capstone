@@ -1,9 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database';
 import EmergencyContact from 'App/Models/EmergencyContact';
-import Position from 'App/Models/Position';
 import User from 'App/Models/User'
-import YearLevel from 'App/Models/YearLevel';
 import UserValidator from 'App/Validators/UserValidator';
 
 
@@ -19,10 +17,10 @@ export default class UsersController {
             .whereHas('role', (builder) => {
                 builder.where('role', 'Employee');
             }).where('flag', 1)
-            .where('flag', 1)
             .preload('emergencyContact')
             .preload('role')
             .preload('position')
+            .preload('profilePic')
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -45,6 +43,7 @@ export default class UsersController {
             .preload('emergencyContact')
             .preload('role')
             .preload('position')
+            .preload('profilePic')
             .firstOrFail()
 
         return response.status(200).json(user)
@@ -64,6 +63,7 @@ export default class UsersController {
             .preload('emergencyContact')
             .preload('yearLevel')
             .preload('role')
+            .preload('profilePic')
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -87,6 +87,7 @@ export default class UsersController {
             .preload('emergencyContact')
             .preload('yearLevel')
             .preload('role')
+            .preload('profilePic')
             .firstOrFail()
 
         return response.status(200).send(user)

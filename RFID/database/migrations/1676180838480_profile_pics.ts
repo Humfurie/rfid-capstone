@@ -7,8 +7,8 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('url')
-      table.integer('user_id').unsigned().references('users.id').onUpdate('CASCADE').onDelete('CASCADE')
-      table.integer('parent_id').unsigned().references('parents.id').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('user_id').unsigned().references('users.id').onUpdate('CASCADE').onDelete('CASCADE').nullable()
+      table.integer('parent_id').unsigned().references('parents.id').onUpdate('CASCADE').onDelete('CASCADE').nullable()
       table.integer('flag').defaultTo(1)
 
       /**
