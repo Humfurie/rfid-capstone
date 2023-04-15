@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,9 +6,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Style } from "../../lib/Style";
 import { destroyCookie, parseCookies } from "nookies";
+import Avatar from "@mui/material/Avatar";
+import { FormContext } from "../../lib/FormContext";
+import { grey, yellow } from "@mui/material/colors";
 
 
-const StudentHeader = () => {
+const StudentHeader = (props : any) => {
+    const {
+        data
+    } = useContext(FormContext)
 
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
@@ -54,7 +60,7 @@ const StudentHeader = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                            Image
+                           <Avatar alt={`${data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data.profilePic?.url}`} sx={{ bgcolor: yellow[50], color: grey[50] }} />
                         </Button>
                         <Menu
                             id="demo-positioned-menu"

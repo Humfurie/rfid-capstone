@@ -5,10 +5,11 @@ import { SetStateAction, useContext, useMemo, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import moment from 'moment'
 import { FormContext } from "../../../lib/FormContext";
+import Welcome from "../../../components/Welcome";
 
 const EmployeeDashboard = () => {
     const { data, error } = useContext(FormContext)
-
+console.log("emplyee", data)
     const itemsPerPage = 15
     const [currentPage, setCurrentPage] = useState(1)
     const totalPages = Math.ceil((data?.data.activity || []).length / itemsPerPage)
@@ -60,8 +61,11 @@ const EmployeeDashboard = () => {
             <div className="flex flex-col w-full">
                 <EmployeeHeader />
                 <div className="flex flex-col h-full bg-gray-200   ">
-                    <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
-                        <div>
+                    <div className="flex flex-col justify items-center  pr-20 pl-20 ">
+                        <div className="w-full">
+                            <Welcome/>
+                        </div>
+                        <div className={`w-full ${Style.tableBg} text-center`}>
                             Your recent activities
                         </div>
                         <Pagination
@@ -70,7 +74,7 @@ const EmployeeDashboard = () => {
                             onChange={handleChangePage}
                             variant="text"
                         />
-                        <div className={`w-full`}>
+                        <div className={`w-full ${Style.tableBg}`}>
                             <table className={`table-fixed w-full`}>
                                 <thead className={`bg-gray-500 text-white`}>
                                     <tr className="border-collapse ">
