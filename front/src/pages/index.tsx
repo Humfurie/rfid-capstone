@@ -1,8 +1,4 @@
 import Header from '../components/Header';
-import AdminNavbar from '../components/AdminComponents/AdminNavbar';
-import Population from '../components/AdminComponents/AdminContPopulation';
-import LiveActivity from '../components/AdminComponents/AdminContLiveActivity';
-import Percentage from '../components/AdminComponents/AdminContPercentage';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Style } from '../lib/Style';
 import Sidebar from '../components/Sidebar';
@@ -10,13 +6,13 @@ import { useTheme } from '@mui/material/styles';
 import { SetStateAction, useState } from 'react';
 import Head from 'next/head';
 import { PieChart } from '../components/AdminComponents/PieChart';
-import StudentPopulation from '../components/AdminComponents/StudentPopulation';
 import ActivityDatatable from './users/activities/includes/ActivityDatatable';
 import axios from 'axios'
 import useSWR from 'swr'
 import Pagination from "@mui/material/Pagination";
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 
 export default function Home() {
 
@@ -69,11 +65,41 @@ export default function Home() {
 
             <div className='grid grid-cols-2 gap-3'>
               <div className={`${Style.employeePopulationBg}`}>
-                {data?.data[6].length} / {data?.data[7].length}
+
+                <div className='flex  justify-center'>
+                  <div className='flex flex-col gap-5'>
+                    <div>
+                      <label htmlFor=" " className={`{${Style.label} font-extrabold text-2xl`}> EMPLOYEES</label>
+                    </div>
+                    <div>
+                      <label htmlFor=" " className={`{${Style.label} font-extrabold text-xl`}>Total : {data?.data[7].length} </label>
+                    </div>
+                    <div>
+                      <label htmlFor=" " className={`{${Style.label} font-extrabold text-xl`}>In :  {data?.data[6].length}</label>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                </div>
+
               </div >
               <div className={`${Style.studentPopulationBg}`}>
                 {/* <StudentPopulation /> */}
-                {data?.data[5].length} / {data?.data[8].length}
+                <div className='flex  justify-center'>
+                  <div className='flex flex-col gap-5'>
+                    <div>
+                      <label htmlFor=" " className={`{${Style.label} font-extrabold text-2xl`}> STUDENTS</label>
+                    </div>
+                    <div>
+                      <label htmlFor=" " className={`{${Style.label} font-extrabold text-xl`}>Total : {data?.data[8].length}</label>
+                    </div>
+                    <div>
+                      <label htmlFor=" " className={`{${Style.label} font-extrabold text-xl`}>In : {data?.data[5].length}</label>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className={`${Style.tableBg}`}>
