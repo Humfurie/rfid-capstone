@@ -29,6 +29,8 @@ const StudentHeader = (props : any) => {
         document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     };
 
+    console.log(data?.data)
+
     const router = useRouter();
 
     return (
@@ -43,15 +45,7 @@ const StudentHeader = (props : any) => {
                             A I S - R F T
                         </Button>
                     </div>
-                    <div className="flex w-full">
-                        <Button
-                            href={"/users/student/activities"}
-                            className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            Your Activities
-                        </Button>
-                    </div>
-                    <div className=" flex justify-end  ">
+                    <div className="flex w-full justify-end ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"
@@ -60,7 +54,7 @@ const StudentHeader = (props : any) => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                           <Avatar alt={`${data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data.profilePic?.url}`} sx={{ bgcolor: yellow[50], color: grey[50] }} />
+                           <Avatar alt={`${data?.data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data?.data.profilePic?.url}`} sx={{ bgcolor: yellow[50], color: grey[50] }} />
                         </Button>
                         <Menu
                             id="demo-positioned-menu"

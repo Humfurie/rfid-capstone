@@ -9,7 +9,7 @@ import Welcome from "../../../components/Welcome";
 
 const EmployeeDashboard = () => {
     const { data, error } = useContext(FormContext)
-console.log("emplyee", data)
+    console.log("emplyee", data)
     const itemsPerPage = 15
     const [currentPage, setCurrentPage] = useState(1)
     const totalPages = Math.ceil((data?.data.activity || []).length / itemsPerPage)
@@ -25,27 +25,7 @@ console.log("emplyee", data)
         if (data?.data) {
             activityMap = (
                 <>
-                    {(data?.data.activity || []).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((activity: any) => {
-                        const date = activity.created_at
-                        console.log(date)
-                        return (
-                            <tbody key={activity.id}>
-                                <tr className={`border-collapse  hover:bg-gray-200`}>
-                                    <td className={`${Style.tableBorder}`}>
-                                        {moment(date).format('MMMM Do YYYY, h:mm:ss a')}
-                                    </td>
-
-                                    <td className={`${Style.tableBorder}`}>
-
-                                        {activity.day}
-                                    </td>
-                                    <td className={`${Style.tableBorder}`}>
-                                        {activity.status}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        )
-                    })}
+                    { }
                 </>
             )
         }
@@ -63,7 +43,7 @@ console.log("emplyee", data)
                 <div className="flex flex-col h-full bg-gray-200   ">
                     <div className="flex flex-col justify items-center  pr-20 pl-20 ">
                         <div className="w-full">
-                            <Welcome/>
+                            <Welcome />
                         </div>
                         <div className={`w-full ${Style.tableBg} text-center`}>
                             Your recent activities
@@ -83,7 +63,29 @@ console.log("emplyee", data)
                                         <th className={`${Style.tableBorder}`}>Status</th>
                                     </tr>
                                 </thead>
-                                {activityMap}
+                                {data?.data && (
+                                    (data?.data.activity || []).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((activity: any) => {
+                                        const date = activity.created_at
+                                        console.log(date)
+                                        return (
+                                            <tbody key={activity.id}>
+                                                <tr className={`border-collapse  hover:bg-gray-200`}>
+                                                    <td className={`${Style.tableBorder}`}>
+                                                        {moment(date).format('MMMM Do YYYY, h:mm:ss a')}
+                                                    </td>
+
+                                                    <td className={`${Style.tableBorder}`}>
+
+                                                        {activity.day}
+                                                    </td>
+                                                    <td className={`${Style.tableBorder}`}>
+                                                        {activity.status}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        )
+                                    })
+                                )}
                             </table>
                         </div>
                     </div>

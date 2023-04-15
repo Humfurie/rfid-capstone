@@ -41,9 +41,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const fetcher = (url: any) => axios.get(url)
   const { data, error } = useSWR(authRoute, fetcher, { refreshInterval: 5000 })
 
-  // console.log(data?.data)
-
-
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
 
@@ -89,7 +86,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setCookie({}, role, token, {
           maxAge: 24 * 60 * 60
         })
-        router.reload()
+        router.push('/')
       } catch (error) {
         console.log(error)
         return 401

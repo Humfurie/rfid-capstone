@@ -15,7 +15,7 @@ const EmployeeHeader = () => {
     const {
         data
     } = useContext(FormContext)
-    
+
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -42,8 +42,8 @@ const EmployeeHeader = () => {
                             A I S - R F T
                         </Button>
                     </div>
-                    
-                    <div className=" flex justify-end ">
+
+                    <div className="flex w-full justify-end">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"
@@ -52,7 +52,7 @@ const EmployeeHeader = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                            {/* <Avatar alt={`${data?.data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data?.data.profilePic?.url}`} sx={{ color: grey[50] }} /> */}
+                            <Avatar alt={`${data?.data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data?.data.profilePic?.url}`} sx={{ color: grey[50] }} />
                         </Button>
                         <Menu
                             id="demo-positioned-menu"
@@ -63,7 +63,7 @@ const EmployeeHeader = () => {
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'right',
-                                
+
                             }}
                             transformOrigin={{
                                 vertical: 'top',
@@ -72,10 +72,10 @@ const EmployeeHeader = () => {
                         >
                             <MenuItem>
                                 <Link
-                                href={'/users/employee/profile'}>
-                                Profile
+                                    href={'/users/employee/profile'}>
+                                    Profile
                                 </Link>
-                                
+
                             </MenuItem>
                             <MenuItem
                                 onClick={e => {

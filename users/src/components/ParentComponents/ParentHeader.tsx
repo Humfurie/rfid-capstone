@@ -35,14 +35,6 @@ const ParentHeader = () => {
                             A I S - R F T
                         </Button>
                     </div>
-                    <div className="flex w-full">
-                        <Button
-                            href={"/users/parent/children"}
-                            className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            Your Children
-                        </Button>
-                    </div>
                     <div className=" flex justify-end ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
