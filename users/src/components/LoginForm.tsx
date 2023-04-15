@@ -3,6 +3,8 @@ import { useContext } from 'react'
 import { Style } from "../lib/Style";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import Image from 'next/image';
+// import pic from '../logo.jpg'
 
 
 const LoginForm = () => {
@@ -15,13 +17,10 @@ const LoginForm = () => {
                     e.preventDefault()
                     userLogin()
                 }}>
-                    <div className="grid lg:grid-cols-2 gap-1  text-center mt-10 mb-2">
-                        <div>
-                            logo
-                        </div>
-                        <div className=" mx-auto border border-red-100">
+                  <div className="flex pt-14 justify-center">
+                  <div className={`${Style.tableBg}`}>
                             <div>
-                                Log In
+                                Log in here!
                             </div>
                             <div className={Style.inputDiv}>
                                 <TextField type="text" id="outlined-basic" label="Username" variant="outlined"
@@ -42,16 +41,19 @@ const LoginForm = () => {
                             </div>
                             <div>
                                 <Button
-                                    // color="primary"
-                                    //   variant="text"
-                                    className={Style.loginBtn}
+                                     color="primary"
+                                       variant="contained"
+                                     className={Style.loginBtn}
                                     type="submit"
                                 >
                                     Log In
                                 </Button>
                             </div>
                         </div>
-                    </div>
+
+                  </div>
+                       
+                
                 </form >
             </div>
         </div >

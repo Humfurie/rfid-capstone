@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,9 +6,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Style } from "../../lib/Style";
 import { destroyCookie, parseCookies } from "nookies";
+import Avatar from "@mui/material/Avatar";
+import { FormContext } from "../../lib/FormContext";
+import { grey, yellow } from "@mui/material/colors";
 
 
-const StudentHeader = () => {
+const StudentHeader = (props : any) => {
+    const {
+        data
+    } = useContext(FormContext)
 
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
@@ -22,6 +28,8 @@ const StudentHeader = () => {
     const destroyCookie = (cookieName: any) => {
         document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     };
+
+    console.log(data?.data)
 
     const router = useRouter();
 
@@ -37,15 +45,7 @@ const StudentHeader = () => {
                             A I S - R F T
                         </Button>
                     </div>
-                    <div className="flex w-full">
-                        <Button
-                            href={"/users/student/activities"}
-                            className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            Your Activities
-                        </Button>
-                    </div>
-                    <div className=" flex justify-end  ">
+                    <div className="flex w-full justify-end ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"
@@ -54,7 +54,7 @@ const StudentHeader = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                            Image
+                           <Avatar alt={`${data?.data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data?.data.profilePic?.url}`} sx={{ bgcolor: yellow[50], color: grey[50] }} />
                         </Button>
                         <Menu
                             id="demo-positioned-menu"

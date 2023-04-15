@@ -7,6 +7,7 @@ export const Style = {
     mainContent: "p-3 flex",
     textColor: "text-gray-700",
     tableBg: "bg-white shadow p-2 mt-2 rounded-lg",
+    tableBorder: 'border border-gray-500 border-collapse p-3',
     view: "text-gray-500 hover:text-blue-600",
     edit: "text-gray-500 hover:text-green-600",
     delete: "text-gray-500 hover:text-red-600",
@@ -21,7 +22,7 @@ export const Style = {
     /**
      * Table design
      */
-    tableBorder: 'border border-gray-500 border-collapse p-3',
+    
 
 
     /**
