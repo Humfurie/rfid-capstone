@@ -11,8 +11,8 @@ export default class ParetController {
     public async index({ response }: HttpContextContract) {
 
         const user = await Parent.query()
-        .where('flag', 1)
-        .preload('profilePic')
+            .where('flag', 1)
+            .preload('profilePic')
         // console.log(user)
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
@@ -29,6 +29,7 @@ export default class ParetController {
             .where('id', params.id)
             .where('flag', 1)
             .preload('profilePic')
+            .preload('user')
             .firstOrFail()
 
         if (!user) {
