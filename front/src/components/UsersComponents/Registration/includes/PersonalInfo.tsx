@@ -9,7 +9,7 @@ import { Divider } from "@mantine/core";
 import moment from 'moment'
 import { grey, yellow } from "@mui/material/colors";
 
-export const PersonalInfo = () => {
+export const PersonalInfo = (props: any) => {
     const {
         userOnChange,
         userInfo,
@@ -21,7 +21,7 @@ export const PersonalInfo = () => {
         setApiChildren
     } = useContext(FormContext);
 
-    console.log("pernal infor parent", apiChildren.data)
+    const { parent } = props
 
     const handleImageChange = (e: any) => {
         const file = e.target.files[0];
@@ -159,9 +159,9 @@ export const PersonalInfo = () => {
                     variant="standard"
                     size="small"
                     type="date"
-                    value={userInfo.birthdate}
+                    value={new Date(userInfo.birthdate).toISOString().substr(0, 10)}
                     onChange={(e: any) => {
-                        userOnChange(moment(e).format('L'), "birthdate");
+                        userOnChange(e.target.value, "birthdate");
                     }}
                     helperText="Please enter birthdate."
                 />
@@ -208,10 +208,9 @@ export const PersonalInfo = () => {
                     }}
                     helperText="Please enter address."
                 />
-
             </div>
 
-            <div className={Style.inputDiv}>
+            {parent && (<div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
                     Children
                 </label>
@@ -234,7 +233,7 @@ export const PersonalInfo = () => {
                                 <Avatar
                                     alt={`${children.first_name}`}
                                     src={`${process.env.NEXT_PUBLIC_API_URL + children.profilePic?.url}`}
-                                    sx={{ width:30, height: 30, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+                                    sx={{ width: 30, height: 30, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
 
                                 />
                                 {children.first_name}
@@ -244,7 +243,7 @@ export const PersonalInfo = () => {
                     })}
 
                 </TextField>
-            </div>
+            </div>)}
         </div>
     )
 }

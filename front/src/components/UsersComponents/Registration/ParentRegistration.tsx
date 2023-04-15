@@ -24,6 +24,8 @@ const ParentRegistration = () => {
     contact: false,
   })
 
+  const [parent] = useState(true)
+
   const submitButton = (
     <div className={`flex justify-end mt-3`}>
       <Button
@@ -93,7 +95,7 @@ const ParentRegistration = () => {
 
           </div>
           <div>
-            {selection === 'personal' ? <PersonalInfo /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
+            {selection === 'personal' ? <PersonalInfo parent={parent} /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
           </div>
           <div>
             {active.contact === true ? submitButton : ''}

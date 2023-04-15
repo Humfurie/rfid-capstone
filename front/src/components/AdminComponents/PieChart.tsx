@@ -23,7 +23,7 @@ export function PieChart(props: any) {
             {
                 label: '# of Students',
                 // data: [grade7, grade8, grade9, grade10, grade11Map.length, grade12],
-                data: data?.data[3],
+                data: data?.data[3] || [],
                 // data: [],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
