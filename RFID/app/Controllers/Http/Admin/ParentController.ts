@@ -13,6 +13,7 @@ export default class ParetController {
         const user = await Parent.query()
             .where('flag', 1)
             .preload('profilePic')
+            .orderBy('id', 'desc')
         // console.log(user)
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })

@@ -5,6 +5,7 @@ import { SetStateAction, useContext, useMemo, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import moment from 'moment'
 import { FormContext } from "../../../lib/FormContext";
+import Welcome from "../../../components/Welcome";
 
 const ParentDashboard = () => {
     const { data, error } = useContext(FormContext)
@@ -62,8 +63,9 @@ const ParentDashboard = () => {
                 <ParentHeader />
                 <div className="flex flex-col h-full bg-gray-200   ">
                     <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
-                        <div>
-                            Your recent activities
+                        <div className="w-full">
+                            <Welcome user={data}/>
+                           
                         </div>
                         <Pagination
                             count={totalPages}
@@ -75,9 +77,9 @@ const ParentDashboard = () => {
                             <table className={`table-fixed w-full`}>
                                 <thead className={`bg-gray-500 text-white`}>
                                     <tr className="border-collapse ">
-                                        <th className={`${Style.tableBorder}`}>Date</th>
-                                        <th className={`${Style.tableBorder}`}>Day</th>
-                                        <th className={`${Style.tableBorder}`}>Status</th>
+                                        <th className={`${Style.tableBorder}`}>Name</th>
+                                        <th className={`${Style.tableBorder}`}>Contact Number</th>
+                                        <th className={`${Style.tableBorder}`}>Actions</th>
                                     </tr>
                                 </thead>
                                 {activityMap}

@@ -10,8 +10,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function PieChart(props: any) {
     const { data, error, isLoading } = props
-    // const fetcher = (url: any) => axios.get(url)
-    // const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/rfid/show`, fetcher, { refreshInterval: 1000 })
+
 
     if (error) return <> ...error </>
     if (isLoading) return <> ...loading </>
@@ -22,9 +21,8 @@ export function PieChart(props: any) {
         datasets: [
             {
                 label: '# of Students',
-                // data: [grade7, grade8, grade9, grade10, grade11Map.length, grade12],
-                data: data?.data[3] || [],
-                // data: [],
+                // data: [1, 2, 3, 4, 5, 6],
+                data: data?.data[3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

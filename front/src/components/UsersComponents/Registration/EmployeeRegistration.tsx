@@ -64,7 +64,7 @@ const EmployeeRegistration = () => {
           e.preventDefault();
           setRegistration(false)
           userSubmit();
-          router.reload()
+          router.push('/users/employee')
         }}
       >
         < UsersFormButtonSelection

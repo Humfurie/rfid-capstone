@@ -115,7 +115,6 @@ export default function Home() {
               <PieChart data={data} error={error} isLoading={isLoading} />
             </div>
             <div className={`${Style.tableBg} `}>
-              live in and out
               <Pagination
                 count={totalPages}
                 page={currentPage}

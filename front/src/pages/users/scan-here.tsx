@@ -19,7 +19,7 @@ const Scanner = () => {
 
     console.log(latestIn, latestOut)
     // console.log(showData)
-
+    console.log(error)
     if (error) return <>...error</>
     if (isLoading) return <>LOADING</>
 

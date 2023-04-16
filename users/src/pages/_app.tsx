@@ -83,7 +83,7 @@ export default function App({ Component, pageProps }: AppProps) {
         const role = res.data.role
         const token = res.data.token
         console.log(role)
-        setCookie({}, role, token, {
+        setCookie(null, role, token, {
           maxAge: 24 * 60 * 60
         })
         router.push('/')
@@ -115,8 +115,8 @@ export default function App({ Component, pageProps }: AppProps) {
       currentMenu,
       setCurrentMenu,
 
-      data, 
-      error, 
+      data,
+      error,
 
     }}>
       <Component {...pageProps} />

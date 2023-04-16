@@ -54,11 +54,6 @@ const StudentTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
-              <Button
-                href={""}
-                className={`${Style.textColor}`}>
-                Filter By
-              </Button>
               <Divider
                 flexItem
                 orientation="vertical"

@@ -75,13 +75,6 @@ const PositionTab = (props: any) => {
                                 orientation="vertical"
                             />
 
-
-                            <Button
-                                href={""}
-                                className={`${Style.textColor}`}>
-                                Export
-                            </Button>
-
                         </div>
 
                     </div>
