@@ -1,8 +1,35 @@
 import Head from "next/head";
 import EmployeeHeader from "../../../components/EmployeeComponents/EmployeeHeader";
-
+import { Style } from "../../../lib/Style";
+import { SetStateAction, useContext, useMemo, useState } from "react";
+import Pagination from "@mui/material/Pagination";
+import moment from 'moment'
+import { FormContext } from "../../../lib/FormContext";
+import Welcome from "../../../components/Welcome";
 
 const EmployeeDashboard = () => {
+    const { data, error } = useContext(FormContext)
+    console.log("emplyee", data)
+    const itemsPerPage = 15
+    const [currentPage, setCurrentPage] = useState(1)
+    const totalPages = Math.ceil((data?.data.activity || []).length / itemsPerPage)
+    const handleChangePage = (_event: any, newPage: SetStateAction<number>) => {
+        setCurrentPage(newPage)
+    }
+
+    if (error) return <> ...error </>
+
+    let activityMap
+
+    useMemo(() => {
+        if (data?.data) {
+            activityMap = (
+                <>
+                    { }
+                </>
+            )
+        }
+    }, [data])
     return (
         <div className="flex w-full h-screen">
             <Head>
@@ -12,35 +39,59 @@ const EmployeeDashboard = () => {
             </Head>
 
             <div className="flex flex-col w-full">
-                <EmployeeHeader/>
+                <EmployeeHeader />
                 <div className="flex flex-col h-full bg-gray-200   ">
-                    <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
-                        <div>
+                    <div className="flex flex-col justify items-center  pr-20 pl-20 ">
+                        <div className="w-full">
+                            <Welcome />
+                        </div>
+                        <div className={`w-full ${Style.tableBg} text-center`}>
                             Your recent activities
                         </div>
-                        <div className="w-full bg-white rounded-2xl shadow-xl ">
-                            <div className="grid grid-cols-2 text-center">
-                                <div className="">
-                                    INS
-                                    <div className="border border-spacing-1">  
-                                        in
-                                    </div>
-                                </div>
-                                <div>
-                                    OUTS
-                                    <div className="border border-spacing-1">  
-                                        out
-                                    </div>
-                                </div>
-                            </div>
+                        <Pagination
+                            count={totalPages}
+                            page={currentPage}
+                            onChange={handleChangePage}
+                            variant="text"
+                        />
+                        <div className={`w-full ${Style.tableBg}`}>
+                            <table className={`table-fixed w-full`}>
+                                <thead className={`bg-gray-500 text-white`}>
+                                    <tr className="border-collapse ">
+                                        <th className={`${Style.tableBorder}`}>Date</th>
+                                        <th className={`${Style.tableBorder}`}>Day</th>
+                                        <th className={`${Style.tableBorder}`}>Status</th>
+                                    </tr>
+                                </thead>
+                                {data?.data && (
+                                    (data?.data.activity || []).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((activity: any) => {
+                                        const date = activity.created_at
+                                        console.log(date)
+                                        return (
+                                            <tbody key={activity.id}>
+                                                <tr className={`border-collapse  hover:bg-gray-200`}>
+                                                    <td className={`${Style.tableBorder}`}>
+                                                        {moment(date).format('MMMM Do YYYY, h:mm:ss a')}
+                                                    </td>
 
+                                                    <td className={`${Style.tableBorder}`}>
+
+                                                        {activity.day}
+                                                    </td>
+                                                    <td className={`${Style.tableBorder}`}>
+                                                        {activity.status}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        )
+                                    })
+                                )}
+                            </table>
                         </div>
                     </div>
 
                 </div>
             </div>
-
-
         </div>
     );
 }

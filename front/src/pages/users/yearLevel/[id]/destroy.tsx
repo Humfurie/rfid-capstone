@@ -12,7 +12,7 @@ const DestroyYearLevel = (props: any) => {
     return (
         <>
             <Modal
-                key={key}
+                key={yearLevel.id}
                 opened={deleteOpen}
                 onClose={() => handleCloseDelete(yearLevel.id)}
                 title="Please consider this"

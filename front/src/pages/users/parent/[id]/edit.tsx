@@ -16,6 +16,7 @@ import ContactInfo from "../../../../components/UsersComponents/Update/ContactIn
 const edit = (props: any) => {
   const { user } = props
   const router = useRouter()
+  console.log(user)
 
   const [form, setForm] = useState({
     firstName: user.first_name,
@@ -26,15 +27,20 @@ const edit = (props: any) => {
     address: user.address,
     email: user.email,
     contactNumber: user.contact_number,
-    facebook: user.facebook
+    facebook: user.facebook,
+    children: user.user && user.user.length > 0 ? user.user[0].id || null : null
   })
+
+  console.log('this form', form)
+
+  const [parent] = useState(true)
 
   const formOnChange = (value: any, column: string) => {
     setForm((prev: any) => {
       return { ...prev, [column]: value }
     })
   }
-  // console.log("thiis form", form)
+
 
   const parentUpdate = async () => {
     await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/parent/edit/${user.id}`, {
@@ -46,7 +52,8 @@ const edit = (props: any) => {
       address: form.address,
       email: form.email,
       contactNumber: form.contactNumber,
-      facebook: form.facebook
+      facebook: form.facebook,
+      children: form.children
     })
     router.push("/users/parent/")
 
@@ -137,7 +144,7 @@ const edit = (props: any) => {
 
               </div>
               <div>
-                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : "We found nothing"}
+                {selection === 'personal' ? <PersonalInfo formOnChange={formOnChange} form={form} parent={parent} /> : selection === 'contact' ? <ContactInfo formOnChange={formOnChange} form={form} /> : "We found nothing"}
               </div>
               <div className="flex justify-end mt-3">
                 <Button
@@ -146,6 +153,13 @@ const edit = (props: any) => {
                   color="primary"
                   className={`bg-gray-500`}
                   endIcon={<CheckCircleRoundedIcon />}
+                  disabled={
+                    (form.firstName
+                      && form.lastName
+                      && form.gender
+                      && form.address
+                    ) === "" ? true : false
+                  }
                 >
                   Save Changes
                 </Button>

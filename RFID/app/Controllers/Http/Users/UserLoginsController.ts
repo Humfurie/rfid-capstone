@@ -15,7 +15,9 @@ export default class UserLoginsController {
         userLogin.where('username', request.employee.username)
       })
       .where('flag', 1)
-      .preload('activity')
+      .preload('activity', activity => {
+        activity.preload('user')
+      })
       .preload('emergencyContact')
       .preload('position')
       .preload('profilePic')
@@ -31,7 +33,9 @@ export default class UserLoginsController {
       .whereHas('userLogin', (userLogin) => {
         userLogin.where('username', request.student.username)
       })
-      .preload('activity')
+      .preload('activity', activity => {
+        activity.preload('user')
+      })
       .preload('emergencyContact')
       .preload('yearLevel')
       .preload('profilePic')
@@ -43,7 +47,9 @@ export default class UserLoginsController {
     const user = await Parent.query().whereHas('userLogin', (userLogin) => {
       userLogin.where('username', request.parent.username)
     }).preload('profilePic')
-      .preload('user')
+      .preload('user', user => {
+        user.preload('activity')
+      })
       .where('flag', 1)
       .firstOrFail()
 
@@ -62,8 +68,6 @@ export default class UserLoginsController {
       .where('flag', 1)
       .firstOrFail()
 
-    // console.log(userLogin.serialize())
-
     if (!userLogin) {
       return response.status(400).json({ "message": "User not found!" })
     }
@@ -76,7 +80,6 @@ export default class UserLoginsController {
 
     try {
 
-      // console.log(userLogin.user.serialize())
       if (userLogin.user === null) {
         const token = jwt.sign(jwtAuth, `${process.env.PARENT}`)
 
@@ -106,7 +109,7 @@ export default class UserLoginsController {
       }
     } catch (error) {
       console.log(error)
-      return response.status(401)
+      return response.status(401).json({"message": "user is not found"})
     }
   }
 

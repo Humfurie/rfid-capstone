@@ -141,7 +141,7 @@ const Sidebar = (props: any) => {
                                             justifyContent: 'center',
                                         }}
                                     >
-                                        {text === "Employees" ? <AssignmentIndRoundedIcon /> : text === "Students" ? <Face6RoundedIcon /> : text === "Parents" ? <EscalatorWarningRoundedIcon /> : ""}
+                                        {text === "Employees" ? <AssignmentIndRoundedIcon /> : text === "Students" ?<AssignmentIndRoundedIcon /> : text === "Parents" ? <EscalatorWarningRoundedIcon /> : ""}
                                     </ListItemIcon>
                                     <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>

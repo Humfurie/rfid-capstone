@@ -31,7 +31,7 @@ const YearLevelEdit = (props: any) => {
     }
 
     return (
-        <Modal key={key}
+        <Modal key={yearLevel.id}
             opened={editOpen}
             onClose={() => handleCloseYearLevel(yearLevel.id)}>
             <div className="flex w-full">

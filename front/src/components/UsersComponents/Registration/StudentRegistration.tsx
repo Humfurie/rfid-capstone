@@ -18,7 +18,6 @@ const StudentRegistration = () => {
     userSubmit,
     setRole,
     userInfo,
-    emergency
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')
@@ -44,12 +43,10 @@ const StudentRegistration = () => {
           (userInfo.firstName
             && userInfo.lastName
             && userInfo.gender
-            && userInfo.birthdate
             && userInfo.address
             && userInfo.idNumber
             && userInfo.rfidNumber
             && userInfo.year
-            && emergency.name
           ) === "" ? true : false
         }
       >

@@ -15,47 +15,47 @@ const Tabs = () => {
     return (
         <div>
             <div className="flex pt-5 pr-20 pl-20 ">
-                        <Button>
-                            Search
-                        </Button>
-                        <Button>
-                            Export
-                        </Button>
-                        <Button
-                            className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                            id="demo-positioned-button"
-                            aria-controls={open ? 'demo-positioned-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                        >
-                            Filter By
-                        </Button>
-                        <Menu
-                            id="demo-positioned-menu"
-                            aria-labelledby="demo-positioned-button"
-                            anchorEl={drop}
-                            open={open}
-                            onClose={handleClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'right',
+                <Button>
+                    Search
+                </Button>
+                <Button>
+                    Export
+                </Button>
+                <Button
+                    className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
+                    id="demo-positioned-button"
+                    aria-controls={open ? 'demo-positioned-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                >
+                    Filter By
+                </Button>
+                <Menu
+                    id="demo-positioned-menu"
+                    aria-labelledby="demo-positioned-button"
+                    anchorEl={drop}
+                    open={open}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
 
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                        >
-                            <MenuItem>
-                                Today
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                >
+                    <MenuItem>
+                        Today
 
-                            </MenuItem>
-                            <MenuItem>
-                               Last Month
-                            </MenuItem>
-                        </Menu>
-                    </div>
+                    </MenuItem>
+                    <MenuItem>
+                        Last Month
+                    </MenuItem>
+                </Menu>
+            </div>
         </div>
     );
 }

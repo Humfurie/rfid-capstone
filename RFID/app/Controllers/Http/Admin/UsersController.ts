@@ -22,7 +22,6 @@ export default class UsersController {
             .preload('position')
             .preload('profilePic')
             .orderBy('id', 'desc')
-
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
@@ -101,11 +100,12 @@ export default class UsersController {
      */
     public async edit({ request, response, params }: HttpContextContract) {
 
+        // const req = request.only(['role', 'position'])
         const req = request.all()
-    
+        console.log("this is edit req", req)
         const validated = await request.validate(UserValidator)
         const trx = await Database.transaction()
-
+        // return response.status(200).json(validated)
         if (req.role === 'student') {
             try {
                 const user = await User.query().whereHas('role', (role) => {
@@ -212,15 +212,13 @@ export default class UsersController {
 
     public async deleteUser({ request, response }: HttpContextContract) {
         const req = request.only(['id', 'role'])
-        const user = await User.query().whereHas('role', (builder) => {
+        const deletedUser = await User.query().whereHas('role', (builder) => {
             builder.where('role', req.role)
         })
             .where('id', req.id)
             .where('flag', 1)
             .update({ flag: 0 })
-            .firstOrFail()
 
-
-        return response.status(200).json({'message' : `User is deleted succesfully`})
+        return response.status(200).json(deletedUser)
     }
 }

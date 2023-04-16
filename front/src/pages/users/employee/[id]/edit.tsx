@@ -24,7 +24,7 @@ const edit = (props: any) => {
   const { user } = props
   const router = useRouter()
 
-
+  console.log(user)
   const [form, setForm] = useState({
     firstName: user.first_name,
     middleName: user.middle_name,
@@ -149,6 +149,17 @@ const edit = (props: any) => {
                   color="info"
                   className={`bg-gray-500`}
                   endIcon={<CheckCircleRoundedIcon />}
+                  disabled={
+                    (form.firstName
+                      && form.lastName
+                      && form.gender
+                      && form.birthdate
+                      && form.address
+                      && form.idNumber
+                      && form.rfidNumber
+                      && form.position
+                    ) === "" ? true : false
+                  }
                 >
                   Save Changes
                 </Button>

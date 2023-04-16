@@ -5,47 +5,21 @@ import { useState, useMemo, useEffect } from "react";
 import ScannedPopUp from "../../components/ScannedPopUp";
 import useSWR from 'swr'
 import axios from "axios";
+import Avatar from "@mui/material/Avatar";
+import { grey, yellow } from "@mui/material/colors";
 
 const Scanner = () => {
 
 
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const [showData, setShowData] = useState(false)
-    const [dataShown, setDataShown] = useState(false)
-
     const fetcher = (url: string) => axios.get(url)
     const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/rfid/scan`, fetcher, { refreshInterval: 1000 })
 
-    let scanned
     const latestIn = data?.data[0]
     const latestOut = data?.data[1]
 
-    // console.log(latestIn, latestOut)
-    console.log(showData)
-
-    useEffect(() => {
-        if (data && !dataShown) {
-            setShowData(true)
-            const timeout = setTimeout(() => {
-                setShowData(false)
-            }, 3000)
-
-            return () => {
-                setShowData(false);
-                clearTimeout(timeout);
-            };
-        }
-    }, [data])
-
+    console.log(latestIn, latestOut)
+    // console.log(showData)
+    console.log(error)
     if (error) return <>...error</>
     if (isLoading) return <>LOADING</>
 
@@ -63,33 +37,58 @@ const Scanner = () => {
                     </span>
                 </Button>
             </div>
-            <div className="mx-auto">
-                <div className={`p-72 ${Style.tableBg}`}>
-                    <div className={`flex justify-center font-extrabold`}>
-                        {showData && (
-                            <div>
+            <div className="flex">
+                <div className="mx-auto">
+                    <div className={`${Style.tableBg}`}>
+                        <div className={`flex justify-center font-extrabold`}>
+                            <div className="flex p-20">
+                                <div className="mx-auto pt-3 bg">
+                                    <Avatar
+                                        alt={`${latestIn.user.first_name}`}
+                                        src={`${process.env.NEXT_PUBLIC_API_URL + latestIn.user.profilePic?.url}`}
+                                        sx={{ width: 300, height: 300, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+                                    />
+                                </div>
                                 <div>
-                                    <div>
+                                    <div className={`${Style.viewName}`}>
                                         {latestIn.user.first_name} {latestIn.user.last_name}
                                     </div>
-                                    <div>
+
+                                    <div className={`${Style.viewName}`}>
                                         {latestIn.status}
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="mx-auto">
+                    <div className={`${Style.tableBg}`}>
+                        <div className={`flex justify-center font-extrabold`}>
+                            <div className="flex p-20">
+
+                                <div className="mx-auto pt-3 bg">
+                                    <Avatar
+                                        alt={`${latestOut.user.first_name}`}
+                                        src={`${process.env.NEXT_PUBLIC_API_URL + latestOut.user.profilePic?.url}`}
+                                        sx={{ width: 300, height: 300, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+
+                                    />
+                                </div>
                                 <div>
-                                    <div>
+                                    <div className={`${Style.viewName}`}>
                                         {latestOut.user.first_name} {latestOut.user.last_name}
                                     </div>
-                                    <div>
+
+                                    <div className={`${Style.viewName}`}>
                                         {latestOut.status}
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

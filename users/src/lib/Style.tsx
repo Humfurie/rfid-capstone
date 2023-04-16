@@ -3,6 +3,8 @@ export const Style = {
      * Header
      */
     header:"flex w-full bg-white p-3 shadow-lg",
+    tableBg: "bg-white shadow p-2 mt-2 rounded-lg",
+    tableBorder: 'border border-gray-500 border-collapse p-3',
 
     /**
      * General
@@ -41,11 +43,32 @@ export const Style = {
     /**
      * Table design
      */
-    tableBorder:'border border-teal-blue border-collapse p-3',
+
 
     /**
      * navbar
      */
-    navbarBtn: 'text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-magic-mint focus:text-black'
+    navbarBtn: 'text-sm  flex items-center gap-x-4 cursor-pointer p-2 hover:bg-magic-mint rounded-2xl hover:text-black focus:bg-magic-mint focus:text-black',
+    
+    textColor: "text-gray-700",
+ 
+  
+    view: "text-gray-500 hover:text-blue-600",
+    edit: "text-gray-500 hover:text-green-600",
+    delete: "text-gray-500 hover:text-red-600",
+    menuTab: "flex p-1 bg-white rounded-lg shadow-sm",
+    infoHeader: "bg-slate-300 p-1 rounded-xl font-bold",
+    employeePopulationBg: " bg-red-100 shadow p-2 mt-2 rounded-lg",
+    studentPopulationBg: "bg-yellow-100 shadow p-2 mt-2 rounded-lg",
+    pieChartBg: "bg-white shadow  rounded-lg",
+    viewImgBg: "bg-slate-100 p-1 rounded-2xl",
+    viewName: "text-2xl font-bold mx-auto bg-slate-50 rounded shadow text-center",
+
+    /**
+     * Table design
+     */
+    
+
+
     
 }

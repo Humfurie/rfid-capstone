@@ -1,12 +1,20 @@
 import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
-import React from "react";
+import React, { useContext } from "react";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { destroyCookie } from "nookies";
+import Avatar from "@mui/material/Avatar";
+import yellow from "@mui/material/colors/yellow";
+import { grey } from "@mui/material/colors";
+import { FormContext } from "../../lib/FormContext";
 
 const EmployeeHeader = () => {
+    const {
+        data
+    } = useContext(FormContext)
 
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
@@ -17,6 +25,10 @@ const EmployeeHeader = () => {
         setDrop(null);
     };
     const router = useRouter();
+
+    const destroyCookie = (cookieName: any) => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    };
 
     return (
         <div className="flex w-full">
@@ -30,15 +42,8 @@ const EmployeeHeader = () => {
                             A I S - R F T
                         </Button>
                     </div>
-                    <div className="flex w-full">
-                        <Button
-                            href={"/users/employee/activities"}
-                            className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            Your Activities
-                        </Button>
-                    </div>
-                    <div className=" flex justify-end ">
+
+                    <div className="flex w-full justify-end">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
                             id="demo-positioned-button"
@@ -47,7 +52,7 @@ const EmployeeHeader = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                            Image
+                            <Avatar alt={`${data?.data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data?.data.profilePic?.url}`} sx={{ color: grey[50] }} />
                         </Button>
                         <Menu
                             id="demo-positioned-menu"
@@ -58,7 +63,7 @@ const EmployeeHeader = () => {
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'right',
-                                
+
                             }}
                             transformOrigin={{
                                 vertical: 'top',
@@ -67,13 +72,17 @@ const EmployeeHeader = () => {
                         >
                             <MenuItem>
                                 <Link
-                                href={'/users/employee/profile'}>
-                                Profile
+                                    href={'/users/employee/profile'}>
+                                    Profile
                                 </Link>
-                                
+
                             </MenuItem>
                             <MenuItem
-                                onClick={handleClose}>
+                                onClick={e => {
+                                    handleClose
+                                    destroyCookie('Employee')
+                                    router.push('/login')
+                                }}>
                                 Logout
                             </MenuItem>
                         </Menu>

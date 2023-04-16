@@ -55,7 +55,7 @@ const parent = () => {
                         </div>
                     </div>
                     <div className={`${Style.tableBg}`}>
-                        <ParentRegistration />
+                        <ParentRegistration  />
                     </div>
 
                 </div>

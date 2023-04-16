@@ -9,8 +9,6 @@ const StudentSchoolInfo = (props: any) => {
 
   const { formOnChange, form, apiYearLevel } = props
 
-  console.log("aumliu", form.isAlumni)
-
   return (
     <div>
 
@@ -79,9 +77,9 @@ const StudentSchoolInfo = (props: any) => {
 
             control={
               <Switch
-                checked={form.isAlumni === 0 ? false : true}
+                checked={form.isAlumni}
                 inputProps={{ 'aria-label': 'controlled' }}
-                value={form.isAlumni}
+                // value={form.isAlumni}
                 onChange={(e) => {
                   formOnChange(e.target.checked, "isAlumni");
                 }}

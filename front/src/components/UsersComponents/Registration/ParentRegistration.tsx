@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { Style } from "../../../lib/Style";
-import MyButton from "../../../lib/partials/MyButton";
 import { useRouter } from "next/router";
 import { PersonalInfo } from "./includes/PersonalInfo";
 import { ContactInfo } from "./includes/ContactInfo";
@@ -14,7 +13,9 @@ const ParentRegistration = () => {
   const {
     setRegistration,
     userSubmit,
-    setRole
+    setRole,
+    userInfo,
+    children,
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')
@@ -22,6 +23,8 @@ const ParentRegistration = () => {
     personal: true,
     contact: false,
   })
+
+  const [parent] = useState(true)
 
   const submitButton = (
     <div className={`flex justify-end mt-3`}>
@@ -34,6 +37,13 @@ const ParentRegistration = () => {
         onClick={() => {
           setRole("parent")
         }}
+        disabled={
+          (userInfo.firstName
+            && userInfo.lastName
+            && userInfo.gender
+            && userInfo.address
+          ) === "" ? true : false
+        }
       >
         Register
       </Button>
@@ -85,7 +95,7 @@ const ParentRegistration = () => {
 
           </div>
           <div>
-            {selection === 'personal' ? <PersonalInfo /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
+            {selection === 'personal' ? <PersonalInfo parent={parent} /> : selection === 'contact' ? <ContactInfo /> : "We found nothing"}
           </div>
           <div>
             {active.contact === true ? submitButton : ''}

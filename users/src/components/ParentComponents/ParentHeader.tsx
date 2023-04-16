@@ -1,13 +1,21 @@
 import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
-import React from "react";
+import React, { useContext } from "react";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { destroyCookie } from "nookies";
+import { FormContext } from "../../lib/FormContext";
+import Avatar from "@mui/material/Avatar";
+import { grey } from "@mui/material/colors";
 
 const ParentHeader = () => {
 
+    const {
+        data
+    } = useContext(FormContext)
+    
     const [drop, setDrop] = React.useState<null | HTMLElement>(null);
     const open = Boolean(drop);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -17,6 +25,10 @@ const ParentHeader = () => {
         setDrop(null);
     };
     const router = useRouter();
+
+    const destroyCookie = (cookieName: any) => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    };
 
     return (
         <div className="flex w-full">
@@ -30,14 +42,6 @@ const ParentHeader = () => {
                             A I S - R F T
                         </Button>
                     </div>
-                    <div className="flex w-full">
-                        <Button
-                            href={"/users/parent/children"}
-                            className="font-bold pl-5 pr-5  text-gray-700 hover:bg-gray-200 hover: rounded-lg"
-                        >
-                            Your Children
-                        </Button>
-                    </div>
                     <div className=" flex justify-end ">
                         <Button
                             className=" text-gray-700 hover:bg-gray-200 hover: rounded-lg"
@@ -47,7 +51,7 @@ const ParentHeader = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
                         >
-                            Image
+                            <Avatar alt={`${data?.data.first_name} `} src={`${process.env.NEXT_PUBLIC_API_URL + data?.data.profilePic?.url}`} sx={{ color: grey[50] }} />
                         </Button>
                         <Menu
                             id="demo-positioned-menu"
@@ -58,7 +62,7 @@ const ParentHeader = () => {
                             anchorOrigin={{
                                 vertical: 'top',
                                 horizontal: 'left',
-                                
+
                             }}
                             transformOrigin={{
                                 vertical: 'top',
@@ -67,13 +71,17 @@ const ParentHeader = () => {
                         >
                             <MenuItem>
                                 <Link
-                                href={'/users/parent/profile'}>
-                                Profile
+                                    href={'/users/parent/profile'}>
+                                    Profile
                                 </Link>
-                                
+
                             </MenuItem>
                             <MenuItem
-                                onClick={handleClose}>
+                                onClick={e => {
+                                    handleClose
+                                    destroyCookie('Parent')
+                                    router.push('/login')
+                                }}>
                                 Logout
                             </MenuItem>
                         </Menu>

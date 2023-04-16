@@ -3,17 +3,24 @@ import { FormContext } from "../../../../lib/FormContext";
 import { Style } from "../../../../lib/Style";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
-import { Button, IconButton } from "@mui/material";
+import { Avatar, Button, IconButton } from "@mui/material";
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import { Divider } from "@mantine/core";
+import moment from 'moment'
+import { grey, yellow } from "@mui/material/colors";
 
-export const PersonalInfo = () => {
+export const PersonalInfo = (props: any) => {
     const {
         userOnChange,
         userInfo,
         imageFile,
-        setImageFile
+        setImageFile,
+        setChildren,
+        children,
+        apiChildren,
     } = useContext(FormContext);
+
+    const { parent } = props
 
     const handleImageChange = (e: any) => {
         const file = e.target.files[0];
@@ -87,7 +94,7 @@ export const PersonalInfo = () => {
                     </div>
 
                 </div>
-               
+
             </div>
             <div className={Style.inputDiv}>
                 <label htmlFor="" className={Style.label}>
@@ -121,7 +128,7 @@ export const PersonalInfo = () => {
                         userOnChange(e.target.value, "middleName");
                     }}
                     helperText="Please enter middle name."
-                    
+
                 />
 
             </div>
@@ -152,7 +159,7 @@ export const PersonalInfo = () => {
                     size="small"
                     type="date"
                     value={userInfo.birthdate}
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                         userOnChange(e.target.value, "birthdate");
                     }}
                     helperText="Please enter birthdate."
@@ -200,8 +207,42 @@ export const PersonalInfo = () => {
                     }}
                     helperText="Please enter address."
                 />
-
             </div>
+
+            {parent && (<div className={Style.inputDiv}>
+                <label htmlFor="" className={Style.label}>
+                    Children
+                </label>
+                <TextField
+                    variant="standard"
+                    size="small"
+                    select
+                    value={children}
+                    onChange={(e) => {
+                        setChildren(e.target.value)
+                    }}
+                    helperText="Please enter year level."
+
+                >
+                    {(apiChildren?.data || []).map((children: {
+                        [x: string]: any; id: number, first_name: string, last_name: string
+                    }, id: number) => {
+                        return (
+                            <MenuItem key={id} value={children.id}>
+                                <Avatar
+                                    alt={`${children.first_name}`}
+                                    src={`${process.env.NEXT_PUBLIC_API_URL + children.profilePic?.url}`}
+                                    sx={{ width: 30, height: 30, bgcolor: yellow[100], color: grey[700], border: '1px solid #bdbdbd' }}
+
+                                />
+                                {children.first_name}
+                                {children.last_name}
+                            </MenuItem>
+                        )
+                    })}
+
+                </TextField>
+            </div>)}
         </div>
     )
 }

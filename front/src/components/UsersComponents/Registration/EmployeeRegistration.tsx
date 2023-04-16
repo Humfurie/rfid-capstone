@@ -16,6 +16,8 @@ const EmployeeRegistration = () => {
     setRegistration,
     userSubmit,
     setRole,
+    userInfo,
+    position
   } = useContext(FormContext);
 
   const [selection, setSelection] = useState('personal')
@@ -32,11 +34,21 @@ const EmployeeRegistration = () => {
         type="submit"
         variant="contained"
         color="primary"
-         className={`bg-gray-500`}
-        endIcon={<CheckCircleRoundedIcon/>}
+        className={`bg-gray-500`}
+        endIcon={<CheckCircleRoundedIcon />}
         onClick={() => {
           setRole("employee")
         }}
+        disabled={
+          (userInfo.firstName
+            && userInfo.lastName
+            && userInfo.gender
+            && userInfo.address
+            && userInfo.idNumber
+            && userInfo.rfidNumber
+            && position
+          ) === "" ? true : false
+        }
       >
         Register
       </Button>
@@ -45,33 +57,33 @@ const EmployeeRegistration = () => {
 
   return (
     <div className="w-full">
-     
-        <div className="text-center">Employee Registration</div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setRegistration(false)
-            userSubmit();
-            router.push("/users/employee")
-          }}
-        >
-          < UsersFormButtonSelection
-            active={active}
-            setActive={setActive}
-            setSelection={setSelection}
-          />
-          <div>
-            {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
-          </div>
 
-          <div>
+      <div className="text-center">Employee Registration</div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setRegistration(false)
+          userSubmit();
+          router.push('/users/employee')
+        }}
+      >
+        < UsersFormButtonSelection
+          active={active}
+          setActive={setActive}
+          setSelection={setSelection}
+        />
+        <div>
+          {selection === 'personal' ? <PersonalInfo /> : selection === 'school' ? <EmployeeSchoolInfo /> : selection === 'contact' ? <ContactInfo /> : selection === 'emergency' ? <EmergencyContactInfo /> : "Sorry, we found nothing."}
+        </div>
 
-            {active.emergency === true ? submitButton : ''}
+        <div>
 
-          </div>
-        </form>
-      </div >
-   
+          {active.emergency === true ? submitButton : ''}
+
+        </div>
+      </form>
+    </div >
+
   );
 };
 

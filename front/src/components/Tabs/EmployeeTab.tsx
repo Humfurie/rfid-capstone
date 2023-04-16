@@ -3,18 +3,17 @@ import { Style } from "../../lib/Style";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Pagination from "@mui/material/Pagination";
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx'
 
 const EmployeeTab = (props: any) => {
-  const { totalPages, currentPage, handleChangePage, handleSearch, searchUser } = props
+  const { totalPages, currentPage, handleChangePage, handleSearch, searchUser, users } = props
 
-  // function exportToExcel(data) {
-  //   const worksheet = XLSX.utils.json_to_sheet(data);
-  //   const workbook = XLSX.utils.book_new();
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
-  //   XLSX.writeFile(workbook, 'data.xlsx');
-
-  // }
+  function exportToExcel(data: any) {
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data)
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+    XLSX.writeFile(workbook, `employee/${Date.now()}.xlsx`);
+  }
 
   return (
     <div className={`flex-col ${Style.parentDiv}`}>
@@ -60,7 +59,7 @@ const EmployeeTab = (props: any) => {
                 href={""}
                 className={`${Style.textColor}`}
                 onClick={e => {
-                  // exportToExcel(users);
+                  exportToExcel(users);
                 }}>
                 Export
               </Button>

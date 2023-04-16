@@ -45,7 +45,7 @@ const PositionTab = (props: any) => {
 
                                     id="outlined-basic"
                                     label="Add new position"
-                                    variant="filled"
+                                    variant="standard"
                                     size="small"
                                     type="text"
                                     value={position}
@@ -74,13 +74,6 @@ const PositionTab = (props: any) => {
                                 flexItem
                                 orientation="vertical"
                             />
-
-
-                            <Button
-                                href={""}
-                                className={`${Style.textColor}`}>
-                                Export
-                            </Button>
 
                         </div>
 

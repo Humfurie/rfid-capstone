@@ -66,7 +66,7 @@ export default function parent(props: any) {
 
 				<div className={`flex flex-col w-full pt-12`}>
 					<div>
-						<ParentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} searchUser={searchUser} handleSearch={handleSearch} />
+						<ParentTab totalPages={totalPages} handleChangePage={handleChangePage} currentPage={currentPage} searchUser={searchUser} handleSearch={handleSearch} users={users} />
 					</div>
 					<div className={`${Style.tableBg}`}>
 						<ParentDatatable users={searchResult} totalPages={totalPages} itemsPerPage={itemsPerPage} handleChangePage={handleChangePage} currentPage={currentPage} />

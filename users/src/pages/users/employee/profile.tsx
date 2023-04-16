@@ -1,5 +1,6 @@
 import Head from "next/head";
 import EmployeeHeader from "../../../components/EmployeeComponents/EmployeeHeader";
+import EmployeeProfileContent from "../../../components/EmployeeComponents/EmployeeProfileContent";
 
 const Profile = () => {
     return (
@@ -18,7 +19,7 @@ const Profile = () => {
                     <div className="flex flex-col justify items-center pt-10 pr-20 pl-20 ">
                         <div className="w-full bg-white rounded-2xl shadow-xl ">
                             <div className=" text-center">
-                                list
+                                <EmployeeProfileContent/>
                             </div>
 
                         </div>
