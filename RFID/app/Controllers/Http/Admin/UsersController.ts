@@ -21,7 +21,7 @@ export default class UsersController {
             .preload('role')
             .preload('position')
             .preload('profilePic')
-
+            .orderBy('id', 'desc')
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })
         }
@@ -64,6 +64,7 @@ export default class UsersController {
             .preload('yearLevel')
             .preload('role')
             .preload('profilePic')
+            .orderBy('id', 'desc')
 
         if (!user) {
             return response.status(401).json({ 'Message': 'Data not found!' })

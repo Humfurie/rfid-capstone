@@ -95,7 +95,7 @@ const PersonalInfo = (props: any) => {
           variant="standard"
           size="small"
           type="date"
-          value={new Date(form.birthdate).toISOString().substr(0, 10)}
+          value={form.birthdate}
           onChange={(e: any) => {
             formOnChange(e.target.value, "birthdate");
           }}

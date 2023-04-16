@@ -109,7 +109,7 @@ export default class UserLoginsController {
       }
     } catch (error) {
       console.log(error)
-      return response.status(401)
+      return response.status(401).json({"message": "user is not found"})
     }
   }
 

@@ -76,11 +76,6 @@ const StudentViewTab = (props: any) => {
                 flexItem
                 orientation="vertical"
               />
-              <Button
-                href={""}
-                className={`${Style.textColor}`}>
-                Export
-              </Button>
 
             </div>
 

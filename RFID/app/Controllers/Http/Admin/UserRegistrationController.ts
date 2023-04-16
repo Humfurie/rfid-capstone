@@ -228,7 +228,7 @@ export default class newUserRegistrationController {
 
                 const account = new UserLogin() // account model
                 account.username = user.lastName
-                account.password = user.idNumber
+                account.password = input.userRegistration.idNumber
                 account.userId = user.id
 
                 account.useTransaction(trx) //UserLogin transaction
@@ -292,7 +292,7 @@ export default class newUserRegistrationController {
 
                 const account = new UserLogin()
                 account.username = user.lastName
-                account.password = user.idNumber
+                account.password = input.userRegistration.idNumber
                 account.userId = user.id
 
                 account.useTransaction(trx)
@@ -334,6 +334,15 @@ export default class newUserRegistrationController {
                 profilePic.useTransaction(trx)
 
                 await profilePic.save()
+
+                const account = new UserLogin()
+                account.username = user.lastName
+                account.password = input.userRegistration.idNumber
+                account.userId = user.id
+
+                account.useTransaction(trx)
+
+                await account.save()
 
                 await trx.commit()
                 return response.status(200)

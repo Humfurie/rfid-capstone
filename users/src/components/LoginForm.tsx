@@ -24,7 +24,6 @@ const LoginForm = () => {
                             </div>
                             <div className={Style.inputDiv}>
                                 <TextField type="text" id="outlined-basic" label="Username" variant="outlined"
-                                    // className={Style.loginInput}
                                     onChange={(e: any) => {
                                         loginOnChange(e.target.value, "username")
                                     }} />
@@ -34,7 +33,6 @@ const LoginForm = () => {
                                     type="password"
                                     label="Password"
                                     variant="outlined"
-                                    // className={Style.loginInput}
                                     onChange={(e: any) => {
                                         loginOnChange(e.target.value, "password")
                                     }} />

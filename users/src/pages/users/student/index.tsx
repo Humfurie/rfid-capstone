@@ -19,37 +19,7 @@ const StudentDashboard = () => {
     // console.log(data.data)
     if (error) return <> ...error </>
 
-    let activityMap
 
-    useMemo(() => {
-        if (data?.data) {
-            activityMap = (
-                <>
-                    {(data?.data.activity || []).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((activity: any) => {
-                        const date = activity.created_at
-                        console.log(date)
-                        return (
-                            <tbody key={activity.id}>
-                                <tr className={`border-collapse  hover:bg-gray-200`}>
-                                    <td className={`${Style.tableBorder}`}>
-                                        {moment(date).format('MMMM Do YYYY, h:mm:ss a')}
-                                    </td>
-
-                                    <td className={`${Style.tableBorder}`}>
-
-                                        {activity.day}
-                                    </td>
-                                    <td className={`${Style.tableBorder}`}>
-                                        {activity.status}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        )
-                    })}
-                </>
-            )
-        }
-    }, [data])
 
     return (
         <div className="flex w-full h-screen">
@@ -65,6 +35,7 @@ const StudentDashboard = () => {
                     <div className="flex flex-col justify items-center pr-20 pl-20 ">
                         <div className="w-full">
                             <Welcome />
+                            {data?.data.first_name}
                         </div>
                         <div className={`w-full ${Style.tableBg} text-center`}>
                             Your recent activities
@@ -84,7 +55,28 @@ const StudentDashboard = () => {
                                         <th className={`${Style.tableBorder}`}>Status</th>
                                     </tr>
                                 </thead>
-                                {activityMap}
+                                {data?.data &&
+                                    (data?.data.activity || []).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((activity: any) => {
+                                        const date = activity.created_at
+                                        console.log(date)
+                                        return (
+                                            <tbody key={activity.id}>
+                                                <tr className={`border-collapse  hover:bg-gray-200`}>
+                                                    <td className={`${Style.tableBorder}`}>
+                                                        {moment(date).format('MMMM Do YYYY, h:mm:ss a')}
+                                                    </td>
+
+                                                    <td className={`${Style.tableBorder}`}>
+
+                                                        {activity.day}
+                                                    </td>
+                                                    <td className={`${Style.tableBorder}`}>
+                                                        {activity.status}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        )
+                                    })}
                             </table>
                         </div>
                     </div>

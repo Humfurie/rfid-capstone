@@ -18,7 +18,6 @@ export const PersonalInfo = (props: any) => {
         setChildren,
         children,
         apiChildren,
-        setApiChildren
     } = useContext(FormContext);
 
     const { parent } = props
@@ -159,7 +158,7 @@ export const PersonalInfo = (props: any) => {
                     variant="standard"
                     size="small"
                     type="date"
-                    value={new Date(userInfo.birthdate).toISOString().substr(0, 10)}
+                    value={userInfo.birthdate}
                     onChange={(e: any) => {
                         userOnChange(e.target.value, "birthdate");
                     }}
