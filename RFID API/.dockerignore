@@ -1,0 +1,11 @@
+node_modules
+build
+.env
+.env.test
+tmp
+.git
+.vscode
+.idea
+*.log
+coverage
+.DS_Store
