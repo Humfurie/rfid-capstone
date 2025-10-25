@@ -38,3 +38,12 @@ import 'App/Routes/Admin/Children'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+// Health check endpoint for Docker
+Route.get('/health', async ({ response }) => {
+  return response.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    service: 'RFID API'
+  })
+})

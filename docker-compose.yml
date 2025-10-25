@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: rfid-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rfid_user
+      POSTGRES_PASSWORD: rfid_password
+      POSTGRES_DB: rfid_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    networks:
+      - rfid-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rfid_user -d rfid_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # AdonisJS API
+  api:
+    build:
+      context: ./RFID API
+      dockerfile: Dockerfile
+    container_name: rfid-api
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    environment:
+      PORT: 3333
+      HOST: 0.0.0.0
+      NODE_ENV: production
+      APP_KEY: ${APP_KEY:-HKrNVAer1r3jie7f7sOUSYZ5E3JTk9Ye}
+      DB_CONNECTION: pg
+      PG_HOST: postgres
+      PG_PORT: 5432
+      PG_USER: rfid_user
+      PG_PASSWORD: rfid_password
+      PG_DB_NAME: rfid_db
+      SERIAL_PORT: ${SERIAL_PORT:-COM3}
+      SERIAL_BAUD_RATE: ${SERIAL_BAUD_RATE:-9600}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - rfid-network
+    # For Arduino serial port access on host machine
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0  # Linux
+      # - /dev/ttyACM0:/dev/ttyACM0  # Alternative Linux port
+    privileged: true  # Required for serial port access
+
+  # Next.js Web Application
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: rfid-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3333
+      NODE_ENV: production
+    depends_on:
+      - api
+    networks:
+      - rfid-network
+
+networks:
+  rfid-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
